@@ -136,39 +136,22 @@ function NewsletterModal({ open, onClose, accent }) {
     e.preventDefault();
     if (!email.includes('@')) return;
 
-    const { publicationId, apiKey } = window.GRINLOUD_DATA.NEWSLETTER;
-
-    // Config not yet filled in — show success in dev/preview mode
-    if (!publicationId || publicationId.startsWith('pub_XXXX') || !apiKey || apiKey.startsWith('YOUR_')) {
-      setStatus('success');
-      return;
-    }
-
     setStatus('loading');
     try {
-      const res = await fetch(
-        `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`,
-          },
-          body: JSON.stringify({
-            email,
-            reactivate_existing: false,
-            send_welcome_email: true,
-            utm_source: 'grinloud-website',
-          }),
-        }
-      );
-      if (res.status === 201 || res.status === 200) {
+      // POST to our own Cloudflare Pages Function — no CORS, API key stays server-side
+      const res = await fetch('/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok) {
         setStatus('success');
-      } else if (res.status === 409) {
+      } else if (res.status === 409 || data.already) {
         setStatus('already');
       } else {
-        const data = await res.json().catch(() => ({}));
-        setErrorMsg(data.message || `Error ${res.status}`);
+        setErrorMsg(data.error?.message || `Error ${res.status}`);
         setStatus('error');
       }
     } catch (err) {

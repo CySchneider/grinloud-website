@@ -7,7 +7,7 @@
 // 3. Settings → Publication → copy Publication ID → paste below
 const NEWSLETTER = {
   publicationId: 'pub_5e1017ca-29b9-4f13-8608-8494ef117408',
-  apiKey:        '1ChTocxLlkeoAh3OmB11Y8cK5gSXeHhYZy8sOT4IIcuh4ZacfXhjGqyvvMUZfFM2',
+  // API key lives in Cloudflare Pages env vars — never exposed to browser
 };
 
 const BG_VIDEOS = [
