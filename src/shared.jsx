@@ -293,75 +293,11 @@ function MetaPills({ pick, scale = 1 }) {
 }
 
 // Persistent footer player — always visible, like Beatport/Spotify.
-// Uses the Spotify Iframe API for proper play() / pause() control.
-// https://developer.spotify.com/documentation/embeds/tutorials/using-the-iframe-api
-function SpotifyPreviewBar({ spotifyUrl, isPlaying, onReady }) {
-  const embedRef = React.useRef(null);
-  const controllerRef = React.useRef(null);
-  const apiReadyRef = React.useRef(false);
-
+// key-based iframe reload triggers autoplay reliably on both desktop and mobile.
+function SpotifyPreviewBar({ spotifyUrl, isPlaying }) {
   const trackId = spotifyUrl && spotifyUrl !== '#'
     ? spotifyUrl.split('/track/')[1]?.split('?')[0]
     : null;
-
-  // Load the Spotify Iframe API script once
-  React.useEffect(() => {
-    if (document.getElementById('spotify-iframe-api')) return;
-    const script = document.createElement('script');
-    script.id = 'spotify-iframe-api';
-    script.src = 'https://open.spotify.com/embed/iframe-api/v1';
-    script.async = true;
-    document.head.appendChild(script);
-  }, []);
-
-  // Create / recreate controller when trackId changes
-  React.useEffect(() => {
-    if (!trackId || !embedRef.current) return;
-
-    const init = (IFrameAPI) => {
-      // Clear previous controller
-      if (controllerRef.current) {
-        try { controllerRef.current.destroy(); } catch (e) {}
-        controllerRef.current = null;
-      }
-      embedRef.current.innerHTML = '';
-      const element = document.createElement('div');
-      embedRef.current.appendChild(element);
-
-      IFrameAPI.createController(
-        element,
-        { uri: `spotify:track:${trackId}`, width: '100%', height: 80 },
-        (controller) => {
-          controllerRef.current = controller;
-          apiReadyRef.current = true;
-          if (onReady) onReady();
-        }
-      );
-    };
-
-    if (window.SpotifyIframeApi) {
-      init(window.SpotifyIframeApi);
-    } else {
-      // Queue for when the API fires its ready callback
-      const prev = window.onSpotifyIframeApiReady;
-      window.onSpotifyIframeApiReady = (IFrameAPI) => {
-        window.SpotifyIframeApi = IFrameAPI;
-        if (prev) prev(IFrameAPI);
-        init(IFrameAPI);
-      };
-    }
-  }, [trackId]);
-
-  // Play / pause when isPlaying toggles
-  React.useEffect(() => {
-    const ctrl = controllerRef.current;
-    if (!ctrl) return;
-    if (isPlaying) {
-      ctrl.play();
-    } else {
-      ctrl.pause();
-    }
-  }, [isPlaying]);
 
   if (!trackId) {
     return (
@@ -371,9 +307,19 @@ function SpotifyPreviewBar({ spotifyUrl, isPlaying, onReady }) {
     );
   }
 
+  // Changing the key forces iframe remount → autoplay fires after a user gesture.
+  // Track changes OR play toggle both get a fresh load with autoplay=1.
+  const iframeKey = isPlaying ? `${trackId}-play` : trackId;
+  const src = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0${isPlaying ? '&autoplay=1' : ''}`;
+
   return (
     <div className="spotify-bar">
-      <div ref={embedRef} style={{ flex: 1, height: 80, overflow: 'hidden' }} />
+      <iframe
+        key={iframeKey}
+        src={src}
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="eager"
+      />
     </div>
   );
 }

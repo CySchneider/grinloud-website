@@ -752,20 +752,17 @@ a { color: inherit; text-decoration: none; }
   color: var(--paper);
 }
 .radar-row.is-active::before {
-  content: 'PLAYING';
+  content: '▶ PLAYING';
   position: absolute;
-  top: 50%;
-  right: 100%;
-  margin-right: 16px;
-  transform: translateY(-50%);
+  top: 10px;
+  right: 12px;
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
+  font-size: 9px;
+  letter-spacing: 0.16em;
   background: var(--accent);
   color: var(--ink);
-  padding: 4px 8px;
-  border: 1.5px solid var(--ink);
-  border-radius: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
 }
 .radar-row__n {
   font-family: var(--display);
