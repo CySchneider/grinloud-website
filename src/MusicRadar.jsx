@@ -1,13 +1,29 @@
 // Music Radar subpage
 // Layout: numbered poster-style tracklist on the left, sticky YouTube embed on the right.
 
-function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive }) {
+function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPreviewTrack }) {
   radar = radar || window.GRINLOUD_DATA.RADAR;
   const [activeTrack, setActiveTrack] = React.useState(null);
 
-  const onPlayCue = (cue, idx) => {
+  const onPlayCue = (track, idx) => {
     setActiveTrack(idx);
-    if (!cue || !radar.youtubeId) return;
+
+    // Find matching pick by title (case-insensitive) to get Spotify preview URL
+    if (onPreviewTrack) {
+      const picks = window.GRINLOUD_DATA.PICKS;
+      const match = picks.find(p =>
+        p.title.toLowerCase() === track.title.toLowerCase()
+      );
+      const url = match?.links?.spotify;
+      if (url && url !== '#') {
+        onPreviewTrack(url);
+        return; // Spotify preview takes priority
+      }
+    }
+
+    // Fallback: seek YouTube embed if cue time available
+    const cue = track.cue;
+    if (!cue || cue === '00:00' || !radar.youtubeId) return;
     const [m, s] = cue.split(':').map(Number);
     const sec = m * 60 + (s || 0);
     const iframe = document.querySelector('iframe#radar-yt');
@@ -58,7 +74,7 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive }) {
             <div
               key={i}
               className={`radar-row ${activeTrack === i ? 'is-active' : ''}`}
-              onClick={() => onPlayCue(t.cue, i)}
+              onClick={() => onPlayCue(t, i)}
             >
               <div className="radar-row__n">{t.n}</div>
 

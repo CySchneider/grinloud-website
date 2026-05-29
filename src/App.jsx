@@ -24,6 +24,7 @@ function App() {
   const [archiveTab, setArchiveTab] = React.useState('picks');
   const [selectedRadar, setSelectedRadar] = React.useState(window.GRINLOUD_DATA.RADAR);
   const [isPlaying, setIsPlaying] = React.useState(false);
+  const [previewUrl, setPreviewUrl] = React.useState(null); // overrides pick spotify when set
   const [showNewsletter, setShowNewsletter] = React.useState(false);
 
   const picks = window.GRINLOUD_DATA.PICKS;
@@ -53,8 +54,9 @@ function App() {
     document.documentElement.style.setProperty('--ink', palette.ink);
   }, [palette]);
 
-  // Stop preview when route changes
+  // Stop preview when route or pick changes; clear track override when leaving radar
   React.useEffect(() => { setIsPlaying(false); }, [route, pickIdx]);
+  React.useEffect(() => { if (route !== 'radar') setPreviewUrl(null); }, [route]);
 
   const Home = t.variant === 'A' ? HomeA : HomeB;
 
@@ -96,6 +98,7 @@ function App() {
           contrastInk={palette.ink}
           onBack={() => setRoute('home')}
           onGotoArchive={() => { setArchiveTab('radars'); setRoute('archive'); }}
+          onPreviewTrack={(url) => { setPreviewUrl(url); setIsPlaying(true); }}
         />
       )}
 
@@ -118,7 +121,7 @@ function App() {
       />
 
       <SpotifyPreviewBar
-        spotifyUrl={pick.links.spotify}
+        spotifyUrl={previewUrl || pick.links.spotify}
         isPlaying={isPlaying}
       />
 
