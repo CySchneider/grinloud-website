@@ -75,7 +75,8 @@ a { color: inherit; text-decoration: none; }
   background: var(--ink);
   color: var(--paper);
 }
-.nav-link--ghost:hover { background: var(--accent, var(--ink)); color: var(--ink); }
+.nav-link--ghost:hover { background: var(--ink); color: #FFE000; }
+a.nav-link--ghost:hover svg { color: #FFE000; }
 .nav-spacer { width: 1.5px; height: 22px; background: var(--ink); opacity: 0.2; margin: 0 4px; }
 .nav-dot { display: none; }
 
@@ -404,18 +405,24 @@ a { color: inherit; text-decoration: none; }
   font-size: 11px;
   letter-spacing: 0.12em;
 }
-.claim-chip__legal {
+.legal-links {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.1em;
-  opacity: 0.45;
-  margin-left: auto;
+  opacity: 0.4;
+  margin-top: 6px;
 }
-.claim-chip__legal a { text-decoration: none; color: inherit; }
-.claim-chip__legal a:hover { opacity: 1; text-decoration: underline; }
+.legal-links a { text-decoration: none; color: inherit; }
+.legal-links a:hover { opacity: 1; text-decoration: underline; }
+.home-a__footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+}
 
 /* ============================================================
    HOME A radar link
@@ -1232,10 +1239,10 @@ a { color: inherit; text-decoration: none; }
   .home-a__main { gap: 14px; }
   .home-a__footer { flex-direction: column; align-items: stretch; }
 
-  /* ── Footer ClaimChip on mobile: hide tagline, single row ── */
-  .claim-chip { border-radius: 999px; gap: 12px; }
-  .claim-chip__line { display: none; }
-  .claim-chip__legal { margin-left: auto; font-size: 10px; }
+  /* ── Footer on mobile ── */
+  .home-a__footer { flex-direction: column; align-items: stretch; gap: 10px; }
+  .home-a__footer-right { align-items: flex-start; }
+  .legal-links { margin-top: 4px; }
 
   /* ── Home B ── */
   .home-b__grid { grid-template-columns: 1fr; gap: 20px; }

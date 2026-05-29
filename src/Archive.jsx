@@ -80,6 +80,7 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onSele
       )}
 
       <ClaimChip accent={accent} />
+      <LegalLinks />
     </div>
   );
 }

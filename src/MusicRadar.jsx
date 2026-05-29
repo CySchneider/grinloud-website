@@ -117,6 +117,7 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
       </div>
 
       <ClaimChip accent={accent} />
+      <LegalLinks />
     </div>
   );
 }

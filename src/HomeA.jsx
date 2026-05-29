@@ -69,9 +69,12 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
 
       <footer className="home-a__footer">
         <ClaimChip accent={accent} />
-        <button className="radar-link" onClick={onGotoRadar}>
-          MUSIC RADAR {window.GRINLOUD_DATA.RADAR.number} → OUT NOW
-        </button>
+        <div className="home-a__footer-right">
+          <button className="radar-link" onClick={onGotoRadar}>
+            MUSIC RADAR {window.GRINLOUD_DATA.RADAR.number} → OUT NOW
+          </button>
+          <LegalLinks />
+        </div>
       </footer>
     </div>
   );

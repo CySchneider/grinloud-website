@@ -257,11 +257,16 @@ function ClaimChip({ accent }) {
     <div className="claim-chip" style={{ '--accent': accent }}>
       <div className="claim-chip__brand">GRINLOUD</div>
       <div className="claim-chip__line">House music curated daily. Mixed all 10 days.</div>
-      <div className="claim-chip__legal">
-        <a href="/privacy.html" target="_blank" rel="noreferrer">Privacy</a>
-        <span>·</span>
-        <a href="/impressum.html" target="_blank" rel="noreferrer">Impressum</a>
-      </div>
+    </div>
+  );
+}
+
+function LegalLinks() {
+  return (
+    <div className="legal-links">
+      <a href="/privacy.html" target="_blank" rel="noreferrer">Privacy</a>
+      <span>·</span>
+      <a href="/impressum.html" target="_blank" rel="noreferrer">Impressum</a>
     </div>
   );
 }
@@ -392,4 +397,4 @@ function SpotifyPreviewBar({ spotifyUrl }) {
   );
 }
 
-Object.assign(window, { BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopNav, ClaimChip, MetaPills, SpotifyPreviewBar });
+Object.assign(window, { BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar });
