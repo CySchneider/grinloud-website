@@ -1252,10 +1252,11 @@ a { color: inherit; text-decoration: none; }
   }
   .radar__masthead-meta { font-size: 10px; }
 
-  /* ── Radar hero: keep side-by-side like desktop, smaller gap ── */
-  .radar__hero { gap: 20px; padding: 16px 0 20px; }
-  .radar__number { font-size: clamp(72px, 28vw, 140px); line-height: 1; }
-  .radar__hero-title { font-size: clamp(18px, 5vw, 30px); }
+  /* ── Radar hero: stacked on mobile, smaller number ── */
+  .radar__hero { grid-template-columns: 1fr; gap: 12px; padding: 16px 0 20px; }
+  .radar__number { font-size: clamp(56px, 22vw, 96px); line-height: 1; }
+  .radar__hero-side { padding-bottom: 0; }
+  .radar__hero-title { font-size: clamp(20px, 5.5vw, 32px); }
   .radar__hero-tags { flex-wrap: wrap; gap: 6px; }
 
   /* ── Radar split: stack YouTube below tracklist ── */
