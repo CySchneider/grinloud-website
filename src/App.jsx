@@ -65,7 +65,7 @@ function App() {
       <TopNav
         route={route}
         setRoute={(r) => {
-          if (r === 'archive') setArchiveTab('picks'); // TopNav always opens picks tab
+          if (r === 'archive') setArchiveTab(route === 'radar' ? 'radars' : 'picks');
           setRoute(r);
         }}
         onNewsletter={() => setShowNewsletter(true)}
