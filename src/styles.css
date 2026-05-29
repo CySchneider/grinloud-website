@@ -1191,21 +1191,26 @@ a { color: inherit; text-decoration: none; }
   .radar   { padding: 100px 16px 120px; }
   .archive { padding: 100px 16px 120px; }
 
-  /* ── Top nav: centred, all items on one line ── */
-  .top-nav { padding: 12px 12px; }
+  /* ── Top nav: full width, all items on one line ── */
+  .top-nav { padding: 10px 12px; }
   .top-nav__inner {
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    margin: 0;
     gap: 2px;
     padding: 4px;
+    justify-content: space-between;
   }
   .nav-link {
     font-size: 9.5px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     padding: 8px 10px;
     white-space: nowrap;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
   }
-  .nav-link--ghost { padding: 8px 10px; }
+  .nav-spacer { display: none; }
+  .nav-link--ghost { flex: none; padding: 8px 12px; }
 
   /* ── Nav arrows ── */
   .nav-arrow { width: 52px; height: 52px; }
@@ -1222,14 +1227,23 @@ a { color: inherit; text-decoration: none; }
   .home-b__vertical-claim { display: none; }
   .home-b__radar { width: 100%; }
 
-  /* ── Radar header ── */
+  /* ── Radar header: back button fit-content, title breathing room ── */
   .radar__header {
     flex-direction: column;
-    gap: 10px;
+    gap: 0;
     align-items: flex-start;
-    margin-top: 8px;
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-top: 4px;
   }
-  .radar__masthead { text-align: left; }
+  .radar__back { align-self: flex-start; }
+  .radar__masthead {
+    text-align: left;
+    margin-top: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1.5px solid var(--ink);
+    width: 100%;
+  }
   .radar__masthead-meta { font-size: 10px; }
 
   /* ── Radar hero: stack number above title ── */
@@ -1273,9 +1287,18 @@ a { color: inherit; text-decoration: none; }
   }
   .radar-row.is-active::before { display: none; }
 
-  /* ── Archive ── */
-  .archive__header { grid-template-columns: 1fr; gap: 12px; }
-  .archive__grid   { grid-template-columns: 1fr; }
+  /* ── Archive header: back button small, title with breathing room ── */
+  .archive__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding-bottom: 20px;
+  }
+  .archive__header .radar__back { align-self: flex-start; }
+  .archive__title { margin-top: 32px; margin-bottom: 20px; }
+  .archive__tabs  { margin-top: 0; }
+  .archive__grid  { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
