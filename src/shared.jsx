@@ -248,11 +248,9 @@ function TopNav({ route, setRoute, onNewsletter, accent }) {
 
 function ClaimChip({ accent }) {
   return (
-    <div>
-      <div className="claim-chip" style={{ '--accent': accent }}>
-        <div className="claim-chip__brand">GRINLOUD</div>
-        <div className="claim-chip__line">House music curated daily. Mixed all 10 days.</div>
-      </div>
+    <div className="claim-chip" style={{ '--accent': accent }}>
+      <div className="claim-chip__brand">GRINLOUD</div>
+      <div className="claim-chip__line">House music curated daily. Mixed all 10 days.</div>
       <div className="claim-chip__legal">
         <a href="/privacy.html" target="_blank" rel="noreferrer">Privacy</a>
         <span>·</span>
