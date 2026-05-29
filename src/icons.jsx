@@ -40,7 +40,20 @@ const Icon = {
   ),
   Dot: ({ size = 8 }) => (
     <svg width={size} height={size} viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg>
-  )
+  ),
+  Instagram: ({ size = 16 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2"/>
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2"/>
+      <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+    </svg>
+  ),
+  YouTube: ({ size = 16 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" strokeWidth="2"/>
+      <path d="M10 9l6 3-6 3V9z" fill="currentColor"/>
+    </svg>
+  ),
 };
 
 window.Icon = Icon;

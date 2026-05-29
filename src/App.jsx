@@ -71,6 +71,16 @@ function App() {
   React.useEffect(() => { setIsPlaying(false); }, [route, pickIdx]);
   React.useEffect(() => { if (route !== 'radar') setPreviewUrl(null); }, [route]);
 
+  // Dynamic page title
+  React.useEffect(() => {
+    const titles = {
+      home:    `${pick.title} — ${pick.artist} · GRINLOUD`,
+      radar:   `Music Radar ${selectedRadar.number} · GRINLOUD`,
+      archive: 'Archive · GRINLOUD',
+    };
+    document.title = titles[route] || 'GRINLOUD — House Music Curated Daily';
+  }, [route, pickIdx, selectedRadar]);
+
   const Home = t.variant === 'A' ? HomeA : HomeB;
 
   return (

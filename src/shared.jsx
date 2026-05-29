@@ -238,6 +238,12 @@ function TopNav({ route, setRoute, onNewsletter, accent }) {
           </button>
         ))}
         <span className="nav-spacer" />
+        <a className="nav-link nav-link--ghost" href="https://instagram.com/grinloud" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <Icon.Instagram size={14} />
+        </a>
+        <a className="nav-link nav-link--ghost" href="https://youtube.com/@grinloud" target="_blank" rel="noreferrer" aria-label="YouTube">
+          <Icon.YouTube size={14} />
+        </a>
         <button className="nav-link nav-link--ghost" onClick={onNewsletter}>
           <Icon.Mail size={14} /> SUBSCRIBE
         </button>
