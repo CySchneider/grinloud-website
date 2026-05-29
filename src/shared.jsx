@@ -316,6 +316,10 @@ let _containerEl = null;  // DOM element for the embed
   document.head.appendChild(s);
 })();
 
+window.grinloudPauseSpotify = function() {
+  if (_spotifyCtrl) _spotifyCtrl.pause();
+};
+
 // Called SYNCHRONOUSLY inside click handlers to keep user-gesture context
 window.grinloudPlaySpotify = function(spotifyUrl) {
   const trackId = spotifyUrl && spotifyUrl !== '#'
@@ -326,7 +330,19 @@ window.grinloudPlaySpotify = function(spotifyUrl) {
 
   if (_spotifyCtrl) {
     _spotifyCtrl.loadUri(uri);
-    _spotifyCtrl.play();
+    // loadUri is async — wait for playback_update before calling play()
+    // falls back to a short timeout if the event never fires (older API versions)
+    var played = false;
+    function onUpdate(state) {
+      if (played) return;
+      played = true;
+      _spotifyCtrl.removeListener('playback_update', onUpdate);
+      _spotifyCtrl.play();
+    }
+    _spotifyCtrl.addListener('playback_update', onUpdate);
+    setTimeout(function() {
+      if (!played) { played = true; _spotifyCtrl.play(); }
+    }, 400);
   } else if (_spotifyAPI && _containerEl) {
     _spotifyAPI.createController(
       _containerEl,
@@ -334,7 +350,6 @@ window.grinloudPlaySpotify = function(spotifyUrl) {
       function(ctrl) { _spotifyCtrl = ctrl; ctrl.play(); }
     );
   }
-  // If API not ready yet, user needs to try again — rare edge case on first load
 };
 
 function SpotifyPreviewBar({ spotifyUrl }) {

@@ -33,7 +33,7 @@ function HomeB({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
 
       <button
         className={`play-overlay play-overlay--b ${isPlaying ? 'is-playing' : ''}`}
-        onClick={() => { if (!isPlaying) window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
+        onClick={() => { isPlaying ? window.grinloudPauseSpotify() : window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
       >
         {isPlaying ? <Icon.Pause size={20} /> : <Icon.Play size={20} />}
         <span>{isPlaying ? 'PAUSE' : 'PLAY PREVIEW'}</span>
