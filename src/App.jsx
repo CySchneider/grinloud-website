@@ -38,9 +38,22 @@ function App() {
 
   const palette = COLOR_MAP[t.bgColor] || COLOR_MAP.pink;
 
-  // When pick changes, sync accent color to the pick's genre palette
+  // When pick changes, sync accent color + update JSON-LD for SEO
   React.useEffect(() => {
     if (pick.accent) setTweak('bgColor', pick.accent);
+    // Update structured data for current pick
+    let ld = document.getElementById('ld-pick');
+    if (!ld) { ld = document.createElement('script'); ld.id = 'ld-pick'; ld.type = 'application/ld+json'; document.head.appendChild(ld); }
+    ld.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'MusicRecording',
+      'name': pick.title,
+      'byArtist': { '@type': 'MusicGroup', 'name': pick.artist },
+      'genre': pick.genre,
+      'datePublished': pick.date,
+      'url': pick.links?.spotify && pick.links.spotify !== '#' ? pick.links.spotify : 'https://grinloud.com',
+      'description': pick.info,
+    });
   }, [pickIdx]);
 
   const canPrev = pickIdx < picks.length - 1; // can go to older pick

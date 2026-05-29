@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://grinloud.com/sitemap.xml

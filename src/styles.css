@@ -404,6 +404,17 @@ a { color: inherit; text-decoration: none; }
   font-size: 11px;
   letter-spacing: 0.12em;
 }
+.claim-chip__legal {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+.claim-chip__legal a { text-decoration: none; color: inherit; }
+.claim-chip__legal a:hover { opacity: 1; text-decoration: underline; }
 
 /* ============================================================
    HOME A radar link
