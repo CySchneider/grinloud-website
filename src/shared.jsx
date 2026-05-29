@@ -292,27 +292,41 @@ function MetaPills({ pick, scale = 1 }) {
   );
 }
 
-// ── Spotify preview helper ────────────────────────────────────────────────
-// Call synchronously inside a click handler — browser keeps the user-gesture
-// context which is required for autoplay to work.
+// ── Spotify preview — fully imperative iframe management ─────────────────
+// React never sets src as a prop, so re-renders can't override an autoplay
+// src that was set synchronously in a click handler.
+
+let _spotifyIframe = null; // module-level ref, always points to the live iframe
+
 window.grinloudPlaySpotify = function(spotifyUrl) {
   const trackId = spotifyUrl && spotifyUrl !== '#'
     ? spotifyUrl.split('/track/')[1]?.split('?')[0]
     : null;
-  if (!trackId) return;
-  const iframe = document.getElementById('spotify-preview-iframe');
-  if (iframe) {
-    iframe.src = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0&autoplay=1`;
-  }
+  if (!trackId || !_spotifyIframe) return;
+  _spotifyIframe.src =
+    `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0&autoplay=1`;
 };
 
-// Persistent footer player — always visible, like Beatport/Spotify.
-// Rendering is passive; actual playback is triggered imperatively via
-// window.grinloudPlaySpotify() to preserve the browser user-gesture context.
 function SpotifyPreviewBar({ spotifyUrl }) {
+  const iframeRef = React.useRef(null);
+
   const trackId = spotifyUrl && spotifyUrl !== '#'
     ? spotifyUrl.split('/track/')[1]?.split('?')[0]
     : null;
+
+  // Register the iframe element globally on mount
+  React.useEffect(() => {
+    _spotifyIframe = iframeRef.current;
+    return () => { _spotifyIframe = null; };
+  }, []);
+
+  // When track changes (pick navigation), load the new track without autoplay
+  React.useEffect(() => {
+    if (iframeRef.current && trackId) {
+      iframeRef.current.src =
+        `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`;
+    }
+  }, [trackId]);
 
   if (!trackId) {
     return (
@@ -322,11 +336,11 @@ function SpotifyPreviewBar({ spotifyUrl }) {
     );
   }
 
+  // No src prop → React never reconciles/overrides what we set imperatively
   return (
     <div className="spotify-bar">
       <iframe
-        id="spotify-preview-iframe"
-        src={`https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`}
+        ref={iframeRef}
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="eager"
       />
