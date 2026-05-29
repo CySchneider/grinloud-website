@@ -292,39 +292,79 @@ function MetaPills({ pick, scale = 1 }) {
   );
 }
 
-// ── Spotify preview — fully imperative iframe management ─────────────────
-// React never sets src as a prop, so re-renders can't override an autoplay
-// src that was set synchronously in a click handler.
+// ── Spotify Iframe API — the only reliable way to programmatically play ──
+// autoplay=1 URL param no longer works (Spotify removed it in 2023).
+// controller.play() called from a user-gesture context works reliably.
 
-let _spotifyIframe = null; // module-level ref, always points to the live iframe
+let _spotifyAPI  = null;  // IFrameAPI once loaded
+let _spotifyCtrl = null;  // active controller
+let _containerEl = null;  // DOM element for the embed
 
+// Load API script immediately (before any user interaction)
+(function() {
+  if (typeof document === 'undefined') return;
+  if (document.getElementById('sp-iframe-api')) return;
+  window.onSpotifyIframeApiReady = function(IFrameAPI) {
+    _spotifyAPI = IFrameAPI;
+    // If component already mounted, initialise the player
+    window.dispatchEvent(new Event('sp-api-ready'));
+  };
+  const s = document.createElement('script');
+  s.id = 'sp-iframe-api';
+  s.src = 'https://open.spotify.com/embed/iframe-api/v1';
+  s.async = true;
+  document.head.appendChild(s);
+})();
+
+// Called SYNCHRONOUSLY inside click handlers to keep user-gesture context
 window.grinloudPlaySpotify = function(spotifyUrl) {
   const trackId = spotifyUrl && spotifyUrl !== '#'
     ? spotifyUrl.split('/track/')[1]?.split('?')[0]
     : null;
-  if (!trackId || !_spotifyIframe) return;
-  _spotifyIframe.src =
-    `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0&autoplay=1`;
+  if (!trackId) return;
+  const uri = 'spotify:track:' + trackId;
+
+  if (_spotifyCtrl) {
+    _spotifyCtrl.loadUri(uri);
+    _spotifyCtrl.play();
+  } else if (_spotifyAPI && _containerEl) {
+    _spotifyAPI.createController(
+      _containerEl,
+      { uri: uri, width: '100%', height: 80 },
+      function(ctrl) { _spotifyCtrl = ctrl; ctrl.play(); }
+    );
+  }
+  // If API not ready yet, user needs to try again — rare edge case on first load
 };
 
 function SpotifyPreviewBar({ spotifyUrl }) {
-  const iframeRef = React.useRef(null);
-
+  const containerRef = React.useRef(null);
   const trackId = spotifyUrl && spotifyUrl !== '#'
     ? spotifyUrl.split('/track/')[1]?.split('?')[0]
     : null;
 
-  // Register the iframe element globally on mount
-  React.useEffect(() => {
-    _spotifyIframe = iframeRef.current;
-    return () => { _spotifyIframe = null; };
-  }, []);
+  React.useEffect(function() {
+    if (!containerRef.current || !trackId) return;
+    _containerEl = containerRef.current;
 
-  // When track changes (pick navigation), load the new track without autoplay
-  React.useEffect(() => {
-    if (iframeRef.current && trackId) {
-      iframeRef.current.src =
-        `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`;
+    function initPlayer() {
+      if (!_spotifyAPI) return;
+      if (_spotifyCtrl) {
+        _spotifyCtrl.loadUri('spotify:track:' + trackId);
+      } else {
+        _spotifyAPI.createController(
+          _containerEl,
+          { uri: 'spotify:track:' + trackId, width: '100%', height: 80 },
+          function(ctrl) { _spotifyCtrl = ctrl; }
+        );
+      }
+    }
+
+    if (_spotifyAPI) {
+      initPlayer();
+    } else {
+      window.addEventListener('sp-api-ready', initPlayer, { once: true });
+      return function() { window.removeEventListener('sp-api-ready', initPlayer); };
     }
   }, [trackId]);
 
@@ -336,14 +376,9 @@ function SpotifyPreviewBar({ spotifyUrl }) {
     );
   }
 
-  // No src prop → React never reconciles/overrides what we set imperatively
   return (
     <div className="spotify-bar">
-      <iframe
-        ref={iframeRef}
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="eager"
-      />
+      <div ref={containerRef} style={{ flex: 1, height: 80, overflow: 'hidden' }} />
     </div>
   );
 }
