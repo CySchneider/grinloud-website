@@ -1188,8 +1188,8 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 900px) {
   /* ── General ── */
   .home    { padding: 80px 20px 120px; }
-  .radar   { padding: 100px 16px 120px; }
-  .archive { padding: 100px 16px 120px; }
+  .radar   { padding: 74px 16px 120px; }
+  .archive { padding: 74px 16px 120px; }
 
   /* ── Top nav: full width, all items on one line ── */
   .top-nav { padding: 10px 12px; }
@@ -1227,19 +1227,19 @@ a { color: inherit; text-decoration: none; }
   .home-b__vertical-claim { display: none; }
   .home-b__radar { width: 100%; }
 
-  /* ── Radar header: back button fit-content, title breathing room ── */
+  /* ── Radar header: back close to nav, more space to title ── */
   .radar__header {
     flex-direction: column;
     gap: 0;
     align-items: flex-start;
     padding-bottom: 0;
     border-bottom: none;
-    margin-top: 4px;
+    margin-top: 0;
   }
   .radar__back { align-self: flex-start; }
   .radar__masthead {
     text-align: left;
-    margin-top: 28px;
+    margin-top: 35px;
     padding-bottom: 16px;
     border-bottom: 1.5px solid var(--ink);
     width: 100%;
@@ -1287,7 +1287,7 @@ a { color: inherit; text-decoration: none; }
   }
   .radar-row.is-active::before { display: none; }
 
-  /* ── Archive header: back button small, title with breathing room ── */
+  /* ── Archive header: back close to nav, more space to title ── */
   .archive__header {
     display: flex;
     flex-direction: column;
@@ -1295,8 +1295,8 @@ a { color: inherit; text-decoration: none; }
     gap: 0;
     padding-bottom: 20px;
   }
-  .archive__header .radar__back { align-self: flex-start; }
-  .archive__title { margin-top: 32px; margin-bottom: 20px; }
+  .archive__header .radar__back { align-self: flex-start; margin-top: 0; }
+  .archive__title { margin-top: 40px; margin-bottom: 20px; }
   .archive__tabs  { margin-top: 0; }
   .archive__grid  { grid-template-columns: 1fr; }
 }
