@@ -8,27 +8,15 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
   const onPlayCue = (track, idx) => {
     setActiveTrack(idx);
 
-    // Find matching pick by title (case-insensitive) to get Spotify preview URL
-    if (onPreviewTrack) {
-      const picks = window.GRINLOUD_DATA.PICKS;
-      const match = picks.find(p =>
-        p.title.toLowerCase() === track.title.toLowerCase()
-      );
-      const url = match?.links?.spotify;
-      if (url && url !== '#') {
-        onPreviewTrack(url);
-        return; // Spotify preview takes priority
-      }
-    }
+    // Find matching pick to get Spotify URL
+    const picks = window.GRINLOUD_DATA.PICKS;
+    const match = picks.find(p => p.title.toLowerCase() === track.title.toLowerCase());
+    const url = match?.links?.spotify;
 
-    // Fallback: seek YouTube embed if cue time available
-    const cue = track.cue;
-    if (!cue || cue === '00:00' || !radar.youtubeId) return;
-    const [m, s] = cue.split(':').map(Number);
-    const sec = m * 60 + (s || 0);
-    const iframe = document.querySelector('iframe#radar-yt');
-    if (iframe) {
-      iframe.src = `https://www.youtube.com/embed/${radar.youtubeId}?start=${sec}&autoplay=1&rel=0&modestbranding=1`;
+    if (url && url !== '#') {
+      // ↓ synchronous — must happen before React re-renders to keep user-gesture context
+      window.grinloudPlaySpotify(url);
+      if (onPreviewTrack) onPreviewTrack(url);
     }
   };
 

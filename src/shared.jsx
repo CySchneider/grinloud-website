@@ -292,9 +292,24 @@ function MetaPills({ pick, scale = 1 }) {
   );
 }
 
+// ── Spotify preview helper ────────────────────────────────────────────────
+// Call synchronously inside a click handler — browser keeps the user-gesture
+// context which is required for autoplay to work.
+window.grinloudPlaySpotify = function(spotifyUrl) {
+  const trackId = spotifyUrl && spotifyUrl !== '#'
+    ? spotifyUrl.split('/track/')[1]?.split('?')[0]
+    : null;
+  if (!trackId) return;
+  const iframe = document.getElementById('spotify-preview-iframe');
+  if (iframe) {
+    iframe.src = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0&autoplay=1`;
+  }
+};
+
 // Persistent footer player — always visible, like Beatport/Spotify.
-// key-based iframe reload triggers autoplay reliably on both desktop and mobile.
-function SpotifyPreviewBar({ spotifyUrl, isPlaying }) {
+// Rendering is passive; actual playback is triggered imperatively via
+// window.grinloudPlaySpotify() to preserve the browser user-gesture context.
+function SpotifyPreviewBar({ spotifyUrl }) {
   const trackId = spotifyUrl && spotifyUrl !== '#'
     ? spotifyUrl.split('/track/')[1]?.split('?')[0]
     : null;
@@ -307,16 +322,11 @@ function SpotifyPreviewBar({ spotifyUrl, isPlaying }) {
     );
   }
 
-  // Changing the key forces iframe remount → autoplay fires after a user gesture.
-  // Track changes OR play toggle both get a fresh load with autoplay=1.
-  const iframeKey = isPlaying ? `${trackId}-play` : trackId;
-  const src = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0${isPlaying ? '&autoplay=1' : ''}`;
-
   return (
     <div className="spotify-bar">
       <iframe
-        key={iframeKey}
-        src={src}
+        id="spotify-preview-iframe"
+        src={`https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`}
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="eager"
       />

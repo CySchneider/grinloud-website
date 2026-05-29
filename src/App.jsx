@@ -122,7 +122,6 @@ function App() {
 
       <SpotifyPreviewBar
         spotifyUrl={previewUrl || pick.links.spotify}
-        isPlaying={isPlaying}
       />
 
       <TweaksPanel title="Tweaks">

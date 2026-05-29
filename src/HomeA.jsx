@@ -25,7 +25,7 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
 
       <button
         className={`play-overlay ${isPlaying ? 'is-playing' : ''}`}
-        onClick={onPlay}
+        onClick={() => { if (!isPlaying) window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
         aria-label={isPlaying ? 'Pause preview' : 'Play preview'}
       >
         {isPlaying ? <Icon.Pause size={22} /> : <Icon.Play size={22} />}
