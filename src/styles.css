@@ -230,16 +230,16 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   gap: 10px;
   padding: 12px 20px;
   background: var(--ink);
-  color: var(--paper);
+  color: #FF1F8F;
   border-radius: 999px;
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.14em;
   font-weight: 600;
   transition: background 0.18s, color 0.18s;
-  border: 2px solid var(--ink);
+  border: none;
 }
-.play-btn:hover { background: var(--paper); color: var(--ink); }
+.play-btn:hover { background: #FF1F8F; color: var(--paper); }
 .play-btn.is-playing { background: var(--accent, #FFE000); color: var(--ink); }
 
 /* ============================================================
@@ -413,19 +413,19 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   align-items: center;
   gap: 5px;
   padding: 7px 12px;
-  border: 1.5px solid var(--accent, var(--ink));
+  border: none;
   border-radius: 999px;
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.14em;
   font-weight: 700;
-  background: transparent;
-  color: var(--accent, var(--ink));
+  background: var(--ink);
+  color: var(--paper);
   transition: background 0.16s, color 0.16s, transform 0.14s;
 }
 .streaming-link:hover {
-  background: var(--accent, var(--ink));
-  color: var(--ink);
+  background: #FF1F8F;
+  color: var(--paper);
   transform: translateY(-1px);
 }
 
@@ -455,44 +455,89 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   color: rgba(245,242,238,0.6);
 }
 
-/* Description frame */
-.pick-description {
-  max-width: 520px;
-  border: 1.5px solid rgba(245,242,238,0.3);
-  border-radius: 4px;
-  padding: 16px 20px;
+/* Grinloud Says — narrow decorative lines, label between them */
+.pick-quote {
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.pick-quote__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.pick-quote__rule {
+  width: 48px; /* ~25% of full width */
+  height: 1px;
+  background: rgba(245,242,238,0.35);
+  flex-shrink: 0;
+}
+.pick-quote__rule--solo {
+  width: 48px;
+}
+.pick-quote__label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: rgba(245,242,238,0.45);
+  white-space: nowrap;
+}
+.pick-quote__text {
+  margin: 0;
   font-family: var(--sans);
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.7;
   color: rgba(245,242,238,0.85);
   text-align: center;
-  backdrop-filter: blur(4px);
-  background: rgba(0,0,0,0.15);
+  font-style: italic;
 }
 
-/* GRINLOUD Badge (bottom-left) */
-.grinloud-badge {
-  display: inline-flex;
+/* GRINLOUD text brand — absolutely positioned, flush-left with smiley */
+.brand-footer {
+  position: absolute;
+  bottom: 120px;
+  left: 24px; /* same as top-brand smiley */
+  z-index: 10;
+  display: flex;
   flex-direction: column;
   gap: 2px;
-  background: #FFE000;
-  color: #0A0A0A;
-  border: 2.5px solid #0A0A0A;
-  padding: 10px 16px;
-  box-shadow: 4px 4px 0 #0A0A0A;
 }
-.grinloud-badge__name {
+.brand-footer__name {
   font-family: var(--display);
-  font-size: 22px;
-  letter-spacing: 0.04em;
+  font-size: 28px;
+  letter-spacing: 0;
   line-height: 1;
 }
-.grinloud-badge__claim {
+.brand-footer__claim {
   font-family: var(--mono);
   font-size: 8px;
   letter-spacing: 0.14em;
-  opacity: 0.7;
+  opacity: 0.65;
   text-transform: uppercase;
+}
+/* Subpage variant — ink colour for light backgrounds */
+.brand-footer--subpage .brand-footer__name,
+.brand-footer--subpage .brand-footer__claim {
+  color: var(--ink);
+}
+
+/* Pick of the Day pill — reuses top-nav__radar-pill styles */
+.pick-pill {
+  position: static !important; /* override any inherited positioning */
+  margin: 0 auto;
+  cursor: default;
+}
+.pick-pill .eyebrow-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: currentColor;
+  border-radius: 50%;
+  animation: pulse 1.6s infinite;
+  flex-shrink: 0;
 }
 
 /* ============================================================
@@ -1368,10 +1413,11 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   .home-a__footer-right { align-items: flex-start; }
   .legal-links { margin-top: 4px; }
 
-  /* ── Header on mobile ── */
-  .top-brand { top: 10px; left: 10px; }
+  /* ── Header on mobile: smiley below nav ── */
+  .top-brand { top: 68px; left: 14px; }
   .home-a__header { display: none; }
   .top-nav__radar-pill { display: none; }
+  .brand-footer { bottom: 100px; left: 14px; }
 
   /* ── Home B ── */
   .home-b__grid { grid-template-columns: 1fr; gap: 20px; }

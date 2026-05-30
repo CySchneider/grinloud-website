@@ -220,7 +220,7 @@ function NewsletterModal({ open, onClose, accent }) {
 function TopBrand() {
   return (
     <div className="top-brand">
-      <LogoMark size={64} />
+      <LogoMark size={80} />
     </div>
   );
 }
@@ -271,10 +271,11 @@ function TopNav({ route, setRoute, onNewsletter, accent, onGotoRadar }) {
 }
 
 function ClaimChip({ accent }) {
+  // On subpages (light/coloured bg) — plain text brand, ink colour for readability
   return (
-    <div className="claim-chip" style={{ '--accent': accent }}>
-      <div className="claim-chip__brand">GRINLOUD</div>
-      <div className="claim-chip__line">House music curated daily. Mixed all 10 days.</div>
+    <div className="brand-footer brand-footer--subpage">
+      <div className="brand-footer__name">GRINLOUD</div>
+      <div className="brand-footer__claim">HOUSE MUSIC CURATED DAILY</div>
     </div>
   );
 }

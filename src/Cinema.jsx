@@ -13,7 +13,7 @@ function Cinema({ pick }) {
 
       {/* Centered pick content */}
       <div className="cinema__content">
-        <div className="cinema__pill" style={{ background: accent, color: accentInk }}>
+        <div className="top-nav__radar-pill cinema__pill">
           PICK OF THE DAY · {dd}.{mm}.{yyyy}
         </div>
         <h1 className="cinema__title">{pick.title}</h1>

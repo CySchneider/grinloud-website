@@ -18,32 +18,35 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
       )}
 
       <main className="home-a__main">
-        <div className="eyebrow-row">
+        {/* Pick of the Day — same style as Music Radar pill */}
+        <div className="top-nav__radar-pill pick-pill">
           <span className="eyebrow-dot" />
-          <span className="eyebrow-text">PICK OF THE DAY · {pick.date}</span>
+          PICK OF THE DAY · {pick.date}
         </div>
 
-        <h1
-          className="track-title track-title--a"
-          style={{ fontSize: `clamp(40px, ${titleSize}vw, 200px)` }}
-        >
+        <h1 className="track-title track-title--a" style={{ fontSize: `clamp(40px, ${titleSize}vw, 200px)` }}>
           {pick.title}
         </h1>
 
-        {/* Artist + meta on two lines */}
         <div className="pick-artist">{pick.artist}</div>
-        <div className="pick-submeta">
-          {pick.genre.toUpperCase()} · {pick.bpm} BPM · {pick.key}
-        </div>
+        <div className="pick-submeta">{pick.genre.toUpperCase()} · {pick.bpm} BPM · {pick.key}</div>
 
-        {/* Description frame */}
+        {/* Grinloud Says — narrow lines with label between them */}
         {infoDensity !== 'minimal' && (
-          <div className="pick-description">
-            {infoDensity === 'comfy' ? pick.info : pick.short}
+          <div className="pick-quote">
+            <div className="pick-quote__header">
+              <div className="pick-quote__rule" />
+              <span className="pick-quote__label">GRINLOUD SAYS:</span>
+              <div className="pick-quote__rule" />
+            </div>
+            <p className="pick-quote__text">
+              {infoDensity === 'comfy' ? pick.info : pick.short}
+            </p>
+            <div className="pick-quote__rule pick-quote__rule--solo" />
           </div>
         )}
 
-        {/* Play + Streaming links row */}
+        {/* Play + Streaming */}
         <div className="pick-actions">
           <button
             className={`play-btn ${isPlaying ? 'is-playing' : ''}`}
@@ -56,12 +59,13 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
         </div>
       </main>
 
-      {/* Bottom-left GRINLOUD badge */}
+      {/* GRINLOUD brand — absolutely positioned, left-aligned with smiley */}
+      <div className="brand-footer">
+        <div className="brand-footer__name" style={{ color: accent }}>GRINLOUD</div>
+        <div className="brand-footer__claim" style={{ color: accent }}>HOUSE MUSIC CURATED DAILY</div>
+      </div>
+
       <footer className="home-a__footer">
-        <div className="grinloud-badge">
-          <div className="grinloud-badge__name">GRINLOUD</div>
-          <div className="grinloud-badge__claim">HOUSE MUSIC CURATED DAILY</div>
-        </div>
         <LegalLinks />
       </footer>
     </div>
