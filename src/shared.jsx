@@ -220,13 +220,7 @@ function NewsletterModal({ open, onClose, accent }) {
 function TopBrand() {
   return (
     <div className="top-brand">
-      <div className="top-brand__main">
-        <LogoMark size={46} />
-        <div className="top-brand__text">
-          <span className="top-brand__wordmark">grinloud</span>
-          <span className="top-brand__claim">House music curated daily</span>
-        </div>
-      </div>
+      <LogoMark size={64} />
     </div>
   );
 }

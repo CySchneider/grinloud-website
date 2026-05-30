@@ -1,14 +1,10 @@
-// Homepage Variant A — "Centered Brutal"
+// Homepage Variant A
 
 function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar }) {
-  const titleSize = 9 * typeScale; // ~17% smaller than before (was 11)
+  const titleSize = 9 * typeScale;
   return (
     <div className="home home--a" style={{ '--accent': accent, '--ink': contrastInk }}>
       <BackgroundVideo accent={accent} overlayOpacity={overlayOpacity} src={pick.video} />
-
-      <header className={`home-a__header header-logo--${logoPos}`}>
-        <LogoMark position={logoPos} />
-      </header>
 
       {canPrev && (
         <button className="nav-arrow nav-arrow--left" onClick={prev} aria-label="Previous pick">
@@ -34,37 +30,38 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
           {pick.title}
         </h1>
 
-        <div className="artist-row">
-          <span className="artist-name">{pick.artist}</span>
-          <span className="artist-sep">·</span>
-          <span className="artist-genre">{pick.genre}</span>
+        {/* Artist + meta on two lines */}
+        <div className="pick-artist">{pick.artist}</div>
+        <div className="pick-submeta">
+          {pick.genre.toUpperCase()} · {pick.bpm} BPM · {pick.key}
         </div>
 
+        {/* Description frame */}
         {infoDensity !== 'minimal' && (
-          <p className="track-info">
+          <div className="pick-description">
             {infoDensity === 'comfy' ? pick.info : pick.short}
-          </p>
-        )}
-
-        {infoDensity === 'comfy' && <MetaPills pick={pick} />}
-        {infoDensity === 'regular' && (
-          <div className="meta-inline">
-            {pick.bpm} BPM &nbsp;/&nbsp; {pick.key} &nbsp;/&nbsp; {pick.label} &nbsp;/&nbsp; {pick.release}
           </div>
         )}
 
-        <button
-          className={`play-btn ${isPlaying ? 'is-playing' : ''}`}
-          onClick={() => { isPlaying ? window.grinloudPauseSpotify() : window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
-        >
-          {isPlaying ? <Icon.Pause size={16} /> : <Icon.Play size={16} />}
-          <span>{isPlaying ? 'PAUSE PREVIEW' : 'PLAY PREVIEW'}</span>
-        </button>
-
-        <StreamingLinks links={pick.links} accent={accent} />
+        {/* Play + Streaming links row */}
+        <div className="pick-actions">
+          <button
+            className={`play-btn ${isPlaying ? 'is-playing' : ''}`}
+            onClick={() => { isPlaying ? window.grinloudPauseSpotify() : window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
+          >
+            {isPlaying ? <Icon.Pause size={16} /> : <Icon.Play size={16} />}
+            <span>{isPlaying ? 'PAUSE' : 'PLAY PREVIEW'}</span>
+          </button>
+          <StreamingLinks links={pick.links} accent={accent} />
+        </div>
       </main>
 
+      {/* Bottom-left GRINLOUD badge */}
       <footer className="home-a__footer">
+        <div className="grinloud-badge">
+          <div className="grinloud-badge__name">GRINLOUD</div>
+          <div className="grinloud-badge__claim">HOUSE MUSIC CURATED DAILY</div>
+        </div>
         <LegalLinks />
       </footer>
     </div>
