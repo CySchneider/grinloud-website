@@ -221,15 +221,18 @@ function TopBrand() {
   return (
     <div className="top-brand">
       <div className="top-brand__main">
-        <LogoMark size={40} />
-        <span className="top-brand__wordmark">grinloud</span>
+        <LogoMark size={46} />
+        <div className="top-brand__text">
+          <span className="top-brand__wordmark">grinloud</span>
+          <span className="top-brand__claim">House music curated daily</span>
+        </div>
       </div>
-      <div className="top-brand__claim">House music curated daily. Mixed all 10 days.</div>
     </div>
   );
 }
 
-function TopNav({ route, setRoute, onNewsletter, accent }) {
+function TopNav({ route, setRoute, onNewsletter, accent, onGotoRadar }) {
+  const radar = window.GRINLOUD_DATA.RADAR;
   const items = [
     { id: 'home',    label: 'PICK' },
     { id: 'radar',   label: 'MUSIC RADAR' },
@@ -260,6 +263,15 @@ function TopNav({ route, setRoute, onNewsletter, accent }) {
           <Icon.Mail size={14} /> SUBSCRIBE
         </button>
       </div>
+      {route === 'home' && onGotoRadar && (
+        <button
+          className="top-nav__radar-pill"
+          style={{ '--accent': accent }}
+          onClick={onGotoRadar}
+        >
+          MUSIC RADAR {radar.number} → OUT NOW
+        </button>
+      )}
     </nav>
   );
 }

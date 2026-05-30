@@ -99,6 +99,7 @@ function App() {
           setRoute(r);
         }}
         onNewsletter={() => setShowNewsletter(true)}
+        onGotoRadar={() => setRoute('radar')}
         accent={palette.bg}
       />
 
