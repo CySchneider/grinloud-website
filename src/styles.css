@@ -527,7 +527,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 
 /* Pick of the Day pill — reuses top-nav__radar-pill styles */
 .pick-pill {
-  position: static !important; /* override any inherited positioning */
+  position: static !important;
   margin: 0 auto;
   cursor: default;
 }
@@ -538,6 +538,10 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   border-radius: 50%;
   animation: pulse 1.6s infinite;
   flex-shrink: 0;
+}
+/* Cinema pill — override margin-left: auto so it centres in flex */
+.cinema__pill {
+  margin: 0 auto !important;
 }
 
 /* ============================================================
@@ -1333,13 +1337,15 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .home .home-b__vertical-claim {
   color: var(--paper);
 }
+/* Streaming links on home: dark bg, white text — no accent override */
 .home .streaming-link {
-  border-color: var(--accent, rgba(245,242,238,0.6));
-  color: var(--accent, var(--paper));
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
 }
 .home .streaming-link:hover {
-  background: var(--accent, var(--paper));
-  color: var(--ink);
+  background: #FF1F8F;
+  color: var(--paper);
 }
 
 /* Eyebrow pill: semi-transparent dark bg so it reads on any video */
@@ -1347,18 +1353,6 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   background: rgba(0,0,0,0.35);
   border-color: rgba(245,242,238,0.35);
   backdrop-filter: blur(8px);
-}
-
-/* Streaming links: light border on video bg */
-.home .streaming-link {
-  border-color: rgba(245,242,238,0.5);
-  background: rgba(0,0,0,0.25);
-  backdrop-filter: blur(6px);
-}
-.home .streaming-link:hover {
-  background: var(--paper);
-  color: var(--ink);
-  border-color: var(--paper);
 }
 
 /* Meta inline (BPM / KEY / …) */
