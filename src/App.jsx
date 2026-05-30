@@ -18,6 +18,9 @@ const COLOR_MAP = {
   orange: { bg: '#FF6200', ink: '#0A0A0A', overlayTint: '#FF6200' }
 };
 
+// ── Cinema mode — /?cinema ────────────────────────────────────────────────
+const isCinemaMode = new URLSearchParams(window.location.search).has('cinema');
+
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [route, setRoute] = React.useState('home');
@@ -82,6 +85,9 @@ function App() {
   }, [route, pickIdx, selectedRadar]);
 
   const Home = t.variant === 'A' ? HomeA : HomeB;
+
+  // Cinema mode — render fullscreen pick view, no UI
+  if (isCinemaMode) return <Cinema pick={pick} />;
 
   return (
     <div className="app" style={{ background: palette.bg, color: palette.ink }}>

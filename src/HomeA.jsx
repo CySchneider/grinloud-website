@@ -1,9 +1,7 @@
 // Homepage Variant A — "Centered Brutal"
-// Stays close to the wireframe: smiley logo top, big track title centered, info under, claim at bottom.
-// Adds: streaming links row, play overlay, arrows that actually feel like physical buttons.
 
-function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar }) {
-  const titleSize = 11 * typeScale; // vw units below
+function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar }) {
+  const titleSize = 9 * typeScale; // ~17% smaller than before (was 11)
   return (
     <div className="home home--a" style={{ '--accent': accent, '--ink': contrastInk }}>
       <BackgroundVideo accent={accent} overlayOpacity={overlayOpacity} src={pick.video} />
@@ -23,15 +21,6 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
         </button>
       )}
 
-      <button
-        className={`play-overlay ${isPlaying ? 'is-playing' : ''}`}
-        onClick={() => { isPlaying ? window.grinloudPauseSpotify() : window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
-        aria-label={isPlaying ? 'Pause preview' : 'Play preview'}
-      >
-        {isPlaying ? <Icon.Pause size={22} /> : <Icon.Play size={22} />}
-        <span>{isPlaying ? 'PAUSE PREVIEW' : 'PLAY PREVIEW'}</span>
-      </button>
-
       <main className="home-a__main">
         <div className="eyebrow-row">
           <span className="eyebrow-dot" />
@@ -40,7 +29,7 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
 
         <h1
           className="track-title track-title--a"
-          style={{ fontSize: `clamp(48px, ${titleSize}vw, 240px)` }}
+          style={{ fontSize: `clamp(40px, ${titleSize}vw, 200px)` }}
         >
           {pick.title}
         </h1>

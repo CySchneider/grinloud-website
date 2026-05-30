@@ -2,8 +2,8 @@
 // Arty / editorial. Logo offset, giant rotated date, track title on a baseline grid,
 // info card pinned to one side, claim runs as vertical type. Same content, different rhythm.
 
-function HomeB({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar }) {
-  const titleSize = 12 * typeScale;
+function HomeB({ pick, accent, contrastInk, prev, next, canPrev, canNext, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar }) {
+  const titleSize = 10 * typeScale; // ~17% smaller
 
   // Big date display: "28 / 05" with year underneath
   const [yyyy, mm, dd] = pick.date.split('-');
@@ -31,13 +31,6 @@ function HomeB({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
         </button>
       )}
 
-      <button
-        className={`play-overlay play-overlay--b ${isPlaying ? 'is-playing' : ''}`}
-        onClick={() => { isPlaying ? window.grinloudPauseSpotify() : window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
-      >
-        {isPlaying ? <Icon.Pause size={20} /> : <Icon.Play size={20} />}
-        <span>{isPlaying ? 'PAUSE' : 'PLAY PREVIEW'}</span>
-      </button>
 
       <div className="home-b__grid">
         <div className="home-b__date">

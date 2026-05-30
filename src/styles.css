@@ -1463,3 +1463,73 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   letter-spacing: 0.08em;
   color: rgba(255,255,255,0.5);
 }
+
+/* ============================================================
+   CINEMA MODE — /?cinema
+   ============================================================ */
+.cinema {
+  position: fixed; inset: 0;
+  width: 100vw; height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 32px 56px;
+  overflow: hidden;
+  background: #0A0A0A;
+}
+.cinema__top {
+  display: flex; align-items: flex-start;
+}
+.cinema__logo {
+  width: 72px; height: 72px;
+  object-fit: contain;
+  filter: drop-shadow(3px 3px 0 #0A0A0A);
+}
+.cinema__center {
+  display: flex; flex-direction: column;
+  gap: 12px;
+}
+.cinema__eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(245,242,238,0.6);
+}
+.cinema__title {
+  font-family: var(--display);
+  font-size: clamp(52px, 14vw, 96px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--paper);
+  margin: 0;
+  text-transform: uppercase;
+  -webkit-text-stroke: 2px var(--paper);
+  paint-order: stroke fill;
+}
+.cinema__artist {
+  font-family: var(--display);
+  font-size: clamp(18px, 5vw, 28px);
+  letter-spacing: 0.04em;
+  color: #FFE000;
+  text-transform: uppercase;
+}
+.cinema__genre {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(245,242,238,0.45);
+}
+.cinema__bottom {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.cinema__brand {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--paper);
+}
+.cinema__claim {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: rgba(245,242,238,0.4);
+}
