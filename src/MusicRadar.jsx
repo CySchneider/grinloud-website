@@ -88,14 +88,22 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
         <aside className="radar__sticky">
           <div className="radar__player">
             <div className="radar__player-frame">
-              <iframe
-                id="radar-yt"
-                src={`https://www.youtube.com/embed/${radar.youtubeId}?rel=0&modestbranding=1`}
-                title={`Music Radar ${radar.number}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+              {radar.youtubeId ? (
+                <iframe
+                  id="radar-yt"
+                  src={`https://www.youtube.com/embed/${radar.youtubeId}?rel=0&modestbranding=1`}
+                  title={`Music Radar ${radar.number}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <div className="radar__player-pending">
+                  <div className="radar__player-pending-icon">⏳</div>
+                  <div className="radar__player-pending-text">MIX COMING SOON</div>
+                  <div className="radar__player-pending-sub">Mix is being recorded — check back in a few days.</div>
+                </div>
+              )}
             </div>
             <div className="radar__player-meta">
               <div className="radar__player-row">

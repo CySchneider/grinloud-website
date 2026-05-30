@@ -42,6 +42,120 @@ const BG_VIDEOS = [
 // Picks — newest first (index 0 = most recent)
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
+
+  // ── MUSIC RADAR 005 — 01–10 Jun 2026 ──────────────────────────────────────
+  {
+    id: 'pick-2026-06-10',
+    date: '2026-06-10',
+    title: 'Alcoholic',
+    artist: 'SAN PACHO',
+    bpm: 132, key: 'Eb Major', label: 'LIBERA', release: '10 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[23],
+    info: "San Pacho on LIBERA closes 005 in style. Alcoholic is the kind of track that keeps going long after the night ends.",
+    short: "Keeps going long after the night ends.",
+    links: { spotify: 'https://open.spotify.com/track/5Iedc3D20KJoj95uQRp5p0', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-09',
+    date: '2026-06-09',
+    title: 'Bad Wolf',
+    artist: 'MICHAEL BIBI',
+    bpm: 131, key: 'Ab Major', label: 'EMPIRE', release: '09 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[22],
+    info: "Bibi on EMPIRE. Bad Wolf has teeth — dark, muscular, completely in control. One of his sharpest.",
+    short: "Dark, muscular, completely in control.",
+    links: { spotify: 'https://open.spotify.com/track/4S8bYzrUHwoAsPzJWRt4QM', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-08',
+    date: '2026-06-08',
+    title: 'Control',
+    artist: 'AFROJACK, LUCAS & STEVE',
+    bpm: 130, key: 'Ab Major', label: 'Black Book Records', release: '08 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[21],
+    info: "Afrojack steps into Tech House territory on Black Book Records and doesn't miss. Control is smooth, relentless, and impossible to ignore.",
+    short: "Smooth and relentless. Afrojack doesn't miss.",
+    links: { spotify: 'https://open.spotify.com/track/4e1L2pH75XOtCE0I0XzxlU', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-07',
+    date: '2026-06-07',
+    title: 'Waist Move',
+    artist: 'GREG 99',
+    bpm: 130, key: 'Eb Major', label: 'Nervous Records', release: '07 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[20],
+    info: "GREG 99 builds something infectious — a groove that takes over the floor before you even realise it's happening.",
+    short: "A groove that takes over before you realise it.",
+    links: { spotify: 'https://open.spotify.com/track/7HzUjBSzXpS3vsmz8VG7yW', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-06',
+    date: '2026-06-06',
+    title: 'Rake It Up',
+    artist: 'KENZ (US)',
+    bpm: 130, key: 'Gb Major', label: 'Repopulate Mars', release: '06 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[19],
+    info: "KENZ on Repopulate Mars. Rake It Up has the swagger of a late-night set closer — minimal but fully loaded.",
+    short: "The swagger of a late-night set closer.",
+    links: { spotify: 'https://open.spotify.com/track/6YNRSnDi92sAhYO8XzonVT', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-05',
+    date: '2026-06-05',
+    title: 'Rich & Handsome',
+    artist: 'MATRODA, SAN PACHO & AF:MN',
+    bpm: 130, key: 'Ab Minor', label: 'AFTER MIDNIGHT', release: '05 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[18],
+    info: "Three names, one weapon. Matroda, San Pacho and AFTER MIDNIGHT deliver something slick, dark and impossible to ignore.",
+    short: "Slick, dark and impossible to ignore.",
+    links: { spotify: 'https://open.spotify.com/track/1oeljccOyFQGPOY8gaVnnH', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-04',
+    date: '2026-06-04',
+    title: 'So Hot!',
+    artist: 'JAKE BLEU & EDRIS OMAR',
+    bpm: 128, key: 'B Minor', label: 'House Rules Records', release: '04 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[17],
+    info: "Does exactly what it says. Jake Bleu and Edris Omar turn up the temperature without breaking a sweat.",
+    short: "Turns up the temperature without breaking a sweat.",
+    links: { spotify: 'https://open.spotify.com/track/5Tpca7PbJGQpPUJohnFStN', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-03',
+    date: '2026-06-03',
+    title: 'Lipstick',
+    artist: 'ALAIA & GALLO',
+    bpm: 128, key: 'D Minor', label: 'Toolroom', release: '03 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[16],
+    info: "Toolroom's finest doing what they do best. Lipstick is proper floor-first Tech House — tight, punchy, and impossible to shake.",
+    short: "Proper floor-first Tech House. Tight and impossible to shake.",
+    links: { spotify: 'https://open.spotify.com/track/5DeNvGYijFobt2ufPFGhsK', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-02',
+    date: '2026-06-02',
+    title: 'Take Control',
+    artist: 'LOOZBONE',
+    bpm: 130, key: 'G Minor', label: 'Catch & Release', release: '02 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[15],
+    info: "LOOZBONE locks in on Catch & Release with a groove that doesn't let go. The bass takes the wheel and the floor follows.",
+    short: "The bass takes the wheel and the floor follows.",
+    links: { spotify: 'https://open.spotify.com/track/0ucs704ejvx402bCbDC7ms', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-01',
+    date: '2026-06-01',
+    title: 'Army',
+    artist: 'QOBRA (IT)',
+    bpm: 128, key: 'C Minor', label: 'The Myth of NYX', release: '01 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[14],
+    info: "Dark and relentless. Qobra builds a room-ready Tech House weapon from scratch — no filler, no mercy. Opens 005 exactly right.",
+    short: "Dark and relentless. No filler, no mercy.",
+    links: { spotify: 'https://open.spotify.com/track/75386mOXWOPoHCjNRc3rgj', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+
+  // ── MUSIC RADAR 004 — 22–31 May 2026 ──────────────────────────────────────
   {
     id: 'pick-2026-05-31',
     date: '2026-05-31',
@@ -685,27 +799,27 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 004 (has YouTube mix) ─────────────────────────────────
+// ── CURRENT RADAR — 005 (mix pending, YouTube TBA) ────────────────────────
 const RADAR = {
-  id: 'radar-004',
-  number: '004',
-  title: 'Music Radar 004',
-  subtitle: 'Ten tracks. Ten days. All killer.',
-  date: '22 MAY 2026',
-  nextDate: '01 JUN 2026',
-  youtubeId: 'fzcpYJV_jGk',
-  duration: '~60 MIN',
+  id: 'radar-005',
+  number: '005',
+  title: 'Music Radar 005',
+  subtitle: 'Ten tracks. Ten days. Pure Tech House.',
+  date: '01 JUN 2026',
+  nextDate: '11 JUN 2026',
+  youtubeId: null,   // TODO: add after recording
+  duration: 'TBA',
   tracks: [
-    { n: '01', title: 'Addicted',                          artist: 'Kungs & CHANEY',                              bpm: 126, key: 'A Minor',  genre: 'Dance / Pop', cue: '00:00' },
-    { n: '02', title: "Can't Sleep",                       artist: 'Tony Romera',                                 bpm: 126, key: 'F Minor',  genre: 'Tech House',  cue: '00:00' },
-    { n: '03', title: 'Hands Up',                          artist: 'Volkoder & Vintage Culture',                  bpm: 128, key: 'Db Minor', genre: 'Tech House',  cue: '00:00' },
-    { n: '04', title: 'Dancing Boys, Dancing Girls',       artist: 'Odd Mob',                                     bpm: 130, key: 'G Minor',  genre: 'Bass House',  cue: '00:00' },
-    { n: '05', title: 'My Own Thang (To The Beat)',        artist: 'Walker & Royce, Alok & Sophiegrophy',         bpm: 130, key: 'G Minor',  genre: 'Tech House',  cue: '00:00' },
-    { n: '06', title: "Don't Stop",                        artist: 'Prospa',                                      bpm: 130, key: '—',        genre: 'Tech House',  cue: '00:00' },
-    { n: '07', title: 'Turn Up The Bass',                  artist: 'Alesso & JOA ft. Tyree Cooper',               bpm: 130, key: 'Gb Major', genre: 'Dance / Pop', cue: '00:00' },
-    { n: '08', title: 'The Past, The Present, The Future', artist: 'David Guetta & Marten Hørger',                bpm: 132, key: 'F Major',  genre: 'Bass House',  cue: '00:00' },
-    { n: '09', title: 'Function',                          artist: 'SIDEPIECE',                                   bpm: 132, key: 'D Minor',  genre: 'Tech House',  cue: '00:00' },
-    { n: '10', title: 'Seratonin',                         artist: 'James Hype',                                  bpm: 138, key: 'F Minor',  genre: 'Dance / Pop', cue: '00:00' },
+    { n: '01', title: 'Army',             artist: 'Qobra (IT)',                      bpm: 128, key: 'C Minor',  genre: 'Tech House', cue: '00:00' },
+    { n: '02', title: 'Take Control',     artist: 'LOOZBONE',                        bpm: 130, key: 'G Minor',  genre: 'Tech House', cue: '00:00' },
+    { n: '03', title: 'Lipstick',         artist: 'Alaia & Gallo',                   bpm: 128, key: 'D Minor',  genre: 'Tech House', cue: '00:00' },
+    { n: '04', title: 'So Hot!',          artist: 'Jake Bleu & Edris Omar',          bpm: 128, key: 'B Minor',  genre: 'Tech House', cue: '00:00' },
+    { n: '05', title: 'Rich & Handsome',  artist: 'Matroda, San Pacho & AF:MN',      bpm: 130, key: 'Ab Minor', genre: 'Tech House', cue: '00:00' },
+    { n: '06', title: 'Rake It Up',       artist: 'KENZ (US)',                       bpm: 130, key: 'Gb Major', genre: 'Tech House', cue: '00:00' },
+    { n: '07', title: 'Waist Move',       artist: 'GREG 99',                         bpm: 130, key: 'Eb Major', genre: 'Tech House', cue: '00:00' },
+    { n: '08', title: 'Control',          artist: 'Afrojack, Lucas & Steve',         bpm: 130, key: 'Ab Major', genre: 'Tech House', cue: '00:00' },
+    { n: '09', title: 'Bad Wolf',         artist: 'Michael Bibi',                    bpm: 131, key: 'Ab Major', genre: 'Tech House', cue: '00:00' },
+    { n: '10', title: 'Alcoholic',        artist: 'San Pacho',                       bpm: 132, key: 'Eb Major', genre: 'Tech House', cue: '00:00' },
   ]
 };
 
@@ -713,6 +827,28 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    number: '004',
+    title: 'Music Radar 004',
+    subtitle: 'Ten tracks. Ten days. All killer.',
+    date: '22 MAY 2026',
+    nextDate: '01 JUN 2026',
+    duration: '~60 MIN',
+    youtubeId: 'fzcpYJV_jGk',
+    spotifyUrl: 'https://open.spotify.com/playlist/5pwS4zMbmMb9WAOQhdPLTQ',
+    tracks: [
+      { n: '01', title: 'Addicted',                          artist: 'Kungs & CHANEY',                     bpm: 126, key: 'A Minor',  genre: 'Dance / Pop', cue: '00:00' },
+      { n: '02', title: "Can't Sleep",                       artist: 'Tony Romera',                        bpm: 126, key: 'F Minor',  genre: 'Tech House',  cue: '00:00' },
+      { n: '03', title: 'Hands Up',                          artist: 'Volkoder & Vintage Culture',         bpm: 128, key: 'Db Minor', genre: 'Tech House',  cue: '00:00' },
+      { n: '04', title: 'Dancing Boys, Dancing Girls',       artist: 'Odd Mob',                            bpm: 130, key: 'G Minor',  genre: 'Bass House',  cue: '00:00' },
+      { n: '05', title: 'My Own Thang (To The Beat)',        artist: 'Walker & Royce, Alok & Sophiegrophy', bpm: 130, key: 'G Minor', genre: 'Tech House',  cue: '00:00' },
+      { n: '06', title: "Don't Stop",                        artist: 'Prospa',                             bpm: 130, key: '—',        genre: 'Tech House',  cue: '00:00' },
+      { n: '07', title: 'Turn Up The Bass',                  artist: 'Alesso & JOA ft. Tyree Cooper',      bpm: 130, key: 'Gb Major', genre: 'Dance / Pop', cue: '00:00' },
+      { n: '08', title: 'The Past, The Present, The Future', artist: 'David Guetta & Marten Hørger',       bpm: 132, key: 'F Major',  genre: 'Bass House',  cue: '00:00' },
+      { n: '09', title: 'Function',                          artist: 'SIDEPIECE',                          bpm: 132, key: 'D Minor',  genre: 'Tech House',  cue: '00:00' },
+      { n: '10', title: 'Seratonin',                         artist: 'James Hype',                         bpm: 138, key: 'F Minor',  genre: 'Dance / Pop', cue: '00:00' },
+    ]
+  },
   {
     number: '003',
     title: 'Music Radar 003',
