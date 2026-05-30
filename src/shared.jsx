@@ -217,6 +217,18 @@ function NewsletterModal({ open, onClose, accent }) {
   );
 }
 
+function TopBrand() {
+  return (
+    <div className="top-brand">
+      <div className="top-brand__main">
+        <LogoMark size={40} />
+        <span className="top-brand__wordmark">grinloud</span>
+      </div>
+      <div className="top-brand__claim">House music curated daily. Mixed all 10 days.</div>
+    </div>
+  );
+}
+
 function TopNav({ route, setRoute, onNewsletter, accent }) {
   const items = [
     { id: 'home',    label: 'PICK' },
@@ -397,4 +409,4 @@ function SpotifyPreviewBar({ spotifyUrl }) {
   );
 }
 
-Object.assign(window, { BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar });
+Object.assign(window, { BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar });

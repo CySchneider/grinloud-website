@@ -91,6 +91,7 @@ function App() {
 
   return (
     <div className="app" style={{ background: palette.bg, color: palette.ink }}>
+      <TopBrand />
       <TopNav
         route={route}
         setRoute={(r) => {

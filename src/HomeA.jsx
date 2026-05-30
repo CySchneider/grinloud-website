@@ -1,6 +1,6 @@
 // Homepage Variant A — "Centered Brutal"
 
-function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar }) {
+function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar }) {
   const titleSize = 9 * typeScale; // ~17% smaller than before (was 11)
   return (
     <div className="home home--a" style={{ '--accent': accent, '--ink': contrastInk }}>
@@ -52,6 +52,14 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, typeSc
             {pick.bpm} BPM &nbsp;/&nbsp; {pick.key} &nbsp;/&nbsp; {pick.label} &nbsp;/&nbsp; {pick.release}
           </div>
         )}
+
+        <button
+          className={`play-btn ${isPlaying ? 'is-playing' : ''}`}
+          onClick={() => { isPlaying ? window.grinloudPauseSpotify() : window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
+        >
+          {isPlaying ? <Icon.Pause size={16} /> : <Icon.Play size={16} />}
+          <span>{isPlaying ? 'PAUSE PREVIEW' : 'PLAY PREVIEW'}</span>
+        </button>
 
         <StreamingLinks links={pick.links} accent={accent} />
       </main>

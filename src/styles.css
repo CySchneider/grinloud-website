@@ -30,6 +30,44 @@ a { color: inherit; text-decoration: none; }
 /* ============================================================
    TOP NAV
    ============================================================ */
+/* ── Top Brand (left) ── */
+.top-brand {
+  position: fixed;
+  top: 18px; left: 28px;
+  z-index: 50;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.top-brand__main {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(245,242,238,0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 5px 16px 5px 5px;
+}
+.top-brand__wordmark {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 22px;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.top-brand__claim {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--paper);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  padding-left: 6px;
+  pointer-events: none;
+}
+
 .top-nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -190,6 +228,25 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   left: 50%;
 }
 
+/* Inline play button — sits in the content flow, not floating */
+.play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  transition: background 0.18s, color 0.18s;
+  border: 2px solid var(--ink);
+}
+.play-btn:hover { background: var(--paper); color: var(--ink); }
+.play-btn.is-playing { background: var(--accent, #FFE000); color: var(--ink); }
+
 /* ============================================================
    HOME COMMON
    ============================================================ */
@@ -207,7 +264,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .home-a__header {
   position: relative;
   z-index: 10;
-  display: flex;
+  display: none; /* TopBrand handles logo on desktop */
   justify-content: center;
   padding-top: 8px;
 }
@@ -1244,6 +1301,10 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   .home-a__footer-right { align-items: flex-start; }
   .legal-links { margin-top: 4px; }
 
+  /* ── Header on mobile: hide TopBrand pill, show page logo ── */
+  .top-brand { display: none; }
+  .home-a__header { display: flex; }
+
   /* ── Home B ── */
   .home-b__grid { grid-template-columns: 1fr; gap: 20px; }
   .home-b__rule { display: none; }
@@ -1465,71 +1526,39 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 }
 
 /* ============================================================
-   CINEMA MODE — /?cinema
+   CINEMA MODE — /?cinema  (optimised for 3:4 Instagram)
    ============================================================ */
 .cinema {
   position: fixed; inset: 0;
   width: 100vw; height: 100vh;
   display: flex; flex-direction: column;
   justify-content: space-between;
-  padding: 48px 32px 56px;
+  padding: 36px 28px 44px;
   overflow: hidden;
   background: #0A0A0A;
 }
-.cinema__top {
-  display: flex; align-items: flex-start;
-}
-.cinema__logo {
-  width: 72px; height: 72px;
-  object-fit: contain;
-  filter: drop-shadow(3px 3px 0 #0A0A0A);
-}
-.cinema__center {
-  display: flex; flex-direction: column;
-  gap: 12px;
-}
+.cinema__top { display: flex; align-items: flex-start; position: relative; z-index: 10; }
+.cinema__logo { width: 56px; height: 56px; object-fit: contain; }
+.cinema__center { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 10; }
 .cinema__eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: rgba(245,242,238,0.6);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.2em; color: rgba(245,242,238,0.6);
 }
 .cinema__title {
   font-family: var(--display);
-  font-size: clamp(52px, 14vw, 96px);
-  line-height: 0.92;
-  letter-spacing: -0.03em;
-  color: var(--paper);
-  margin: 0;
-  text-transform: uppercase;
-  -webkit-text-stroke: 2px var(--paper);
-  paint-order: stroke fill;
+  font-size: clamp(36px, 9vw, 64px);
+  line-height: 0.92; letter-spacing: -0.03em;
+  color: var(--paper); margin: 0; text-transform: uppercase;
 }
 .cinema__artist {
   font-family: var(--display);
-  font-size: clamp(18px, 5vw, 28px);
-  letter-spacing: 0.04em;
-  color: #FFE000;
-  text-transform: uppercase;
+  font-size: clamp(14px, 3.5vw, 22px);
+  letter-spacing: 0.04em; color: #FFE000; text-transform: uppercase;
 }
-.cinema__genre {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: rgba(245,242,238,0.45);
+.cinema__meta {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; color: rgba(245,242,238,0.4);
 }
-.cinema__bottom {
-  display: flex; flex-direction: column; gap: 4px;
-}
-.cinema__brand {
-  font-family: var(--display);
-  font-size: 22px;
-  letter-spacing: 0.06em;
-  color: var(--paper);
-}
-.cinema__claim {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: rgba(245,242,238,0.4);
-}
+.cinema__bottom { display: flex; flex-direction: column; gap: 3px; position: relative; z-index: 10; }
+.cinema__brand { font-family: var(--display); font-size: 18px; letter-spacing: 0.06em; color: var(--paper); }
+.cinema__claim { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; color: rgba(245,242,238,0.4); }
