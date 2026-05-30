@@ -37,6 +37,17 @@ const BG_VIDEOS = [
   'grok-video-8d63d04f-de4b-456a-b683-bc6f53e731be-5.mp4',
   'grok-video-aa6e4151-d13d-4a2b-a3be-35db84e5059e.mp4',
   'grok-video-aa6e4151-d13d-4a2b-a3be-35db84e5059e-2.mp4',
+  // ── Parkhaus series — Music Radar 005 picks ──
+  'parkhaus-001.mp4',
+  'parkhaus-002.mp4',
+  'parkhaus-003.mp4',
+  'parkhaus-004.mp4',
+  'parkhaus-005.mp4',
+  'parkhaus-006.mp4',
+  'parkhaus-007.mp4',
+  'parkhaus-008.mp4',
+  'parkhaus-009.mp4',
+  'parkhaus-010.mp4',
 ];
 
 // Picks — newest first (index 0 = most recent)
@@ -50,7 +61,7 @@ const PICKS = [
     title: 'Alcoholic',
     artist: 'SAN PACHO',
     bpm: 132, key: 'Eb Major', label: 'LIBERA', release: '10 Jun 2026',
-    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[23],
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[35],
     info: "San Pacho on LIBERA closes 005 in style. Alcoholic is the kind of track that keeps going long after the night ends.",
     short: "Keeps going long after the night ends.",
     links: { spotify: 'https://open.spotify.com/track/5Iedc3D20KJoj95uQRp5p0', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -61,7 +72,7 @@ const PICKS = [
     title: 'Bad Wolf',
     artist: 'MICHAEL BIBI',
     bpm: 131, key: 'Ab Major', label: 'EMPIRE', release: '09 Jun 2026',
-    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[22],
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[34],
     info: "Bibi on EMPIRE. Bad Wolf has teeth — dark, muscular, completely in control. One of his sharpest.",
     short: "Dark, muscular, completely in control.",
     links: { spotify: 'https://open.spotify.com/track/4S8bYzrUHwoAsPzJWRt4QM', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -72,7 +83,7 @@ const PICKS = [
     title: 'Control',
     artist: 'AFROJACK, LUCAS & STEVE',
     bpm: 130, key: 'Ab Major', label: 'Black Book Records', release: '08 Jun 2026',
-    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[21],
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[33],
     info: "Afrojack steps into Tech House territory on Black Book Records and doesn't miss. Control is smooth, relentless, and impossible to ignore.",
     short: "Smooth and relentless. Afrojack doesn't miss.",
     links: { spotify: 'https://open.spotify.com/track/4e1L2pH75XOtCE0I0XzxlU', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -83,7 +94,7 @@ const PICKS = [
     title: 'Waist Move',
     artist: 'GREG 99',
     bpm: 130, key: 'Eb Major', label: 'Nervous Records', release: '07 Jun 2026',
-    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[20],
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[32],
     info: "GREG 99 builds something infectious — a groove that takes over the floor before you even realise it's happening.",
     short: "A groove that takes over before you realise it.",
     links: { spotify: 'https://open.spotify.com/track/7HzUjBSzXpS3vsmz8VG7yW', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -94,7 +105,7 @@ const PICKS = [
     title: 'Rake It Up',
     artist: 'KENZ (US)',
     bpm: 130, key: 'Gb Major', label: 'Repopulate Mars', release: '06 Jun 2026',
-    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[19],
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[31],
     info: "KENZ on Repopulate Mars. Rake It Up has the swagger of a late-night set closer — minimal but fully loaded.",
     short: "The swagger of a late-night set closer.",
     links: { spotify: 'https://open.spotify.com/track/6YNRSnDi92sAhYO8XzonVT', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -105,7 +116,7 @@ const PICKS = [
     title: 'Rich & Handsome',
     artist: 'MATRODA, SAN PACHO & AF:MN',
     bpm: 130, key: 'Ab Minor', label: 'AFTER MIDNIGHT', release: '05 Jun 2026',
-    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[18],
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[30],
     info: "Three names, one weapon. Matroda, San Pacho and AFTER MIDNIGHT deliver something slick, dark and impossible to ignore.",
     short: "Slick, dark and impossible to ignore.",
     links: { spotify: 'https://open.spotify.com/track/1oeljccOyFQGPOY8gaVnnH', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -116,7 +127,7 @@ const PICKS = [
     title: 'So Hot!',
     artist: 'JAKE BLEU & EDRIS OMAR',
     bpm: 128, key: 'B Minor', label: 'House Rules Records', release: '04 Jun 2026',
-    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[17],
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[29],
     info: "Does exactly what it says. Jake Bleu and Edris Omar turn up the temperature without breaking a sweat.",
     short: "Turns up the temperature without breaking a sweat.",
     links: { spotify: 'https://open.spotify.com/track/5Tpca7PbJGQpPUJohnFStN', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -127,7 +138,7 @@ const PICKS = [
     title: 'Lipstick',
     artist: 'ALAIA & GALLO',
     bpm: 128, key: 'D Minor', label: 'Toolroom', release: '03 Jun 2026',
-    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[16],
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[28],
     info: "Toolroom's finest doing what they do best. Lipstick is proper floor-first Tech House — tight, punchy, and impossible to shake.",
     short: "Proper floor-first Tech House. Tight and impossible to shake.",
     links: { spotify: 'https://open.spotify.com/track/5DeNvGYijFobt2ufPFGhsK', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -138,7 +149,7 @@ const PICKS = [
     title: 'Take Control',
     artist: 'LOOZBONE',
     bpm: 130, key: 'G Minor', label: 'Catch & Release', release: '02 Jun 2026',
-    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[15],
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[27],
     info: "LOOZBONE locks in on Catch & Release with a groove that doesn't let go. The bass takes the wheel and the floor follows.",
     short: "The bass takes the wheel and the floor follows.",
     links: { spotify: 'https://open.spotify.com/track/0ucs704ejvx402bCbDC7ms', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -149,7 +160,7 @@ const PICKS = [
     title: 'Army',
     artist: 'QOBRA (IT)',
     bpm: 128, key: 'C Minor', label: 'The Myth of NYX', release: '01 Jun 2026',
-    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[14],
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[26],
     info: "Dark and relentless. Qobra builds a room-ready Tech House weapon from scratch — no filler, no mercy. Opens 005 exactly right.",
     short: "Dark and relentless. No filler, no mercy.",
     links: { spotify: 'https://open.spotify.com/track/75386mOXWOPoHCjNRc3rgj', youtube: '#', beatport: '#', soundcloud: '#' }
