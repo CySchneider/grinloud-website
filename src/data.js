@@ -818,7 +818,7 @@ const RADAR = {
   subtitle: 'Ten tracks. Ten days. Pure Tech House.',
   date: '01 JUN 2026',
   nextDate: '11 JUN 2026',
-  youtubeId: null,   // TODO: add after recording
+  youtubeId: 'vikb1UGrUhI',
   duration: 'TBA',
   tracks: [
     { n: '01', title: 'Army',             artist: 'Qobra (IT)',                      bpm: 128, key: 'C Minor',  genre: 'Tech House', cue: '00:00' },
