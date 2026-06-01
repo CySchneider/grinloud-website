@@ -23,9 +23,6 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
   return (
     <div className="radar" style={{ '--accent': accent, '--ink': contrastInk }}>
       <header className="radar__header">
-        <button className="radar__back" onClick={onBack}>
-          <Icon.Arrow dir="left" /> BACK TO PICK
-        </button>
         <div className="radar__masthead">
           <div className="radar__masthead-eyebrow">MUSIC RADAR · NEW EVERY 10 DAYS</div>
           <div className="radar__masthead-meta">
@@ -124,8 +121,10 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
         </aside>
       </div>
 
-      <ClaimChip accent={accent} />
-      <LegalLinks />
+      <div className="subpage-footer">
+        <ClaimChip accent={accent} />
+        <LegalLinks />
+      </div>
     </div>
   );
 }

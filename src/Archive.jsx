@@ -9,9 +9,6 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onSele
   return (
     <div className="archive" style={{ '--accent': accent, '--ink': contrastInk }}>
       <header className="archive__header">
-        <button className="radar__back" onClick={onBack}>
-          <Icon.Arrow dir="left" /> BACK
-        </button>
         <h1 className="archive__title">ARCHIVE</h1>
         <div className="archive__tabs">
           <button
@@ -79,8 +76,10 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onSele
         </div>
       )}
 
-      <ClaimChip accent={accent} />
-      <LegalLinks />
+      <div className="subpage-footer">
+        <ClaimChip accent={accent} />
+        <LegalLinks />
+      </div>
     </div>
   );
 }

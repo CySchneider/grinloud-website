@@ -98,6 +98,7 @@ function App() {
           if (r === 'archive') setArchiveTab(route === 'radar' ? 'radars' : 'picks');
           setRoute(r);
         }}
+        onBack={() => setRoute('home')}
         onNewsletter={() => setShowNewsletter(true)}
         onGotoRadar={() => setRoute('radar')}
         accent={palette.bg}

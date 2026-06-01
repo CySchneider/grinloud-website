@@ -225,7 +225,7 @@ function TopBrand() {
   );
 }
 
-function TopNav({ route, setRoute, onNewsletter, accent, onGotoRadar }) {
+function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar }) {
   const radar = window.GRINLOUD_DATA.RADAR;
   const items = [
     { id: 'home',    label: 'PICK' },
@@ -235,6 +235,12 @@ function TopNav({ route, setRoute, onNewsletter, accent, onGotoRadar }) {
   return (
     <nav className="top-nav">
       <div className="top-nav__inner">
+        {/* Back arrow — shown on all non-home pages, left of PICK */}
+        {route !== 'home' && (
+          <button className="nav-back" onClick={onBack} aria-label="Back to Pick">
+            <Icon.Arrow dir="left" size={14} />
+          </button>
+        )}
         {items.map((it) => (
           <button
             key={it.id}

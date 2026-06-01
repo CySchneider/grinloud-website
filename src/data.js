@@ -815,7 +815,7 @@ const RADAR = {
   id: 'radar-005',
   number: '005',
   title: 'Music Radar 005',
-  subtitle: 'Ten tracks. Ten days. Pure Tech House.',
+  subtitle: 'Pure Club. Zero Filler.',
   date: '01 JUN 2026',
   nextDate: '11 JUN 2026',
   youtubeId: 'vikb1UGrUhI',

@@ -38,6 +38,20 @@ a { color: inherit; text-decoration: none; }
   pointer-events: auto;
 }
 
+/* Back arrow in nav */
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-back:hover { background: #FF1F8F; }
+
 /* Radar pill under nav — accent colour */
 .top-nav__radar-pill {
   display: block;
@@ -519,10 +533,23 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   opacity: 0.65;
   text-transform: uppercase;
 }
-/* Subpage variant — ink colour for light backgrounds */
+/* Subpage variant — ink colour, in document flow (not absolute) */
+.brand-footer--subpage {
+  position: static;
+}
 .brand-footer--subpage .brand-footer__name,
 .brand-footer--subpage .brand-footer__claim {
   color: var(--ink);
+}
+
+/* Subpage footer — GRINLOUD left, Privacy·Impressum right */
+.subpage-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(10,10,10,0.12);
 }
 
 /* Pick of the Day pill — reuses top-nav__radar-pill styles */
@@ -864,9 +891,9 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   letter-spacing: -0.06em;
   margin: 0;
   color: var(--paper);
-  -webkit-text-stroke: 8px var(--ink);
+  -webkit-text-stroke: 14px var(--ink);
   paint-order: stroke fill;
-  text-shadow: 10px 10px 0 var(--ink);
+  text-shadow: 12px 12px 0 var(--ink);
 }
 .radar__hero-side { padding-bottom: 24px; }
 .radar__hero-title {
@@ -895,6 +922,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   padding: 5px 10px;
   border: 1.5px solid var(--ink);
   border-radius: 999px;
+  white-space: nowrap;
 }
 .radar__hero-tags span:nth-child(even) { opacity: 0.4; align-self: center; }
 
@@ -1435,8 +1463,20 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   /* ── Header on mobile: smiley below nav ── */
   .top-brand { top: 68px; left: 14px; }
   .home-a__header { display: none; }
-  .top-nav__radar-pill { display: none; }
   .brand-footer { bottom: 100px; left: 14px; }
+
+  /* G: Radar pill — show on mobile, smaller */
+  .top-nav__radar-pill {
+    font-size: 9px;
+    padding: 5px 12px;
+    letter-spacing: 0.08em;
+  }
+  /* H: Pick pill — always visible (own class override) */
+  .pick-pill {
+    display: inline-flex !important;
+    font-size: 11px !important;
+    padding: 7px 14px !important;
+  }
 
   /* ── Home B ── */
   .home-b__grid { grid-template-columns: 1fr; gap: 20px; }
@@ -1473,9 +1513,9 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   .radar__number {
     font-size: clamp(56px, 22vw, 96px);
     line-height: 1;
-    -webkit-text-stroke: 4px var(--ink);
+    -webkit-text-stroke: 6px var(--ink);
     paint-order: stroke fill;
-    text-shadow: 5px 5px 0 var(--ink);
+    text-shadow: 6px 6px 0 var(--ink);
   }
   .radar__hero-side { padding-bottom: 0; }
   .radar__hero-title { font-size: clamp(20px, 5.5vw, 32px); }
