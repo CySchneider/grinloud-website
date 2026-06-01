@@ -1,6 +1,6 @@
 // Homepage Variant A
 
-function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar }) {
+function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar, isAdmin }) {
   const titleSize = 9 * typeScale;
   return (
     <div className="home home--a" style={{ '--accent': accent, '--ink': contrastInk }}>
@@ -18,10 +18,12 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
       )}
 
       <main className="home-a__main">
-        {/* Pick of the Day — same style as Music Radar pill */}
+        {/* Pick of the Day — same style as Music Radar pill, no dot */}
         <div className="top-nav__radar-pill pick-pill">
-          <span className="eyebrow-dot" />
           PICK OF THE DAY · {pick.date}
+          {isAdmin && pick.date > new Date().toISOString().slice(0,10) && (
+            <span className="pick-scheduled-badge">SCHEDULED</span>
+          )}
         </div>
 
         <h1 className="track-title track-title--a" style={{ fontSize: `clamp(40px, ${titleSize}vw, 200px)` }}>
@@ -39,9 +41,7 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
               <span className="pick-quote__label">GRINLOUD SAYS:</span>
               <div className="pick-quote__rule" />
             </div>
-            <p className="pick-quote__text">
-              {infoDensity === 'comfy' ? pick.info : pick.short}
-            </p>
+            <p className="pick-quote__text">{pick.info}</p>
             <div className="pick-quote__rule pick-quote__rule--solo" />
           </div>
         )}

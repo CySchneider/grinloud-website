@@ -18,8 +18,9 @@ const COLOR_MAP = {
   orange: { bg: '#FF6200', ink: '#0A0A0A', overlayTint: '#FF6200' }
 };
 
-// ── Cinema mode — /?cinema ────────────────────────────────────────────────
+// ── Special modes ─────────────────────────────────────────────────────────
 const isCinemaMode = new URLSearchParams(window.location.search).has('cinema');
+const isAdmin = new URLSearchParams(window.location.search).has('admin');
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
@@ -30,10 +31,15 @@ function App() {
   const [previewUrl, setPreviewUrl] = React.useState(null); // overrides pick spotify when set
   const [showNewsletter, setShowNewsletter] = React.useState(false);
 
-  const picks = window.GRINLOUD_DATA.PICKS;
+  const allPicks = window.GRINLOUD_DATA.PICKS;
+  const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
 
-  // Auto-detect today's pick; fall back to index 0 (newest) if not found
-  const todayStr = new Date().toISOString().slice(0, 10);
+  // Regular users: only past + today picks. Admin (?admin): all picks incl. future.
+  const picks = isAdmin
+    ? allPicks
+    : allPicks.filter(p => p.date <= todayStr);
+
+  // Auto-detect today's pick; fall back to index 0 (most recent visible)
   const todayIdx = picks.findIndex((p) => p.date === todayStr);
   const [pickIdx, setPickIdx] = React.useState(todayIdx >= 0 ? todayIdx : 0);
 
@@ -120,6 +126,7 @@ function App() {
           logoPos={t.logoPos}
           overlayOpacity={t.overlay}
           onGotoRadar={() => setRoute('radar')}
+          isAdmin={isAdmin}
         />
       )}
 
