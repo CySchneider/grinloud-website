@@ -73,87 +73,108 @@ const accentColors = {
 };
 const accent = accentColors[pick.accent] || '#FF1F8F';
 
-function buildHtml() {
-  const links = pick.links || {};
-  const spotifyBtn  = links.spotify  && links.spotify  !== '#' ? `<a href="${links.spotify}"  style="display:inline-block;background:#1DB954;color:#fff;font-family:'Helvetica Neue',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;padding:11px 22px;border-radius:24px;text-decoration:none;margin:4px 4px 4px 0;">▶ SPOTIFY</a>` : '';
-  const youtubeBtn  = links.youtube  && links.youtube  !== '#' ? `<a href="${links.youtube}"  style="display:inline-block;background:#FF0000;color:#fff;font-family:'Helvetica Neue',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;padding:11px 22px;border-radius:24px;text-decoration:none;margin:4px 4px 4px 0;">▶ YOUTUBE</a>` : '';
-  const beatportBtn = links.beatport && links.beatport !== '#' ? `<a href="${links.beatport}" style="display:inline-block;background:#96CF00;color:#000;font-family:'Helvetica Neue',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;padding:11px 22px;border-radius:24px;text-decoration:none;margin:4px 4px 4px 0;">BEATPORT</a>` : '';
+// Yellow is very light — darken ink opacity slightly for legibility
+const inkOnAccent   = '#0A0A0A';
+const inkDim        = 'rgba(10,10,10,0.45)';
+const paper         = '#F5F2EE';
 
+function buildHtml() {
   const [yyyy, mm, dd] = pick.date.split('-');
   const dateFormatted  = `${dd} · ${mm} · ${yyyy}`;
 
   return `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${pick.title} — GRINLOUD Pick of the Day</title></head>
-<body style="margin:0;padding:0;background:#0A0A0A;">
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${pick.title} — GRINLOUD Pick of the Day</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background:${accent};">
 
-<!-- Accent header -->
+<!-- Outer wrapper — full accent background -->
 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${accent};">
-  <tr><td style="padding:18px 32px;">
-    <span style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:20px;font-weight:900;letter-spacing:0.06em;color:#0A0A0A;">GRINLOUD</span>
-    <span style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;color:rgba(0,0,0,0.55);margin-left:14px;">PICK OF THE DAY</span>
-  </td></tr>
-</table>
+<tr><td align="center" style="padding:0;">
 
-<!-- Main -->
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0A0A0A;">
-  <tr><td style="padding:40px 32px 8px;">
+  <!-- Content column — max 600px -->
+  <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
 
-    <!-- Date + genre -->
-    <p style="margin:0 0 14px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;color:rgba(255,255,255,0.4);">
-      ${dateFormatted} &nbsp;·&nbsp; ${pick.genre.toUpperCase()}
-    </p>
+    <!-- ── NAV ── -->
+    <tr><td style="padding:20px 32px 18px;border-bottom:2px solid ${inkOnAccent};">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td>
+            <!-- Logo mark — yellow bg fills any transparent edge, 4px border + offset shadow like website -->
+            <img src="https://grinloud.com/Logo%20GRINLOUD%20Smiley%20Yellow%20black.png" width="36" height="36" alt="GRINLOUD" style="display:inline-block;vertical-align:middle;margin-right:10px;border-radius:50%;border:4px solid ${inkOnAccent};box-shadow:4px 4px 0 ${inkOnAccent};background:#FFE000;">
+            <span style="font-family:'Archivo Black','Helvetica Neue',Arial,sans-serif;font-size:18px;font-weight:900;letter-spacing:0;color:${inkOnAccent};vertical-align:middle;text-transform:uppercase;">GRINLOUD</span>
+          </td>
+          <td align="right">
+            <span style="font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:9px;font-weight:700;letter-spacing:0.18em;color:${inkDim};text-transform:uppercase;">Pick of the Day</span>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
 
-    <!-- Title -->
-    <h1 style="margin:0 0 10px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:38px;font-weight:900;line-height:1.05;letter-spacing:-0.02em;color:#F5F2EE;">
-      ${pick.title}
-    </h1>
+    <!-- ── HERO ── -->
+    <tr><td style="padding:40px 32px 0;">
 
-    <!-- Artist -->
-    <p style="margin:0 0 26px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:15px;font-weight:700;letter-spacing:0.08em;color:${accent};">
-      ${pick.artist}
-    </p>
+      <!-- Date + genre eyebrow -->
+      <p style="margin:0 0 20px;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;color:${inkDim};text-transform:uppercase;">
+        ${dateFormatted} &nbsp;·&nbsp; ${pick.genre.toUpperCase()}
+      </p>
 
-    <!-- Description -->
-    <p style="margin:0 0 28px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:1.7;color:rgba(245,242,238,0.8);max-width:500px;">
-      ${pick.info}
-    </p>
+      <!-- Track title — Archivo Black, tight, uppercase -->
+      <h1 style="margin:0 0 14px;font-family:'Archivo Black','Helvetica Neue',Arial,sans-serif;font-size:52px;font-weight:900;line-height:0.9;letter-spacing:-0.03em;color:${inkOnAccent};text-transform:uppercase;">
+        ${pick.title}
+      </h1>
 
-    <!-- Meta -->
-    <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:30px;">
-      <tr>
-        ${[['BPM', pick.bpm], ['KEY', pick.key], ['LABEL', pick.label]].map(([l, v]) => `
-        <td style="padding-right:20px;vertical-align:top;">
-          <span style="display:block;font-family:'Helvetica Neue',Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.15em;color:rgba(255,255,255,0.35);">${l}</span>
-          <span style="display:block;font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:700;color:#F5F2EE;margin-top:3px;">${v || '—'}</span>
-        </td>`).join('')}
-      </tr>
-    </table>
+      <!-- Artist -->
+      <p style="margin:0 0 28px;font-family:'Space Grotesk','Helvetica Neue',Arial,sans-serif;font-size:20px;font-weight:700;letter-spacing:-0.01em;color:${inkOnAccent};">
+        ${pick.artist}
+      </p>
 
-    <!-- Listen buttons -->
-    <div style="margin-bottom:40px;">${spotifyBtn}${youtubeBtn}${beatportBtn}</div>
+      <!-- Divider line -->
+      <div style="height:2px;background:${inkOnAccent};opacity:0.15;margin-bottom:28px;"></div>
 
-  </td></tr>
-</table>
+      <!-- Description -->
+      <p style="margin:0 0 32px;font-family:'Space Grotesk','Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:1.55;color:${inkOnAccent};opacity:0.8;max-width:480px;">
+        ${pick.info}
+      </p>
 
-<!-- Divider -->
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0A0A0A;">
-  <tr><td style="padding:0 32px;"><div style="height:1px;background:#222;"></div></td></tr>
-</table>
+      <!-- Meta pills — BPM · KEY · LABEL (mirrors .meta-pill on website) -->
+      <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:32px;">
+        <tr>
+          ${[['BPM', pick.bpm], ['KEY', pick.key], ['LABEL', pick.label]].map(([l, v]) => `
+          <td style="padding-right:6px;vertical-align:middle;">
+            <span style="display:inline-block;padding:6px 10px;border:2px solid ${inkOnAccent};border-radius:4px;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:10px;letter-spacing:0.12em;color:${inkOnAccent};white-space:nowrap;">
+              <span style="opacity:0.5;">${l}&ensp;</span><span style="font-weight:600;">${v || '—'}</span>
+            </span>
+          </td>`).join('')}
+        </tr>
+      </table>
 
-<!-- Footer -->
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0A0A0A;">
-  <tr><td style="padding:24px 32px 32px;">
-    <p style="margin:0 0 6px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.3);">
-      HOUSE MUSIC CURATED DAILY &nbsp;·&nbsp; MIXED ALL 10 DAYS
-    </p>
-    <p style="margin:0;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.2);">
-      <a href="https://grinloud.com" style="color:rgba(255,255,255,0.35);text-decoration:none;">grinloud.com</a>
-      &nbsp;·&nbsp;
-      <a href="{{unsubscribe_url}}" style="color:rgba(255,255,255,0.25);text-decoration:none;">Unsubscribe</a>
-    </p>
-  </td></tr>
+      <!-- CTA — to website -->
+      <div style="margin-bottom:48px;">
+        <a href="https://grinloud.com" style="display:inline-block;background:${inkOnAccent};color:${paper};font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.14em;padding:7px 14px;border-radius:999px;text-decoration:none;text-transform:uppercase;">GRINLOUD.COM &#8599;</a>
+      </div>
+
+    </td></tr>
+
+    <!-- ── FOOTER ── -->
+    <tr><td style="background:${inkOnAccent};padding:20px 32px 24px;">
+      <p style="margin:0 0 4px;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:9px;font-weight:700;letter-spacing:0.16em;color:rgba(245,242,238,0.35);text-transform:uppercase;">
+        House Music Curated Daily &nbsp;·&nbsp; Mixed All 10 Days
+      </p>
+      <p style="margin:0;font-family:'Space Grotesk','Helvetica Neue',Arial,sans-serif;font-size:11px;color:rgba(245,242,238,0.25);">
+        <a href="https://grinloud.com" style="color:rgba(245,242,238,0.4);text-decoration:none;">grinloud.com</a>
+        &nbsp;·&nbsp;
+        <a href="{{unsubscribe_url}}" style="color:rgba(245,242,238,0.25);text-decoration:none;">Unsubscribe</a>
+      </p>
+    </td></tr>
+
+  </table>
+
+</td></tr>
 </table>
 
 </body>
