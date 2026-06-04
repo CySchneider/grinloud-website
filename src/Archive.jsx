@@ -3,12 +3,9 @@ import React from 'react'
 import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks } from './shared.jsx'
 
-// Loads cover art via Spotify oEmbed (public, no auth needed).
-// Fetches immediately on mount — no IntersectionObserver needed since
-// the archive page is the primary view and covers should all load fast.
+// Loads a single cover via oEmbed — local state per card so React updates stay isolated.
 function SpotifyCover({ spotifyUrl }) {
   const [src, setSrc] = React.useState(null);
-
   React.useEffect(() => {
     if (!spotifyUrl || spotifyUrl === '#') return;
     let cancelled = false;
@@ -18,10 +15,9 @@ function SpotifyCover({ spotifyUrl }) {
       .catch(() => {});
     return () => { cancelled = true; };
   }, [spotifyUrl]);
-
   return (
     <div className="track-cover" style={src ? undefined : { background: '#FFE600' }}>
-      {src && <img src={src} alt="" loading="lazy" />}
+      {src && <img src={src} alt="" />}
     </div>
   );
 }
@@ -31,7 +27,7 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
   const radars = window.GRINLOUD_DATA.PREVIOUS_RADARS;
   const currentRadar = window.GRINLOUD_DATA.RADAR;
   const [tab, setTab] = React.useState(initialTab);
-  const [activePick, setActivePick] = React.useState(null); // spotify url of currently playing card
+  const [activePick, setActivePick] = React.useState(null);
 
   const handlePickClick = (p) => {
     const url = p.links?.spotify;
