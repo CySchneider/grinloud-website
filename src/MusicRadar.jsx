@@ -1,4 +1,7 @@
 // Music Radar subpage
+import React from 'react'
+import { Icon } from './icons.jsx'
+import { ClaimChip, LegalLinks } from './shared.jsx'
 // Layout: numbered poster-style tracklist on the left, sticky YouTube embed on the right.
 
 function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPreviewTrack }) {
@@ -129,4 +132,4 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
   );
 }
 
-window.MusicRadar = MusicRadar;
+export { MusicRadar };

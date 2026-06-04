@@ -1,4 +1,6 @@
 // Shared UI: BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopNav, ClaimChip
+import React from 'react'
+import { Icon } from './icons.jsx'
 
 function BackgroundVideo({ overlayOpacity = 0.35, accent, src }) {
   const videoRef = React.useRef(null);
@@ -422,4 +424,4 @@ function SpotifyPreviewBar({ spotifyUrl }) {
   );
 }
 
-Object.assign(window, { BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar });
+export { BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar };

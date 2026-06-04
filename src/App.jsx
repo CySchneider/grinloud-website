@@ -1,4 +1,12 @@
 // Main App: routing, state, Tweaks wiring.
+import React from 'react'
+import { useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSlider } from '../tweaks-panel.jsx'
+import { TopBrand, TopNav, NewsletterModal, SpotifyPreviewBar } from './shared.jsx'
+import { HomeA } from './HomeA.jsx'
+import { HomeB } from './HomeB.jsx'
+import { Cinema } from './Cinema.jsx'
+import { MusicRadar } from './MusicRadar.jsx'
+import { Archive } from './Archive.jsx'
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "variant": "A",
@@ -215,4 +223,4 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+export { App };

@@ -1,4 +1,6 @@
 // Homepage Variant B — "Asymmetric Poster"
+import { BackgroundVideo, LogoMark, StreamingLinks } from './shared.jsx'
+import { Icon } from './icons.jsx'
 // Arty / editorial. Logo offset, giant rotated date, track title on a baseline grid,
 // info card pinned to one side, claim runs as vertical type. Same content, different rhythm.
 
@@ -91,4 +93,4 @@ function HomeB({ pick, accent, contrastInk, prev, next, canPrev, canNext, typeSc
   );
 }
 
-window.HomeB = HomeB;
+export { HomeB };

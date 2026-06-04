@@ -56,4 +56,4 @@ const Icon = {
   ),
 };
 
-window.Icon = Icon;
+export { Icon };

@@ -1,4 +1,6 @@
 // Homepage Variant A
+import { BackgroundVideo, StreamingLinks, LegalLinks } from './shared.jsx'
+import { Icon } from './icons.jsx'
 
 function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar, isAdmin }) {
   const titleSize = 9 * typeScale;
@@ -72,4 +74,4 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
   );
 }
 
-window.HomeA = HomeA;
+export { HomeA };

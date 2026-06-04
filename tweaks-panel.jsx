@@ -1,3 +1,4 @@
+import React from 'react'
 
 /* BEGIN USAGE */
 // tweaks-panel.jsx
@@ -533,8 +534,8 @@ function TweakButton({ label, onClick, secondary = false }) {
   );
 }
 
-Object.assign(window, {
+export {
   useTweaks, TweaksPanel, TweakSection, TweakRow,
   TweakSlider, TweakToggle, TweakRadio, TweakSelect,
   TweakText, TweakNumber, TweakColor, TweakButton,
-});
+};

@@ -1,4 +1,5 @@
 // Cinema Mode — /?cinema
+import { BackgroundVideo } from './shared.jsx'
 // Fullscreen 9:16 / 3:4 for Instagram. Branding bottom-left, content centered.
 
 function Cinema({ pick }) {
@@ -33,4 +34,4 @@ function Cinema({ pick }) {
   );
 }
 
-window.Cinema = Cinema;
+export { Cinema };

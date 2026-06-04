@@ -1,4 +1,7 @@
 // Archive page — past Picks of the Day + past Music Radars.
+import React from 'react'
+import { Icon } from './icons.jsx'
+import { ClaimChip, LegalLinks } from './shared.jsx'
 
 function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onSelectPick, initialTab = 'picks' }) {
   const picks = window.GRINLOUD_DATA.PICKS;
@@ -84,4 +87,4 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onSele
   );
 }
 
-window.Archive = Archive;
+export { Archive };
