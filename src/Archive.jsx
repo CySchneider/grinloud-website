@@ -32,6 +32,8 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
   const handlePickClick = (p) => {
     const url = p.links?.spotify;
     if (!url || url === '#') return;
+    // Must be synchronous before React state updates to keep user-gesture context on iOS
+    window.grinloudPlaySpotify(url);
     setActivePick(url);
     onPreviewTrack?.(url);
   };

@@ -321,10 +321,13 @@ function MetaPills({ pick, scale = 1 }) {
 // ── Spotify Iframe API — the only reliable way to programmatically play ──
 // autoplay=1 URL param no longer works (Spotify removed it in 2023).
 // controller.play() called from a user-gesture context works reliably.
+// On iOS, play() MUST be called synchronously within the user-gesture handler —
+// async listeners (playback_update, setTimeout) lose the gesture token.
 
 let _spotifyAPI  = null;  // IFrameAPI once loaded
 let _spotifyCtrl = null;  // active controller
 let _containerEl = null;  // DOM element for the embed
+let _currentUri  = null;  // URI currently loaded in the controller
 
 // Load API script immediately (before any user interaction)
 (function() {
@@ -332,7 +335,6 @@ let _containerEl = null;  // DOM element for the embed
   if (document.getElementById('sp-iframe-api')) return;
   window.onSpotifyIframeApiReady = function(IFrameAPI) {
     _spotifyAPI = IFrameAPI;
-    // If component already mounted, initialise the player
     window.dispatchEvent(new Event('sp-api-ready'));
   };
   const s = document.createElement('script');
@@ -346,7 +348,9 @@ window.grinloudPauseSpotify = function() {
   if (_spotifyCtrl) _spotifyCtrl.pause();
 };
 
-// Called SYNCHRONOUSLY inside click handlers to keep user-gesture context
+// Called SYNCHRONOUSLY inside click handlers to keep user-gesture context.
+// loadUri + immediate play() is the only pattern that works on iOS Safari —
+// the Spotify embed queues the play internally until the URI is ready.
 window.grinloudPlaySpotify = function(spotifyUrl) {
   const trackId = spotifyUrl && spotifyUrl !== '#'
     ? spotifyUrl.split('/track/')[1]?.split('?')[0]
@@ -355,21 +359,13 @@ window.grinloudPlaySpotify = function(spotifyUrl) {
   const uri = 'spotify:track:' + trackId;
 
   if (_spotifyCtrl) {
-    _spotifyCtrl.loadUri(uri);
-    // loadUri is async — wait for playback_update before calling play()
-    // falls back to a short timeout if the event never fires (older API versions)
-    var played = false;
-    function onUpdate(state) {
-      if (played) return;
-      played = true;
-      _spotifyCtrl.removeListener('playback_update', onUpdate);
-      _spotifyCtrl.play();
+    if (_currentUri !== uri) {
+      _currentUri = uri;
+      _spotifyCtrl.loadUri(uri);
     }
-    _spotifyCtrl.addListener('playback_update', onUpdate);
-    setTimeout(function() {
-      if (!played) { played = true; _spotifyCtrl.play(); }
-    }, 400);
+    _spotifyCtrl.play(); // synchronous — still inside user-gesture call stack
   } else if (_spotifyAPI && _containerEl) {
+    _currentUri = uri;
     _spotifyAPI.createController(
       _containerEl,
       { uri: uri, width: '100%', height: 80 },
@@ -390,12 +386,19 @@ function SpotifyPreviewBar({ spotifyUrl }) {
 
     function initPlayer() {
       if (!_spotifyAPI) return;
+      const uri = 'spotify:track:' + trackId;
       if (_spotifyCtrl) {
-        _spotifyCtrl.loadUri('spotify:track:' + trackId);
+        // Skip if grinloudPlaySpotify already loaded this URI to avoid
+        // interrupting active playback with a redundant loadUri call.
+        if (_currentUri !== uri) {
+          _currentUri = uri;
+          _spotifyCtrl.loadUri(uri);
+        }
       } else {
+        _currentUri = uri;
         _spotifyAPI.createController(
           _containerEl,
-          { uri: 'spotify:track:' + trackId, width: '100%', height: 80 },
+          { uri: uri, width: '100%', height: 80 },
           function(ctrl) { _spotifyCtrl = ctrl; }
         );
       }
