@@ -1195,6 +1195,14 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   transform: translate(-2px, -2px);
   box-shadow: 4px 4px 0 var(--ink);
 }
+.archive-card.is-playing {
+  background: var(--ink);
+  color: var(--accent, #FFE600);
+}
+.archive-card.is-playing .archive-card__open {
+  border-top-color: currentColor;
+  opacity: 0.8;
+}
 .archive-card__top {
   display: flex;
   justify-content: space-between;

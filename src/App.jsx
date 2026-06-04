@@ -172,7 +172,7 @@ function App() {
           onBack={() => setRoute('home')}
           onGotoRadar={() => { setSelectedRadar(window.GRINLOUD_DATA.RADAR); setRoute('radar'); }}
           onOpenRadar={(r) => { setSelectedRadar(r); setRoute('radar'); }}
-          onSelectPick={(i) => { setPickIdx(i); setRoute('home'); }}
+          onPreviewTrack={(url) => { setPreviewUrl(url); setIsPlaying(true); }}
           initialTab={archiveTab}
         />
       )}
