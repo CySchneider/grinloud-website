@@ -28,15 +28,26 @@ const COLOR_MAP = {
 };
 
 // ── Special modes ─────────────────────────────────────────────────────────
-const isCinemaMode = new URLSearchParams(window.location.search).has('cinema');
-const isRadarMode  = new URLSearchParams(window.location.search).has('radar');
-const isAdmin = new URLSearchParams(window.location.search).has('admin');
+const _params      = new URLSearchParams(window.location.search);
+const isCinemaMode = _params.has('cinema');
+const isRadarMode  = _params.has('radar');
+const isAdmin      = _params.has('admin');
+
+// Deep-link to a specific radar: ?music-radar=005 / ?music-radar=004 etc.
+// Looks in current RADAR first, then PREVIOUS_RADARS.
+const _radarParam = _params.get('music-radar');
+const _allRadars  = _radarParam
+  ? [window.GRINLOUD_DATA.RADAR, ...window.GRINLOUD_DATA.PREVIOUS_RADARS]
+  : [];
+const _deepLinkedRadar = _radarParam
+  ? (_allRadars.find(r => r.number === _radarParam) || null)
+  : null;
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [route, setRoute] = React.useState('home');
+  const [route, setRoute] = React.useState(_deepLinkedRadar ? 'radar' : 'home');
   const [archiveTab, setArchiveTab] = React.useState('picks');
-  const [selectedRadar, setSelectedRadar] = React.useState(window.GRINLOUD_DATA.RADAR);
+  const [selectedRadar, setSelectedRadar] = React.useState(_deepLinkedRadar || window.GRINLOUD_DATA.RADAR);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [previewUrl, setPreviewUrl] = React.useState(null); // overrides pick spotify when set
   const [showNewsletter, setShowNewsletter] = React.useState(false);
