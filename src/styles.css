@@ -1459,8 +1459,8 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 @media (max-width: 900px) {
   /* ── General ── */
   .home    { padding: 80px 20px 120px; }
-  .radar   { padding: 74px 16px 120px; }
-  .archive { padding: 74px 16px 120px; }
+  .radar   { padding: 160px 16px 120px; }
+  .archive { padding: 160px 16px 120px; }
 
   /* ── Top nav: full width, all items on one line ── */
   .top-nav { padding: 10px 12px; }
