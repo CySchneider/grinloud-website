@@ -1766,3 +1766,125 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   font-family: var(--mono); font-size: 8px;
   letter-spacing: 0.12em; color: rgba(245,242,238,0.45); text-transform: uppercase;
 }
+
+/* ============================================================
+   RADAR COVER MODE — /?radar  (Instagram / TikTok promo)
+   ============================================================ */
+.radar-cover__content {
+  gap: 18px;
+  max-width: 480px;
+}
+
+.radar-cover__pill {
+  /* inherits cinema__pill — no overrides needed */
+}
+
+/* Eyebrow above the number */
+.radar-cover__eyebrow {
+  font-family: var(--display);
+  font-size: clamp(13px, 3vw, 20px);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0.75;
+}
+
+/* Huge radar number — same style as .radar__number on the radar page */
+.radar-cover__number {
+  font-family: var(--display);
+  font-size: clamp(120px, 34vw, 240px);
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  color: var(--paper);
+  -webkit-text-stroke: 10px var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 8px 8px 0 var(--ink);
+  margin: 0;
+}
+
+/* Tagline — "Pure Club. Zero Filler." */
+.radar-cover__subtitle {
+  font-family: var(--display);
+  font-size: clamp(13px, 3.4vw, 24px);
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  text-transform: uppercase;
+  opacity: 0.90;
+  white-space: nowrap;
+}
+
+/* Track list — first 3 picks */
+.radar-cover__tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.radar-cover__track {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.radar-cover__track-n {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: #FFE000;
+  opacity: 0.70;
+  flex-shrink: 0;
+  min-width: 20px;
+}
+
+.radar-cover__track-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-align: left;
+}
+
+.radar-cover__track-title {
+  font-family: var(--display);
+  font-size: clamp(14px, 3.8vw, 22px);
+  letter-spacing: 0.01em;
+  color: var(--paper);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.radar-cover__track-artist {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(245,242,238,0.50);
+  text-transform: uppercase;
+}
+
+/* "More" indicator after the 3 tracks */
+.radar-cover__more {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: rgba(245,242,238,0.35);
+  text-align: left;
+  padding-left: 32px;
+  margin-top: -2px;
+}
+
+/* Call-to-action link line */
+.radar-cover__link {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  color: rgba(245,242,238,0.55);
+  text-transform: uppercase;
+  margin-top: 6px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 14px;
+  width: 100%;
+  text-align: center;
+  word-break: keep-all;
+  hyphens: none;
+}

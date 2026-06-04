@@ -820,6 +820,11 @@ const RADAR = {
   nextDate: '11 JUN 2026',
   youtubeId: 'vikb1UGrUhI',
   duration: 'TBA',
+  // 10 parkhaus clips — one per pick — used by /?radar cover mode
+  videos: [
+    'parkhaus-001.mp4','parkhaus-002.mp4','parkhaus-003.mp4','parkhaus-004.mp4','parkhaus-005.mp4',
+    'parkhaus-006.mp4','parkhaus-007.mp4','parkhaus-008.mp4','parkhaus-009.mp4','parkhaus-010.mp4',
+  ],
   tracks: [
     { n: '01', title: 'Army',             artist: 'Qobra (IT)',                      bpm: 128, key: 'C Minor',  genre: 'Tech House', cue: '00:23' },
     { n: '02', title: 'Take Control',     artist: 'LOOZBONE',                        bpm: 130, key: 'G Minor',  genre: 'Tech House', cue: '02:04' },

@@ -5,6 +5,7 @@ import { TopBrand, TopNav, NewsletterModal, SpotifyPreviewBar } from './shared.j
 import { HomeA } from './HomeA.jsx'
 import { HomeB } from './HomeB.jsx'
 import { Cinema } from './Cinema.jsx'
+import { RadarCover } from './RadarCover.jsx'
 import { MusicRadar } from './MusicRadar.jsx'
 import { Archive } from './Archive.jsx'
 
@@ -28,6 +29,7 @@ const COLOR_MAP = {
 
 // ── Special modes ─────────────────────────────────────────────────────────
 const isCinemaMode = new URLSearchParams(window.location.search).has('cinema');
+const isRadarMode  = new URLSearchParams(window.location.search).has('radar');
 const isAdmin = new URLSearchParams(window.location.search).has('admin');
 
 function App() {
@@ -102,6 +104,9 @@ function App() {
 
   // Cinema mode — render fullscreen pick view, no UI
   if (isCinemaMode) return <Cinema pick={pick} />;
+
+  // Radar cover mode — fullscreen promo card for Instagram / TikTok
+  if (isRadarMode) return <RadarCover radar={window.GRINLOUD_DATA.RADAR} />;
 
   return (
     <div className="app" style={{ background: palette.bg, color: palette.ink }}>
