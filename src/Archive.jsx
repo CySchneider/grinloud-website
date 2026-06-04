@@ -3,6 +3,42 @@ import React from 'react'
 import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks } from './shared.jsx'
 
+function SpotifyCover({ spotifyUrl }) {
+  const [src, setSrc] = React.useState(null);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!spotifyUrl || spotifyUrl === '#') return;
+    let cancelled = false;
+    const loadCover = () => {
+      fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
+        .then(r => r.json())
+        .then(d => { if (!cancelled && d.thumbnail_url) setSrc(d.thumbnail_url); })
+        .catch(() => {});
+    };
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      loadCover();
+    }, { rootMargin: '400px' });
+    observer.observe(el);
+    // Fallback: if IO doesn't fire within 800ms and element is near viewport, load anyway
+    const timer = setTimeout(() => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 500) { observer.disconnect(); loadCover(); }
+    }, 800);
+    return () => { cancelled = true; observer.disconnect(); clearTimeout(timer); };
+  }, [spotifyUrl]);
+
+  return (
+    <div ref={ref} className="track-cover" style={src ? undefined : { background: '#FFE600' }}>
+      {src && <img src={src} alt="" loading="lazy" />}
+    </div>
+  );
+}
+
 function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onSelectPick, initialTab = 'picks' }) {
   const picks = window.GRINLOUD_DATA.PICKS;
   const radars = window.GRINLOUD_DATA.PREVIOUS_RADARS;
@@ -41,14 +77,19 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onSele
                 <div className="archive-card__date">{p.date}</div>
                 <div className="archive-card__n">#{String(picks.length - i).padStart(3, '0')}</div>
               </div>
-              <div className="archive-card__title">{p.title}</div>
-              <div className="archive-card__artist">{p.artist}</div>
-              <div className="archive-card__meta">
-                <span>{p.bpm} BPM</span>
-                <span className="archive-card__dot">·</span>
-                <span>{p.key}</span>
-                <span className="archive-card__dot">·</span>
-                <span>{p.genre}</span>
+              <div className="archive-card__body">
+                <div className="archive-card__text">
+                  <div className="archive-card__title">{p.title}</div>
+                  <div className="archive-card__artist">{p.artist}</div>
+                  <div className="archive-card__meta">
+                    <span>{p.bpm} BPM</span>
+                    <span className="archive-card__dot">·</span>
+                    <span>{p.key}</span>
+                    <span className="archive-card__dot">·</span>
+                    <span>{p.genre}</span>
+                  </div>
+                </div>
+                <SpotifyCover spotifyUrl={p.links?.spotify} />
               </div>
               <div className="archive-card__open">OPEN PICK <Icon.Arrow size={12} /></div>
             </button>

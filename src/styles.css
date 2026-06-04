@@ -1229,6 +1229,30 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   margin-top: 4px;
 }
 .archive-card__dot { opacity: 0.4; }
+.archive-card__body {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  flex: 1;
+}
+.archive-card__text {
+  flex: 1;
+  min-width: 0;
+}
+.track-cover {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  align-self: flex-start;
+}
+.track-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .archive-card__open {
   margin-top: auto;
   display: inline-flex;
