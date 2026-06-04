@@ -261,8 +261,8 @@ function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar }) 
         <a className="nav-link nav-link--ghost" href="https://youtube.com/@grinloud" target="_blank" rel="noreferrer" aria-label="YouTube">
           <Icon.YouTube size={14} />
         </a>
-        <button className="nav-link nav-link--ghost" onClick={onNewsletter}>
-          <Icon.Mail size={14} /> SUBSCRIBE
+        <button className="nav-link nav-link--ghost" onClick={onNewsletter} aria-label="Subscribe">
+          <Icon.Mail size={14} /> <span className="nav-subscribe-label">SUBSCRIBE</span>
         </button>
       </div>
       {route === 'home' && onGotoRadar && (

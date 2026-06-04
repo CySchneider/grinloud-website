@@ -1482,6 +1482,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   }
   .nav-spacer { display: none; }
   .nav-link--ghost { flex: none; padding: 8px 12px; }
+  .nav-subscribe-label { display: none; }
 
   /* ── Nav arrows ── */
   .nav-arrow { width: 52px; height: 52px; }
