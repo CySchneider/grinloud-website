@@ -4,6 +4,13 @@
 // 2. Fetches active subscribers from Beehiiv
 // 3. Sends a beautiful HTML email to each via Resend
 
+import fs from 'fs';
+import vm from 'vm';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 const BEEHIIV_PUB_ID  = process.env.BEEHIIV_PUBLICATION_ID;
 const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
 const RESEND_API_KEY  = process.env.RESEND_API_KEY;
@@ -16,9 +23,6 @@ if (!BEEHIIV_PUB_ID || !BEEHIIV_API_KEY || !RESEND_API_KEY) {
 }
 
 // ── Load today's pick from data.js ─────────────────────────────────────────
-const fs  = require('fs');
-const vm  = require('vm');
-const path = require('path');
 
 const dataFile = fs.readFileSync(path.join(__dirname, '../src/data.js'), 'utf8');
 const sandbox  = { window: {} };
