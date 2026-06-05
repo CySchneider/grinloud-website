@@ -816,6 +816,7 @@ const RADAR = {
   number: '005',
   title: 'Music Radar 005',
   subtitle: 'Pure Club. Zero Filler.',
+  cover: 'GRINLOUD Music Radar Cover 005.png',
   date: '01 JUN 2026',
   nextDate: '11 JUN 2026',
   youtubeId: 'vikb1UGrUhI',
@@ -845,6 +846,7 @@ const RADAR = {
 const PREVIOUS_RADARS = [
   {
     number: '004',
+    cover: 'GRINLOUD Music Radar Cover 004-1.png',
     title: 'Music Radar 004',
     subtitle: 'Ten tracks. Ten days. All killer.',
     date: '22 MAY 2026',
@@ -867,6 +869,7 @@ const PREVIOUS_RADARS = [
   },
   {
     number: '003',
+    cover: 'GRINLOUD Music Radar Cover 003-1.png',
     title: 'Music Radar 003',
     subtitle: 'Pure energy. No filler.',
     date: '12 MAY 2026',
@@ -889,6 +892,7 @@ const PREVIOUS_RADARS = [
   },
   {
     number: '002',
+    cover: 'GRINLOUD Music Radar Cover 002-1.png',
     title: 'Music Radar 002',
     subtitle: 'No blog. No template.',
     date: '02 MAY 2026',
@@ -911,6 +915,7 @@ const PREVIOUS_RADARS = [
   },
   {
     number: '001',
+    cover: 'GRINLOUD Music Radar Cover 001-1.png',
     title: 'Music Radar 001',
     subtitle: 'Where it started.',
     date: '22 APR 2026',

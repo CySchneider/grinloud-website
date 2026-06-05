@@ -427,4 +427,22 @@ function SpotifyPreviewBar({ spotifyUrl }) {
   );
 }
 
-export { BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar };
+function SpotifyCover({ spotifyUrl }) {
+  const [src, setSrc] = React.useState(null);
+  React.useEffect(() => {
+    if (!spotifyUrl || spotifyUrl === '#') return;
+    let cancelled = false;
+    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
+      .then(r => r.json())
+      .then(d => { if (!cancelled && d.thumbnail_url) setSrc(d.thumbnail_url); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [spotifyUrl]);
+  return (
+    <div className="track-cover" style={src ? undefined : { background: '#000' }}>
+      {src && <img src={src} alt="" />}
+    </div>
+  );
+}
+
+export { BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover };

@@ -1,26 +1,7 @@
 // Archive page — past Picks of the Day + past Music Radars.
 import React from 'react'
 import { Icon } from './icons.jsx'
-import { ClaimChip, LegalLinks } from './shared.jsx'
-
-// Loads a single cover via oEmbed — local state per card so React updates stay isolated.
-function SpotifyCover({ spotifyUrl }) {
-  const [src, setSrc] = React.useState(null);
-  React.useEffect(() => {
-    if (!spotifyUrl || spotifyUrl === '#') return;
-    let cancelled = false;
-    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
-      .then(r => r.json())
-      .then(d => { if (!cancelled && d.thumbnail_url) setSrc(d.thumbnail_url); })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, [spotifyUrl]);
-  return (
-    <div className="track-cover" style={src ? undefined : { background: '#FFE600' }}>
-      {src && <img src={src} alt="" />}
-    </div>
-  );
-}
+import { ClaimChip, LegalLinks, SpotifyCover } from './shared.jsx'
 
 function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, initialTab = 'picks' }) {
   const picks = window.GRINLOUD_DATA.PICKS;
@@ -99,6 +80,9 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
         <div className="archive__radars">
           <button className="archive-radar archive-radar--current" onClick={onGotoRadar}>
             <div className="archive-radar__n">{currentRadar.number}</div>
+            <div className="archive-radar__cover">
+              {currentRadar.cover && <img src={currentRadar.cover} alt={currentRadar.title} />}
+            </div>
             <div className="archive-radar__body">
               <div className="archive-radar__title">{currentRadar.title}</div>
               <div className="archive-radar__sub">{currentRadar.date} · {currentRadar.tracks.length} TRACKS · {currentRadar.duration} · LATEST</div>
@@ -108,6 +92,9 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
           {radars.map((r) => (
             <button key={r.number} className="archive-radar" onClick={() => onOpenRadar(r)}>
               <div className="archive-radar__n">{r.number}</div>
+              <div className="archive-radar__cover">
+                {r.cover && <img src={r.cover} alt={r.title} />}
+              </div>
               <div className="archive-radar__body">
                 <div className="archive-radar__title">{r.title}</div>
                 <div className="archive-radar__sub">{r.date} · {r.tracks.length} TRACKS · {r.duration}</div>

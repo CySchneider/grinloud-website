@@ -11,6 +11,7 @@ export default defineConfig({
         { src: 'Logo*.svg',  dest: '.' },
         { src: 'Logo*.png',  dest: '.' },
         { src: 'OG-Graph.jpg', dest: '.' },
+        { src: 'GRINLOUD Music Radar Cover*.png', dest: '.' },
         { src: 'robots.txt', dest: '.' },
         { src: 'sitemap.xml', dest: '.' },
         { src: '404.html',   dest: '.' },

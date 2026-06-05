@@ -1,12 +1,19 @@
 // Music Radar subpage
 import React from 'react'
 import { Icon } from './icons.jsx'
-import { ClaimChip, LegalLinks } from './shared.jsx'
+import { ClaimChip, LegalLinks, SpotifyCover } from './shared.jsx'
 // Layout: numbered poster-style tracklist on the left, sticky YouTube embed on the right.
 
 function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPreviewTrack }) {
   radar = radar || window.GRINLOUD_DATA.RADAR;
   const [activeTrack, setActiveTrack] = React.useState(null);
+
+  const picks = window.GRINLOUD_DATA.PICKS;
+  const spotifyByTitle = React.useMemo(() => {
+    const map = {};
+    picks.forEach(p => { map[p.title.toLowerCase()] = p.links?.spotify; });
+    return map;
+  }, [picks]);
 
   const onPlayCue = (track, idx) => {
     setActiveTrack(idx);
@@ -58,13 +65,19 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
             <span>CUE</span>
           </div>
 
-          {radar.tracks.map((t, i) => (
+          {radar.tracks.map((t, i) => {
+            const spotifyUrl = spotifyByTitle[t.title.toLowerCase()];
+            return (
             <div
               key={i}
               className={`radar-row ${activeTrack === i ? 'is-active' : ''}`}
               onClick={() => onPlayCue(t, i)}
             >
               <div className="radar-row__n">{t.n}</div>
+
+              <div className="radar-row__cover">
+                <SpotifyCover spotifyUrl={spotifyUrl} />
+              </div>
 
               <div className="radar-row__title">
                 <div className="radar-row__name">{t.title}</div>
@@ -78,7 +91,8 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
                 <span>{t.cue}</span>
               </div>
             </div>
-          ))}
+            );
+          })}
 
           <div className="radar__footnote">
             CLICK A ROW TO JUMP TO THE CUE IN THE STREAM. ALL TIMES MATCH THE YOUTUBE EMBED.
