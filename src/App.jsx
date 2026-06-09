@@ -132,6 +132,7 @@ function App() {
         onNewsletter={() => setShowNewsletter(true)}
         onGotoRadar={() => setRoute('radar')}
         accent={palette.bg}
+        isAdmin={isAdmin}
       />
 
       {route === 'home' && (
@@ -174,6 +175,7 @@ function App() {
           onOpenRadar={(r) => { setSelectedRadar(r); setRoute('radar'); }}
           onPreviewTrack={(url) => { setPreviewUrl(url); setIsPlaying(true); }}
           initialTab={archiveTab}
+          isAdmin={isAdmin}
         />
       )}
 

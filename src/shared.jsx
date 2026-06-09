@@ -227,8 +227,11 @@ function TopBrand() {
   );
 }
 
-function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar }) {
+function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar, isAdmin }) {
   const radar = window.GRINLOUD_DATA.RADAR;
+  const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
+  const radarActuallyLive = !radar.liveDate || todayStr >= radar.liveDate;
+  const radarIsLive = isAdmin || radarActuallyLive;
   const items = [
     { id: 'home',    label: 'PICK' },
     { id: 'radar',   label: 'MUSIC RADAR' },
@@ -265,13 +268,14 @@ function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar }) 
           <Icon.Mail size={14} /> <span className="nav-subscribe-label">SUBSCRIBE</span>
         </button>
       </div>
-      {route === 'home' && onGotoRadar && (
+      {route === 'home' && onGotoRadar && radarIsLive && (
         <button
           className="top-nav__radar-pill"
-          style={{ '--accent': accent }}
+          style={{ '--accent': accent, ...(!radarActuallyLive ? { opacity: 0.5 } : {}) }}
           onClick={onGotoRadar}
         >
           MUSIC RADAR {radar.number} → OUT NOW
+          {isAdmin && !radarActuallyLive && <span className="pick-scheduled-badge">SCHEDULED</span>}
         </button>
       )}
     </nav>

@@ -3,10 +3,14 @@ import React from 'react'
 import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks, SpotifyCover } from './shared.jsx'
 
-function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, initialTab = 'picks' }) {
-  const picks = window.GRINLOUD_DATA.PICKS;
+function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, initialTab = 'picks', isAdmin }) {
+  const allPicks = window.GRINLOUD_DATA.PICKS;
   const radars = window.GRINLOUD_DATA.PREVIOUS_RADARS;
   const currentRadar = window.GRINLOUD_DATA.RADAR;
+  const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
+  const picks = isAdmin ? allPicks : allPicks.filter(p => p.date <= todayStr);
+  const radarActuallyLive = !currentRadar.liveDate || todayStr >= currentRadar.liveDate;
+  const showCurrentRadar = isAdmin || radarActuallyLive;
   const [tab, setTab] = React.useState(initialTab);
   const [activePick, setActivePick] = React.useState(null);
 
@@ -29,12 +33,14 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
             onClick={() => setTab('picks')}
           >
             PICKS OF THE DAY <span className="archive__count">{picks.length}</span>
+          {isAdmin && picks.length < allPicks.length && <span className="pick-scheduled-badge">+{allPicks.length - picks.length} SCHEDULED</span>}
           </button>
           <button
             className={`archive__tab ${tab === 'radars' ? 'is-active' : ''}`}
             onClick={() => setTab('radars')}
           >
-            MUSIC RADARS <span className="archive__count">{radars.length + 1}</span>
+            MUSIC RADARS <span className="archive__count">{radars.length + (showCurrentRadar ? 1 : 0)}</span>
+          {isAdmin && !radarActuallyLive && <span className="pick-scheduled-badge">+1 SCHEDULED</span>}
           </button>
         </div>
       </header>
@@ -78,17 +84,26 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
 
       {tab === 'radars' && (
         <div className="archive__radars">
-          <button className="archive-radar archive-radar--current" onClick={onGotoRadar}>
-            <div className="archive-radar__n">{currentRadar.number}</div>
-            <div className="archive-radar__cover">
-              {currentRadar.cover && <img src={currentRadar.cover} alt={currentRadar.title} />}
-            </div>
-            <div className="archive-radar__body">
-              <div className="archive-radar__title">{currentRadar.title}</div>
-              <div className="archive-radar__sub">{currentRadar.date} · {currentRadar.tracks.length} TRACKS · {currentRadar.duration} · LATEST</div>
-            </div>
-            <div className="archive-radar__cta">PLAY →</div>
-          </button>
+          {showCurrentRadar && (
+            <button
+              className="archive-radar archive-radar--current"
+              style={isAdmin && !radarActuallyLive ? { opacity: 0.5 } : undefined}
+              onClick={onGotoRadar}
+            >
+              <div className="archive-radar__n">{currentRadar.number}</div>
+              <div className="archive-radar__cover">
+                {currentRadar.cover && <img src={currentRadar.cover} alt={currentRadar.title} />}
+              </div>
+              <div className="archive-radar__body">
+                <div className="archive-radar__title">{currentRadar.title}</div>
+                <div className="archive-radar__sub">
+                  {currentRadar.date} · {currentRadar.tracks.length} TRACKS · {currentRadar.duration}
+                  {isAdmin && !radarActuallyLive ? ' · SCHEDULED' : ' · LATEST'}
+                </div>
+              </div>
+              <div className="archive-radar__cta">PLAY →</div>
+            </button>
+          )}
           {radars.map((r) => (
             <button key={r.number} className="archive-radar" onClick={() => onOpenRadar(r)}>
               <div className="archive-radar__n">{r.number}</div>

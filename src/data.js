@@ -942,6 +942,7 @@ const RADAR = {
   subtitle: 'Less rush. More flow.',
   cover: 'Music Radar Cover 006.png',
   date: '11 JUN 2026',
+  liveDate: '2026-06-11', // public visibility date — same as first pick of this radar
   nextDate: '21 JUN 2026',
   youtubeId: 'mjFO9lgbEEU',
   spotifyUrl: 'https://open.spotify.com/playlist/5NZmAsT90ilaApCH5zgXtL',
