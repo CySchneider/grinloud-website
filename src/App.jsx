@@ -47,13 +47,22 @@ function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [route, setRoute] = React.useState(_deepLinkedRadar ? 'radar' : 'home');
   const [archiveTab, setArchiveTab] = React.useState('picks');
-  const [selectedRadar, setSelectedRadar] = React.useState(_deepLinkedRadar || window.GRINLOUD_DATA.RADAR);
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const [previewUrl, setPreviewUrl] = React.useState(null); // overrides pick spotify when set
-  const [showNewsletter, setShowNewsletter] = React.useState(false);
 
   const allPicks = window.GRINLOUD_DATA.PICKS;
   const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
+
+  // Determine which radar is currently "live" for regular visitors.
+  // If RADAR.liveDate is in the future, fall back to the first previous radar.
+  const currentRadar = window.GRINLOUD_DATA.RADAR;
+  const radarActuallyLive = !currentRadar.liveDate || todayStr >= currentRadar.liveDate;
+  const liveRadar = (isAdmin || radarActuallyLive)
+    ? currentRadar
+    : (window.GRINLOUD_DATA.PREVIOUS_RADARS[0] || currentRadar);
+
+  const [selectedRadar, setSelectedRadar] = React.useState(_deepLinkedRadar || liveRadar);
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [previewUrl, setPreviewUrl] = React.useState(null); // overrides pick spotify when set
+  const [showNewsletter, setShowNewsletter] = React.useState(false);
 
   // Regular users: only past + today picks. Admin (?admin): all picks incl. future.
   const picks = isAdmin
@@ -130,7 +139,7 @@ function App() {
         }}
         onBack={() => setRoute('home')}
         onNewsletter={() => setShowNewsletter(true)}
-        onGotoRadar={() => setRoute('radar')}
+        onGotoRadar={() => { setSelectedRadar(liveRadar); setRoute('radar'); }}
         accent={palette.bg}
         isAdmin={isAdmin}
       />
@@ -171,7 +180,7 @@ function App() {
           accent={palette.bg}
           contrastInk={palette.ink}
           onBack={() => setRoute('home')}
-          onGotoRadar={() => { setSelectedRadar(window.GRINLOUD_DATA.RADAR); setRoute('radar'); }}
+          onGotoRadar={() => { setSelectedRadar(liveRadar); setRoute('radar'); }}
           onOpenRadar={(r) => { setSelectedRadar(r); setRoute('radar'); }}
           onPreviewTrack={(url) => { setPreviewUrl(url); setIsPlaying(true); }}
           initialTab={archiveTab}
