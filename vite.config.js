@@ -12,6 +12,8 @@ export default defineConfig({
         { src: 'Logo*.png',  dest: '.' },
         { src: 'OG-Graph.jpg', dest: '.' },
         { src: 'GRINLOUD Music Radar Cover*.png', dest: '.' },
+        { src: 'Music Radar Cover*.png', dest: '.' },
+        { src: 'GRINLOUD Dance Beach Ibiza/*.mp4', dest: 'ibiza' },
         { src: 'robots.txt', dest: '.' },
         { src: 'sitemap.xml', dest: '.' },
         { src: '404.html',   dest: '.' },

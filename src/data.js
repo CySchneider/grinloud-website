@@ -39,6 +39,7 @@ const BG_VIDEOS = [
   'grok-video-aa6e4151-d13d-4a2b-a3be-35db84e5059e-2.mp4',
   // ── Parkhaus series — Music Radar 005 picks ──
   'parkhaus-001.mp4',
+
   'parkhaus-002.mp4',
   'parkhaus-003.mp4',
   'parkhaus-004.mp4',
@@ -48,11 +49,134 @@ const BG_VIDEOS = [
   'parkhaus-008.mp4',
   'parkhaus-009.mp4',
   'parkhaus-010.mp4',
+  // ── Ibiza series — Music Radar 006 picks ──
+  'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994.mp4',
+  'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (5).mp4',
+  'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (10).mp4',
+  'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (11).mp4',
+  'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (12).mp4',
+  'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (13).mp4',
+  'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (14).mp4',
+  'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (15).mp4',
+  'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (16).mp4',
+  'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (17).mp4',
 ];
 
 // Picks — newest first (index 0 = most recent)
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
+
+  // ── MUSIC RADAR 006 — 11–20 Jun 2026 ──────────────────────────────────────
+  {
+    id: 'pick-2026-06-20',
+    date: '2026-06-20',
+    title: 'Like It',
+    artist: 'ANOTR, 3DDY',
+    bpm: 130, key: 'E Minor', label: 'NO ART', release: '13 May 2026',
+    genre: 'House', accent: 'orange', video: BG_VIDEOS[45],
+    info: "ANOTR back on NO ART and they haven't lost a step. Effortless, cool, with that signature understated groove that sounds simple until you try to do it yourself.",
+    short: "Effortless, cool, signature understated groove.",
+    links: { spotify: 'https://open.spotify.com/track/45k8qYkYZJ87ckRq3O3fVj', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-19',
+    date: '2026-06-19',
+    title: 'So Good',
+    artist: 'GABSS',
+    bpm: 130, key: 'G Major', label: 'Collecting Dots', release: '03 Apr 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[44],
+    info: "Gabss keeps it clean and effective. Locked groove, understated vocal chops, pure dancefloor logic. Exactly the kind of track that makes a Beatport Hype Top 10 feel earned.",
+    short: "Locked groove, pure dancefloor logic.",
+    links: { spotify: 'https://open.spotify.com/track/7k8T2aK5vHPiP6HExfFOI3', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-18',
+    date: '2026-06-18',
+    title: 'Morning Coffee',
+    artist: 'JITWAM, GUDFELLA',
+    bpm: 130, key: 'C Minor', label: 'Thrive Music', release: '29 May 2026',
+    genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[43],
+    info: "Vintage Culture and Volkoder take Jitwam's warm original and inject pure club energy. Deep groove, emotional undertow — one of the best remixes of the year.",
+    short: "Deep groove, emotional undertow. One of the year's best remixes.",
+    links: { spotify: 'https://open.spotify.com/track/0U62uEAcEBfWab5CyQLaEg', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-17',
+    date: '2026-06-17',
+    title: 'Oldskool Flavor',
+    artist: 'MAX STYLER, GREGGIO',
+    bpm: 129, key: 'Bb Major', label: 'Nu Moda', release: '22 May 2026',
+    genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[42],
+    info: "Max Styler and Greggio doing exactly what the title promises. Old references, new execution — the kind of track that feels familiar and fresh at the same time.",
+    short: "Old references, new execution. Familiar and fresh at the same time.",
+    links: { spotify: 'https://open.spotify.com/track/1RaDR9M8gan0KxZOSl2i8Y', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-16',
+    date: '2026-06-16',
+    title: 'Party Over Here',
+    artist: "JAMIE FIELDING, DETROIT'S FILTHIEST",
+    bpm: 130, key: 'G Minor', label: "Spinnin' Deep", release: '29 May 2026',
+    genre: 'Tech House', accent: 'green', video: BG_VIDEOS[41],
+    info: "Two generations of underground, one track. Jamie Fielding's dark atmospheric production meets Detroit's Filthiest — gritty, hypnotic, and impossible to ignore.",
+    short: "Gritty, hypnotic, impossible to ignore.",
+    links: { spotify: 'https://open.spotify.com/track/43gnaKewGiyWvK4qyypoJR', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-15',
+    date: '2026-06-15',
+    title: 'XTC',
+    artist: 'CLOONEE, JOCELYN ENRIQUEZ',
+    bpm: 130, key: 'B Minor', label: 'Hellbent Records', release: '30 Jan 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[40],
+    info: "Cloonee flips 90s rave nostalgia into a proper floor weapon. Jocelyn Enriquez's voice over a driving Tech House groove — this one hits different.",
+    short: "90s rave nostalgia turned into a proper floor weapon.",
+    links: { spotify: 'https://open.spotify.com/track/6bIvgjuhHG2tNldfu6WTZE', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-14',
+    date: '2026-06-14',
+    title: 'Baby',
+    artist: 'PROSPA, MURDA BEATZ',
+    bpm: 130, key: 'B Minor', label: 'CircoLoco Records', release: '08 May 2026',
+    genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[39],
+    info: "Prospa is on a streak and this one proves it. Tight groove, that vocal hook that doesn't quit — CircoLoco quality all the way through.",
+    short: "Tight groove, vocal hook that doesn't quit.",
+    links: { spotify: 'https://open.spotify.com/track/5q6QXK4K3DvIlwGEtElny3', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-13',
+    date: '2026-06-13',
+    title: 'La La Land',
+    artist: 'GREEN VELVET, MEDUZA, GENESI (ITA), ESSENTIA (IT)',
+    bpm: 128, key: 'A Major', label: 'Broke', release: '15 May 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[38],
+    info: "A 2001 anthem rebuilt for 2026. Green Velvet's classic was already untouchable — MEDUZA and the Italian crew give it new legs without losing the soul.",
+    short: "Green Velvet's classic reborn. New legs, same soul.",
+    links: { spotify: 'https://open.spotify.com/track/5hYSsLVQ6Isk6YZrnsBj4E', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-12',
+    date: '2026-06-12',
+    title: "Shit I'm On",
+    artist: 'POLOVICH, HILLS',
+    bpm: 130, key: 'E Minor', label: 'Three Six Zero Recordings', release: '17 Apr 2026',
+    genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[37],
+    info: "POLOVICH and HILLS locked in. Confident, rolling, with that effortless swagger that only sounds easy when it's actually very precise.",
+    short: "Effortless swagger that's actually very precise.",
+    links: { spotify: 'https://open.spotify.com/track/3KTsWPqBSAnpPkH3IuLUAf', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-11',
+    date: '2026-06-11',
+    title: 'No Panties',
+    artist: 'FALLON (IE)',
+    bpm: 128, key: 'E Minor', label: 'Black Book Records', release: '17 Apr 2026',
+    genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[36],
+    info: "Fallon's debut on Black Book and he walks in like he owns the place. Built around a vocal sample that's hard to forget — bold, cheeky, and designed to make floors move.",
+    short: "Bold, cheeky, and built to make floors move.",
+    links: { spotify: 'https://open.spotify.com/track/5YPiLbMJ4qdTSjiNvjoJzZ', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
 
   // ── MUSIC RADAR 005 — 01–10 Jun 2026 ──────────────────────────────────────
   {
@@ -810,33 +934,42 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 005 (mix pending, YouTube TBA) ────────────────────────
+// ── CURRENT RADAR — 006 ────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-005',
-  number: '005',
-  title: 'Music Radar 005',
-  subtitle: 'Pure Club. Zero Filler.',
-  cover: 'GRINLOUD Music Radar Cover 005.png',
-  date: '01 JUN 2026',
-  nextDate: '11 JUN 2026',
-  youtubeId: 'vikb1UGrUhI',
+  id: 'radar-006',
+  number: '006',
+  title: 'Music Radar 006',
+  subtitle: 'Less rush. More flow.',
+  cover: 'Music Radar Cover 006.png',
+  date: '11 JUN 2026',
+  nextDate: '21 JUN 2026',
+  youtubeId: 'mjFO9lgbEEU',
+  spotifyUrl: 'https://open.spotify.com/playlist/5NZmAsT90ilaApCH5zgXtL',
   duration: 'TBA',
-  // 10 parkhaus clips — one per pick — used by /?radar cover mode
+  // 10 ibiza clips — one per pick — used by /?radar cover mode
   videos: [
-    'parkhaus-001.mp4','parkhaus-002.mp4','parkhaus-003.mp4','parkhaus-004.mp4','parkhaus-005.mp4',
-    'parkhaus-006.mp4','parkhaus-007.mp4','parkhaus-008.mp4','parkhaus-009.mp4','parkhaus-010.mp4',
+    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994.mp4',
+    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (5).mp4',
+    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (10).mp4',
+    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (11).mp4',
+    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (12).mp4',
+    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (13).mp4',
+    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (14).mp4',
+    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (15).mp4',
+    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (16).mp4',
+    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (17).mp4',
   ],
   tracks: [
-    { n: '01', title: 'Army',             artist: 'Qobra (IT)',                      bpm: 128, key: 'C Minor',  genre: 'Tech House', cue: '00:23' },
-    { n: '02', title: 'Take Control',     artist: 'LOOZBONE',                        bpm: 130, key: 'G Minor',  genre: 'Tech House', cue: '02:04' },
-    { n: '03', title: 'Lipstick',         artist: 'Alaia & Gallo',                   bpm: 128, key: 'D Minor',  genre: 'Tech House', cue: '04:32' },
-    { n: '04', title: 'So Hot!',          artist: 'Jake Bleu & Edris Omar',          bpm: 128, key: 'B Minor',  genre: 'Tech House', cue: '07:36' },
-    { n: '05', title: 'Rich & Handsome',  artist: 'Matroda, San Pacho & AF:MN',      bpm: 130, key: 'Ab Minor', genre: 'Tech House', cue: '09:18' },
-    { n: '06', title: 'Rake It Up',       artist: 'KENZ (US)',                       bpm: 130, key: 'Gb Major', genre: 'Tech House', cue: '11:37' },
-    { n: '07', title: 'Waist Move',       artist: 'GREG 99',                         bpm: 130, key: 'Eb Major', genre: 'Tech House', cue: '13:25' },
-    { n: '08', title: 'Control',          artist: 'Afrojack, Lucas & Steve',         bpm: 130, key: 'Ab Major', genre: 'Tech House', cue: '15:19' },
-    { n: '09', title: 'Bad Wolf',         artist: 'Michael Bibi',                    bpm: 131, key: 'Ab Major', genre: 'Tech House', cue: '17:10' },
-    { n: '10', title: 'Alcoholic',        artist: 'San Pacho',                       bpm: 132, key: 'Eb Major', genre: 'Tech House', cue: '18:28' },
+    { n: '01', title: 'No Panties',      artist: 'Fallon (IE)',                                       bpm: 128, key: 'E Minor',  genre: 'Tech House', cue: '00:00' },
+    { n: '02', title: "Shit I'm On",     artist: 'POLOVICH, HILLS',                                   bpm: 130, key: 'E Minor',  genre: 'Tech House', cue: '02:51' },
+    { n: '03', title: 'La La Land',      artist: 'Green Velvet, Meduza, GENESI (ITA), ESSENTIA (IT)', bpm: 128, key: 'A Major',  genre: 'Tech House', cue: '04:46' },
+    { n: '04', title: 'Baby',            artist: 'Prospa, Murda Beatz',                               bpm: 130, key: 'B Minor',  genre: 'Tech House', cue: '06:51' },
+    { n: '05', title: 'XTC',             artist: 'Cloonee, Jocelyn Enriquez',                         bpm: 130, key: 'B Minor',  genre: 'Tech House', cue: '08:17' },
+    { n: '06', title: 'Party Over Here', artist: "Jamie Fielding, Detroit's Filthiest",               bpm: 130, key: 'G Minor',  genre: 'Tech House', cue: '10:14' },
+    { n: '07', title: 'Oldskool Flavor', artist: 'Max Styler, Greggio',                               bpm: 129, key: 'Bb Major', genre: 'Tech House', cue: '12:01' },
+    { n: '08', title: 'Morning Coffee',  artist: 'Jitwam, GUDFELLA',                                  bpm: 130, key: 'C Minor',  genre: 'Tech House', cue: '15:49' },
+    { n: '09', title: 'So Good',         artist: 'Gabss',                                             bpm: 130, key: 'G Major',  genre: 'Tech House', cue: '16:58' },
+    { n: '10', title: 'Like It',         artist: 'ANOTR, 3DDY',                                       bpm: 130, key: 'E Minor',  genre: 'House',      cue: '20:07' },
   ]
 };
 
@@ -844,6 +977,28 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    number: '005',
+    cover: 'GRINLOUD Music Radar Cover 005.png',
+    title: 'Music Radar 005',
+    subtitle: 'Pure Club. Zero Filler.',
+    date: '01 JUN 2026',
+    nextDate: '11 JUN 2026',
+    duration: 'TBA',
+    youtubeId: 'vikb1UGrUhI',
+    tracks: [
+      { n: '01', title: 'Army',             artist: 'Qobra (IT)',                 bpm: 128, key: 'C Minor',  genre: 'Tech House', cue: '00:23' },
+      { n: '02', title: 'Take Control',     artist: 'LOOZBONE',                   bpm: 130, key: 'G Minor',  genre: 'Tech House', cue: '02:04' },
+      { n: '03', title: 'Lipstick',         artist: 'Alaia & Gallo',              bpm: 128, key: 'D Minor',  genre: 'Tech House', cue: '04:32' },
+      { n: '04', title: 'So Hot!',          artist: 'Jake Bleu & Edris Omar',     bpm: 128, key: 'B Minor',  genre: 'Tech House', cue: '07:36' },
+      { n: '05', title: 'Rich & Handsome',  artist: 'Matroda, San Pacho & AF:MN', bpm: 130, key: 'Ab Minor', genre: 'Tech House', cue: '09:18' },
+      { n: '06', title: 'Rake It Up',       artist: 'KENZ (US)',                  bpm: 130, key: 'Gb Major', genre: 'Tech House', cue: '11:37' },
+      { n: '07', title: 'Waist Move',       artist: 'GREG 99',                    bpm: 130, key: 'Eb Major', genre: 'Tech House', cue: '13:25' },
+      { n: '08', title: 'Control',          artist: 'Afrojack, Lucas & Steve',    bpm: 130, key: 'Ab Major', genre: 'Tech House', cue: '15:19' },
+      { n: '09', title: 'Bad Wolf',         artist: 'Michael Bibi',               bpm: 131, key: 'Ab Major', genre: 'Tech House', cue: '17:10' },
+      { n: '10', title: 'Alcoholic',        artist: 'San Pacho',                  bpm: 132, key: 'Eb Major', genre: 'Tech House', cue: '18:28' },
+    ]
+  },
   {
     number: '004',
     cover: 'GRINLOUD Music Radar Cover 004-1.png',
