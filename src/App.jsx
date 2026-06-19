@@ -73,12 +73,15 @@ function App() {
   const todayIdx = picks.findIndex((p) => p.date === todayStr);
   const [pickIdx, setPickIdx] = React.useState(todayIdx >= 0 ? todayIdx : 0);
 
-  const pick = picks[pickIdx];
+  // Clamp pickIdx to valid range in case picks array changes length (e.g. midnight filter update)
+  const safePickIdx = picks.length > 0 ? Math.max(0, Math.min(picks.length - 1, pickIdx)) : 0;
+  const pick = picks[safePickIdx];
 
   const palette = COLOR_MAP[t.bgColor] || COLOR_MAP.pink;
 
   // When pick changes, sync accent color + update JSON-LD for SEO
   React.useEffect(() => {
+    if (!pick) return;
     if (pick.accent) setTweak('bgColor', pick.accent);
     // Update structured data for current pick
     let ld = document.getElementById('ld-pick');
@@ -121,6 +124,9 @@ function App() {
   }, [route, pickIdx, selectedRadar]);
 
   const Home = t.variant === 'A' ? HomeA : HomeB;
+
+  // Guard: if picks is empty or pickIdx is out of range, render nothing
+  if (!pick) return null;
 
   // Cinema mode — render fullscreen pick view, no UI
   if (isCinemaMode) return <Cinema pick={pick} />;
