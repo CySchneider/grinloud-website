@@ -363,12 +363,19 @@ window.grinloudPlaySpotify = function(spotifyUrl) {
   const uri = 'spotify:track:' + trackId;
 
   if (_spotifyCtrl) {
-    if (_currentUri !== uri) {
-      _currentUri = uri;
-      _spotifyCtrl.loadUri(uri);
+    try {
+      if (_currentUri !== uri) {
+        _currentUri = uri;
+        _spotifyCtrl.loadUri(uri);
+      }
+      _spotifyCtrl.play(); // synchronous — still inside user-gesture call stack
+    } catch (_) {
+      // Controller stale — reset and fall through to createController
+      _spotifyCtrl = null;
+      _currentUri = null;
     }
-    _spotifyCtrl.play(); // synchronous — still inside user-gesture call stack
-  } else if (_spotifyAPI && _containerEl) {
+  }
+  if (!_spotifyCtrl && _spotifyAPI && _containerEl) {
     _currentUri = uri;
     _spotifyAPI.createController(
       _containerEl,
@@ -396,7 +403,18 @@ function SpotifyPreviewBar({ spotifyUrl }) {
         // interrupting active playback with a redundant loadUri call.
         if (_currentUri !== uri) {
           _currentUri = uri;
-          _spotifyCtrl.loadUri(uri);
+          try {
+            _spotifyCtrl.loadUri(uri);
+          } catch (_) {
+            // Controller is stale (its IFrame was removed from the DOM while
+            // navigating through a pick with no preview). Create a fresh one.
+            _spotifyCtrl = null;
+            _spotifyAPI.createController(
+              _containerEl,
+              { uri: uri, width: '100%', height: 80 },
+              function(ctrl) { _spotifyCtrl = ctrl; }
+            );
+          }
         }
       } else {
         _currentUri = uri;
