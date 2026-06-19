@@ -60,11 +60,134 @@ const BG_VIDEOS = [
   'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (15).mp4',
   'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (16).mp4',
   'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (17).mp4',
+  // ── Drive Thru series — Music Radar 007 picks ──
+  'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42.mp4',
+  'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (1).mp4',
+  'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (2).mp4',
+  'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (3).mp4',
+  'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (4).mp4',
+  'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (5).mp4',
+  'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (6).mp4',
+  'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (7).mp4',
+  'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (8).mp4',
+  'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (9).mp4',
 ];
 
 // Picks — newest first (index 0 = most recent)
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
+
+  // ── MUSIC RADAR 007 — 21–30 Jun 2026 ──────────────────────────────────────
+  {
+    id: 'pick-2026-06-30',
+    date: '2026-06-30',
+    title: 'Work Your Body (Extended Mix)',
+    artist: 'JOSHWA',
+    bpm: 132, key: 'Db Major', label: 'Catch & Release', release: '15 May 2026',
+    genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[55],
+    info: "Joshwa closes 007 on FISHER's Catch & Release — and the title is not a suggestion. Work Your Body is relentless peak-hour fuel with no off switch.",
+    short: "Not a suggestion. Relentless peak-hour fuel.",
+    links: { spotify: 'https://open.spotify.com/track/2eUZAef6lJ9hBvw7XeExDf', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-29',
+    date: '2026-06-29',
+    title: 'Bootay',
+    artist: 'SAN PACHO',
+    bpm: 132, key: 'Bb Minor', label: 'LIBERA', release: '22 May 2026',
+    genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[54],
+    info: "San Pacho is back on LIBERA and still at full speed. Bootay is tight, playful, and loaded with that irresistible bounce that makes floors break wide open.",
+    short: "Tight, playful, irresistible bounce.",
+    links: { spotify: 'https://open.spotify.com/track/1s0xmXddfQzw33uQ7eR0Cu', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-28',
+    date: '2026-06-28',
+    title: "Deep House Pumpin' (Extended Mix)",
+    artist: 'SAPIAN, AVIV SAB',
+    bpm: 130, key: 'Ab Minor', label: 'Black Book Records', release: '08 May 2026',
+    genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[53],
+    info: "Sapian and AVIV SAB land on Black Book Records with something mechanical and deep. The pump is in the name and the track delivers on every count.",
+    short: "Mechanical and deep. Delivers on every count.",
+    links: { spotify: 'https://open.spotify.com/track/7q7qRayofPCxLoeUZ4Ng7p', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-27',
+    date: '2026-06-27',
+    title: 'Say Please (Extended Mix)',
+    artist: 'KELLAND, BROSA',
+    bpm: 130, key: 'F# Major', label: 'West Coast Residency / Milk & Honey Records', release: '10 Apr 2026',
+    genre: 'Bass House', accent: 'pink', video: BG_VIDEOS[52],
+    info: "Kelland and Brosa make manners sound dangerous. Say Please is bass-forward and relentless — the kind of Bass House that reminds you why the genre matters.",
+    short: "Manners sound dangerous. Bass-forward and relentless.",
+    links: { spotify: 'https://open.spotify.com/track/2W4XGUcESlgss1WAmFCHqv', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-26',
+    date: '2026-06-26',
+    title: 'BAILONGO',
+    artist: 'ANGEL HEREDIA',
+    bpm: 128, key: 'B Major', label: 'KoBBoK', release: '05 Jun 2026',
+    genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[51],
+    info: "Angel Heredia brings Latin heat to KoBBoK. BAILONGO is rhythm-first and uncompromising — a groove that takes hold of the floor before anyone knows what hit them.",
+    short: "Rhythm-first. Takes hold before anyone knows what hit them.",
+    links: { spotify: 'https://open.spotify.com/track/401RFEgbQLSrB8oD2J1HDT', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-25',
+    date: '2026-06-25',
+    title: 'Out Of My Mind (Rello Remix)',
+    artist: 'JOSHWA, RELLO',
+    bpm: 131, key: 'D Major', label: 'Hellbent Records', release: '22 May 2026',
+    genre: 'Tech House', accent: 'green', video: BG_VIDEOS[50],
+    info: "Rello tears apart Joshwa's original and rebuilds it from the ground up. Punchy, relentless, and fully loaded — Hellbent Records doing what they do best.",
+    short: "Punchy, relentless, and fully loaded.",
+    links: { spotify: 'https://open.spotify.com/track/1m8qbseW8yMcRDNiIjyijT', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-24',
+    date: '2026-06-24',
+    title: 'Places',
+    artist: 'SNOOKO',
+    bpm: 130, key: 'G Major', label: '2NIGHT Recordings', release: '07 May 2026',
+    genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[49],
+    info: "Snooko on 2NIGHT Recordings with a driving groove that takes you somewhere. Places is warm, purposeful, and exactly what a well-curated floor deserves.",
+    short: "Warm, purposeful. Exactly what a good floor deserves.",
+    links: { spotify: 'https://open.spotify.com/track/6OVnACZ85MNWhGeJqOjwAX', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-23',
+    date: '2026-06-23',
+    title: 'Insane',
+    artist: 'SHERMANOLOGY',
+    bpm: 127, key: 'D Minor', label: "D'EAUPE", release: '15 May 2026',
+    genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[48],
+    info: "Shermanology delivers exactly what the title promises. Insane is tight, percussive, and locks in immediately — the kind of track that turns a warm-up set into peak hour.",
+    short: "Locks in immediately. Turns warm-up into peak hour.",
+    links: { spotify: 'https://open.spotify.com/album/1nLo5LHl02hV58v4PZhyQp', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-22',
+    date: '2026-06-22',
+    title: 'Mi Combi',
+    artist: 'EMBI, MASON COLLECTIVE, OLLIE BC, DANY GOMEZ',
+    bpm: 127, key: 'Bb Major', label: 'MVSON', release: '08 May 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[47],
+    info: "Four producers, one direction. eMbi teams up with Mason Collective, Ollie BC and Dany Gomez on MVSON for something hypnotic, rolling, and impossible to leave alone.",
+    short: "Hypnotic, rolling, impossible to leave alone.",
+    links: { spotify: 'https://open.spotify.com/track/2G6AM2rmjjJcyiOvizYawc', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-06-21',
+    date: '2026-06-21',
+    title: 'My Killers',
+    artist: 'OMRI., YAMAGUCCI',
+    bpm: 126, key: 'Eb Major', label: 'Collecting Dots', release: '12 Jun 2026',
+    genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[46],
+    info: "OMRI. and Yamagucci open 007 with a track that earns its name. My Killers has a rolling darkness underneath — Collecting Dots quality through and through.",
+    short: "Rolling darkness through and through.",
+    links: { spotify: 'https://open.spotify.com/track/03KDjQ54ghLmdABNti9XsI', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
 
   // ── MUSIC RADAR 006 — 11–20 Jun 2026 ──────────────────────────────────────
   {
@@ -934,43 +1057,43 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 006 ────────────────────────────────────────────────────
+// ── CURRENT RADAR — 007 ────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-006',
-  number: '006',
-  title: 'Music Radar 006',
-  subtitle: 'Less rush. More flow.',
-  cover: 'Music Radar Cover 006.png',
-  date: '11 JUN 2026',
-  liveDate: '2026-06-11', // public visibility date — same as first pick of this radar
-  nextDate: '21 JUN 2026',
-  youtubeId: 'mjFO9lgbEEU',
-  spotifyUrl: 'https://open.spotify.com/playlist/5NZmAsT90ilaApCH5zgXtL',
+  id: 'radar-007',
+  number: '007',
+  title: 'Music Radar 007',
+  subtitle: 'Say Please. Manners Optional.',
+  cover: 'Music Radar Cover 007.png',
+  date: '21 JUN 2026',
+  liveDate: '2026-06-21', // public visibility date — same as first pick of this radar
+  nextDate: '01 JUL 2026',
+  youtubeId: '', // TBD
+  spotifyUrl: 'https://open.spotify.com/playlist/72BlWdTSDxM6opDNr1FljC',
   duration: 'TBA',
-  // 10 ibiza clips — one per pick — used by /?radar cover mode
+  // 10 drive-thru clips — one per pick — used by /?radar cover mode
   videos: [
-    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994.mp4',
-    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (5).mp4',
-    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (10).mp4',
-    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (11).mp4',
-    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (12).mp4',
-    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (13).mp4',
-    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (14).mp4',
-    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (15).mp4',
-    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (16).mp4',
-    'ibiza/grok-video-90889313-2fd2-4aeb-a910-2a0d2db16994 (17).mp4',
+    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42.mp4',
+    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (1).mp4',
+    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (2).mp4',
+    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (3).mp4',
+    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (4).mp4',
+    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (5).mp4',
+    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (6).mp4',
+    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (7).mp4',
+    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (8).mp4',
+    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (9).mp4',
   ],
   tracks: [
-    { n: '01', title: 'No Panties',      artist: 'Fallon (IE)',                                       bpm: 128, key: 'E Minor',  genre: 'Tech House', cue: '00:00' },
-    { n: '02', title: "Shit I'm On",     artist: 'POLOVICH, HILLS',                                   bpm: 130, key: 'E Minor',  genre: 'Tech House', cue: '02:51' },
-    { n: '03', title: 'La La Land',      artist: 'Green Velvet, Meduza, GENESI (ITA), ESSENTIA (IT)', bpm: 128, key: 'A Major',  genre: 'Tech House', cue: '04:46' },
-    { n: '04', title: 'Baby',            artist: 'Prospa, Murda Beatz',                               bpm: 130, key: 'B Minor',  genre: 'Tech House', cue: '06:51' },
-    { n: '05', title: 'XTC',             artist: 'Cloonee, Jocelyn Enriquez',                         bpm: 130, key: 'B Minor',  genre: 'Tech House', cue: '08:17' },
-    { n: '06', title: 'Party Over Here', artist: "Jamie Fielding, Detroit's Filthiest",               bpm: 130, key: 'G Minor',  genre: 'Tech House', cue: '10:14' },
-    { n: '07', title: 'Oldskool Flavor', artist: 'Max Styler, Greggio',                               bpm: 129, key: 'Bb Major', genre: 'Tech House', cue: '12:01' },
-    { n: '08', title: 'Morning Coffee',  artist: 'Jitwam, GUDFELLA',                                  bpm: 130, key: 'C Minor',  genre: 'Tech House', cue: '15:49' },
-    { n: '09', title: 'So Good',         artist: 'Gabss',                                             bpm: 130, key: 'G Major',  genre: 'Tech House', cue: '16:58' },
-    { n: '10', title: 'Like It',         artist: 'ANOTR, 3DDY',                                       bpm: 130, key: 'E Minor',  genre: 'House',      cue: '20:07' },
+    { n: '01', title: 'My Killers',                       artist: 'OMRI., Yamagucci',                             bpm: 126, key: 'Eb Major', genre: 'Tech House', cue: '—' },
+    { n: '02', title: 'Mi Combi',                         artist: 'eMbi, Mason Collective, Ollie BC, Dany Gomez', bpm: 127, key: 'Bb Major', genre: 'Tech House', cue: '—' },
+    { n: '03', title: 'Insane',                           artist: 'Shermanology',                                 bpm: 127, key: 'D Minor',  genre: 'Tech House', cue: '—' },
+    { n: '04', title: 'Places',                           artist: 'Snooko',                                       bpm: 130, key: 'G Major',  genre: 'Tech House', cue: '—' },
+    { n: '05', title: 'Out Of My Mind (Rello Remix)',     artist: 'Joshwa, Rello',                                bpm: 131, key: 'D Major',  genre: 'Tech House', cue: '—' },
+    { n: '06', title: 'BAILONGO',                         artist: 'Angel Heredia',                                bpm: 128, key: 'B Major',  genre: 'Tech House', cue: '—' },
+    { n: '07', title: 'Say Please (Extended Mix)',        artist: 'Kelland, Brosa',                               bpm: 130, key: 'F# Major', genre: 'Bass House', cue: '—' },
+    { n: '08', title: "Deep House Pumpin' (Extended Mix)", artist: 'Sapian, AVIV SAB',                            bpm: 130, key: 'Ab Minor', genre: 'Tech House', cue: '—' },
+    { n: '09', title: 'Bootay',                           artist: 'San Pacho',                                    bpm: 132, key: 'Bb Minor', genre: 'Tech House', cue: '—' },
+    { n: '10', title: 'Work Your Body (Extended Mix)',    artist: 'Joshwa',                                       bpm: 132, key: 'Db Major', genre: 'Tech House', cue: '—' },
   ]
 };
 
@@ -978,6 +1101,29 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    number: '006',
+    cover: 'Music Radar Cover 006.png',
+    title: 'Music Radar 006',
+    subtitle: 'Less rush. More flow.',
+    date: '11 JUN 2026',
+    nextDate: '21 JUN 2026',
+    duration: 'TBA',
+    youtubeId: 'mjFO9lgbEEU',
+    spotifyUrl: 'https://open.spotify.com/playlist/5NZmAsT90ilaApCH5zgXtL',
+    tracks: [
+      { n: '01', title: 'No Panties',      artist: 'Fallon (IE)',                                       bpm: 128, key: 'E Minor',  genre: 'Tech House', cue: '00:00' },
+      { n: '02', title: "Shit I'm On",     artist: 'POLOVICH, HILLS',                                   bpm: 130, key: 'E Minor',  genre: 'Tech House', cue: '02:51' },
+      { n: '03', title: 'La La Land',      artist: 'Green Velvet, Meduza, GENESI (ITA), ESSENTIA (IT)', bpm: 128, key: 'A Major',  genre: 'Tech House', cue: '04:46' },
+      { n: '04', title: 'Baby',            artist: 'Prospa, Murda Beatz',                               bpm: 130, key: 'B Minor',  genre: 'Tech House', cue: '06:51' },
+      { n: '05', title: 'XTC',             artist: 'Cloonee, Jocelyn Enriquez',                         bpm: 130, key: 'B Minor',  genre: 'Tech House', cue: '08:17' },
+      { n: '06', title: 'Party Over Here', artist: "Jamie Fielding, Detroit's Filthiest",               bpm: 130, key: 'G Minor',  genre: 'Tech House', cue: '10:14' },
+      { n: '07', title: 'Oldskool Flavor', artist: 'Max Styler, Greggio',                               bpm: 129, key: 'Bb Major', genre: 'Tech House', cue: '12:01' },
+      { n: '08', title: 'Morning Coffee',  artist: 'Jitwam, GUDFELLA',                                  bpm: 130, key: 'C Minor',  genre: 'Tech House', cue: '15:49' },
+      { n: '09', title: 'So Good',         artist: 'Gabss',                                             bpm: 130, key: 'G Major',  genre: 'Tech House', cue: '16:58' },
+      { n: '10', title: 'Like It',         artist: 'ANOTR, 3DDY',                                       bpm: 130, key: 'E Minor',  genre: 'House',      cue: '20:07' },
+    ]
+  },
   {
     number: '005',
     cover: 'GRINLOUD Music Radar Cover 005.png',
