@@ -6,16 +6,16 @@ import { createRoot } from 'react-dom/client'
 import { App } from './App.jsx'
 
 class ErrorBoundary extends React.Component {
-  constructor(props) { super(props); this.state = { error: null }; }
-  static getDerivedStateFromError(e) { return { error: e }; }
+  constructor(props) { super(props); this.state = { crashed: false }; }
+  static getDerivedStateFromError() { return { crashed: true }; }
+  componentDidCatch(e, info) { console.error('[GRINLOUD]', e, info); }
   render() {
-    if (this.state.error) {
+    if (this.state.crashed) {
       return (
-        <div style={{ position: 'fixed', inset: 0, background: '#0a0a0a', color: '#ff1f8f', fontFamily: 'monospace', padding: '2rem', zIndex: 9999, overflow: 'auto' }}>
-          <div style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>GRINLOUD — Render Error</div>
-          <pre style={{ whiteSpace: 'pre-wrap', fontSize: '0.85rem', color: '#fff' }}>{String(this.state.error)}</pre>
-          <pre style={{ whiteSpace: 'pre-wrap', fontSize: '0.75rem', color: '#aaa', marginTop: '1rem' }}>{this.state.error?.stack}</pre>
-          <button onClick={() => window.location.reload()} style={{ marginTop: '2rem', padding: '0.5rem 1.5rem', background: '#ff1f8f', color: '#000', border: 'none', cursor: 'pointer', fontFamily: 'monospace' }}>RELOAD</button>
+        <div style={{ position: 'fixed', inset: 0, background: '#0a0a0a', color: '#fff', fontFamily: 'var(--mono, monospace)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.5rem' }}>
+          <div style={{ fontSize: '0.75rem', letterSpacing: '0.12em', color: '#ff1f8f' }}>GRINLOUD</div>
+          <div style={{ fontSize: '1rem', letterSpacing: '0.05em' }}>Something went wrong.</div>
+          <button onClick={() => window.location.reload()} style={{ padding: '0.5rem 1.5rem', background: '#ff1f8f', color: '#000', border: 'none', cursor: 'pointer', fontFamily: 'inherit', letterSpacing: '0.08em', fontSize: '0.75rem' }}>RELOAD</button>
         </div>
       );
     }
