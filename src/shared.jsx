@@ -434,17 +434,21 @@ function SpotifyPreviewBar({ spotifyUrl }) {
     }
   }, [trackId]);
 
-  if (!trackId) {
-    return (
-      <div className="spotify-bar spotify-bar--unavailable">
-        <span>PREVIEW NOT YET AVAILABLE FOR THIS PICK</span>
-      </div>
-    );
-  }
-
+  // Always keep the container div mounted — never unmount it. The Spotify
+  // IFrame API in Safari replaces the container element in the DOM rather than
+  // appending inside it, so React's removeChild call on unmount throws
+  // NotFoundError. Hiding with display:none avoids any unmount.
   return (
     <div className="spotify-bar">
-      <div ref={containerRef} style={{ flex: 1, height: 80, overflow: 'hidden' }} />
+      {!trackId && (
+        <div className="spotify-bar__unavailable-msg">
+          <span>PREVIEW NOT YET AVAILABLE FOR THIS PICK</span>
+        </div>
+      )}
+      <div
+        ref={containerRef}
+        style={{ flex: 1, height: 80, overflow: 'hidden', display: trackId ? 'block' : 'none' }}
+      />
     </div>
   );
 }

@@ -1759,11 +1759,12 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 }
 
 
-.spotify-bar--unavailable {
+.spotify-bar__unavailable-msg {
+  flex: 1;
   height: 56px;
   padding: 0 20px;
+  display: flex;
   align-items: center;
-  gap: 12px;
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.08em;
