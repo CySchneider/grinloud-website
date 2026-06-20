@@ -1067,7 +1067,7 @@ const RADAR = {
   date: '21 JUN 2026',
   liveDate: '2026-06-21', // public visibility date — same as first pick of this radar
   nextDate: '01 JUL 2026',
-  youtubeId: '', // TBD
+  youtubeId: 'IsC-i9MX8mQ',
   spotifyUrl: 'https://open.spotify.com/playlist/72BlWdTSDxM6opDNr1FljC',
   duration: 'TBA',
   // 10 drive-thru clips — one per pick — used by /?radar cover mode
