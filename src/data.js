@@ -1084,16 +1084,16 @@ const RADAR = {
     'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (9).mp4',
   ],
   tracks: [
-    { n: '01', title: 'My Killers',                       artist: 'OMRI., Yamagucci',                             bpm: 126, key: 'Eb Major', genre: 'Tech House', cue: '—' },
-    { n: '02', title: 'Mi Combi',                         artist: 'eMbi, Mason Collective, Ollie BC, Dany Gomez', bpm: 127, key: 'Bb Major', genre: 'Tech House', cue: '—' },
-    { n: '03', title: 'Insane',                           artist: 'Shermanology',                                 bpm: 127, key: 'D Minor',  genre: 'Tech House', cue: '—' },
-    { n: '04', title: 'Places',                           artist: 'Snooko',                                       bpm: 130, key: 'G Major',  genre: 'Tech House', cue: '—' },
-    { n: '05', title: 'Out Of My Mind (Rello Remix)',     artist: 'Joshwa, Rello',                                bpm: 131, key: 'D Major',  genre: 'Tech House', cue: '—' },
-    { n: '06', title: 'BAILONGO',                         artist: 'Angel Heredia',                                bpm: 128, key: 'B Major',  genre: 'Tech House', cue: '—' },
-    { n: '07', title: 'Say Please (Extended Mix)',        artist: 'Kelland, Brosa',                               bpm: 130, key: 'F# Major', genre: 'Bass House', cue: '—' },
-    { n: '08', title: "Deep House Pumpin' (Extended Mix)", artist: 'Sapian, AVIV SAB',                            bpm: 130, key: 'Ab Minor', genre: 'Tech House', cue: '—' },
-    { n: '09', title: 'Bootay',                           artist: 'San Pacho',                                    bpm: 132, key: 'Bb Minor', genre: 'Tech House', cue: '—' },
-    { n: '10', title: 'Work Your Body (Extended Mix)',    artist: 'Joshwa',                                       bpm: 132, key: 'Db Major', genre: 'Tech House', cue: '—' },
+    { n: '01', title: 'My Killers',                       artist: 'OMRI., Yamagucci',                             bpm: 126, key: 'Eb Major', genre: 'Tech House', cue: '00:00' },
+    { n: '02', title: 'Mi Combi',                         artist: 'eMbi, Mason Collective, Ollie BC, Dany Gomez', bpm: 127, key: 'Bb Major', genre: 'Tech House', cue: '02:45' },
+    { n: '03', title: 'Insane',                           artist: 'Shermanology',                                 bpm: 127, key: 'D Minor',  genre: 'Tech House', cue: '04:17' },
+    { n: '04', title: 'Places',                           artist: 'Snooko',                                       bpm: 130, key: 'G Major',  genre: 'Tech House', cue: '05:54' },
+    { n: '05', title: 'Out Of My Mind (Rello Remix)',     artist: 'Joshwa, Rello',                                bpm: 131, key: 'D Major',  genre: 'Tech House', cue: '07:59' },
+    { n: '06', title: 'BAILONGO',                         artist: 'Angel Heredia',                                bpm: 128, key: 'B Major',  genre: 'Tech House', cue: '09:39' },
+    { n: '07', title: 'Say Please (Extended Mix)',        artist: 'Kelland, Brosa',                               bpm: 130, key: 'F# Major', genre: 'Bass House', cue: '11:48' },
+    { n: '08', title: "Deep House Pumpin' (Extended Mix)", artist: 'Sapian, AVIV SAB',                            bpm: 130, key: 'Ab Minor', genre: 'Tech House', cue: '13:43' },
+    { n: '09', title: 'Bootay',                           artist: 'San Pacho',                                    bpm: 132, key: 'Bb Minor', genre: 'Tech House', cue: '15:36' },
+    { n: '10', title: 'Work Your Body (Extended Mix)',    artist: 'Joshwa',                                       bpm: 132, key: 'Db Major', genre: 'Tech House', cue: '16:54' },
   ]
 };
 
