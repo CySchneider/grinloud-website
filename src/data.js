@@ -164,7 +164,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[48],
     info: "Shermanology delivers exactly what the title promises. Insane is tight, percussive, and locks in immediately — the kind of track that turns a warm-up set into peak hour.",
     short: "Locks in immediately. Turns warm-up into peak hour.",
-    links: { spotify: 'https://open.spotify.com/album/1nLo5LHl02hV58v4PZhyQp', youtube: '#', beatport: '#', soundcloud: '#' }
+    links: { spotify: 'https://open.spotify.com/track/07ke5nx6iwoBo2ERqCK1Xl', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
     id: 'pick-2026-06-22',
