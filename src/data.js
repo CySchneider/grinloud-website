@@ -71,11 +71,134 @@ const BG_VIDEOS = [
   'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (7).mp4',
   'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (8).mp4',
   'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (9).mp4',
+  // ── Partyboat series — Music Radar 008 picks ──
+  'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8.mp4',
+  'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (1).mp4',
+  'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (2).mp4',
+  'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (3).mp4',
+  'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (4).mp4',
+  'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (5).mp4',
+  'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (6).mp4',
+  'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (7).mp4',
+  'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (8).mp4',
+  'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (9).mp4',
 ];
 
 // Picks — newest first (index 0 = most recent)
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
+
+  // ── MUSIC RADAR 008 — 01–10 Jul 2026 ──────────────────────────────────────
+  {
+    id: 'pick-2026-07-10',
+    date: '2026-07-10',
+    title: 'Profill (Josh Baker Remix)',
+    artist: 'BONAFIQUE, YUVÈE',
+    bpm: 129, key: 'C Major', label: 'Crosstown Rebels', release: '05 Jun 2026',
+    genre: 'Tech House', accent: 'green', video: BG_VIDEOS[65],
+    info: "Josh Baker pushes Bonafique & Yuvèe's original further into club territory. Profill closes the radar warm, major-key, still moving.",
+    short: "Warm, major-key, still moving.",
+    links: { spotify: 'https://open.spotify.com/track/4xeCjpuxm2Mg1RifYYrRTD', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-09',
+    date: '2026-07-09',
+    title: 'Bubbling (Original Mix)',
+    artist: 'DENNIS CRUZ, PATRICK LUNA',
+    bpm: 129, key: 'A Minor', label: 'Solid Grooves Records', release: '03 Jun 2026',
+    genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[64],
+    info: "Dennis Cruz and Patrick Luna keep it simmering rather than boiling over. Bubbling earns its name — patient, percussive, building all the way through.",
+    short: "Patient, percussive, building all the way through.",
+    links: { spotify: 'https://open.spotify.com/track/6GvfH6m9biXR8bL6WW8YX7', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-08',
+    date: '2026-07-08',
+    title: "Let's Get High (Extended Mix)",
+    artist: 'MICHAEL BIBI',
+    bpm: 130, key: 'D Minor', label: 'Solid Grooves Records', release: '03 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[63],
+    info: "Michael Bibi stays true to Solid Grooves form. Let's Get High is deep, hypnotic, and exactly as advertised.",
+    short: "Deep, hypnotic, and exactly as advertised.",
+    links: { spotify: 'https://open.spotify.com/track/2QhWUUeC1C53aycexa4M1u', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-07',
+    date: '2026-07-07',
+    title: 'Push It (Extended Mix)',
+    artist: 'MASON, PRINCESS SUPERSTAR, MAESIC, DISCO LINES',
+    bpm: 129, key: 'C Minor', label: 'Armada', release: '12 Jun 2026',
+    genre: 'Bass House', accent: 'yellow', video: BG_VIDEOS[62],
+    info: "Disco Lines and Maesic flip Princess Superstar's vocal into something built for right now. Push It does exactly that — relentlessly.",
+    short: "Built for right now. Does exactly that — relentlessly.",
+    links: { spotify: 'https://open.spotify.com/track/5Ef5Df4m9y7X4ixO4TgBWy', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-06',
+    date: '2026-07-06',
+    title: 'É o Bonde (Original Mix)',
+    artist: 'CHRIS LAKE, SKRILLEX, RHR',
+    bpm: 130, key: 'C Minor', label: 'OWSLA/Atlantic', release: '04 Jun 2026',
+    genre: 'Bass House', accent: 'orange', video: BG_VIDEOS[61],
+    info: "Chris Lake and Skrillex don't need an introduction. É o Bonde brings Brazilian bounce to a bassline built for big rooms.",
+    short: "Brazilian bounce. Bassline built for big rooms.",
+    links: { spotify: 'https://open.spotify.com/track/1tVOfZtPzGX5F8zynaurBW', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-05',
+    date: '2026-07-05',
+    title: 'Tussy (Extended Mix)',
+    artist: 'WELKER (BR)',
+    bpm: 129, key: 'G Minor', label: '1001 Recordings', release: '08 May 2026',
+    genre: 'Bass House', accent: 'green', video: BG_VIDEOS[60],
+    info: "WELKER lands on Tomorrowland's own label with something gritty. Tussy keeps it low and loose — groove first, no rush.",
+    short: "Low and loose. Groove first, no rush.",
+    links: { spotify: 'https://open.spotify.com/track/1EfOxdqEUahIOapO5AqRnt', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-04',
+    date: '2026-07-04',
+    title: 'Bom Dia (Extended Mix)',
+    artist: 'BREAKING BEATTZ, ADAM SELLOUK',
+    bpm: 130, key: 'Db Minor', label: 'Hellbent Records', release: '29 May 2026',
+    genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[59],
+    info: "Breaking Beattz and Adam Sellouk bring Latin heat to Cloonee's own imprint. Bom Dia greets the floor like it never left.",
+    short: "Latin heat on Cloonee's imprint. Greets the floor like it never left.",
+    links: { spotify: 'https://open.spotify.com/track/4XwAXL9rSGfAWMFmxHLVsv', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-03',
+    date: '2026-07-03',
+    title: 'Make Some Noise (Extended Mix)',
+    artist: 'EATS EVERYTHING',
+    bpm: 132, key: 'Ab Minor', label: 'Black Book Records', release: '13 Mar 2026',
+    genre: 'Bass House', accent: 'pink', video: BG_VIDEOS[58],
+    info: "Eats Everything doesn't ease in. Make Some Noise is exactly the command it sounds like — raw, rolling, unmistakably club.",
+    short: "Exactly the command it sounds like. Raw, rolling, unmistakably club.",
+    links: { spotify: 'https://open.spotify.com/track/4maoPRr7kjuafK4oZBoF6o', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-02',
+    date: '2026-07-02',
+    title: 'Bite Down (Extended Mix)',
+    artist: 'WAX MOTIF',
+    bpm: 132, key: 'Eb Minor', label: 'Insomniac Records', release: '29 May 2026',
+    genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[57],
+    info: "Wax Motif sinks his teeth in. Bite Down is sharp, low-slung, and built to be felt before it's heard.",
+    short: "Sharp, low-slung. Built to be felt before it's heard.",
+    links: { spotify: 'https://open.spotify.com/track/4sCBDKHWDP3cBYrJW3fDzO', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-01',
+    date: '2026-07-01',
+    title: 'Trajadão (Extended Mix)',
+    artist: 'VOLKODER',
+    bpm: 128, key: 'Gb Minor', label: 'Black Book Records', release: '24 Apr 2026',
+    genre: 'Bass House', accent: 'orange', video: BG_VIDEOS[56],
+    info: "Volkoder opens the month slow and heavy. Trajadão rolls in on a thick, swung bassline — built for the long burn, not the quick hit.",
+    short: "Thick, swung bassline. Built for the long burn.",
+    links: { spotify: 'https://open.spotify.com/track/3DNROV85RpzdQP7E1Erpa0', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
 
   // ── MUSIC RADAR 007 — 21–30 Jun 2026 ──────────────────────────────────────
   {
@@ -1057,43 +1180,42 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 007 ────────────────────────────────────────────────────
+// ── CURRENT RADAR — 008 ────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-007',
-  number: '007',
-  title: 'Music Radar 007',
-  subtitle: 'Say Please. Manners Optional.',
-  cover: 'Music Radar Cover 007.png',
-  date: '21 JUN 2026',
-  liveDate: '2026-06-21', // public visibility date — same as first pick of this radar
-  nextDate: '01 JUL 2026',
-  youtubeId: 'IsC-i9MX8mQ',
-  spotifyUrl: 'https://open.spotify.com/playlist/72BlWdTSDxM6opDNr1FljC',
-  duration: 'TBA',
-  // 10 drive-thru clips — one per pick — used by /?radar cover mode
+  id: 'radar-008',
+  number: '008',
+  title: 'Music Radar 008',
+  subtitle: 'Slow Burn. Still Bangs.',
+  cover: 'Music Radar Cover 008.png',
+  date: '01 JUL 2026',
+  liveDate: '2026-07-01', // public visibility date — same as first pick of this radar
+  nextDate: '11 JUL 2026',
+  youtubeId: 'ik_jlgqdGOw',
+  spotifyUrl: 'https://open.spotify.com/playlist/2pOEKiVtjsqdRqELCW823F',
+  duration: '20:20',
   videos: [
-    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42.mp4',
-    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (1).mp4',
-    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (2).mp4',
-    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (3).mp4',
-    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (4).mp4',
-    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (5).mp4',
-    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (6).mp4',
-    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (7).mp4',
-    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (8).mp4',
-    'drive-thru/grok-video-6bdba449-5612-4bdc-bf43-ffcc7c884b42 (9).mp4',
+    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8.mp4',
+    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (1).mp4',
+    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (2).mp4',
+    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (3).mp4',
+    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (4).mp4',
+    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (5).mp4',
+    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (6).mp4',
+    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (7).mp4',
+    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (8).mp4',
+    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (9).mp4',
   ],
   tracks: [
-    { n: '01', title: 'My Killers',                       artist: 'OMRI., Yamagucci',                             bpm: 126, key: 'Eb Major', genre: 'Tech House', cue: '00:00' },
-    { n: '02', title: 'Mi Combi',                         artist: 'eMbi, Mason Collective, Ollie BC, Dany Gomez', bpm: 127, key: 'Bb Major', genre: 'Tech House', cue: '02:45' },
-    { n: '03', title: 'Insane',                           artist: 'Shermanology',                                 bpm: 127, key: 'D Minor',  genre: 'Tech House', cue: '04:17' },
-    { n: '04', title: 'Places',                           artist: 'Snooko',                                       bpm: 130, key: 'G Major',  genre: 'Tech House', cue: '05:54' },
-    { n: '05', title: 'Out Of My Mind (Rello Remix)',     artist: 'Joshwa, Rello',                                bpm: 131, key: 'D Major',  genre: 'Tech House', cue: '07:59' },
-    { n: '06', title: 'BAILONGO',                         artist: 'Angel Heredia',                                bpm: 128, key: 'B Major',  genre: 'Tech House', cue: '09:39' },
-    { n: '07', title: 'Say Please (Extended Mix)',        artist: 'Kelland, Brosa',                               bpm: 130, key: 'F# Major', genre: 'Bass House', cue: '11:48' },
-    { n: '08', title: "Deep House Pumpin' (Extended Mix)", artist: 'Sapian, AVIV SAB',                            bpm: 130, key: 'Ab Minor', genre: 'Tech House', cue: '13:43' },
-    { n: '09', title: 'Bootay',                           artist: 'San Pacho',                                    bpm: 132, key: 'Bb Minor', genre: 'Tech House', cue: '15:36' },
-    { n: '10', title: 'Work Your Body (Extended Mix)',    artist: 'Joshwa',                                       bpm: 132, key: 'Db Major', genre: 'Tech House', cue: '16:54' },
+    { n: '01', title: 'Trajadão (Extended Mix)',        artist: 'Volkoder',                                      bpm: 128, key: 'Gb Minor', genre: 'Bass House', cue: 'TBA' },
+    { n: '02', title: 'Bite Down (Extended Mix)',       artist: 'Wax Motif',                                     bpm: 132, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
+    { n: '03', title: 'Make Some Noise (Extended Mix)', artist: 'Eats Everything',                               bpm: 132, key: 'Ab Minor', genre: 'Bass House', cue: 'TBA' },
+    { n: '04', title: 'Bom Dia (Extended Mix)',         artist: 'Breaking Beattz, Adam Sellouk',                 bpm: 130, key: 'Db Minor', genre: 'Tech House', cue: 'TBA' },
+    { n: '05', title: 'Tussy (Extended Mix)',           artist: 'WELKER (BR)',                                   bpm: 129, key: 'G Minor',  genre: 'Bass House', cue: 'TBA' },
+    { n: '06', title: 'É o Bonde (Original Mix)',      artist: 'Chris Lake, Skrillex, RHR',                     bpm: 130, key: 'C Minor',  genre: 'Bass House', cue: 'TBA' },
+    { n: '07', title: 'Push It (Extended Mix)',         artist: 'Mason, Princess Superstar, Maesic, Disco Lines', bpm: 129, key: 'C Minor', genre: 'Bass House', cue: 'TBA' },
+    { n: '08', title: "Let's Get High (Extended Mix)", artist: 'Michael Bibi',                                  bpm: 130, key: 'D Minor',  genre: 'Tech House', cue: 'TBA' },
+    { n: '09', title: 'Bubbling (Original Mix)',        artist: 'Dennis Cruz, Patrick Luna',                     bpm: 129, key: 'A Minor',  genre: 'Tech House', cue: 'TBA' },
+    { n: '10', title: 'Profill (Josh Baker Remix)',     artist: 'Bonafique, Yuvèe',                              bpm: 129, key: 'C Major',  genre: 'Tech House', cue: 'TBA' },
   ]
 };
 
@@ -1101,6 +1223,29 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    number: '007',
+    cover: 'Music Radar Cover 007.png',
+    title: 'Music Radar 007',
+    subtitle: 'Say Please. Manners Optional.',
+    date: '21 JUN 2026',
+    nextDate: '01 JUL 2026',
+    duration: 'TBA',
+    youtubeId: 'IsC-i9MX8mQ',
+    spotifyUrl: 'https://open.spotify.com/playlist/72BlWdTSDxM6opDNr1FljC',
+    tracks: [
+      { n: '01', title: 'My Killers',                        artist: 'OMRI., Yamagucci',                             bpm: 126, key: 'Eb Major', genre: 'Tech House', cue: '00:00' },
+      { n: '02', title: 'Mi Combi',                          artist: 'eMbi, Mason Collective, Ollie BC, Dany Gomez', bpm: 127, key: 'Bb Major', genre: 'Tech House', cue: '02:45' },
+      { n: '03', title: 'Insane',                            artist: 'Shermanology',                                 bpm: 127, key: 'D Minor',  genre: 'Tech House', cue: '04:17' },
+      { n: '04', title: 'Places',                            artist: 'Snooko',                                       bpm: 130, key: 'G Major',  genre: 'Tech House', cue: '05:54' },
+      { n: '05', title: 'Out Of My Mind (Rello Remix)',      artist: 'Joshwa, Rello',                                bpm: 131, key: 'D Major',  genre: 'Tech House', cue: '07:59' },
+      { n: '06', title: 'BAILONGO',                          artist: 'Angel Heredia',                                bpm: 128, key: 'B Major',  genre: 'Tech House', cue: '09:39' },
+      { n: '07', title: 'Say Please (Extended Mix)',         artist: 'Kelland, Brosa',                               bpm: 130, key: 'F# Major', genre: 'Bass House', cue: '11:48' },
+      { n: '08', title: "Deep House Pumpin' (Extended Mix)", artist: 'Sapian, AVIV SAB',                             bpm: 130, key: 'Ab Minor', genre: 'Tech House', cue: '13:43' },
+      { n: '09', title: 'Bootay',                            artist: 'San Pacho',                                    bpm: 132, key: 'Bb Minor', genre: 'Tech House', cue: '15:36' },
+      { n: '10', title: 'Work Your Body (Extended Mix)',     artist: 'Joshwa',                                       bpm: 132, key: 'Db Major', genre: 'Tech House', cue: '16:54' },
+    ]
+  },
   {
     number: '006',
     cover: 'Music Radar Cover 006.png',
