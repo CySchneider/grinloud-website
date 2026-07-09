@@ -29,30 +29,42 @@ const COLOR_MAP = {
 
 // ── Special modes ─────────────────────────────────────────────────────────
 const _params      = new URLSearchParams(window.location.search);
-const _path        = window.location.pathname;
 const isCinemaMode = _params.has('cinema');
 const isRadarMode  = _params.has('radar');
 const isAdmin      = _params.has('admin');
 
-// Deep-link to a specific radar: ?music-radar=005 or the static /radar/005/ URL.
-// Looks in current RADAR first, then PREVIOUS_RADARS.
-const _radarPathMatch = _path.match(/^\/radar\/(\d{3})\/?$/);
-const _radarParam = _params.get('music-radar') || _radarPathMatch?.[1] || null;
-const _allRadars  = _radarParam
+// Parses the current address bar into the app state it points at: a radar
+// (?music-radar=005 or the static /radar/005/ path), a Pick of the Day
+// (?pick=2026-07-09 or /pick/2026-07-09/), or the archive (?archive=picks|radars).
+// Used both for the initial deep-link on load and to restore state when the
+// user hits the browser back/forward buttons (see the popstate handler below).
+function parseLocationState() {
+  const params = new URLSearchParams(window.location.search);
+  const path = window.location.pathname;
+  const radarPathMatch = path.match(/^\/radar\/(\d{3})\/?$/);
+  const pickPathMatch  = path.match(/^\/pick\/(\d{4}-\d{2}-\d{2})\/?$/);
+  const archiveParam = params.get('archive');
+  return {
+    radarNumber: params.get('music-radar') || radarPathMatch?.[1] || null,
+    pickDate: params.get('pick') || pickPathMatch?.[1] || null,
+    isArchive: archiveParam === 'picks' || archiveParam === 'radars',
+    archiveTab: archiveParam === 'radars' ? 'radars' : 'picks',
+  };
+}
+
+const _initialLoc = parseLocationState();
+const _allRadars  = _initialLoc.radarNumber
   ? [window.GRINLOUD_DATA.RADAR, ...window.GRINLOUD_DATA.PREVIOUS_RADARS]
   : [];
-const _deepLinkedRadar = _radarParam
-  ? (_allRadars.find(r => r.number === _radarParam) || null)
+const _deepLinkedRadar = _initialLoc.radarNumber
+  ? (_allRadars.find(r => r.number === _initialLoc.radarNumber) || null)
   : null;
-
-// Deep-link to a specific Pick of the Day: ?pick=2026-07-09 or the static /pick/2026-07-09/ URL.
-const _pickPathMatch = _path.match(/^\/pick\/(\d{4}-\d{2}-\d{2})\/?$/);
-const _pickParam = _params.get('pick') || _pickPathMatch?.[1] || null;
+const _pickParam = _initialLoc.pickDate;
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [route, setRoute] = React.useState(_deepLinkedRadar ? 'radar' : 'home');
-  const [archiveTab, setArchiveTab] = React.useState('picks');
+  const [route, setRoute] = React.useState(_initialLoc.isArchive ? 'archive' : (_deepLinkedRadar ? 'radar' : 'home'));
+  const [archiveTab, setArchiveTab] = React.useState(_initialLoc.archiveTab);
 
   const allPicks = window.GRINLOUD_DATA.PICKS;
   const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
@@ -119,6 +131,48 @@ function App() {
   // Stop preview when route or pick changes; clear track override when leaving radar
   React.useEffect(() => { setIsPlaying(false); }, [route, pickIdx]);
   React.useEffect(() => { if (route !== 'radar') setPreviewUrl(null); }, [route]);
+
+  // Keep the address bar in sync with in-app navigation, so the current
+  // screen can be copied, refreshed, or reached via the browser back/forward
+  // buttons. /pick/ and /radar/ mirror the static routes generate-static-pages.js
+  // ships; archive has no static page, so it lives behind a query param on "/".
+  const hasSyncedUrlRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!pick) return;
+    const url = route === 'radar' ? `/radar/${selectedRadar.number}/`
+      : route === 'archive' ? `/?archive=${archiveTab}`
+      : `/pick/${pick.date}/`;
+    if (url !== window.location.pathname + window.location.search) {
+      window.history[hasSyncedUrlRef.current ? 'pushState' : 'replaceState']({}, '', url);
+    }
+    hasSyncedUrlRef.current = true;
+  }, [route, selectedRadar.number, pick && pick.date, archiveTab]);
+
+  // Restore state when the user navigates with the browser back/forward buttons.
+  React.useEffect(() => {
+    const onPopState = () => {
+      const loc = parseLocationState();
+      if (loc.isArchive) {
+        setArchiveTab(loc.archiveTab);
+        setRoute('archive');
+        return;
+      }
+      if (loc.radarNumber) {
+        const all = [window.GRINLOUD_DATA.RADAR, ...window.GRINLOUD_DATA.PREVIOUS_RADARS];
+        const found = all.find((r) => r.number === loc.radarNumber);
+        if (found) setSelectedRadar(found);
+        setRoute('radar');
+        return;
+      }
+      if (loc.pickDate) {
+        const idx = picks.findIndex((p) => p.date === loc.pickDate);
+        if (idx >= 0) setPickIdx(idx);
+      }
+      setRoute('home');
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [picks]);
 
   // Dynamic page title
   React.useEffect(() => {
@@ -196,7 +250,8 @@ function App() {
           onGotoRadar={() => { setSelectedRadar(liveRadar); setRoute('radar'); }}
           onOpenRadar={(r) => { setSelectedRadar(r); setRoute('radar'); }}
           onPreviewTrack={(url) => { setPreviewUrl(url); setIsPlaying(true); }}
-          initialTab={archiveTab}
+          tab={archiveTab}
+          onTabChange={setArchiveTab}
           isAdmin={isAdmin}
         />
       )}

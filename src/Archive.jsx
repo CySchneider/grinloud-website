@@ -3,7 +3,7 @@ import React from 'react'
 import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks, SpotifyCover } from './shared.jsx'
 
-function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, initialTab = 'picks', isAdmin }) {
+function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, tab, onTabChange, isAdmin }) {
   const allPicks = window.GRINLOUD_DATA.PICKS;
   const radars = window.GRINLOUD_DATA.PREVIOUS_RADARS;
   const currentRadar = window.GRINLOUD_DATA.RADAR;
@@ -11,7 +11,6 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
   const picks = isAdmin ? allPicks : allPicks.filter(p => p.date <= todayStr);
   const radarActuallyLive = !currentRadar.liveDate || todayStr >= currentRadar.liveDate;
   const showCurrentRadar = isAdmin || radarActuallyLive;
-  const [tab, setTab] = React.useState(initialTab);
   const [activePick, setActivePick] = React.useState(null);
 
   const handlePickClick = (p) => {
@@ -30,14 +29,14 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
         <div className="archive__tabs">
           <button
             className={`archive__tab ${tab === 'picks' ? 'is-active' : ''}`}
-            onClick={() => setTab('picks')}
+            onClick={() => onTabChange('picks')}
           >
             PICKS OF THE DAY <span className="archive__count">{picks.length}</span>
           {isAdmin && picks.length < allPicks.length && <span className="pick-scheduled-badge">+{allPicks.length - picks.length} SCHEDULED</span>}
           </button>
           <button
             className={`archive__tab ${tab === 'radars' ? 'is-active' : ''}`}
-            onClick={() => setTab('radars')}
+            onClick={() => onTabChange('radars')}
           >
             MUSIC RADARS <span className="archive__count">{radars.length + (showCurrentRadar ? 1 : 0)}</span>
           {isAdmin && !radarActuallyLive && <span className="pick-scheduled-badge">+1 SCHEDULED</span>}
