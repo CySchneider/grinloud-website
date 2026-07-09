@@ -483,17 +483,30 @@ function SpotifyPreviewBar({ spotifyUrl }) {
 
 function SpotifyCover({ spotifyUrl }) {
   const [src, setSrc] = React.useState(null);
+  const ref = React.useRef(null);
+
   React.useEffect(() => {
-    if (!spotifyUrl || spotifyUrl === '#') return;
+    if (!spotifyUrl || spotifyUrl === '#' || !ref.current) return;
+    // Fetch on scroll-into-view rather than on mount: archive/tracklist grids
+    // render dozens of these at once, and firing every oEmbed request
+    // immediately overwhelms mobile Safari's concurrent-fetch limit, leaving
+    // most covers permanently blank.
     let cancelled = false;
-    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
-      .then(r => r.json())
-      .then(d => { if (!cancelled && d.thumbnail_url) setSrc(d.thumbnail_url); })
-      .catch(() => {});
-    return () => { cancelled = true; };
+    const el = ref.current;
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      observer.disconnect();
+      fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
+        .then(r => r.json())
+        .then(d => { if (!cancelled && d.thumbnail_url) setSrc(d.thumbnail_url); })
+        .catch(() => {});
+    }, { rootMargin: '200px' });
+    observer.observe(el);
+    return () => { cancelled = true; observer.disconnect(); };
   }, [spotifyUrl]);
+
   return (
-    <div className="track-cover" style={src ? undefined : { background: '#000' }}>
+    <div ref={ref} className="track-cover" style={src ? undefined : { background: '#000' }}>
       {src && <img src={src} alt="" loading="lazy" />}
     </div>
   );
