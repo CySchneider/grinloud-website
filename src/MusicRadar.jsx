@@ -15,6 +15,21 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
     return map;
   }, [picks]);
 
+  // Only show genres that actually occur among this radar's tracks, in the
+  // order they first appear. A track's genre field can list more than one
+  // ("Tech House | Latin Tech"), so split on "|" before deduping.
+  const genreTags = React.useMemo(() => {
+    const seen = new Set();
+    const tags = [];
+    radar.tracks.forEach(t => {
+      t.genre.split('|').forEach(part => {
+        const g = part.trim().toUpperCase();
+        if (g && !seen.has(g)) { seen.add(g); tags.push(g); }
+      });
+    });
+    return tags;
+  }, [radar]);
+
   const onPlayCue = (track, idx) => {
     setActiveTrack(idx);
 
@@ -46,12 +61,14 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
         <div className="radar__hero-side">
           <div className="radar__hero-title">{radar.title}</div>
           <div className="radar__hero-sub">{radar.subtitle}</div>
-          <div className="radar__hero-tags">
-            <span>HOUSE</span><span>·</span>
-            <span>PROGRESSIVE</span><span>·</span>
-            <span>BASS HOUSE</span><span>·</span>
-            <span>TECH HOUSE</span>
-          </div>
+          {genreTags.length > 0 && (
+            <div className="radar__hero-tags">
+              {genreTags.flatMap((g, i) => i === 0
+                ? [<span key={g}>{g}</span>]
+                : [<span key={`dot-${g}`}>·</span>, <span key={g}>{g}</span>]
+              )}
+            </div>
+          )}
         </div>
       </div>
 

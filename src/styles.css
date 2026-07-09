@@ -934,23 +934,26 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   margin-top: 10px;
   max-width: 520px;
   opacity: 0.85;
+  text-transform: uppercase;
 }
 .radar__hero-tags {
-  margin-top: 18px;
+  margin-top: 14px;
   display: inline-flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 5px;
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  font-size: 9px;
+  letter-spacing: 0.1em;
   font-weight: 600;
+  opacity: 0.75;
 }
 .radar__hero-tags span:nth-child(odd) {
-  padding: 5px 10px;
-  border: 2px solid var(--ink);
+  padding: 2px 7px;
+  border: 1.5px solid var(--ink);
   border-radius: 999px;
   white-space: nowrap;
 }
-.radar__hero-tags span:nth-child(even) { opacity: 0.4; align-self: center; }
+.radar__hero-tags span:nth-child(even) { opacity: 0.5; align-self: center; }
 
 .radar__split {
   display: grid;
@@ -1255,6 +1258,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   font-weight: 700;
   font-size: 15px;
   margin-top: 2px;
+  text-transform: uppercase;
 }
 .archive-card__meta {
   font-family: var(--mono);
