@@ -1309,7 +1309,7 @@ const RADAR = {
   number: '009',
   title: 'Music Radar 009',
   subtitle: 'Ten tracks. One pulse.',
-  cover: 'Music Radar Cover 009.png',
+  cover: 'Music Radar Cover 009.jpg',
   date: '11 JUL 2026',
   liveDate: '2026-07-11', // public visibility date — same as first pick of this radar
   nextDate: '21 JUL 2026',
@@ -1348,7 +1348,7 @@ const RADAR = {
 const PREVIOUS_RADARS = [
   {
     number: '008',
-    cover: 'Music Radar Cover 008.png',
+    cover: 'Music Radar Cover 008.jpg',
     title: 'Music Radar 008',
     subtitle: 'Slow Burn. Still Bangs.',
     date: '01 JUL 2026',
@@ -1371,7 +1371,7 @@ const PREVIOUS_RADARS = [
   },
   {
     number: '007',
-    cover: 'Music Radar Cover 007.png',
+    cover: 'Music Radar Cover 007.jpg',
     title: 'Music Radar 007',
     subtitle: 'Say Please. Manners Optional.',
     date: '21 JUN 2026',
@@ -1394,7 +1394,7 @@ const PREVIOUS_RADARS = [
   },
   {
     number: '006',
-    cover: 'Music Radar Cover 006.png',
+    cover: 'Music Radar Cover 006.jpg',
     title: 'Music Radar 006',
     subtitle: 'Less rush. More flow.',
     date: '11 JUN 2026',
@@ -1417,7 +1417,7 @@ const PREVIOUS_RADARS = [
   },
   {
     number: '005',
-    cover: 'GRINLOUD Music Radar Cover 005.png',
+    cover: 'GRINLOUD Music Radar Cover 005.jpg',
     title: 'Music Radar 005',
     subtitle: 'Pure Club. Zero Filler.',
     date: '01 JUN 2026',
@@ -1439,7 +1439,7 @@ const PREVIOUS_RADARS = [
   },
   {
     number: '004',
-    cover: 'GRINLOUD Music Radar Cover 004-1.png',
+    cover: 'GRINLOUD Music Radar Cover 004-1.jpg',
     title: 'Music Radar 004',
     subtitle: 'Ten tracks. Ten days. All killer.',
     date: '22 MAY 2026',
@@ -1462,7 +1462,7 @@ const PREVIOUS_RADARS = [
   },
   {
     number: '003',
-    cover: 'GRINLOUD Music Radar Cover 003-1.png',
+    cover: 'GRINLOUD Music Radar Cover 003-1.jpg',
     title: 'Music Radar 003',
     subtitle: 'Pure energy. No filler.',
     date: '12 MAY 2026',
@@ -1485,7 +1485,7 @@ const PREVIOUS_RADARS = [
   },
   {
     number: '002',
-    cover: 'GRINLOUD Music Radar Cover 002-1.png',
+    cover: 'GRINLOUD Music Radar Cover 002-1.jpg',
     title: 'Music Radar 002',
     subtitle: 'No blog. No template.',
     date: '02 MAY 2026',
@@ -1508,7 +1508,7 @@ const PREVIOUS_RADARS = [
   },
   {
     number: '001',
-    cover: 'GRINLOUD Music Radar Cover 001-1.png',
+    cover: 'GRINLOUD Music Radar Cover 001-1.jpg',
     title: 'Music Radar 001',
     subtitle: 'Where it started.',
     date: '22 APR 2026',
@@ -1533,4 +1533,8 @@ const PREVIOUS_RADARS = [
 ];
 
 
-window.GRINLOUD_DATA = { PICKS, RADAR, PREVIOUS_RADARS, BG_VIDEOS, NEWSLETTER };
+if (typeof window !== 'undefined') {
+  window.GRINLOUD_DATA = { PICKS, RADAR, PREVIOUS_RADARS, BG_VIDEOS, NEWSLETTER };
+}
+
+export { PICKS, RADAR, PREVIOUS_RADARS, BG_VIDEOS, NEWSLETTER };

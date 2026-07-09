@@ -92,7 +92,7 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
             >
               <div className="archive-radar__n">{currentRadar.number}</div>
               <div className="archive-radar__cover">
-                {currentRadar.cover && <img src={currentRadar.cover} alt={currentRadar.title} />}
+                {currentRadar.cover && <img src={currentRadar.cover} alt={currentRadar.title} loading="lazy" />}
               </div>
               <div className="archive-radar__body">
                 <div className="archive-radar__title">{currentRadar.title}</div>
@@ -108,7 +108,7 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
             <button key={r.number} className="archive-radar" onClick={() => onOpenRadar(r)}>
               <div className="archive-radar__n">{r.number}</div>
               <div className="archive-radar__cover">
-                {r.cover && <img src={r.cover} alt={r.title} />}
+                {r.cover && <img src={r.cover} alt={r.title} loading="lazy" />}
               </div>
               <div className="archive-radar__body">
                 <div className="archive-radar__title">{r.title}</div>

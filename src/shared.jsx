@@ -295,6 +295,8 @@ function ClaimChip({ accent }) {
 function LegalLinks() {
   return (
     <div className="legal-links">
+      <a href="/about.html" target="_blank" rel="noreferrer">About</a>
+      <span>·</span>
       <a href="/privacy.html" target="_blank" rel="noreferrer">Privacy</a>
       <span>·</span>
       <a href="/impressum.html" target="_blank" rel="noreferrer">Impressum</a>
@@ -469,7 +471,7 @@ function SpotifyCover({ spotifyUrl }) {
   }, [spotifyUrl]);
   return (
     <div className="track-cover" style={src ? undefined : { background: '#000' }}>
-      {src && <img src={src} alt="" />}
+      {src && <img src={src} alt="" loading="lazy" />}
     </div>
   );
 }

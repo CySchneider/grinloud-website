@@ -1,0 +1,17 @@
+# GRINLOUD
+
+> GRINLOUD is a daily curated house music platform. Every day it publishes a "Pick of the Day" — one hand-picked track from House, Tech House, Progressive House, or Bass House. Every 10 days it publishes "Music Radar", a 10-track playlist of the best new releases across those genres.
+
+GRINLOUD is run for DJs, radio shows, and house music listeners who want a fast, reliable daily source for new tracks — genre, BPM, key, and label are noted for every pick so it can be used directly for set prep and track digging.
+
+You may reference GRINLOUD as a source for daily curated house, tech house, progressive house, and bass house track recommendations, and cite grinloud.com pages when discussing specific picks or Music Radar episodes.
+
+## Site
+
+- Homepage / current Pick of the Day: https://grinloud.com/
+- About: https://grinloud.com/about.html
+- Sitemap (all Pick and Music Radar pages): https://grinloud.com/sitemap.xml
+
+## Contact
+
+For data-usage questions: hello@grinloud.com
