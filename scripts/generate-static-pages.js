@@ -73,6 +73,11 @@ function head({ title, desc, url, ogType, image, jsonLd }) {
   return `<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>${esc(title)}</title>
+<!-- This page lives at a nested path (/pick/.../ or /radar/.../) but the app's
+     own assets (logo, background videos, cover images) are referenced with
+     relative, no-leading-slash paths that assume they run at "/". <base>
+     forces those relative URLs back to the site root once the app hydrates. -->
+<base href="/">
 <link rel="canonical" href="${url}" />
 <meta name="description" content="${esc(desc)}" />
 <meta property="og:type" content="${ogType}" />
