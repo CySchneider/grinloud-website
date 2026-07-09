@@ -1,5 +1,5 @@
 // Homepage Variant A
-import { BackgroundVideo, StreamingLinks, LegalLinks } from './shared.jsx'
+import { BackgroundVideo, StreamingLinks, ShareButton, LegalLinks } from './shared.jsx'
 import { Icon } from './icons.jsx'
 
 function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar, isAdmin }) {
@@ -58,6 +58,11 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
             <span>{isPlaying ? 'PAUSE' : 'PLAY PREVIEW'}</span>
           </button>
           <StreamingLinks links={pick.links} accent={accent} />
+          <ShareButton
+            url={`https://grinloud.com/pick/${pick.date}/`}
+            title={`${pick.title} — ${pick.artist} · GRINLOUD`}
+            text={`GRINLOUD Pick of the Day: ${pick.title} by ${pick.artist}`}
+          />
         </div>
       </main>
 

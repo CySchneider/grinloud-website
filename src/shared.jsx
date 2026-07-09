@@ -123,6 +123,29 @@ function StreamingLinks({ links = {}, size = 'md', accent = '#fff' }) {
   );
 }
 
+function ShareButton({ url, title, text, size = 'md' }) {
+  const [copied, setCopied] = React.useState(false);
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try { await navigator.share({ title, text, url }); } catch {} // user cancelled — ignore
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {}
+  };
+
+  return (
+    <button className={`share-btn share-btn--${size}`} onClick={handleShare} aria-label="Share this pick">
+      <Icon.Share size={12} />
+      <span>{copied ? 'LINK COPIED' : 'SHARE'}</span>
+    </button>
+  );
+}
+
 function NewsletterModal({ open, onClose, accent }) {
   const [email, setEmail] = React.useState('');
   const [status, setStatus] = React.useState('idle'); // idle | loading | success | error | already
@@ -476,4 +499,4 @@ function SpotifyCover({ spotifyUrl }) {
   );
 }
 
-export { BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover };
+export { BackgroundVideo, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover };

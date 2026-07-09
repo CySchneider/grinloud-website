@@ -443,6 +443,25 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   transform: translateY(-1px);
 }
 
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid currentColor;
+  opacity: 0.75;
+  transition: opacity 0.16s, transform 0.14s;
+}
+.share-btn:hover { opacity: 1; transform: translateY(-1px); }
+
 /* Home pick actions — play + streaming on one row */
 .pick-actions {
   display: flex;

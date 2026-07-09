@@ -1,8 +1,18 @@
-// Generates static, crawlable/shareable detail pages for every Pick of the Day
-// and every Music Radar episode, plus the sitemap that lists them all.
-// Runs after `vite build` (see package.json) so it writes straight into dist/.
+// Generates static, crawlable/shareable detail pages for every published Pick
+// of the Day and Music Radar episode, plus the sitemap that lists them all.
+//
+// Each page ships real title/OG/Twitter/JSON-LD meta tags (readable by
+// crawlers that don't run JS) AND the exact same built app bundle used on the
+// homepage. The visible body content is a static fallback rendered into
+// #root; once the app's JS loads, React mounts and replaces it with the full
+// interactive experience, deep-linked to this specific pick/radar via the
+// page's own URL (see the /pick/ and /radar/ path parsing in App.jsx). So a
+// shared link is both indexable and, when clicked, the real thing.
+//
+// Runs after `vite build` (see package.json) so it writes straight into
+// dist/ and can read the just-built, hashed app bundle tags out of dist/index.html.
 import { PICKS, RADAR, PREVIOUS_RADARS } from '../src/data.js';
-import { writeFileSync, mkdirSync } from 'fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -12,7 +22,17 @@ const DIST = join(ROOT, 'dist');
 
 const SITE = 'https://grinloud.com';
 const OG_IMAGE_DEFAULT = `${SITE}/OG-Graph.jpg`;
-const TODAY = new Date().toISOString().slice(0, 10);
+// Same timezone the app itself uses to decide what's public (App.jsx).
+const TODAY = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
+
+// Pull the real, hashed <script>/<link> tags out of the shell `vite build`
+// just produced, so every generated page boots the identical app bundle.
+const builtShell = readFileSync(join(DIST, 'index.html'), 'utf-8');
+const APP_SCRIPT_TAG = builtShell.match(/<script type="module"[^>]*><\/script>/)?.[0];
+const APP_CSS_TAG = builtShell.match(/<link rel="stylesheet"[^>]*>/)?.[0];
+if (!APP_SCRIPT_TAG || !APP_CSS_TAG) {
+  throw new Error('[generate-static-pages] Could not find the built app <script>/<link> tags in dist/index.html — make sure `vite build` ran first.');
+}
 
 function esc(str) {
   return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -24,28 +44,29 @@ function writePage(relPath, html) {
   writeFileSync(join(dir, 'index.html'), html);
 }
 
-const PAGE_STYLE = `
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #0A0A0A; color: #F5F2EE; font-family: 'JetBrains Mono', monospace; padding: 48px 24px 120px; max-width: 680px; margin: 0 auto; }
-  a { color: #FFE000; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .back { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; border: 1.5px solid rgba(245,242,238,0.3); padding: 8px 16px; border-radius: 999px; margin-bottom: 48px; }
-  .eyebrow { font-size: 10px; letter-spacing: 0.18em; opacity: 0.45; margin-bottom: 12px; }
-  h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 8px; }
-  .sub { font-size: 14px; opacity: 0.7; margin-bottom: 24px; }
-  .meta { font-size: 12px; opacity: 0.55; letter-spacing: 0.04em; margin-bottom: 28px; }
-  p.info { font-size: 13px; line-height: 1.8; opacity: 0.85; margin-bottom: 36px; max-width: 56ch; }
-  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
-  .cta { display: inline-flex; padding: 10px 20px; border: 1.5px solid rgba(245,242,238,0.3); border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #F5F2EE; }
-  .cta--accent { background: #FFE000; border-color: #FFE000; color: #0A0A0A; }
-  h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; opacity: 0.5; margin: 0 0 16px; }
-  .tracklist { list-style: none; }
-  .track { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(245,242,238,0.08); font-size: 13px; }
-  .track__n { opacity: 0.35; width: 24px; flex-shrink: 0; }
-  .track__title { font-weight: 600; }
-  .track__artist { opacity: 0.6; }
-  .track__meta { opacity: 0.4; font-size: 11px; margin-left: auto; white-space: nowrap; padding-left: 12px; }
-  hr { border: none; border-top: 1px solid rgba(245,242,238,0.1); margin: 48px 0; }
+// Scoped to .gl-fb-* so it can never collide with the real app's styles.css
+// — this only styles the pre-hydration fallback, which React fully replaces.
+const FALLBACK_STYLE = `
+  .gl-fb { background: #0A0A0A; color: #F5F2EE; font-family: 'JetBrains Mono', monospace; padding: 48px 24px 120px; max-width: 680px; margin: 0 auto; }
+  .gl-fb a { color: #FFE000; text-decoration: none; }
+  .gl-fb a:hover { text-decoration: underline; }
+  .gl-fb .gl-fb-back { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; border: 1.5px solid rgba(245,242,238,0.3); padding: 8px 16px; border-radius: 999px; margin-bottom: 48px; }
+  .gl-fb .gl-fb-eyebrow { font-size: 10px; letter-spacing: 0.18em; opacity: 0.45; margin-bottom: 12px; }
+  .gl-fb h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 8px; }
+  .gl-fb .gl-fb-sub { font-size: 14px; opacity: 0.7; margin-bottom: 24px; }
+  .gl-fb .gl-fb-meta { font-size: 12px; opacity: 0.55; letter-spacing: 0.04em; margin-bottom: 28px; }
+  .gl-fb p.gl-fb-info { font-size: 13px; line-height: 1.8; opacity: 0.85; margin-bottom: 36px; max-width: 56ch; }
+  .gl-fb .gl-fb-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+  .gl-fb .gl-fb-cta { display: inline-flex; padding: 10px 20px; border: 1.5px solid rgba(245,242,238,0.3); border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #F5F2EE; }
+  .gl-fb .gl-fb-cta--accent { background: #FFE000; border-color: #FFE000; color: #0A0A0A; }
+  .gl-fb h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; opacity: 0.5; margin: 0 0 16px; }
+  .gl-fb .gl-fb-tracklist { list-style: none; }
+  .gl-fb .gl-fb-track { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(245,242,238,0.08); font-size: 13px; }
+  .gl-fb .gl-fb-track__n { opacity: 0.35; width: 24px; flex-shrink: 0; }
+  .gl-fb .gl-fb-track__title { font-weight: 600; }
+  .gl-fb .gl-fb-track__artist { opacity: 0.6; }
+  .gl-fb .gl-fb-track__meta { opacity: 0.4; font-size: 11px; margin-left: auto; white-space: nowrap; padding-left: 12px; }
+  .gl-fb hr { border: none; border-top: 1px solid rgba(245,242,238,0.1); margin: 48px 0; }
 `;
 
 function head({ title, desc, url, ogType, image, jsonLd }) {
@@ -69,12 +90,21 @@ function head({ title, desc, url, ogType, image, jsonLd }) {
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://static.cloudflareinsights.com">
 <script async src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b9dab09245b944069c482cf974dd117c"}'></script>
-<style>${PAGE_STYLE}</style>`;
+${APP_CSS_TAG}
+${APP_SCRIPT_TAG}
+<style>${FALLBACK_STYLE}</style>`;
 }
+
+// Only ever generate pages for what's actually public today — mirrors the
+// exact visibility rules App.jsx uses, so a static page can never leak an
+// unpublished Pick or an embargoed Radar ahead of its liveDate.
+const publicPicks = PICKS.filter((p) => p.date <= TODAY);
+const radarActuallyLive = !RADAR.liveDate || TODAY >= RADAR.liveDate;
+const publicRadars = [...(radarActuallyLive ? [RADAR] : []), ...PREVIOUS_RADARS];
 
 // ── Pick of the Day pages ───────────────────────────────────────────────
 const pickUrls = [];
-for (const pick of PICKS) {
+for (const pick of publicPicks) {
   const url = `${SITE}/pick/${pick.date}/`;
   const title = `${pick.title} — ${pick.artist} · GRINLOUD Pick of the Day`;
   const desc = pick.info || pick.short || `${pick.title} by ${pick.artist} — ${pick.genre}, curated by GRINLOUD.`;
@@ -97,18 +127,20 @@ for (const pick of PICKS) {
 ${head({ title, desc, url, ogType: 'music.song', image: OG_IMAGE_DEFAULT, jsonLd })}
 </head>
 <body>
-  <a href="/" class="back">← GRINLOUD</a>
-  <div class="eyebrow">GRINLOUD · PICK OF THE DAY · ${pick.date}</div>
-  <h1>${esc(pick.title)}</h1>
-  <div class="sub">${esc(pick.artist)}</div>
-  <div class="meta">${esc(pick.genre)} · ${pick.bpm} BPM · ${esc(pick.key)}${pick.label ? ` · ${esc(pick.label)}` : ''}</div>
-  <p class="info">${esc(desc)}</p>
-  <div class="cta-row">
-    ${spotify ? `<a class="cta cta--accent" href="${spotify}" target="_blank" rel="noreferrer">LISTEN ON SPOTIFY →</a>` : ''}
-    <a class="cta" href="/">MORE PICKS →</a>
-  </div>
-  <hr>
-  <p style="font-size:11px; opacity:0.35;"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
+  <div id="root"><div class="gl-fb">
+    <a href="/" class="gl-fb-back">← GRINLOUD</a>
+    <div class="gl-fb-eyebrow">GRINLOUD · PICK OF THE DAY · ${pick.date}</div>
+    <h1>${esc(pick.title)}</h1>
+    <div class="gl-fb-sub">${esc(pick.artist)}</div>
+    <div class="gl-fb-meta">${esc(pick.genre)} · ${pick.bpm} BPM · ${esc(pick.key)}${pick.label ? ` · ${esc(pick.label)}` : ''}</div>
+    <p class="gl-fb-info">${esc(desc)}</p>
+    <div class="gl-fb-cta-row">
+      ${spotify ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${spotify}" target="_blank" rel="noreferrer">LISTEN ON SPOTIFY →</a>` : ''}
+      <a class="gl-fb-cta" href="/">MORE PICKS →</a>
+    </div>
+    <hr>
+    <p style="font-size:11px; opacity:0.35;"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
+  </div></div>
 </body>
 </html>`;
 
@@ -118,7 +150,7 @@ ${head({ title, desc, url, ogType: 'music.song', image: OG_IMAGE_DEFAULT, jsonLd
 
 // ── Music Radar pages ────────────────────────────────────────────────────
 const radarUrls = [];
-for (const radar of [RADAR, ...PREVIOUS_RADARS]) {
+for (const radar of publicRadars) {
   const url = `${SITE}/radar/${radar.number}/`;
   const title = `Music Radar ${radar.number} — ${radar.subtitle || radar.title} · GRINLOUD`;
   const trackCount = radar.tracks?.length || 10;
@@ -145,11 +177,11 @@ for (const radar of [RADAR, ...PREVIOUS_RADARS]) {
   };
 
   const tracklistHtml = (radar.tracks || []).map((t) => `
-    <li class="track">
-      <span class="track__n">${t.n}</span>
-      <span><span class="track__title">${esc(t.title)}</span><br><span class="track__artist">${esc(t.artist)}</span></span>
-      <span class="track__meta">${esc(t.genre)} · ${t.bpm} BPM · ${esc(t.key)}</span>
-    </li>`).join('');
+      <li class="gl-fb-track">
+        <span class="gl-fb-track__n">${t.n}</span>
+        <span><span class="gl-fb-track__title">${esc(t.title)}</span><br><span class="gl-fb-track__artist">${esc(t.artist)}</span></span>
+        <span class="gl-fb-track__meta">${esc(t.genre)} · ${t.bpm} BPM · ${esc(t.key)}</span>
+      </li>`).join('');
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -157,20 +189,22 @@ for (const radar of [RADAR, ...PREVIOUS_RADARS]) {
 ${head({ title, desc, url, ogType: 'music.playlist', image, jsonLd })}
 </head>
 <body>
-  <a href="/" class="back">← GRINLOUD</a>
-  <div class="eyebrow">GRINLOUD · MUSIC RADAR · ${radar.date}</div>
-  <h1>Music Radar ${radar.number}</h1>
-  <div class="sub">${esc(radar.subtitle || '')}</div>
-  <div class="meta">${trackCount} TRACKS${radar.duration ? ` · ${esc(radar.duration)}` : ''}</div>
-  <div class="cta-row">
-    ${radar.spotifyUrl ? `<a class="cta cta--accent" href="${radar.spotifyUrl}" target="_blank" rel="noreferrer">PLAY ON SPOTIFY →</a>` : ''}
-    <a class="cta" href="/?music-radar=${radar.number}">OPEN IN GRINLOUD →</a>
-  </div>
-  <h2>TRACKLIST</h2>
-  <ul class="tracklist">${tracklistHtml}
-  </ul>
-  <hr>
-  <p style="font-size:11px; opacity:0.35;"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
+  <div id="root"><div class="gl-fb">
+    <a href="/" class="gl-fb-back">← GRINLOUD</a>
+    <div class="gl-fb-eyebrow">GRINLOUD · MUSIC RADAR · ${radar.date}</div>
+    <h1>Music Radar ${radar.number}</h1>
+    <div class="gl-fb-sub">${esc(radar.subtitle || '')}</div>
+    <div class="gl-fb-meta">${trackCount} TRACKS${radar.duration ? ` · ${esc(radar.duration)}` : ''}</div>
+    <div class="gl-fb-cta-row">
+      ${radar.spotifyUrl ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${radar.spotifyUrl}" target="_blank" rel="noreferrer">PLAY ON SPOTIFY →</a>` : ''}
+      <a class="gl-fb-cta" href="/">MORE PICKS →</a>
+    </div>
+    <h2>TRACKLIST</h2>
+    <ul class="gl-fb-tracklist">${tracklistHtml}
+    </ul>
+    <hr>
+    <p style="font-size:11px; opacity:0.35;"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
+  </div></div>
 </body>
 </html>`;
 
@@ -201,4 +235,4 @@ ${allUrls.map((u) => `  <url>
 
 writeFileSync(join(DIST, 'sitemap.xml'), sitemap);
 
-console.log(`[generate-static-pages] ${pickUrls.length} pick pages, ${radarUrls.length} radar pages, sitemap with ${allUrls.length} URLs.`);
+console.log(`[generate-static-pages] ${pickUrls.length} pick pages, ${radarUrls.length} radar pages (of ${PICKS.length} picks / ${1 + PREVIOUS_RADARS.length} radars total), sitemap with ${allUrls.length} URLs.`);

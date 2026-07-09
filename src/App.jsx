@@ -29,19 +29,25 @@ const COLOR_MAP = {
 
 // ── Special modes ─────────────────────────────────────────────────────────
 const _params      = new URLSearchParams(window.location.search);
+const _path        = window.location.pathname;
 const isCinemaMode = _params.has('cinema');
 const isRadarMode  = _params.has('radar');
 const isAdmin      = _params.has('admin');
 
-// Deep-link to a specific radar: ?music-radar=005 / ?music-radar=004 etc.
+// Deep-link to a specific radar: ?music-radar=005 or the static /radar/005/ URL.
 // Looks in current RADAR first, then PREVIOUS_RADARS.
-const _radarParam = _params.get('music-radar');
+const _radarPathMatch = _path.match(/^\/radar\/(\d{3})\/?$/);
+const _radarParam = _params.get('music-radar') || _radarPathMatch?.[1] || null;
 const _allRadars  = _radarParam
   ? [window.GRINLOUD_DATA.RADAR, ...window.GRINLOUD_DATA.PREVIOUS_RADARS]
   : [];
 const _deepLinkedRadar = _radarParam
   ? (_allRadars.find(r => r.number === _radarParam) || null)
   : null;
+
+// Deep-link to a specific Pick of the Day: ?pick=2026-07-09 or the static /pick/2026-07-09/ URL.
+const _pickPathMatch = _path.match(/^\/pick\/(\d{4}-\d{2}-\d{2})\/?$/);
+const _pickParam = _params.get('pick') || _pickPathMatch?.[1] || null;
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
@@ -71,7 +77,8 @@ function App() {
 
   // Auto-detect today's pick; fall back to index 0 (most recent visible)
   const todayIdx = picks.findIndex((p) => p.date === todayStr);
-  const [pickIdx, setPickIdx] = React.useState(todayIdx >= 0 ? todayIdx : 0);
+  const paramIdx = _pickParam ? picks.findIndex((p) => p.date === _pickParam) : -1;
+  const [pickIdx, setPickIdx] = React.useState(paramIdx >= 0 ? paramIdx : (todayIdx >= 0 ? todayIdx : 0));
 
   // Clamp pickIdx to valid range in case picks array changes length (e.g. midnight filter update)
   const safePickIdx = picks.length > 0 ? Math.max(0, Math.min(picks.length - 1, pickIdx)) : 0;

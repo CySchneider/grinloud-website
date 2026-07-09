@@ -1,5 +1,5 @@
 // Homepage Variant B — "Asymmetric Poster"
-import { BackgroundVideo, LogoMark, StreamingLinks } from './shared.jsx'
+import { BackgroundVideo, LogoMark, StreamingLinks, ShareButton } from './shared.jsx'
 import { Icon } from './icons.jsx'
 // Arty / editorial. Logo offset, giant rotated date, track title on a baseline grid,
 // info card pinned to one side, claim runs as vertical type. Same content, different rhythm.
@@ -67,7 +67,14 @@ function HomeB({ pick, accent, contrastInk, prev, next, canPrev, canNext, typeSc
             </p>
           )}
 
-          <StreamingLinks links={pick.links} accent={accent} />
+          <div className="pick-actions">
+            <StreamingLinks links={pick.links} accent={accent} />
+            <ShareButton
+              url={`https://grinloud.com/pick/${pick.date}/`}
+              title={`${pick.title} — ${pick.artist} · GRINLOUD`}
+              text={`GRINLOUD Pick of the Day: ${pick.title} by ${pick.artist}`}
+            />
+          </div>
         </div>
 
         <aside className="home-b__meta">
