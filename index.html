@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GRINLOUD — House Music Curated Daily</title>
 
+  <!-- The app syncs the address bar to /pick/.../ or /radar/.../ as the user
+       navigates (see App.jsx), without a real page reload. Assets are
+       referenced with relative, no-leading-slash paths that assume they run
+       at "/", so <base> keeps those resolving to site root regardless of
+       whatever path is currently shown in the address bar. -->
+  <base href="/">
+
   <!-- Canonical -->
   <link rel="canonical" href="https://grinloud.com/" />
 
