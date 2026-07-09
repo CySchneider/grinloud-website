@@ -92,7 +92,7 @@ function head({ title, desc, url, ogType, image, jsonLd }) {
 <meta name="twitter:description" content="${esc(desc)}" />
 <meta name="twitter:image" content="${image}" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=UnifrakturMaguntia&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://static.cloudflareinsights.com">
 <script async src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b9dab09245b944069c482cf974dd117c"}'></script>
 ${APP_CSS_TAG}

@@ -454,13 +454,15 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   font-size: 10px;
   letter-spacing: 0.14em;
   font-weight: 700;
-  background: transparent;
-  color: var(--ink);
-  border: 1.5px solid currentColor;
-  opacity: 0.75;
-  transition: opacity 0.16s, transform 0.14s;
+  background: var(--ink);
+  color: var(--paper);
+  transition: background 0.16s, color 0.16s, transform 0.14s;
 }
-.share-btn:hover { opacity: 1; transform: translateY(-1px); }
+.share-btn:hover {
+  background: #FF1F8F;
+  color: var(--paper);
+  transform: translateY(-1px);
+}
 
 /* Home pick actions — play + streaming on one row */
 .pick-actions {
