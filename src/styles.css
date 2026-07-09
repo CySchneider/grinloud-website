@@ -1305,66 +1305,13 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   border-top: 2px solid var(--ink);
 }
 
-.archive__radars {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding-top: 32px;
+.archive-card--current {
+  background: var(--ink);
+  color: var(--accent, #FFE600);
 }
-.archive-radar {
-  display: grid;
-  grid-template-columns: 120px auto 1fr auto;
-  gap: 24px;
-  align-items: center;
-  padding: 18px 24px;
-  background: var(--paper);
-  border: 2px solid var(--ink);
-  border-radius: 6px;
-  text-align: left;
-  transition: transform 0.14s, box-shadow 0.14s;
-}
-.archive-radar__cover {
-  width: 56px;
-  height: 56px;
-  border-radius: 4px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.archive-radar__cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.archive-radar:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
-.archive-radar--current { background: var(--ink); color: var(--paper); }
-.archive-radar__n {
-  font-family: var(--display);
-  font-size: 56px;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-}
-.archive-radar__title {
-  font-family: var(--display);
-  font-size: 22px;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-}
-.archive-radar__sub {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  opacity: 0.7;
-  margin-top: 4px;
-}
-.archive-radar__cta {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.archive-card--current .archive-card__open {
+  border-top-color: currentColor;
+  opacity: 0.8;
 }
 
 .archive .claim-chip { margin-top: 48px; }

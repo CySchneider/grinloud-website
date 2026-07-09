@@ -82,38 +82,55 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
       )}
 
       {tab === 'radars' && (
-        <div className="archive__radars">
+        <div className="archive__grid">
           {showCurrentRadar && (
             <button
-              className="archive-radar archive-radar--current"
+              className="archive-card archive-card--current"
               style={isAdmin && !radarActuallyLive ? { opacity: 0.5 } : undefined}
               onClick={onGotoRadar}
             >
-              <div className="archive-radar__n">{currentRadar.number}</div>
-              <div className="archive-radar__cover">
-                {currentRadar.cover && <img src={currentRadar.cover} alt={currentRadar.title} loading="lazy" />}
+              <div className="archive-card__top">
+                <div className="archive-card__date">{currentRadar.date}</div>
+                <div className="archive-card__n">#{currentRadar.number}</div>
               </div>
-              <div className="archive-radar__body">
-                <div className="archive-radar__title">{currentRadar.title}</div>
-                <div className="archive-radar__sub">
-                  {currentRadar.date} · {currentRadar.tracks.length} TRACKS · {currentRadar.duration}
-                  {isAdmin && !radarActuallyLive ? ' · SCHEDULED' : ' · LATEST'}
+              <div className="archive-card__body">
+                <div className="archive-card__text">
+                  <div className="archive-card__title">{currentRadar.title}</div>
+                  <div className="archive-card__meta">
+                    <span>{currentRadar.tracks.length} TRACKS</span>
+                    <span className="archive-card__dot">·</span>
+                    <span>{currentRadar.duration}</span>
+                    <span className="archive-card__dot">·</span>
+                    <span>{isAdmin && !radarActuallyLive ? 'SCHEDULED' : 'LATEST'}</span>
+                  </div>
+                </div>
+                <div className="track-cover">
+                  {currentRadar.cover && <img src={currentRadar.cover} alt={currentRadar.title} loading="lazy" />}
                 </div>
               </div>
-              <div className="archive-radar__cta">PLAY →</div>
+              <div className="archive-card__open">PLAY <Icon.Arrow size={12} /></div>
             </button>
           )}
           {radars.map((r) => (
-            <button key={r.number} className="archive-radar" onClick={() => onOpenRadar(r)}>
-              <div className="archive-radar__n">{r.number}</div>
-              <div className="archive-radar__cover">
-                {r.cover && <img src={r.cover} alt={r.title} loading="lazy" />}
+            <button key={r.number} className="archive-card" onClick={() => onOpenRadar(r)}>
+              <div className="archive-card__top">
+                <div className="archive-card__date">{r.date}</div>
+                <div className="archive-card__n">#{r.number}</div>
               </div>
-              <div className="archive-radar__body">
-                <div className="archive-radar__title">{r.title}</div>
-                <div className="archive-radar__sub">{r.date} · {r.tracks.length} TRACKS · {r.duration}</div>
+              <div className="archive-card__body">
+                <div className="archive-card__text">
+                  <div className="archive-card__title">{r.title}</div>
+                  <div className="archive-card__meta">
+                    <span>{r.tracks.length} TRACKS</span>
+                    <span className="archive-card__dot">·</span>
+                    <span>{r.duration}</span>
+                  </div>
+                </div>
+                <div className="track-cover">
+                  {r.cover && <img src={r.cover} alt={r.title} loading="lazy" />}
+                </div>
               </div>
-              <div className="archive-radar__cta">OPEN <Icon.Arrow size={12} /></div>
+              <div className="archive-card__open">OPEN <Icon.Arrow size={12} /></div>
             </button>
           ))}
         </div>
