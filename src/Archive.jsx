@@ -96,6 +96,7 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
               <div className="archive-card__body">
                 <div className="archive-card__text">
                   <div className="archive-card__title">{currentRadar.title}</div>
+                  {currentRadar.subtitle && <div className="archive-card__artist">{currentRadar.subtitle}</div>}
                   <div className="archive-card__meta">
                     <span>{currentRadar.tracks.length} TRACKS</span>
                     <span className="archive-card__dot">·</span>
@@ -120,6 +121,7 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
               <div className="archive-card__body">
                 <div className="archive-card__text">
                   <div className="archive-card__title">{r.title}</div>
+                  {r.subtitle && <div className="archive-card__artist">{r.subtitle}</div>}
                   <div className="archive-card__meta">
                     <span>{r.tracks.length} TRACKS</span>
                     <span className="archive-card__dot">·</span>
