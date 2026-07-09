@@ -94,11 +94,11 @@ function buildHtml() {
 <title>${pick.title} — GRINLOUD Pick of the Day</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
 </head>
-<body style="margin:0;padding:0;background:${accent};">
+<body bgcolor="${accent}" style="margin:0;padding:0;background:${accent};min-height:100vh;">
 
 <!-- Outer wrapper — full accent background -->
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${accent};">
-<tr><td align="center" style="padding:0;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${accent}" style="background:${accent};min-height:100vh;">
+<tr><td align="center" valign="top" style="padding:0;">
 
   <!-- Content column — max 600px -->
   <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
@@ -165,14 +165,14 @@ function buildHtml() {
     </td></tr>
 
     <!-- ── FOOTER ── -->
-    <tr><td style="background:${inkOnAccent};padding:20px 32px 24px;">
-      <p style="margin:0 0 4px;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:9px;font-weight:700;letter-spacing:0.16em;color:rgba(245,242,238,0.35);text-transform:uppercase;">
+    <tr><td style="padding:20px 32px 24px;">
+      <p style="margin:0 0 4px;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:9px;font-weight:700;letter-spacing:0.16em;color:${inkDim};text-transform:uppercase;">
         House Music Curated Daily &nbsp;·&nbsp; Mixed All 10 Days
       </p>
-      <p style="margin:0;font-family:'Space Grotesk','Helvetica Neue',Arial,sans-serif;font-size:11px;color:rgba(245,242,238,0.25);">
-        <a href="https://grinloud.com" style="color:rgba(245,242,238,0.4);text-decoration:none;">grinloud.com</a>
+      <p style="margin:0;font-family:'Space Grotesk','Helvetica Neue',Arial,sans-serif;font-size:11px;color:${inkDim};">
+        <a href="https://grinloud.com" style="color:${inkDim};text-decoration:none;">grinloud.com</a>
         &nbsp;·&nbsp;
-        <a href="{{unsubscribe_url}}" style="color:rgba(245,242,238,0.25);text-decoration:none;">Unsubscribe</a>
+        <a href="{{unsubscribe_url}}" style="color:${inkDim};text-decoration:none;">Unsubscribe</a>
       </p>
     </td></tr>
 
