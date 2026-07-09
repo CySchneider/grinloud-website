@@ -78,6 +78,8 @@ function head({ title, desc, url, ogType, image, jsonLd }) {
      relative, no-leading-slash paths that assume they run at "/". <base>
      forces those relative URLs back to the site root once the app hydrates. -->
 <base href="/">
+<link rel="icon" type="image/svg+xml" href="/Logo%20GRINLOUD%20Smiley%20Yellow%20black.svg" />
+<link rel="apple-touch-icon" href="/Logo%20GRINLOUD%20Smiley%20Yellow%20black.png" />
 <link rel="canonical" href="${url}" />
 <meta name="description" content="${esc(desc)}" />
 <meta property="og:type" content="${ogType}" />

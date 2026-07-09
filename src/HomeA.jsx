@@ -1,9 +1,9 @@
 // Homepage Variant A
-import { BackgroundVideo, StreamingLinks, ShareButton, LegalLinks } from './shared.jsx'
+import { BackgroundVideo, StreamingLinks, ShareButton, LegalLinks, SpotifyCover } from './shared.jsx'
 import { Icon } from './icons.jsx'
 
 function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar, isAdmin }) {
-  const titleSize = 9 * typeScale;
+  const titleSize = 8 * typeScale;
   return (
     <div className="home home--a" style={{ '--accent': accent, '--ink': contrastInk }}>
       <BackgroundVideo accent={accent} overlayOpacity={overlayOpacity} src={pick.video} />
@@ -28,7 +28,11 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
           )}
         </div>
 
-        <h1 className="track-title track-title--a" style={{ fontSize: `clamp(40px, ${titleSize}vw, 200px)` }}>
+        <div className="pick-cover">
+          <SpotifyCover spotifyUrl={pick.links?.spotify} />
+        </div>
+
+        <h1 className="track-title track-title--a" style={{ fontSize: `clamp(40px, ${titleSize}vw, 176px)` }}>
           {pick.title}
         </h1>
 
