@@ -16,6 +16,7 @@ export default defineConfig({
         { src: 'GRINLOUD Dance Beach Ibiza/*.mp4', dest: 'ibiza' },
         { src: 'GRINLOUD Dance Drive Thru/*.mp4', dest: 'drive-thru' },
         { src: 'GRINLOUD Partyboat/*.mp4', dest: 'partyboat' },
+        { src: 'GRINLOUD Dance Stadion/*.mp4', dest: 'stadion' },
         { src: 'robots.txt', dest: '.' },
         { src: 'sitemap.xml', dest: '.' },
         { src: '404.html',   dest: '.' },

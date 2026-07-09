@@ -82,11 +82,134 @@ const BG_VIDEOS = [
   'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (7).mp4',
   'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (8).mp4',
   'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (9).mp4',
+  // ── Stadion series — Music Radar 009 picks ──
+  'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228.mp4',
+  'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (1).mp4',
+  'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (2).mp4',
+  'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (3).mp4',
+  'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (4).mp4',
+  'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (5).mp4',
+  'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (6).mp4',
+  'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (7).mp4',
+  'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (8).mp4',
+  'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (9).mp4',
 ];
 
 // Picks — newest first (index 0 = most recent)
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
+
+  // ── MUSIC RADAR 009 — 11–20 Jul 2026 ──────────────────────────────────────
+  {
+    id: 'pick-2026-07-20',
+    date: '2026-07-20',
+    title: 'Rave (PAROOKAVILLE Anthem 2026)',
+    artist: 'MARTEN HØRGER',
+    bpm: 132, key: 'D Major', label: 'Kontor Records', release: '03 Jul 2026',
+    genre: 'Bass House', accent: 'green', video: BG_VIDEOS[75],
+    info: "Marten Hørger closes Radar 009 with this year's official PAROOKAVILLE anthem. Rave is exactly what it says — big, bold, and built for a festival crowd screaming the hook back.",
+    short: "This year's official PAROOKAVILLE anthem.",
+    links: { spotify: 'https://open.spotify.com/track/1cRRRqlpF8yFANcY1q2jX3', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-19',
+    date: '2026-07-19',
+    title: 'Party Girl (Extended Mix)',
+    artist: 'SHERMANOLOGY, DANNY HOWARD',
+    bpm: 130, key: 'G Major', label: 'Nothing Else Matters', release: '26 Jun 2026',
+    genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[74],
+    info: "Shermanology and Danny Howard team up on Nothing Else Matters. Party Girl is warm, groove-forward Tech House that keeps the energy up without ever forcing it.",
+    short: "Warm, groove-forward, never forced.",
+    links: { spotify: 'https://open.spotify.com/track/6zMrPt3XD04z5XOPr1FJ93', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-18',
+    date: '2026-07-18',
+    title: 'Whatever Turns You On (Extended Mix)',
+    artist: 'AXWELL, BONN',
+    bpm: 130, key: 'Gb Minor', label: 'Axtone Records', release: '26 Jun 2026',
+    genre: 'Mainstage', accent: 'pink', video: BG_VIDEOS[73],
+    info: "Axwell returns to Axtone with Bonn for something big-room and anthemic. Whatever Turns You On is Mainstage through and through — built for festival crowds with hands in the air.",
+    short: "Big-room and anthemic. Built for festival crowds.",
+    links: { spotify: 'https://open.spotify.com/track/4j9lTzGOw6a0XpM3qNr2Mu', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-17',
+    date: '2026-07-17',
+    title: 'Bounce UR Body (Extended Mix)',
+    artist: 'GREEN VELVET, DETLEF',
+    bpm: 130, key: 'Gb Minor', label: 'Hellbent Records', release: '19 Jun 2026',
+    genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[72],
+    info: "Green Velvet and Detlef on Hellbent Records deliver exactly what the title promises. Bounce UR Body is rolling, percussive, and built for peak hour.",
+    short: "Rolling, percussive, built for peak hour.",
+    links: { spotify: 'https://open.spotify.com/track/5o9ddwUhXw50hymQN26U90', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-16',
+    date: '2026-07-16',
+    title: "Can't Say Nah (Original Mix)",
+    artist: 'WALKER & ROYCE, ODD MOB, BENNI OLA',
+    bpm: 130, key: 'E Major', label: 'Insomniac Records', release: '26 Jun 2026',
+    genre: 'Bass House', accent: 'orange', video: BG_VIDEOS[71],
+    info: "Walker & Royce and Odd Mob join forces with Benni Ola on Insomniac Records. Can't Say Nah is exactly the kind of hook-driven Bass House that turns a good set into a great one.",
+    short: "Hook-driven Bass House. Impossible to say no to.",
+    links: { spotify: 'https://open.spotify.com/track/2mNmhfLfnaSCMTxFJIdN0f', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-15',
+    date: '2026-07-15',
+    title: 'Outside (Original Mix)',
+    artist: 'CID',
+    bpm: 130, key: 'Db Major', label: 'AFFAIRS', release: '26 Jun 2026',
+    genre: 'Bass House', accent: 'green', video: BG_VIDEOS[70],
+    info: "CID keeps AFFAIRS moving with something low and physical. Outside is stripped-back Bass House — all bounce, no filler.",
+    short: "Stripped-back Bass House. All bounce, no filler.",
+    links: { spotify: 'https://open.spotify.com/track/0EGfjwccH40OvhUI5uz57k', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-14',
+    date: '2026-07-14',
+    title: "California Dreamin' (Extended Mix)",
+    artist: 'BENNY BENASSI, DUALITE',
+    bpm: 130, key: 'Db Major', label: 'Ultra', release: '12 Jun 2026',
+    genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[69],
+    info: "Benny Benassi and dualité flip a classic into a proper club weapon. California Dreamin' rides a familiar melody over a driving Tech House pulse — instantly recognisable, built for right now.",
+    short: "A classic flipped into a proper club weapon.",
+    links: { spotify: 'https://open.spotify.com/track/5auOVqNBRXTfyejSXYNYkn', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-13',
+    date: '2026-07-13',
+    title: 'Fixation (Extended Mix)',
+    artist: 'IGLESIAS',
+    bpm: 131, key: 'Bb Minor', label: 'IN/ROTATION (Insomniac Records)', release: '16 Jun 2026',
+    genre: 'Tech House | Latin Tech', accent: 'pink', video: BG_VIDEOS[68],
+    info: "Iglesias lands on Insomniac's IN/ROTATION with a Latin-flavoured groove that doesn't let go. Fixation earns its name — hypnotic, rhythm-first, hard to shake.",
+    short: "Hypnotic, rhythm-first, hard to shake.",
+    links: { spotify: 'https://open.spotify.com/track/5djL4RcVrHp6WpcIHmInaM', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-12',
+    date: '2026-07-12',
+    title: 'Party After Midnight (Original Mix)',
+    artist: 'AFTER MIDNIGHT, MATRODA, SAN PACHO',
+    bpm: 132, key: 'Bb Minor', label: 'AFTER MIDNIGHT', release: '01 Jul 2026',
+    genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[67],
+    info: "Matroda and San Pacho keep building out their AFTER MIDNIGHT imprint. Party After Midnight is rolling, bass-driven, and built for the hours when the night really gets going.",
+    short: "Rolling and bass-driven. Built for after hours.",
+    links: { spotify: 'https://open.spotify.com/track/2HQS3pP1U1d1IdF2LcAD9J', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-11',
+    date: '2026-07-11',
+    title: 'Check It (Extended Mix)',
+    artist: 'TONY ROMERA, JAMIE COINS',
+    bpm: 130, key: 'Eb Minor', label: 'Edible', release: '26 Jun 2026',
+    genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[66],
+    info: "Tony Romera teams up with Jamie Coins on Edible for something built to move fast. Check It doesn't ease in — tight groove, straight to the point, right from the first bar.",
+    short: "Tight groove, straight to the point.",
+    links: { spotify: 'https://open.spotify.com/track/5OauoeDZgfHyi454ojQUSG', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
 
   // ── MUSIC RADAR 008 — 01–10 Jul 2026 ──────────────────────────────────────
   {
@@ -1180,42 +1303,42 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 008 ────────────────────────────────────────────────────
+// ── CURRENT RADAR — 009 ────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-008',
-  number: '008',
-  title: 'Music Radar 008',
-  subtitle: 'Slow Burn. Still Bangs.',
-  cover: 'Music Radar Cover 008.png',
-  date: '01 JUL 2026',
-  liveDate: '2026-07-01', // public visibility date — same as first pick of this radar
-  nextDate: '11 JUL 2026',
-  youtubeId: 'ik_jlgqdGOw',
-  spotifyUrl: 'https://open.spotify.com/playlist/2pOEKiVtjsqdRqELCW823F',
-  duration: '20:20',
+  id: 'radar-009',
+  number: '009',
+  title: 'Music Radar 009',
+  subtitle: 'Ten tracks. One pulse.',
+  cover: 'Music Radar Cover 009.png',
+  date: '11 JUL 2026',
+  liveDate: '2026-07-11', // public visibility date — same as first pick of this radar
+  nextDate: '21 JUL 2026',
+  youtubeId: 'vLsA9vwyyUM',
+  spotifyUrl: 'https://open.spotify.com/playlist/3Ob5AFiA49GBYOmcXra1G7?si=e265ec178b924217',
+  duration: '19:43',
   videos: [
-    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8.mp4',
-    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (1).mp4',
-    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (2).mp4',
-    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (3).mp4',
-    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (4).mp4',
-    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (5).mp4',
-    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (6).mp4',
-    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (7).mp4',
-    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (8).mp4',
-    'partyboat/grok-video-0081411f-cb41-4f90-b9fc-3e0d5120aac8 (9).mp4',
+    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228.mp4',
+    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (1).mp4',
+    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (2).mp4',
+    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (3).mp4',
+    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (4).mp4',
+    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (5).mp4',
+    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (6).mp4',
+    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (7).mp4',
+    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (8).mp4',
+    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (9).mp4',
   ],
   tracks: [
-    { n: '01', title: 'Trajadão (Extended Mix)',        artist: 'Volkoder',                                      bpm: 128, key: 'Gb Minor', genre: 'Bass House', cue: 'TBA' },
-    { n: '02', title: 'Bite Down (Extended Mix)',       artist: 'Wax Motif',                                     bpm: 132, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
-    { n: '03', title: 'Make Some Noise (Extended Mix)', artist: 'Eats Everything',                               bpm: 132, key: 'Ab Minor', genre: 'Bass House', cue: 'TBA' },
-    { n: '04', title: 'Bom Dia (Extended Mix)',         artist: 'Breaking Beattz, Adam Sellouk',                 bpm: 130, key: 'Db Minor', genre: 'Tech House', cue: 'TBA' },
-    { n: '05', title: 'Tussy (Extended Mix)',           artist: 'WELKER (BR)',                                   bpm: 129, key: 'G Minor',  genre: 'Bass House', cue: 'TBA' },
-    { n: '06', title: 'É o Bonde (Original Mix)',      artist: 'Chris Lake, Skrillex, RHR',                     bpm: 130, key: 'C Minor',  genre: 'Bass House', cue: 'TBA' },
-    { n: '07', title: 'Push It (Extended Mix)',         artist: 'Mason, Princess Superstar, Maesic, Disco Lines', bpm: 129, key: 'C Minor', genre: 'Bass House', cue: 'TBA' },
-    { n: '08', title: "Let's Get High (Extended Mix)", artist: 'Michael Bibi',                                  bpm: 130, key: 'D Minor',  genre: 'Tech House', cue: 'TBA' },
-    { n: '09', title: 'Bubbling (Original Mix)',        artist: 'Dennis Cruz, Patrick Luna',                     bpm: 129, key: 'A Minor',  genre: 'Tech House', cue: 'TBA' },
-    { n: '10', title: 'Profill (Josh Baker Remix)',     artist: 'Bonafique, Yuvèe',                              bpm: 129, key: 'C Major',  genre: 'Tech House', cue: 'TBA' },
+    { n: '01', title: 'Check It (Extended Mix)',              artist: 'Tony Romera, Jamie Coins',              bpm: 130, key: 'Eb Minor', genre: 'Tech House',            cue: 'TBA' },
+    { n: '02', title: 'Party After Midnight (Original Mix)',  artist: 'After Midnight, Matroda, San Pacho',    bpm: 132, key: 'Bb Minor', genre: 'Tech House',            cue: 'TBA' },
+    { n: '03', title: 'Fixation (Extended Mix)',               artist: 'Iglesias',                              bpm: 131, key: 'Bb Minor', genre: 'Tech House | Latin Tech', cue: 'TBA' },
+    { n: '04', title: "California Dreamin' (Extended Mix)",   artist: 'Benny Benassi, Dualite',                bpm: 130, key: 'Db Major', genre: 'Tech House',            cue: 'TBA' },
+    { n: '05', title: 'Outside (Original Mix)',                artist: 'CID',                                   bpm: 130, key: 'Db Major', genre: 'Bass House',            cue: 'TBA' },
+    { n: '06', title: "Can't Say Nah (Original Mix)",          artist: 'Walker & Royce, Odd Mob, Benni Ola',    bpm: 130, key: 'E Major',  genre: 'Bass House',            cue: 'TBA' },
+    { n: '07', title: 'Bounce UR Body (Extended Mix)',         artist: 'Green Velvet, Detlef',                  bpm: 130, key: 'Gb Minor', genre: 'Tech House',            cue: 'TBA' },
+    { n: '08', title: 'Whatever Turns You On (Extended Mix)', artist: 'Axwell, Bonn',                          bpm: 130, key: 'Gb Minor', genre: 'Mainstage',             cue: 'TBA' },
+    { n: '09', title: 'Party Girl (Extended Mix)',             artist: 'Shermanology, Danny Howard',            bpm: 130, key: 'G Major',  genre: 'Tech House',            cue: 'TBA' },
+    { n: '10', title: 'Rave (PAROOKAVILLE Anthem 2026)',       artist: 'Marten Hørger',                         bpm: 132, key: 'D Major',  genre: 'Bass House',            cue: 'TBA' },
   ]
 };
 
@@ -1223,6 +1346,29 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    number: '008',
+    cover: 'Music Radar Cover 008.png',
+    title: 'Music Radar 008',
+    subtitle: 'Slow Burn. Still Bangs.',
+    date: '01 JUL 2026',
+    nextDate: '11 JUL 2026',
+    duration: '20:20',
+    youtubeId: 'ik_jlgqdGOw',
+    spotifyUrl: 'https://open.spotify.com/playlist/2pOEKiVtjsqdRqELCW823F',
+    tracks: [
+      { n: '01', title: 'Trajadão (Extended Mix)',        artist: 'Volkoder',                                      bpm: 128, key: 'Gb Minor', genre: 'Bass House', cue: 'TBA' },
+      { n: '02', title: 'Bite Down (Extended Mix)',       artist: 'Wax Motif',                                     bpm: 132, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
+      { n: '03', title: 'Make Some Noise (Extended Mix)', artist: 'Eats Everything',                               bpm: 132, key: 'Ab Minor', genre: 'Bass House', cue: 'TBA' },
+      { n: '04', title: 'Bom Dia (Extended Mix)',         artist: 'Breaking Beattz, Adam Sellouk',                 bpm: 130, key: 'Db Minor', genre: 'Tech House', cue: 'TBA' },
+      { n: '05', title: 'Tussy (Extended Mix)',           artist: 'WELKER (BR)',                                   bpm: 129, key: 'G Minor',  genre: 'Bass House', cue: 'TBA' },
+      { n: '06', title: 'É o Bonde (Original Mix)',      artist: 'Chris Lake, Skrillex, RHR',                     bpm: 130, key: 'C Minor',  genre: 'Bass House', cue: 'TBA' },
+      { n: '07', title: 'Push It (Extended Mix)',         artist: 'Mason, Princess Superstar, Maesic, Disco Lines', bpm: 129, key: 'C Minor', genre: 'Bass House', cue: 'TBA' },
+      { n: '08', title: "Let's Get High (Extended Mix)", artist: 'Michael Bibi',                                  bpm: 130, key: 'D Minor',  genre: 'Tech House', cue: 'TBA' },
+      { n: '09', title: 'Bubbling (Original Mix)',        artist: 'Dennis Cruz, Patrick Luna',                     bpm: 129, key: 'A Minor',  genre: 'Tech House', cue: 'TBA' },
+      { n: '10', title: 'Profill (Josh Baker Remix)',     artist: 'Bonafique, Yuvèe',                              bpm: 129, key: 'C Major',  genre: 'Tech House', cue: 'TBA' },
+    ]
+  },
   {
     number: '007',
     cover: 'Music Radar Cover 007.png',
