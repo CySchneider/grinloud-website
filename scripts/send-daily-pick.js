@@ -24,7 +24,8 @@ if (!BEEHIIV_PUB_ID || !BEEHIIV_API_KEY || !RESEND_API_KEY) {
 
 // ── Load today's pick from data.js ─────────────────────────────────────────
 
-const dataFile = fs.readFileSync(path.join(__dirname, '../src/data.js'), 'utf8');
+const dataFile = fs.readFileSync(path.join(__dirname, '../src/data.js'), 'utf8')
+  .replace(/^export\s*\{[^}]*\};?\s*$/m, '');
 const sandbox  = { window: {} };
 vm.createContext(sandbox);
 vm.runInContext(dataFile, sandbox);
