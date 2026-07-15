@@ -1,6 +1,6 @@
 // Cinema Mode — /?cinema
 import { BackgroundVideo, SpotifyCover } from './shared.jsx'
-// Fullscreen 9:16 / 3:4 for Instagram. Branding bottom-left, content centered.
+// Fullscreen 9:16 / 3:4 for Instagram. Content centered, branding below the quote.
 
 function Cinema({ pick }) {
   const [yyyy, mm, dd] = pick.date.split('-');
@@ -27,21 +27,20 @@ function Cinema({ pick }) {
         {pick.info && (
           <div className="cinema__quote">
             <div className="cinema__quote-header">
-              <div className="cinema__quote-rule" />
+              <img src="Logo%20GRINLOUD%20Smiley%20Yellow%20black.svg" alt="" className="cinema__quote-avatar" />
               <span className="cinema__quote-label">GRINLOUD SAYS:</span>
-              <div className="cinema__quote-rule" />
             </div>
             <p className="cinema__quote-text">{pick.info}</p>
           </div>
         )}
-      </div>
 
-      {/* Bottom-left branding */}
-      <div className="cinema__brand">
-        <img src="Logo%20GRINLOUD%20Smiley%20Yellow%20black.svg" alt="GRINLOUD" className="cinema__brand-logo" />
-        <div className="cinema__brand-text">
-          <span className="cinema__brand-wordmark">grinloud</span>
-          <span className="cinema__brand-claim">House music curated daily</span>
+        {/* Branding — centered below the quote for social crops */}
+        <div className="cinema__brand cinema__brand--inline">
+          <img src="Logo%20GRINLOUD%20Smiley%20Yellow%20black.svg" alt="GRINLOUD" className="cinema__brand-logo" />
+          <div className="cinema__brand-text">
+            <span className="cinema__brand-wordmark">grinloud.com</span>
+            <span className="cinema__brand-claim">House music curated daily</span>
+          </div>
         </div>
       </div>
     </div>

@@ -1789,6 +1789,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .cinema__cover {
   width: clamp(192px, 22vw, 320px);
   height: clamp(192px, 22vw, 320px);
+  margin: 14px 0; /* doubles the flex gap above/below the cover */
 }
 .cinema__cover .track-cover {
   width: 100%;
@@ -1813,26 +1814,47 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   letter-spacing: 0.14em; color: rgba(245,242,238,0.4);
 }
 
-/* Grinloud Says — bigger & punchier than the normal-mode pick-quote */
+/* Grinloud Says — speech-bubble box, reads as a quote from Grinloud */
 .cinema__quote {
+  position: relative;
   max-width: 520px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-top: 4px;
+  padding: 18px 22px;
+  border: 2px solid var(--ink, #0A0A0A);
+  border-radius: 18px;
+  background: rgba(10,10,10,0.42);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+/* Speech-bubble tail, pointing up toward the track info above */
+.cinema__quote::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 16px; height: 16px;
+  background: rgba(10,10,10,0.42);
+  border-left: 2px solid var(--ink, #0A0A0A);
+  border-top: 2px solid var(--ink, #0A0A0A);
+  transform: translateX(-50%) rotate(45deg);
 }
 .cinema__quote-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(245,242,238,0.25);
+  width: 100%;
 }
-.cinema__quote-rule {
-  width: 48px;
-  height: 1px;
-  background: rgba(245,242,238,0.4);
+.cinema__quote-avatar {
+  width: 24px; height: 24px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 .cinema__quote-label {
@@ -1853,12 +1875,47 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   text-align: center;
 }
 
-/* Bottom-left branding */
+/* Entrance: content reveals top-to-bottom to guide the eye down to the quote */
+@keyframes cinemaReveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* Idle glow on the quote box — a soft "still speaking" pulse */
+@keyframes cinemaQuotePulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255,224,0,0); }
+  50%      { box-shadow: 0 0 22px rgba(255,224,0,0.22); }
+}
+.cinema__pill   { animation: cinemaReveal 0.6s ease-out both; }
+.cinema__cover  { animation: cinemaReveal 0.6s ease-out 0.12s both; }
+.cinema__title  { animation: cinemaReveal 0.6s ease-out 0.24s both; }
+.cinema__artist { animation: cinemaReveal 0.6s ease-out 0.36s both; }
+.cinema__meta   { animation: cinemaReveal 0.6s ease-out 0.48s both; }
+.cinema__quote {
+  animation:
+    cinemaReveal 0.6s ease-out 0.6s both,
+    cinemaQuotePulse 3.4s ease-in-out 2.4s infinite;
+}
+.cinema__brand--inline { animation: cinemaReveal 0.6s ease-out 0.72s both; }
+
+/* Bottom-left branding (default — used by Radar Cover mode) */
 .cinema__brand {
   position: absolute; bottom: 36px; left: 28px;
   z-index: 10;
   display: flex; align-items: center; gap: 10px;
 }
+/* Inline variant — Cinema mode: smiley centered above the wordmark, in document flow */
+.cinema__brand--inline {
+  position: static;
+  margin-top: 6px;
+  flex-direction: column;
+  gap: 8px;
+}
+.cinema__brand--inline .cinema__brand-text {
+  align-items: center;
+  text-align: center;
+}
+.cinema__brand--inline .cinema__brand-wordmark { font-size: 40.5px; }
+.cinema__brand--inline .cinema__brand-claim { font-size: 16.2px; }
 .cinema__brand-logo { width: 48px; height: 48px; object-fit: contain; }
 .cinema__brand-text { display: flex; flex-direction: column; gap: 1px; }
 .cinema__brand-wordmark {
