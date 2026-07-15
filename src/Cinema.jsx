@@ -1,5 +1,5 @@
 // Cinema Mode — /?cinema
-import { BackgroundVideo } from './shared.jsx'
+import { BackgroundVideo, SpotifyCover } from './shared.jsx'
 // Fullscreen 9:16 / 3:4 for Instagram. Branding bottom-left, content centered.
 
 function Cinema({ pick }) {
@@ -17,9 +17,23 @@ function Cinema({ pick }) {
         <div className="top-nav__radar-pill cinema__pill">
           PICK OF THE DAY · {dd}.{mm}.{yyyy}
         </div>
+        <div className="cinema__cover">
+          <SpotifyCover spotifyUrl={pick.links?.spotify} />
+        </div>
         <h1 className="cinema__title">{pick.title}</h1>
         <div className="cinema__artist">{pick.artist}</div>
         <div className="cinema__meta">{pick.genre.toUpperCase()} · {pick.bpm} BPM · {pick.key}</div>
+
+        {pick.info && (
+          <div className="cinema__quote">
+            <div className="cinema__quote-header">
+              <div className="cinema__quote-rule" />
+              <span className="cinema__quote-label">GRINLOUD SAYS:</span>
+              <div className="cinema__quote-rule" />
+            </div>
+            <p className="cinema__quote-text">{pick.info}</p>
+          </div>
+        )}
       </div>
 
       {/* Bottom-left branding */}

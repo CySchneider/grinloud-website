@@ -1785,9 +1785,21 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   letter-spacing: 0.16em;
   border: 2px solid var(--ink);
 }
+/* Cover art — 2x the size of the normal-mode pick-cover (clamp(96px,11vw,160px)) */
+.cinema__cover {
+  width: clamp(192px, 22vw, 320px);
+  height: clamp(192px, 22vw, 320px);
+}
+.cinema__cover .track-cover {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  border: 2px solid var(--ink);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+}
 .cinema__title {
   font-family: var(--display);
-  font-size: clamp(32px, 8.5vw, 72px);
+  font-size: clamp(24px, 6vw, 52px);
   line-height: 0.92; letter-spacing: -0.03em;
   color: var(--paper); margin: 0; text-transform: uppercase;
 }
@@ -1799,6 +1811,46 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .cinema__meta {
   font-family: var(--mono); font-size: 10px;
   letter-spacing: 0.14em; color: rgba(245,242,238,0.4);
+}
+
+/* Grinloud Says — bigger & punchier than the normal-mode pick-quote */
+.cinema__quote {
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+.cinema__quote-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.cinema__quote-rule {
+  width: 48px;
+  height: 1px;
+  background: rgba(245,242,238,0.4);
+  flex-shrink: 0;
+}
+.cinema__quote-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #FFE000;
+  white-space: nowrap;
+}
+.cinema__quote-text {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: clamp(15px, 2.4vw, 19px);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--paper);
+  text-align: center;
 }
 
 /* Bottom-left branding */
