@@ -93,11 +93,134 @@ const BG_VIDEOS = [
   'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (7).mp4',
   'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (8).mp4',
   'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (9).mp4',
+  // ── Beach series — Music Radar 010 picks ──
+  'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a.mp4',
+  'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (1).mp4',
+  'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (2).mp4',
+  'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (3).mp4',
+  'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (4).mp4',
+  'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (5).mp4',
+  'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (6).mp4',
+  'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (7).mp4',
+  'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (8).mp4',
+  'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (9).mp4',
 ];
 
 // Picks — newest first (index 0 = most recent)
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
+
+  // ── MUSIC RADAR 010 — 21–30 Jul 2026 ──────────────────────────────────────
+  {
+    id: 'pick-2026-07-30',
+    date: '2026-07-30',
+    title: 'Donde el Sol (Original Mix)',
+    artist: 'JAVI REINA, CARLOS AGRAZ',
+    bpm: 128, key: 'Eb Minor', label: 'Clarisse Records', release: '10 Jul 2026',
+    genre: 'Tech House | Latin Tech', accent: 'green', video: BG_VIDEOS[85],
+    info: "Javi Reina and Carlos Agraz close Radar 010 on Clarisse Records with a sunny Latin groove. Donde el Sol is where the sun is — Low Tide, all the way to shore.",
+    short: "A sunny Latin groove to close it out.",
+    links: { spotify: 'https://open.spotify.com/track/3SX1QOSDksj7KvVKNJ2M7O', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-29',
+    date: '2026-07-29',
+    title: 'Gotta Be Cool (Original Mix)',
+    artist: 'RAFAEL',
+    bpm: 124, key: 'Db Minor', label: 'Crosstown Rebels', release: '26 Jun 2026',
+    genre: 'Dance / Pop', accent: 'blue', video: BG_VIDEOS[84],
+    info: "Rafael keeps it smooth on Crosstown Rebels. Gotta Be Cool is unbothered and exactly as cool as the title promises.",
+    short: "Smooth, unbothered, exactly as cool as it sounds.",
+    links: { spotify: 'https://open.spotify.com/track/0BYTKcBcRU9w9S8QqbTIUR', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-28',
+    date: '2026-07-28',
+    title: 'Carnaval (Original Mix)',
+    artist: 'LATE REPLIES',
+    bpm: 130, key: 'Gb Minor', label: 'Deeperfect', release: '10 Jul 2026',
+    genre: 'Minimal / Deep Tech', accent: 'pink', video: BG_VIDEOS[83],
+    info: "Late Replies goes darker on Deeperfect. Carnaval is deeper and a little hypnotic — the moment the mix leans into the shade.",
+    short: "Darker, deeper, a little hypnotic.",
+    links: { spotify: 'https://open.spotify.com/track/38gAR0EyI21lCdOucIN1kK', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-27',
+    date: '2026-07-27',
+    title: 'Funk Drunk (Original Mix)',
+    artist: 'FELIX DA HOUSECAT, FATBOY SLIM, CAROLA, 7KY',
+    bpm: 128, key: 'F Major', label: 'Southern Fried Records', release: '10 Jul 2026',
+    genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[82],
+    info: "Felix Da Housecat and Fatboy Slim team up with Carola and 7KY on Southern Fried Records. Funk Drunk is Chicago house meets Brighton big beat — punchy, funky, impossible to sit still to.",
+    short: "Chicago house meets big beat. Impossible to sit still.",
+    links: { spotify: 'https://open.spotify.com/track/19h72fx2iP7Y4Xvct4x7Fs', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-26',
+    date: '2026-07-26',
+    title: 'Kick Back (Original Mix)',
+    artist: 'MARTA (CA), EVE LAUREN',
+    bpm: 128, key: 'F Major', label: 'tszr', release: '10 Jul 2026',
+    genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[81],
+    info: "MARTA and Eve Lauren land on tszr with something deep and pocketed. Kick Back is ready whenever you are — the title says it all.",
+    short: "Deep, pocketed, ready whenever you are.",
+    links: { spotify: 'https://open.spotify.com/track/3PLXh3XJRYXmKRsbmONqDd', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-25',
+    date: '2026-07-25',
+    title: 'So Good (Extended Mix)',
+    artist: 'MARCO LYS, BEN MILLER (AUS)',
+    bpm: 128, key: 'G Minor', label: 'Club Sweat', release: '10 Jul 2026',
+    genre: 'House', accent: 'green', video: BG_VIDEOS[80],
+    info: "Marco Lys and Ben Miller keep it straightforward on Club Sweat. So Good feels good because it doesn't try too hard — straight-up house, straight-up vibe.",
+    short: "Straight-up house, straight-up vibe.",
+    links: { spotify: 'https://open.spotify.com/track/242Uhtg4wD6SAmrJkHxW02', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-24',
+    date: '2026-07-24',
+    title: 'Coming For Ya (Original Mix)',
+    artist: 'CHRIS CHILD',
+    bpm: 125, key: 'C Minor', label: 'Clubshine Records', release: '10 Jul 2026',
+    genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[79],
+    info: "Chris Child brings a deep pocket and a steady pulse on Clubshine Records. Coming For Ya is the kind of groove you sink into, not fight.",
+    short: "Deep pocket, steady pulse — sink in, don't fight it.",
+    links: { spotify: 'https://open.spotify.com/track/1oxuhXJpeFCEpUO72mt1Sm', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-23',
+    date: '2026-07-23',
+    title: 'Take Our Time (Extended Mix)',
+    artist: 'CHICO ROSE (NL)',
+    bpm: 129, key: 'F Minor', label: "Sound D'Elite", release: '26 Jun 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[78],
+    info: "Chico Rose lands on Sound D'Elite with a rolling bassline that's in no hurry. Take Our Time stays patient, but don't get it twisted — this one still fills a floor.",
+    short: "Patient and rolling — still fills a floor.",
+    links: { spotify: 'https://open.spotify.com/track/21MLXf9dmt0bJpFQjeK7kK', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-22',
+    date: '2026-07-22',
+    title: 'For A Long Time (Original Mix)',
+    artist: 'THE DEEPSHAKERZ',
+    bpm: 126, key: 'F Minor', label: 'Safe Music', release: '10 Jul 2026',
+    genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[77],
+    info: "The Deepshakerz keep it steady on Safe Music. For A Long Time doesn't need to prove anything — a groove built to last the whole session, not just the drop.",
+    short: "A groove built to last, not just the drop.",
+    links: { spotify: 'https://open.spotify.com/track/1G0SPNPFSeKWwOJQ84fAL3', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-21',
+    date: '2026-07-21',
+    title: 'Edge of Desire (Extended Mix)',
+    artist: 'JONAS BLUE, MALIVE',
+    bpm: 123, key: 'G Major', label: 'Defected', release: '26 Jun 2026',
+    genre: 'House', accent: 'orange', video: BG_VIDEOS[76],
+    info: "Jonas Blue teams up with Malive on Defected to open Radar 010 exactly right. Edge of Desire is warm and wide open — no rush, all vibe. This is where Low Tide begins.",
+    short: "Warm and wide open. Low Tide begins here.",
+    links: { spotify: 'https://open.spotify.com/track/4A56h4B9xUuMMXoKuj18HT', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
 
   // ── MUSIC RADAR 009 — 11–20 Jul 2026 ──────────────────────────────────────
   {
@@ -1303,42 +1426,42 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 009 ────────────────────────────────────────────────────
+// ── CURRENT RADAR — 010 ────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-009',
-  number: '009',
-  title: 'Music Radar 009',
-  subtitle: 'Ten tracks. One pulse.',
-  cover: 'Music Radar Cover 009.jpg',
-  date: '11 JUL 2026',
-  liveDate: '2026-07-11', // public visibility date — same as first pick of this radar
-  nextDate: '21 JUL 2026',
-  youtubeId: 'vLsA9vwyyUM',
-  spotifyUrl: 'https://open.spotify.com/playlist/3Ob5AFiA49GBYOmcXra1G7?si=e265ec178b924217',
-  duration: '19:43',
+  id: 'radar-010',
+  number: '010',
+  title: 'Music Radar 010',
+  subtitle: 'Low Tide. High Vibe.',
+  cover: 'Music Radar Cover 010.jpg',
+  date: '21 JUL 2026',
+  liveDate: '2026-07-21', // public visibility date — same as first pick of this radar
+  nextDate: '31 JUL 2026', // TODO: confirm with Cy
+  youtubeId: 'Lxlb94ttnwQ',
+  spotifyUrl: 'https://open.spotify.com/playlist/0WOo5T3QBU29y73gAShJBO?si=7bd395ce9af147e6',
+  duration: '25:07',
   videos: [
-    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228.mp4',
-    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (1).mp4',
-    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (2).mp4',
-    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (3).mp4',
-    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (4).mp4',
-    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (5).mp4',
-    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (6).mp4',
-    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (7).mp4',
-    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (8).mp4',
-    'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (9).mp4',
+    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a.mp4',
+    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (1).mp4',
+    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (2).mp4',
+    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (3).mp4',
+    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (4).mp4',
+    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (5).mp4',
+    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (6).mp4',
+    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (7).mp4',
+    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (8).mp4',
+    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (9).mp4',
   ],
   tracks: [
-    { n: '01', title: 'Check It (Extended Mix)',              artist: 'Tony Romera, Jamie Coins',              bpm: 130, key: 'Eb Minor', genre: 'Tech House',            cue: 'TBA' },
-    { n: '02', title: 'Party After Midnight (Original Mix)',  artist: 'After Midnight, Matroda, San Pacho',    bpm: 132, key: 'Bb Minor', genre: 'Tech House',            cue: 'TBA' },
-    { n: '03', title: 'Fixation (Extended Mix)',               artist: 'Iglesias',                              bpm: 131, key: 'Bb Minor', genre: 'Tech House | Latin Tech', cue: 'TBA' },
-    { n: '04', title: "California Dreamin' (Extended Mix)",   artist: 'Benny Benassi, Dualite',                bpm: 130, key: 'Db Major', genre: 'Tech House',            cue: 'TBA' },
-    { n: '05', title: 'Outside (Original Mix)',                artist: 'CID',                                   bpm: 130, key: 'Db Major', genre: 'Bass House',            cue: 'TBA' },
-    { n: '06', title: "Can't Say Nah (Original Mix)",          artist: 'Walker & Royce, Odd Mob, Benni Ola',    bpm: 130, key: 'E Major',  genre: 'Bass House',            cue: 'TBA' },
-    { n: '07', title: 'Bounce UR Body (Extended Mix)',         artist: 'Green Velvet, Detlef',                  bpm: 130, key: 'Gb Minor', genre: 'Tech House',            cue: 'TBA' },
-    { n: '08', title: 'Whatever Turns You On (Extended Mix)', artist: 'Axwell, Bonn',                          bpm: 130, key: 'Gb Minor', genre: 'Mainstage',             cue: 'TBA' },
-    { n: '09', title: 'Party Girl (Extended Mix)',             artist: 'Shermanology, Danny Howard',            bpm: 130, key: 'G Major',  genre: 'Tech House',            cue: 'TBA' },
-    { n: '10', title: 'Rave (PAROOKAVILLE Anthem 2026)',       artist: 'Marten Hørger',                         bpm: 132, key: 'D Major',  genre: 'Bass House',            cue: 'TBA' },
+    { n: '01', title: 'Edge of Desire (Extended Mix)',   artist: 'Jonas Blue, Malive',                 bpm: 123, key: 'G Major',  genre: 'House',                    cue: 'TBA' },
+    { n: '02', title: 'For A Long Time (Original Mix)',  artist: 'The Deepshakerz',                    bpm: 126, key: 'F Minor',  genre: 'Tech House',               cue: 'TBA' },
+    { n: '03', title: 'Take Our Time (Extended Mix)',    artist: 'Chico Rose (NL)',                    bpm: 129, key: 'F Minor',  genre: 'Tech House',               cue: 'TBA' },
+    { n: '04', title: 'Coming For Ya (Original Mix)',    artist: 'Chris Child',                        bpm: 125, key: 'C Minor',  genre: 'Tech House',               cue: 'TBA' },
+    { n: '05', title: 'So Good (Extended Mix)',          artist: 'Marco Lys, Ben Miller (Aus)',        bpm: 128, key: 'G Minor',  genre: 'House',                    cue: 'TBA' },
+    { n: '06', title: 'Kick Back (Original Mix)',        artist: 'MARTA (CA), Eve Lauren',             bpm: 128, key: 'F Major',  genre: 'Tech House',               cue: 'TBA' },
+    { n: '07', title: 'Funk Drunk (Original Mix)',       artist: 'Felix Da Housecat, Fatboy Slim, Carola, 7KY', bpm: 128, key: 'F Major', genre: 'Tech House',      cue: 'TBA' },
+    { n: '08', title: 'Carnaval (Original Mix)',         artist: 'Late Replies',                       bpm: 130, key: 'Gb Minor', genre: 'Minimal / Deep Tech',      cue: 'TBA' },
+    { n: '09', title: 'Gotta Be Cool (Original Mix)',    artist: 'Rafael',                             bpm: 124, key: 'Db Minor', genre: 'Dance / Pop',              cue: 'TBA' },
+    { n: '10', title: 'Donde el Sol (Original Mix)',     artist: 'Javi Reina, Carlos Agraz',           bpm: 128, key: 'Eb Minor', genre: 'Tech House | Latin Tech',  cue: 'TBA' },
   ]
 };
 
@@ -1346,6 +1469,43 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    id: 'radar-009',
+    number: '009',
+    title: 'Music Radar 009',
+    subtitle: 'Ten tracks. One pulse.',
+    cover: 'Music Radar Cover 009.jpg',
+    date: '11 JUL 2026',
+    liveDate: '2026-07-11',
+    nextDate: '21 JUL 2026',
+    youtubeId: 'vLsA9vwyyUM',
+    spotifyUrl: 'https://open.spotify.com/playlist/3Ob5AFiA49GBYOmcXra1G7?si=e265ec178b924217',
+    duration: '19:43',
+    videos: [
+      'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228.mp4',
+      'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (1).mp4',
+      'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (2).mp4',
+      'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (3).mp4',
+      'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (4).mp4',
+      'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (5).mp4',
+      'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (6).mp4',
+      'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (7).mp4',
+      'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (8).mp4',
+      'stadion/grok-video-7d315326-04f6-492a-a973-bd96898c2228 (9).mp4',
+    ],
+    tracks: [
+      { n: '01', title: 'Check It (Extended Mix)',              artist: 'Tony Romera, Jamie Coins',              bpm: 130, key: 'Eb Minor', genre: 'Tech House',            cue: 'TBA' },
+      { n: '02', title: 'Party After Midnight (Original Mix)',  artist: 'After Midnight, Matroda, San Pacho',    bpm: 132, key: 'Bb Minor', genre: 'Tech House',            cue: 'TBA' },
+      { n: '03', title: 'Fixation (Extended Mix)',               artist: 'Iglesias',                              bpm: 131, key: 'Bb Minor', genre: 'Tech House | Latin Tech', cue: 'TBA' },
+      { n: '04', title: "California Dreamin' (Extended Mix)",   artist: 'Benny Benassi, Dualite',                bpm: 130, key: 'Db Major', genre: 'Tech House',            cue: 'TBA' },
+      { n: '05', title: 'Outside (Original Mix)',                artist: 'CID',                                   bpm: 130, key: 'Db Major', genre: 'Bass House',            cue: 'TBA' },
+      { n: '06', title: "Can't Say Nah (Original Mix)",          artist: 'Walker & Royce, Odd Mob, Benni Ola',    bpm: 130, key: 'E Major',  genre: 'Bass House',            cue: 'TBA' },
+      { n: '07', title: 'Bounce UR Body (Extended Mix)',         artist: 'Green Velvet, Detlef',                  bpm: 130, key: 'Gb Minor', genre: 'Tech House',            cue: 'TBA' },
+      { n: '08', title: 'Whatever Turns You On (Extended Mix)', artist: 'Axwell, Bonn',                          bpm: 130, key: 'Gb Minor', genre: 'Mainstage',             cue: 'TBA' },
+      { n: '09', title: 'Party Girl (Extended Mix)',             artist: 'Shermanology, Danny Howard',            bpm: 130, key: 'G Major',  genre: 'Tech House',            cue: 'TBA' },
+      { n: '10', title: 'Rave (PAROOKAVILLE Anthem 2026)',       artist: 'Marten Hørger',                         bpm: 132, key: 'D Major',  genre: 'Bass House',            cue: 'TBA' },
+    ]
+  },
   {
     number: '008',
     cover: 'Music Radar Cover 008.jpg',
