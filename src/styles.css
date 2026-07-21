@@ -1569,9 +1569,9 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   .radar__hero-title { font-size: clamp(20px, 5.5vw, 32px); }
   .radar__hero-tags { flex-wrap: wrap; gap: 6px; }
 
-  /* ── Radar split: stack YouTube below tracklist ── */
+  /* ── Radar split: stack YouTube above tracklist so users spot the video first ── */
   .radar__split { grid-template-columns: 1fr; gap: 24px; }
-  .radar__sticky { position: static; }
+  .radar__sticky { position: static; order: -1; }
 
   /* ── Tracklist: compact 2-column layout ── */
   .radar__tracks-head { display: none; }
