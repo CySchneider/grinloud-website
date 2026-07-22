@@ -1452,16 +1452,16 @@ const RADAR = {
     'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (9).mp4',
   ],
   tracks: [
-    { n: '01', title: 'Edge of Desire (Extended Mix)',   artist: 'Jonas Blue, Malive',                 bpm: 123, key: 'G Major',  genre: 'House',                    cue: 'TBA' },
-    { n: '02', title: 'For A Long Time (Original Mix)',  artist: 'The Deepshakerz',                    bpm: 126, key: 'F Minor',  genre: 'Tech House',               cue: 'TBA' },
-    { n: '03', title: 'Take Our Time (Extended Mix)',    artist: 'Chico Rose (NL)',                    bpm: 129, key: 'F Minor',  genre: 'Tech House',               cue: 'TBA' },
-    { n: '04', title: 'Coming For Ya (Original Mix)',    artist: 'Chris Child',                        bpm: 125, key: 'C Minor',  genre: 'Tech House',               cue: 'TBA' },
-    { n: '05', title: 'So Good (Extended Mix)',          artist: 'Marco Lys, Ben Miller (Aus)',        bpm: 128, key: 'G Minor',  genre: 'House',                    cue: 'TBA' },
-    { n: '06', title: 'Kick Back (Original Mix)',        artist: 'MARTA (CA), Eve Lauren',             bpm: 128, key: 'F Major',  genre: 'Tech House',               cue: 'TBA' },
-    { n: '07', title: 'Funk Drunk (Original Mix)',       artist: 'Felix Da Housecat, Fatboy Slim, Carola, 7KY', bpm: 128, key: 'F Major', genre: 'Tech House',      cue: 'TBA' },
-    { n: '08', title: 'Carnaval (Original Mix)',         artist: 'Late Replies',                       bpm: 130, key: 'Gb Minor', genre: 'Minimal / Deep Tech',      cue: 'TBA' },
-    { n: '09', title: 'Gotta Be Cool (Original Mix)',    artist: 'Rafael',                             bpm: 124, key: 'Db Minor', genre: 'Dance / Pop',              cue: 'TBA' },
-    { n: '10', title: 'Donde el Sol (Original Mix)',     artist: 'Javi Reina, Carlos Agraz',           bpm: 128, key: 'Eb Minor', genre: 'Tech House | Latin Tech',  cue: 'TBA' },
+    { n: '01', title: 'Edge of Desire (Extended Mix)',   artist: 'Jonas Blue, Malive',                 bpm: 123, key: 'G Major',  genre: 'House',                    cue: '00:18' },
+    { n: '02', title: 'For A Long Time (Original Mix)',  artist: 'The Deepshakerz',                    bpm: 126, key: 'F Minor',  genre: 'Tech House',               cue: '02:13' },
+    { n: '03', title: 'Take Our Time (Extended Mix)',    artist: 'Chico Rose (NL)',                    bpm: 129, key: 'F Minor',  genre: 'Tech House',               cue: '04:50' },
+    { n: '04', title: 'Coming For Ya (Original Mix)',    artist: 'Chris Child',                        bpm: 125, key: 'C Minor',  genre: 'Tech House',               cue: '08:08' },
+    { n: '05', title: 'So Good (Extended Mix)',          artist: 'Marco Lys, Ben Miller (Aus)',        bpm: 128, key: 'G Minor',  genre: 'House',                    cue: '10:02' },
+    { n: '06', title: 'Kick Back (Original Mix)',        artist: 'MARTA (CA), Eve Lauren',             bpm: 128, key: 'F Major',  genre: 'Tech House',               cue: '12:08' },
+    { n: '07', title: 'Funk Drunk (Original Mix)',       artist: 'Felix Da Housecat, Fatboy Slim, Carola, 7KY', bpm: 128, key: 'F Major', genre: 'Tech House',      cue: '14:19' },
+    { n: '08', title: 'Carnaval (Original Mix)',         artist: 'Late Replies',                       bpm: 130, key: 'Gb Minor', genre: 'Minimal / Deep Tech',      cue: '16:26' },
+    { n: '09', title: 'Gotta Be Cool (Original Mix)',    artist: 'Rafael',                             bpm: 124, key: 'Db Minor', genre: 'Dance / Pop',              cue: '18:59' },
+    { n: '10', title: 'Donde el Sol (Original Mix)',     artist: 'Javi Reina, Carlos Agraz',           bpm: 128, key: 'Eb Minor', genre: 'Tech House | Latin Tech',  cue: '21:10' },
   ]
 };
 
