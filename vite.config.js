@@ -11,6 +11,7 @@ export default defineConfig({
         { src: 'Logo*.svg',  dest: '.' },
         { src: 'Logo*.png',  dest: '.' },
         { src: 'OG-Graph.jpg', dest: '.' },
+        { src: 'about-hero-cy-and-grin.jpg', dest: '.' },
         { src: 'GRINLOUD Music Radar Cover*.jpg', dest: '.' },
         { src: 'Music Radar Cover*.jpg', dest: '.' },
         { src: 'GRINLOUD Dance Beach Ibiza/*.mp4', dest: 'ibiza' },
