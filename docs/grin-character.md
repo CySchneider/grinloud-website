@@ -44,14 +44,29 @@ Bei jedem Grok/Kling-Prompt immer dieses Sheet (bzw. Referenzbilder) als Bild-Re
 
 ## Referenz-Bilder (Model Sheet)
 
-Das Model Sheet bestand aus 5 Ansichten:
-1. Front — Full Body
-2. Back — Full Body
-3. Profile — Head
-4. Front — Head
-5. Front Detail — Head
+Liegen fest in `docs/grin-reference/` — vollständig gesichert, nicht mehr nur als Chat-Anhang.
 
-**Wichtig:** Die eigentlichen Bilddateien sind aktuell nicht im Projektordner abgelegt (nur als Chat-Anhang vorhanden, nicht als Datei zugänglich). Sobald Cy sie erneut hochlädt oder aus Grok Imagine neu generiert, sollten sie als `grin-model-sheet-front.jpg`, `grin-model-sheet-back.jpg`, `grin-model-sheet-profile.jpg` etc. in diesem Ordner abgelegt werden — dann ist auch das visuelle Referenzmaterial dauerhaft gesichert, nicht nur die Textbeschreibung.
+**Komplettes Sheet (alle 5 Ansichten als Übersichtskarte):**
+
+![Grin Model Sheet](grin-reference/grin-model-sheet.png)
+
+**Einzelansichten:**
+
+| Ansicht | Datei |
+|---|---|
+| Front — Full Body | [`grin-front-fullbody.jpg`](grin-reference/grin-front-fullbody.jpg) |
+| Back — Full Body | [`grin-back-fullbody.jpg`](grin-reference/grin-back-fullbody.jpg) |
+| Profile — Head | [`grin-profile-head.jpg`](grin-reference/grin-profile-head.jpg) |
+| Front — Head | [`grin-front-head.jpg`](grin-reference/grin-front-head.jpg) |
+| Front Detail — Head | [`grin-front-head-detail.jpg`](grin-reference/grin-front-head-detail.jpg) |
+
+![Front Full Body](grin-reference/grin-front-fullbody.jpg)
+![Back Full Body](grin-reference/grin-back-fullbody.jpg)
+![Profile Head](grin-reference/grin-profile-head.jpg)
+![Front Head](grin-reference/grin-front-head.jpg)
+![Front Head Detail](grin-reference/grin-front-head-detail.jpg)
+
+**Nutzung:** Bei jedem neuen Grok/Kling-Prompt eines oder mehrere dieser Bilder als Referenz anhängen (Front-Head + Profile-Head deckt Gesicht am zuverlässigsten ab, Front-Fullbody für Pose/Outfit).
 
 ---
 
