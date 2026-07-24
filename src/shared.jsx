@@ -481,7 +481,7 @@ function SpotifyPreviewBar({ spotifyUrl }) {
   );
 }
 
-function SpotifyCover({ spotifyUrl }) {
+function SpotifyCover({ spotifyUrl, alt = '' }) {
   const [src, setSrc] = React.useState(null);
   const ref = React.useRef(null);
 
@@ -507,7 +507,7 @@ function SpotifyCover({ spotifyUrl }) {
 
   return (
     <div ref={ref} className="track-cover" style={src ? undefined : { background: '#000' }}>
-      {src && <img src={src} alt="" loading="lazy" />}
+      {src && <img src={src} alt={alt} loading="lazy" />}
     </div>
   );
 }

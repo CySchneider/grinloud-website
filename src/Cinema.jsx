@@ -18,7 +18,7 @@ function Cinema({ pick }) {
           PICK OF THE DAY · {dd}.{mm}.{yyyy}
         </div>
         <div className="cinema__cover">
-          <SpotifyCover spotifyUrl={pick.links?.spotify} />
+          <SpotifyCover spotifyUrl={pick.links?.spotify} alt={`${pick.title} — ${pick.artist} cover art`} />
         </div>
         <h1 className="cinema__title">{pick.title}</h1>
         <div className="cinema__artist">{pick.artist}</div>

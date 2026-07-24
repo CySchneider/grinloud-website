@@ -29,7 +29,7 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
         </div>
 
         <div className="pick-cover">
-          <SpotifyCover spotifyUrl={pick.links?.spotify} />
+          <SpotifyCover spotifyUrl={pick.links?.spotify} alt={`${pick.title} — ${pick.artist} cover art`} />
         </div>
 
         <h1 className="track-title track-title--a" style={{ fontSize: `clamp(40px, ${titleSize}vw, 176px)` }}>

@@ -56,6 +56,7 @@ const FALLBACK_STYLE = `
   .gl-fb .gl-fb-sub { font-size: 14px; opacity: 0.7; margin-bottom: 24px; }
   .gl-fb .gl-fb-meta { font-size: 12px; opacity: 0.55; letter-spacing: 0.04em; margin-bottom: 28px; }
   .gl-fb p.gl-fb-info { font-size: 13px; line-height: 1.8; opacity: 0.85; margin-bottom: 36px; max-width: 56ch; }
+  .gl-fb p.gl-fb-context { font-size: 12px; line-height: 1.7; opacity: 0.6; max-width: 56ch; margin: -8px 0 32px; }
   .gl-fb .gl-fb-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
   .gl-fb .gl-fb-cta { display: inline-flex; padding: 10px 20px; border: 1.5px solid rgba(245,242,238,0.3); border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #F5F2EE; }
   .gl-fb .gl-fb-cta--accent { background: #FFE000; border-color: #FFE000; color: #0A0A0A; }
@@ -145,6 +146,7 @@ ${head({ title, desc, url, ogType: 'music.song', image: OG_IMAGE_DEFAULT, jsonLd
       ${spotify ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${spotify}" target="_blank" rel="noreferrer">LISTEN ON SPOTIFY →</a>` : ''}
       <a class="gl-fb-cta" href="/">MORE PICKS →</a>
     </div>
+    <p class="gl-fb-context">Part of GRINLOUD's daily house music picks — new House, Tech House, Progressive House and Bass House tracks, hand-picked one at a time. <a href="/about.html">More about GRINLOUD</a>.</p>
     <hr>
     <p style="font-size:11px; opacity:0.35;"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
   </div></div>
@@ -209,6 +211,7 @@ ${head({ title, desc, url, ogType: 'music.playlist', image, jsonLd })}
     <h2>TRACKLIST</h2>
     <ul class="gl-fb-tracklist">${tracklistHtml}
     </ul>
+    <p class="gl-fb-context">Music Radar is GRINLOUD's 10-track house music playlist, refreshed every 10 days across House, Tech House, Progressive House and Bass House. <a href="/about.html">More about GRINLOUD</a>.</p>
     <hr>
     <p style="font-size:11px; opacity:0.35;"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
   </div></div>
@@ -217,6 +220,59 @@ ${head({ title, desc, url, ogType: 'music.playlist', image, jsonLd })}
 
   writePage(`radar/${radar.number}`, html);
   radarUrls.push({ loc: url, lastmod: radar.liveDate || TODAY, changefreq: 'monthly', priority: '0.7' });
+}
+
+// ── Homepage fallback content ───────────────────────────────────────────
+// `vite build` ships index.html with an empty <div id="root"></div> and a
+// generic, never-changing <title>/description — nothing for a crawler that
+// doesn't execute JS, and a snippet that never reflects today's actual Pick
+// even for ones that do. Stamp in the same static-fallback + per-pick meta
+// this file already gives every /pick/ page, keyed to the current public
+// pick, so "/" itself always has real, current content and metadata as of
+// the last build (same freshness window as the rest of this script's output
+// — see functions/_middleware.js for how same-day gaps are covered live).
+const homePick = publicPicks[0];
+if (homePick) {
+  const title = `${homePick.title} — ${homePick.artist} · GRINLOUD`;
+  const desc = homePick.info || homePick.short || `${homePick.title} by ${homePick.artist} — ${homePick.genre}, curated by GRINLOUD.`;
+  const spotify = homePick.links?.spotify && homePick.links.spotify !== '#' ? homePick.links.spotify : null;
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'MusicRecording',
+    name: homePick.title,
+    byArtist: { '@type': 'MusicGroup', name: homePick.artist },
+    genre: homePick.genre,
+    datePublished: homePick.date,
+    url: spotify || `${SITE}/`,
+    description: desc,
+  };
+
+  const fallbackBody = `<div class="gl-fb">
+    <div class="gl-fb-eyebrow">GRINLOUD · PICK OF THE DAY · ${homePick.date}</div>
+    <h1>${esc(homePick.title)}</h1>
+    <div class="gl-fb-sub">${esc(homePick.artist)}</div>
+    <div class="gl-fb-meta">${esc(homePick.genre)} · ${homePick.bpm} BPM · ${esc(homePick.key)}${homePick.label ? ` · ${esc(homePick.label)}` : ''}</div>
+    <p class="gl-fb-info">${esc(desc)}</p>
+    <div class="gl-fb-cta-row">
+      ${spotify ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${spotify}" target="_blank" rel="noreferrer">LISTEN ON SPOTIFY →</a>` : ''}
+      <a class="gl-fb-cta" href="/about.html">ABOUT GRINLOUD →</a>
+    </div>
+    <p class="gl-fb-context">New house music, hand-picked daily. GRINLOUD covers House, Tech House, Progressive House and Bass House — one Pick of the Day, and a 10-track Music Radar every 10 days.</p>
+  </div>`;
+
+  const patchedHome = builtShell
+    .replace(/<title>.*?<\/title>/, `<title>${esc(title)}</title>`)
+    .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
+    .replace(/(<meta property="og:title"\s+content=")[^"]*(")/, `$1${esc(title)}$2`)
+    .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
+    .replace(/(<meta name="twitter:title"\s+content=")[^"]*(")/, `$1${esc(title)}$2`)
+    .replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
+    .replace('<div id="root"></div>', `<div id="root">${fallbackBody}</div>`)
+    .replace('</head>', `<script id="ld-pick" type="application/ld+json">${JSON.stringify(jsonLd)}</script>\n<style>${FALLBACK_STYLE}</style>\n</head>`);
+
+  writeFileSync(join(DIST, 'index.html'), patchedHome);
+  console.log(`[generate-static-pages] Homepage fallback stamped for "${homePick.title} — ${homePick.artist}" (${homePick.date}).`);
 }
 
 // ── Sitemap ──────────────────────────────────────────────────────────────

@@ -70,7 +70,7 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
                       <span>{p.genre}</span>
                     </div>
                   </div>
-                  <SpotifyCover spotifyUrl={p.links?.spotify} />
+                  <SpotifyCover spotifyUrl={p.links?.spotify} alt={`${p.title} — ${p.artist} cover art`} />
                 </div>
                 <div className="archive-card__open">
                   {isActive ? <>NOW PLAYING <Icon.Arrow size={12} /></> : <>PLAY TRACK <Icon.Arrow size={12} /></>}

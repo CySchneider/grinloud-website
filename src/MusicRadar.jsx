@@ -93,7 +93,7 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
               <div className="radar-row__n">{t.n}</div>
 
               <div className="radar-row__cover">
-                <SpotifyCover spotifyUrl={spotifyUrl} />
+                <SpotifyCover spotifyUrl={spotifyUrl} alt={`${t.title} — ${t.artist} cover art`} />
               </div>
 
               <div className="radar-row__title">
