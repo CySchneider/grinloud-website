@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GRINLOUD — Pick of the Day — {{DATE_ISO}} — Carousel (Website-Stil)</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:{{ACCENT_HEX}};   /* dieser Pick: Yellow (siehe Screenshot). Andere Optionen: #FF1F8F #00C2FF #39FF14 #FF6200 */
+    --black:#0A0A0A;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body{
+    background:#0A0A0A; display:flex; flex-direction:column;
+    align-items:center; margin:0; padding:0;
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  .slide{
+    width:1080px; height:1350px; position:relative; overflow:hidden; flex-shrink:0;
+    background:var(--black);
+  }
+  .slide svg.bg, .slide img.bg, .slide video.bg{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  }
+  .scrim{ position:absolute; inset:0; }
+  .inner{
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    justify-content:space-between; padding:64px 60px;
+  }
+  .top{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .smiley{ width:64px; height:64px; object-fit:contain; display:block; }
+
+  /* Neo-brutalist pill: dicker schwarzer Rand + harter Offset-Shadow */
+  .pill{
+    display:inline-flex; align-items:center; gap:10px; padding:14px 28px;
+    border-radius:999px; font-family:'JetBrains Mono',monospace; font-size:22px;
+    font-weight:600; letter-spacing:.14em; text-transform:uppercase; width:fit-content;
+    background:var(--accent); color:var(--black);
+    border:3px solid var(--black); box-shadow: 6px 6px 0 var(--black);
+  }
+  .label{
+    font-family:'JetBrains Mono',monospace; font-size:19px; letter-spacing:.18em;
+    text-transform:uppercase; color:rgba(255,255,255,.55);
+  }
+  .headline{
+    font-family:'Archivo Black',sans-serif; line-height:0.98; letter-spacing:-.01em;
+  }
+  .body{ font-family:'Space Grotesk',sans-serif; font-weight:400; }
+  .wordmark-gothic{
+    font-family:'UnifrakturMaguntia',cursive; color:#fff;
+  }
+  .meta-line{
+    font-family:'JetBrains Mono',monospace; font-size:26px; letter-spacing:.1em;
+    color:rgba(255,255,255,.55); text-align:center;
+  }
+  /* Neo-brutalist card (wie auf Archive/Radar-Seiten) — Rahmen & Schatten immer schwarz */
+  .nb-card{
+    background:#111; border:4px solid var(--black); border-radius:16px;
+    box-shadow: 10px 10px 0 var(--black);
+    padding:36px 40px;
+  }
+  .nb-frame{
+    border-radius:20px; overflow:hidden;
+    border:4px solid var(--black); box-shadow:12px 12px 0 var(--black);
+  }
+  .nb-divider{ height:2px; background:rgba(255,255,255,.15); margin:18px 0; }
+</style>
+</head>
+<body>
+
+<!--
+  GRINLOUD CAROUSEL TEMPLATE — Platzhalter-Liste (alle {{TOKENS}} ersetzen, dann diesen Kommentar löschen):
+
+  {{DATE_ISO}}              2026-07-21
+  {{DATE_DE}}                21.07.2026
+  {{ACCENT_HEX}}             #FF1F8F / #FFE600 / #00C2FF / #39FF14 / #FF6200
+  {{COVER_IMAGE_ID}}         Spotify i.scdn.co Bild-ID (ohne Pfad-Präfix), z.B. ab67616d0000b273...
+  {{ARTIST_IMAGE_ID}}        Spotify i.scdn.co Artist-Bild-ID
+  {{TRACK_TITLE}}            z.B. Rave              (für alt-Texte)
+  {{TRACK_TITLE_UPPER}}      z.B. RAVE               (Slide-1-Headline, ggf. mit <br> bei langen Titeln)
+  {{MIX_VERSION}}            z.B. (Extended Mix) / (Original Mix) / (PAROOKAVILLE Anthem 2026)
+  {{ARTIST_LABEL}}           "TODAY'S ARTIST" (solo) oder "TODAY'S ARTISTS" (Kollab)
+  {{ARTIST_NAME}}            z.B. Marten Hørger      (für alt-Texte)
+  {{ARTIST_NAME_UPPER}}      z.B. MARTEN HØRGER      (Slide-2-Headline)
+  {{FEATURED_ARTISTS_LINE}}  z.B. "with Bonn" — bei Solo-Tracks die ganze Zeile/den div löschen
+  {{PICK_NUMBER}}            z.B. #091
+  {{GENRE}}                  Beatport-Genre-Tag, z.B. Bass House
+  {{BPM}}                    z.B. 130
+  {{KEY}}                    z.B. E Major
+  {{LABEL}}                  z.B. Insomniac Records
+  {{RELEASE_DATE_DE}}        z.B. 26.06.2026
+  {{DURATION}}               z.B. 3:13
+  {{FUN_FACT_HTML}}          2-3 Sätze, recherchierter Fakt zu Track/Artist, <span style="color:var(--accent);font-weight:600;">…</span> für Highlight-Begriff erlaubt
+  {{GRINLOUD_SAYS_HTML}}     2-3 Sätze Kurator-Zitat, GRINLOUD-Tonfall, <em style="font-style:normal;color:var(--accent);">Tracktitel</em> für Highlight erlaubt
+
+  Feste Dateien im selben Ordner nötig: grinloud-says-still.jpg (Slide 5 Hintergrund)
+-->
+
+<!-- ════════════════════════════════
+     SLIDE 1 — TRACK TITLE + COVER (vormals Slide 2)
+════════════════════════════════ -->
+<div class="slide" id="slide1">
+  <img class="bg" src="https://i.scdn.co/image/{{COVER_IMAGE_ID}}" alt="{{TRACK_TITLE}} cover" style="filter:blur(2px) brightness(0.55);"/>
+  <svg class="scrim" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0A0A0A" stop-opacity="0.6"/>
+        <stop offset="55%" stop-color="#0A0A0A" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0.92"/>
+      </linearGradient>
+    </defs>
+    <rect width="1080" height="1350" fill="url(#g2)"/>
+  </svg>
+  <div class="inner" style="align-items:center;justify-content:center;gap:44px;">
+    <div class="pill">☻ PICK OF THE DAY · {{DATE_DE}}</div>
+    <div class="nb-frame" style="width:420px;height:420px;">
+      <img src="https://i.scdn.co/image/{{COVER_IMAGE_ID}}" alt="{{TRACK_TITLE}} cover" style="width:100%;height:100%;object-fit:cover;"/>
+    </div>
+    <div class="headline" style="font-size:80px;color:#fff;text-align:center;">{{TRACK_TITLE_UPPER}}<br><span style="font-family:'Space Grotesk',sans-serif;font-weight:300;font-size:32px;color:rgba(255,255,255,.6);">{{MIX_VERSION}}</span></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     SLIDE 2 — ARTIST (Darstellung wie Cover-Slide, da Artist-Foto niedrig aufgelöst)
+════════════════════════════════ -->
+<div class="slide" id="slide2">
+  <img class="bg" src="https://i.scdn.co/image/{{ARTIST_IMAGE_ID}}" alt="{{ARTIST_NAME}}" style="filter:blur(2px) brightness(0.5);"/>
+  <svg class="scrim" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0A0A0A" stop-opacity="0.6"/>
+        <stop offset="55%" stop-color="#0A0A0A" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0.92"/>
+      </linearGradient>
+    </defs>
+    <rect width="1080" height="1350" fill="url(#g3)"/>
+  </svg>
+  <div class="inner" style="align-items:center;justify-content:center;gap:40px;">
+    <div class="nb-frame" style="width:420px;height:420px;">
+      <img src="https://i.scdn.co/image/{{ARTIST_IMAGE_ID}}" alt="{{ARTIST_NAME}}" style="width:100%;height:100%;object-fit:cover;"/>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
+      <div class="label">{{ARTIST_LABEL}}</div>
+      <div class="headline" style="font-size:64px;color:var(--accent);text-align:center;">{{ARTIST_NAME_UPPER}}</div>
+      <!-- Nur bei Kollab-Tracks einfügen, sonst diese Zeile löschen: -->
+      <div class="body" style="font-size:28px;color:rgba(255,255,255,.65);text-align:center;">{{FEATURED_ARTISTS_LINE}}</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     SLIDE 3 — TRACK INFO (Cover im Hintergrund, Info-Card unter dem Cover-Thumbnail)
+════════════════════════════════ -->
+<div class="slide" id="slide3">
+  <img class="bg" src="https://i.scdn.co/image/{{COVER_IMAGE_ID}}" alt="{{TRACK_TITLE}} cover" style="filter:blur(2px) brightness(0.55);"/>
+  <svg class="scrim" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0A0A0A" stop-opacity="0.6"/>
+        <stop offset="55%" stop-color="#0A0A0A" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0.94"/>
+      </linearGradient>
+    </defs>
+    <rect width="1080" height="1350" fill="url(#g4)"/>
+  </svg>
+  <div class="inner" style="align-items:center;justify-content:center;gap:40px;">
+    <div class="nb-frame" style="width:200px;height:200px;">
+      <img src="https://i.scdn.co/image/{{COVER_IMAGE_ID}}" alt="{{TRACK_TITLE}} cover" style="width:100%;height:100%;object-fit:cover;"/>
+    </div>
+    <div class="nb-card">
+      <div class="label" style="font-size:20px;">{{PICK_NUMBER}} · {{DATE_ISO}}</div>
+      <div class="nb-divider"></div>
+      <div style="display:flex;flex-direction:column;gap:28px;margin-top:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:40px;">
+          <div class="label" style="font-size:24px;">Genre</div>
+          <div class="headline" style="font-size:46px;color:var(--accent);">{{GENRE}}</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:40px;">
+          <div class="label" style="font-size:24px;">BPM</div>
+          <div class="headline" style="font-size:46px;color:#fff;">{{BPM}}</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:40px;">
+          <div class="label" style="font-size:24px;">Key</div>
+          <div class="headline" style="font-size:46px;color:#fff;">{{KEY}}</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:40px;">
+          <div class="label" style="font-size:24px;">Label</div>
+          <div class="headline" style="font-size:32px;color:#fff;">{{LABEL}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     SLIDE 4 — FACTS (neu: Release-Date + Fakten zu Track & Artist)
+════════════════════════════════ -->
+<div class="slide" id="slide4">
+  <img class="bg" src="https://i.scdn.co/image/{{COVER_IMAGE_ID}}" alt="{{TRACK_TITLE}} cover" style="filter:blur(2px) brightness(0.45);"/>
+  <svg class="scrim" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g5" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0A0A0A" stop-opacity="0.55"/>
+        <stop offset="55%" stop-color="#0A0A0A" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0.9"/>
+      </linearGradient>
+    </defs>
+    <rect width="1080" height="1350" fill="url(#g5)"/>
+  </svg>
+  <div class="inner" style="align-items:center;justify-content:center;">
+    <div class="nb-card" style="max-width:900px;">
+      <div class="label" style="font-size:20px;color:var(--accent);">THE DETAILS</div>
+      <div class="nb-divider"></div>
+      <div style="display:flex;flex-direction:column;gap:28px;margin-top:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:40px;">
+          <div class="label" style="font-size:24px;">Release Date</div>
+          <div class="headline" style="font-size:40px;color:#fff;">{{RELEASE_DATE_DE}}</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:40px;">
+          <div class="label" style="font-size:24px;">Duration</div>
+          <div class="headline" style="font-size:40px;color:#fff;">{{DURATION}}</div>
+        </div>
+        <div class="nb-divider"></div>
+        <div class="body" style="font-size:30px;line-height:1.5;color:rgba(255,255,255,.75);font-weight:400;">
+          {{FUN_FACT_HTML}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     SLIDE 5 — GRINLOUD SAYS
+════════════════════════════════ -->
+<div class="slide" id="slide5">
+  <img class="bg" src="grinloud-says-still.jpg" alt="GRINLOUD Still" style="object-position:center bottom; transform:scale(1.05); transform-origin:50% 100%;"/>
+  <svg class="scrim" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="vg5" cx="50%" cy="35%" r="70%">
+        <stop offset="35%" stop-color="#000" stop-opacity="0.15"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="0.85"/>
+      </radialGradient>
+      <linearGradient id="vgBottom5" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="0.35"/>
+      </linearGradient>
+    </defs>
+    <rect width="1080" height="1350" fill="url(#vg5)"/>
+    <rect width="1080" height="1350" fill="url(#vgBottom5)"/>
+  </svg>
+  <div class="inner" style="align-items:center;justify-content:center;gap:40px;">
+    <div class="nb-card" style="max-width:880px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img data-smiley src="" style="width:26px;height:26px;" alt="☻"/>
+        <div class="label" style="color:var(--accent);font-size:22px;">GRINLOUD SAYS:</div>
+      </div>
+      <div class="nb-divider"></div>
+      <div class="body" style="font-size:34px;line-height:1.5;color:#fff;font-weight:400;text-align:center;">
+        {{GRINLOUD_SAYS_HTML}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     SLIDE 6 — END SLIDE
+════════════════════════════════ -->
+<div class="slide" id="slide6">
+  <svg class="bg" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1080" height="1350" fill="#0A0A0A"/>
+    <circle cx="540" cy="600" r="120" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2">
+      <animate attributeName="r" values="120;480;120" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0;1" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="540" cy="600" r="120" fill="none" stroke="rgba(255,230,0,0.18)" stroke-width="2">
+      <animate attributeName="r" values="120;480;120" dur="4s" begin="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0;1" dur="4s" begin="1.3s" repeatCount="indefinite"/>
+    </circle>
+  </svg>
+  <div class="inner" style="align-items:center;justify-content:center;gap:36px;">
+    <img data-smiley src="" style="width:170px;height:170px;" alt="☻"/>
+    <div class="wordmark-gothic" style="font-size:88px;">grinloud.com</div>
+    <div class="label" style="font-size:22px;letter-spacing:.3em;">House Music Curated Daily</div>
+    <div class="nb-divider" style="width:200px;margin:4px 0;"></div>
+    <div class="label" style="font-size:22px;letter-spacing:.3em;text-align:center;max-width:820px;line-height:2;">
+      New Pick every day.<br>New Radar every 10 days.<br>Don't miss it.
+    </div>
+  </div>
+</div>
+
+<script>
+const SMILEY = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+Cjxzdmcgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDU4NiA1ODIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM6c2VyaWY9Imh0dHA6Ly93d3cuc2VyaWYuY29tLyIgc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoyOyI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNzgyLjAwODgxNiwtNTkzMy44MjIxMTQpIj4KICAgICAgICA8ZyBpZD0iTG9nby1HUklOTE9VRC1TbWlsZXktWWVsbG93IiBzZXJpZjppZD0iTG9nbyBHUklOTE9VRCBTbWlsZXkgWWVsbG93IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjY1NDAxOCwwLDAsMC40ODcwMjksMTc4Mi4wMDg4MTYsNTkzMy44MjIxMTQpIj4KICAgICAgICAgICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9Ijg5NiIgaGVpZ2h0PSIxMTk1IiBzdHlsZT0iZmlsbDpyZ2IoMjU1LDAsMTU0KTtmaWxsLW9wYWNpdHk6MDsiLz4KICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS43ODU4MzYsMCwwLDIuMzk4MTQ5LC0yMzMuOTM4NTY3LC01MzMuODQ4Nzk3KSI+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMzQ5LjIyMSwyNTQuODE0QzM1OS40NDgsMjUzLjE0NCAzNzMuNjU5LDI1MC44ODEgMzk5LjU2MywyNTIuNDkzQzQxNC44NDYsMjUzLjQ0NSA0MzMuODMzLDI1Ny42MDcgNDQwLjc1NywyNTkuNjM3QzQ2Ni42NjEsMjY3LjIzMyA0NzkuNDQyLDI3NC4yMzEgNDk0Ljg4NSwyODIuNzc5QzQ5NS41NDMsMjgzLjE0MyA1MDUuNzI4LDI4OS44OTcgNTA3LDI5MC44MjhDNTIzLjgzMywzMDMuMTQxIDUyOC4zNTIsMzA3LjYwMSA1MzYuOTk1LDMxNS45OThDNTQ3LjIyNiwzMjUuOTM3IDU2MS40OTgsMzQ0LjI0MSA1NjQuNjgsMzQ5LjgyNEM1NjguNDk1LDM1Ni41MiA1NzQuMTY3LDM2My4xNCA1ODMuOTU3LDM4NS44NjlDNjIzLjIxMyw0NzcuMDAzIDU4NC4wODQsNTU0Ljg0NyA1ODIuNzksNTU4LjAyN0M1NzcuNTM0LDU3MC45NDkgNTY0Ljc0Nyw1OTIuMzY4IDU1My4xOTUsNjA2LjA5QzU1Mi4wMjMsNjA3LjQ4MiA1NDMuMTYyLDYxOC4wMDQgNTM4LjAxNyw2MjMuMDI0QzQ5My4wNzQsNjY2Ljg3MSA0NDcuNDk5LDY3OC42NDcgNDMxLjg1NCw2ODIuMTA4QzQwNS4wNDksNjg4LjAzOCAzODguMTg2LDY4Ny42MjMgMzg0LjUwOSw2ODcuNjUxQzM1MC4xODYsNjg3LjkwNCAzMjIuMDMyLDY3OC40NzEgMzIwLjA5OCw2NzcuOTM0QzMxOC4xMjIsNjc3LjM4NiAyNjkuMzQ2LDY2NC42NTQgMjI1Ljc5LDYxOS4xODJDMjA0LjgxNiw1OTcuMjg2IDE5NS4wNjgsNTc4LjQ1NSAxODkuODA2LDU2OC44OEMxODcuMjExLDU2NC4xNTggMTgyLjI1OCw1NTIuOTU2IDE4MS40NzksNTUwLjg4QzE3Mi44NzIsNTI3Ljk0NSAxNjIuNDkxLDQ5Ny45NzEgMTY3LjM4Niw0NDYuMzk1QzE2OS44NDksNDIwLjQ0NSAxNzguNDg1LDM5OC40OSAxNzguNTg3LDM5OC4xODhDMTkxLjAyMSwzNjEuNTM2IDIxNC4xNjIsMzMyLjk1OSAyMjUuMjczLDMyMS4zMzFDMjM4LjYzOCwzMDcuMzQ1IDI0NS4wMjIsMzAyLjc0NCAyNDguNzYsMjk5LjYxN0MyNTEuNjkzLDI5Ny4xNjQgMjU0LjczOCwyOTQuODE1IDI1Ny44NDQsMjkyLjU3NUMyNzguMzIxLDI3Ny44MDggMzAxLjQyNSwyNjcuODA0IDMxMi4wNzQsMjY0LjIzMkMzMzMuMTU1LDI1Ny4xNjEgMzQ0LjY1NywyNTUuNjY5IDM0OS4xOTEsMjU0LjgxOUwzNDkuMjIxLDI1NC44MTRaTTQxNS43OTYsNDIxLjczOEM0MTcuMzg0LDQzMy41MTkgNDIwLjgzMiw0NDQuNjg4IDQyNS41NTUsNDUyLjgyNUM0MjguODA0LDQ1OC40MjMgNDMyLjY3NSw0NjIuNTk2IDQzNi45MzMsNDY0LjY2NkM0NDMuMDA0LDQ2Ny42MTYgNDQ3LjcxNiw0NjguMDc4IDQ1NS4xNjEsNDYzLjU5OUM0NjMuOTgsNDU4LjI5NCA0NjguODEyLDQ0My43OTUgNDY5LjQ2LDQ0MS44MTNDNDc3LjE2MSw0MTguMjg0IDQ3Ni42NCwzOTMuMDA2IDQ3MS45NTMsMzczLjY5MkM0NjguNzg5LDM2MC42NTEgNDYzLjcsMzUwLjMxOCA0NTguMDA3LDM0NC45NTlDNDUyLjU1OSwzMzkuODMyIDQ0Ni4xNTksMzM4LjQxIDQ0MC4xMjYsMzQwLjI3OEM0MzQuMjM1LDM0Mi4xMDIgNDI4LjY0OSwzNDcuMTMxIDQyNC43MjYsMzU1LjEyM0M0MjIuMzE1LDM2MC4wMzMgNDE2LjY2NiwzNzAuNTU1IDQxNC41OTYsMzk2LjQzMUM0MTQuMTE4LDQwMi40MSA0MTQuNDYsNDA5LjQxNyA0MTQuNTE1LDQxMC41NDRDNDE0Ljc2NSw0MTUuNjQxIDQxNS4zNzgsNDE4Ljc4NSA0MTUuNzk2LDQyMS43MzhaTTM1Mi4zNzgsMzkxLjQ0N0wzNTIuMzc0LDM5MS40MDNDMzQ5LjcyOCwzNjcuMDI1IDM0My4zMTMsMzU1Ljk5NSAzNDEuNjgxLDM1Mi44OEMzMzcuODE4LDM0NS41MDkgMzMwLjA3MSwzMzkuMTIxIDMyMS42NDUsMzM5LjQ3NUMzMTYuMDI5LDMzOS43MTEgMzEwLjAzLDM0Mi44OTUgMzA0LjY3OSwzNTAuOTQ3QzI5My42NzEsMzY3LjUxMSAyOTAuMTU3LDM5Ni42NTEgMjkzLjM1OSw0MjEuNDQ0QzI5NS41MSw0MzguMDk3IDMwMC43MTMsNDUyLjc3MiAzMDguNTUzLDQ2MC40NjVDMzIzLjg3LDQ3NS40OTQgMzQyLjAwMyw0NjIuNzE5IDM0OC44MjcsNDM1LjgzNkMzNTUuMTA5LDQxMS4wODcgMzUyLjU4NywzOTQuMjU2IDM1Mi4zNzgsMzkxLjQ0N1pNMjU3LjA5LDQ5OC44NDNDMjU3LjE3Niw0OTguNzkxIDI1Ny4zMSw0OTguNzE0IDI1Ny40MTYsNDk4LjY3QzI1OC4wMDgsNDk4LjQyNiAyNTguNzk5LDQ5OC4yNDMgMjU5LjY3OCw0OTcuOTk2QzI2Mi44MTIsNDk3LjExMyAyNjYuODY3LDQ5NS41NjUgMjY4LjQ0OSw0ODkuNzY0QzI2OS4wMzksNDg3LjYwMSAyNjguNTg3LDQ4Mi42MjkgMjY1LjE2MSw0NzkuNzU3QzI2Mi45NDUsNDc3Ljg5OCAyNTkuNDcsNDc2LjgzNSAyNTQuMTY0LDQ3OC4xODlDMjUyLjIyMiw0NzguNjg1IDI1Mi4yOTUsNDc4Ljg0NyAyMzAuMTc1LDQ4NS40MDNDMjI4LjI4Miw0ODUuOTY0IDIyNC45NSw0ODYuODE1IDIyMi40NDUsNDg5LjUyOEMyMTUuNzQxLDQ5Ni43ODkgMjIyLjI1LDUwOS4xMDYgMjMyLjczNCw1MDYuMzY5QzIzMy41OTIsNTA2LjE0NCAyMzQuNTI1LDUwNS43MzkgMjM1LjQwNCw1MDUuNTA4QzIzNS44NDksNTA1LjM5MSAyMzYuMjY4LDUwNS4yNjQgMjM2LjYxMSw1MDUuNDUxQzIzNi43OTksNTA1LjU1MyAyMzYuOTIsNTA1Ljc2NSAyMzcuMDM5LDUwNi4wNjZDMjM3LjM5OCw1MDYuOTgxIDIzNi44NDMsNTA3LjE0NiAyNDAuNzU3LDUxNy43NzRDMjQyLjg1NSw1MjMuNDcgMjUwLjEwNSw1MzguOTk2IDI1NS43MzMsNTQ3LjA0N0MyNTkuNTE5LDU1Mi40NjIgMjYyLjA2OCw1NTYuNzMxIDI2OS42NSw1NjUuMjU3QzI3OS4yNzYsNTc2LjA4MiAyOTUuMzA3LDU5MC41NzMgMzE1LjE1Myw2MDAuMTk5QzMyNC44NzksNjA0LjkxNiAzNTQuMzY0LDYxOS41MTIgMzk3LjYxOCw2MTUuOTRDNDA2LjI5OCw2MTUuMjIzIDQyMy4wOTEsNjExLjkwOCA0MzEuOTQ0LDYwOC43NDFDNDUwLjU0LDYwMi4wODggNDYwLjIwNCw1OTYuNTk2IDQ3My44NzcsNTg3LjA3NkM0NzguMTk0LDU4NC4wNzEgNDk0Ljc3Niw1NzAuODY0IDUwNy4wNjUsNTUzLjg4OUM1MjIuMzY2LDUzMi43NTMgNTI3Ljg3Niw1MTQuNjY5IDUyOS45MDcsNTA3Ljg0MUM1MzAuMjExLDUwNi44MTggNTMwLjUwMSw1MDUuOTIyIDUzMC42MjcsNTA1LjUzOEw1MzAuNjc4LDUwNS41MzJDNTMwLjg3MSw1MDUuNTE5IDUzMS4wODgsNTA1LjUzNiA1MzEuMzI3LDUwNS41NjdDNTMyLjEyOCw1MDUuNjcgNTMzLjEwNiw1MDUuOTI0IDUzNC4xODYsNTA2LjE0OEM1MzcuOTYxLDUwNi45MzIgNTQyLjc2Nyw1MDcuMzM1IDU0Ni4yNjcsNTAyLjAxN0M1NDguODU5LDQ5OC4wNzkgNTQ4LjAwMSw0OTAuODYxIDU0Mi44ODIsNDg3Ljg0M0M1NDAuOTk2LDQ4Ni43MyA1NDAuOTQ1LDQ4Ni44MDIgNTE2Ljg4Niw0NzkuMjY5QzUxNS40MTEsNDc4LjgwNyA1MTIuMzc3LDQ3Ny42NTQgNTA5LjE2Nyw0NzcuNTk0QzUwNS42ODQsNDc3LjUyOSA1MDIuMDA5LDQ3OC42ODEgNDk5LjYyLDQ4My4wMUM0OTcuMzIxLDQ4Ny4xNzcgNDk4LjAyNyw0OTUuNDUxIDUwNy4xMyw0OTcuODg0QzUwNy44ODIsNDk4LjA4NCA1MDguOTM5LDQ5OC4yNDQgNTA5Ljc2Miw0OTguNjE0QzUxMC4wOTEsNDk4Ljc2MSA1MTAuNDM0LDQ5OC45MDcgNTEwLjM2OCw0OTkuMzAzQzUxMC4zMTIsNDk5LjYzNiA1MDcuODc2LDUwOC44NjcgNTAxLjg3NSw1MjEuNzM5QzUwMC42ODQsNTI0LjI5MyA0OTQuOTE5LDUzNC40ODUgNDkzLjMzNSw1MzYuNjUxQzQ4Ni4xMzUsNTQ2LjQ4OSA0NjkuNjkzLDU3MS4yNDYgNDMxLjk1OCw1ODYuMTI1QzQzMS4yLDU4Ni40MjQgNDIwLjQyNCw1OTEuMjk3IDQwNC4zODksNTkzLjY3NUw0MDQuMzU3LDU5My42OEMzNjYuNjQ1LDYwMC4yMzkgMzIxLjIwMiw1ODguNCAyODkuNTAzLDU1NS41MzJDMjg4LjI3NSw1NTQuMjU5IDI3NS43MjIsNTQxLjkxNCAyNjYuMzY4LDUyMy4wNjlDMjYzLjA0Miw1MTYuMzcgMjU5LjY2Miw1MDcuNTQyIDI1OC4wMjMsNTAyLjM3NkMyNTcuNTQsNTAwLjg1MyAyNTcuMTkzLDQ5OS4zMiAyNTcuMDksNDk4Ljg0M1oiIHN0eWxlPSJmaWxsOnJnYigyNTUsMjI0LDApOyIvPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K";
+document.querySelectorAll('[data-smiley]').forEach(el => el.src = SMILEY);
+
+// ── OBS-Jumper: springt exakt 1350px (= 1 Slide) pro Tastendruck ──
+const SLIDE_HEIGHT = 1350;
+const totalSlides = document.querySelectorAll('.slide').length;
+let currentSlide = 0;
+
+function jumpTo(index){
+  currentSlide = Math.max(0, Math.min(totalSlides - 1, index));
+  window.scrollTo({ top: currentSlide * SLIDE_HEIGHT, left: 0, behavior: 'instant' });
+}
+
+window.addEventListener('keydown', (e) => {
+  if (['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)) {
+    e.preventDefault();
+    jumpTo(currentSlide + 1);
+  } else if (['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) {
+    e.preventDefault();
+    jumpTo(currentSlide - 1);
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    jumpTo(0);
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    jumpTo(totalSlides - 1);
+  }
+});
+
+// Klick = nächste Slide (Alternative zur Tastatur)
+window.addEventListener('click', () => jumpTo(currentSlide + 1));
+
+</script>
+
+</body>
+</html>
