@@ -38,6 +38,28 @@ function esc(str) {
   return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
+// Collapses a raw data genre string (which can be a hybrid like "Tech House
+// | Latin Tech" or an outlier like "Mainstage") down to whichever of our
+// four core house genres it belongs to, for use in flowing marketing copy —
+// the literal raw genre still shows as-is in metadata pills and JSON-LD.
+function seoGenre(raw) {
+  const g = String(raw || '');
+  if (g.includes('Tech House')) return 'Tech House';
+  if (g.includes('Bass House')) return 'Bass House';
+  if (g.includes('Progressive House')) return 'Progressive House';
+  return 'House';
+}
+
+// Picks at most 2 core genres out of a set, ordered Tech House / Bass House
+// first — those are GRINLOUD's primary SEO targets — so a Radar spanning
+// many genres still reads as a clean "X and Y mix" instead of a run-on list.
+const GENRE_PRIORITY = ['Tech House', 'Bass House', 'Progressive House', 'House'];
+function genreMixPhrase(genres) {
+  const present = new Set(genres.map(seoGenre));
+  const ordered = GENRE_PRIORITY.filter((g) => present.has(g));
+  return ordered.length ? ordered.slice(0, 2).join(' and ') : 'House';
+}
+
 function writePage(relPath, html) {
   const dir = join(DIST, relPath);
   mkdirSync(dir, { recursive: true });
@@ -146,7 +168,7 @@ ${head({ title, desc, url, ogType: 'music.song', image: OG_IMAGE_DEFAULT, jsonLd
       ${spotify ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${spotify}" target="_blank" rel="noreferrer">LISTEN ON SPOTIFY →</a>` : ''}
       <a class="gl-fb-cta" href="/">MORE PICKS →</a>
     </div>
-    <p class="gl-fb-context">Part of GRINLOUD's daily house music picks — new House, Tech House, Progressive House and Bass House tracks, hand-picked one at a time. <a href="/about.html">More about GRINLOUD</a>.</p>
+    <p class="gl-fb-context">Part of GRINLOUD's daily ${seoGenre(pick.genre)} picks — new ${seoGenre(pick.genre)} tracks, hand-picked one at a time and mixed into the GRINLOUD Music Radar ${seoGenre(pick.genre)} mix every 10 days. <a href="/about.html">More about GRINLOUD</a>.</p>
     <hr>
     <p style="font-size:11px; opacity:0.35;"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
   </div></div>
@@ -164,7 +186,10 @@ for (const radar of publicRadars) {
   const title = `Music Radar ${radar.number} — ${radar.subtitle || radar.title} · GRINLOUD`;
   const trackCount = radar.tracks?.length || 10;
   const subtitle = radar.subtitle ? radar.subtitle.replace(/\.$/, '') : '';
-  const desc = `${radar.title}${subtitle ? `: ${subtitle}` : ''}. ${trackCount} tracks curated by GRINLOUD — House, Tech House, Progressive, Bass House. ${radar.date}.`;
+  // Genres actually present in this Radar's tracklist, so the mix is
+  // described by what it really contains instead of the full genre roster.
+  const genrePhrase = genreMixPhrase((radar.tracks || []).map((t) => t.genre));
+  const desc = `GRINLOUD Music Radar ${radar.number}: a ${genrePhrase} mix of ${trackCount} new tracks${subtitle ? ` — ${subtitle}` : ''}, hand-picked and mixed together every 10 days.`;
   const image = radar.cover ? `${SITE}/${encodeURIComponent(radar.cover)}` : OG_IMAGE_DEFAULT;
 
   const jsonLd = {
@@ -211,7 +236,7 @@ ${head({ title, desc, url, ogType: 'music.playlist', image, jsonLd })}
     <h2>TRACKLIST</h2>
     <ul class="gl-fb-tracklist">${tracklistHtml}
     </ul>
-    <p class="gl-fb-context">Music Radar is GRINLOUD's 10-track house music playlist, refreshed every 10 days across House, Tech House, Progressive House and Bass House. <a href="/about.html">More about GRINLOUD</a>.</p>
+    <p class="gl-fb-context">GRINLOUD Music Radar is a ${genrePhrase} mix — ${trackCount} new tracks, hand-picked and mixed together into one set every 10 days. <a href="/about.html">More about GRINLOUD</a>.</p>
     <hr>
     <p style="font-size:11px; opacity:0.35;"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
   </div></div>
@@ -258,7 +283,7 @@ if (homePick) {
       ${spotify ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${spotify}" target="_blank" rel="noreferrer">LISTEN ON SPOTIFY →</a>` : ''}
       <a class="gl-fb-cta" href="/about.html">ABOUT GRINLOUD →</a>
     </div>
-    <p class="gl-fb-context">New house music, hand-picked daily. GRINLOUD covers House, Tech House, Progressive House and Bass House — one Pick of the Day, and a 10-track Music Radar every 10 days.</p>
+    <p class="gl-fb-context">Today's ${seoGenre(homePick.genre)} Pick of the Day is part of GRINLOUD's daily ${seoGenre(homePick.genre)} picks. Every 10 days, the GRINLOUD Music Radar mixes 10 new Tech House and Bass House tracks into one set. <a href="/about.html">More about GRINLOUD</a>.</p>
   </div>`;
 
   const patchedHome = builtShell
