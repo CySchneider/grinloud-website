@@ -3,6 +3,14 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # 00:15 UTC — always after midnight in Europe/Zurich (CET/CEST), so the
+    # static /pick/ and /radar/ pages, homepage fallback, and sitemap that
+    # scripts/generate-static-pages.js bakes at build time pick up whatever
+    # went live at midnight even on days nobody pushes a commit. Runs well
+    # before the 06:00 UTC newsletter cron (daily-newsletter.yml).
+    - cron: '15 0 * * *'
+  workflow_dispatch: # allow manual trigger from GitHub UI
 
 jobs:
   deploy:
