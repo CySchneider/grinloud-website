@@ -104,11 +104,134 @@ const BG_VIDEOS = [
   'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (7).mp4',
   'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (8).mp4',
   'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (9).mp4',
+  // ── Bonfire series — Music Radar 011 picks ──
+  'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21.mp4',
+  'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (1).mp4',
+  'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (2).mp4',
+  'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (3).mp4',
+  'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (4).mp4',
+  'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (5).mp4',
+  'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (6).mp4',
+  'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (7).mp4',
+  'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (8).mp4',
+  'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (9).mp4',
 ];
 
 // Picks — newest first (index 0 = most recent)
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
+
+  // ── MUSIC RADAR 011 — 31 Jul–9 Aug 2026 ───────────────────────────────────
+  {
+    id: 'pick-2026-08-09',
+    date: '2026-08-09',
+    title: 'Renegade (Original Mix)',
+    artist: '3BEAT, FAIOLLI',
+    bpm: 132, key: 'F Major', label: 'Cat House Records', release: '10 Jul 2026',
+    genre: 'Bass House', accent: 'green', video: BG_VIDEOS[95],
+    info: "3Beat and Faiolli close Radar 011 on Cat House Records at full throttle. Renegade is the last log on the fire — the bonfire's still burning when this one drops.",
+    short: "The last log on the fire. Closes it out at full throttle.",
+    links: { spotify: 'https://open.spotify.com/track/70NDNlmdgU1X12CfS6C6br', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-08',
+    date: '2026-08-08',
+    title: 'DANCE (Extended Mix)',
+    artist: 'VION KONGER',
+    bpm: 132, key: 'Db Major', label: 'Smash The House Official', release: '03 Jul 2026',
+    genre: 'Bass House', accent: 'blue', video: BG_VIDEOS[94],
+    info: "Vion Konger keeps it simple on Smash The House Official — the title is the instruction. DANCE doesn't ask twice.",
+    short: "The title is the instruction. Doesn't ask twice.",
+    links: { spotify: 'https://open.spotify.com/track/7bDqDcHAd54V7cdIsDCsfs', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-07',
+    date: '2026-08-07',
+    title: 'Can I Ride (Extended Mix)',
+    artist: '95 SOUTH, SIDEPIECE',
+    bpm: 132, key: 'Gb Major', label: 'LIP SERVICE', release: '10 Jul 2026',
+    genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[93],
+    info: "95 South and SIDEPIECE link up on LIP SERVICE with a bassline built for movement. Can I Ride doesn't wait for an answer — it's already rolling.",
+    short: "A bassline built for movement — already rolling.",
+    links: { spotify: 'https://open.spotify.com/track/3gXGtYT41b4FXYctdxMwCI', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-06',
+    date: '2026-08-06',
+    title: 'Stop, Go (Original Mix)',
+    artist: 'SUBURBIA',
+    bpm: 130, key: 'E Major', label: 'ESSEntial.', release: '10 Jul 2026',
+    genre: 'Bass House', accent: 'yellow', video: BG_VIDEOS[92],
+    info: "Suburbia toys with tension on ESSEntial. Stop, Go plays with the pause before the drop — and lets the fire flare back up every time.",
+    short: "Plays with the pause before the drop.",
+    links: { spotify: 'https://open.spotify.com/track/6tyHuj4Wl5bBjVrePGbRGe', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-05',
+    date: '2026-08-05',
+    title: 'TooDance (Original Mix)',
+    artist: 'LOWDERZ, HALUEM',
+    bpm: 130, key: 'Ab Minor', label: 'Nervous Records', release: '10 Jul 2026',
+    genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[91],
+    info: "Lowderz and Haluem land on the legendary Nervous Records. TooDance is exactly what it sounds like — too much groove to sit still to.",
+    short: "Too much groove to sit still to.",
+    links: { spotify: 'https://open.spotify.com/track/5QucpQw51gNKWKp97twx85', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-04',
+    date: '2026-08-04',
+    title: 'TCFS (Extended Mix)',
+    artist: 'RAFAEL CERATO',
+    bpm: 129, key: 'G Minor', label: 'Catch & Release', release: '03 Jul 2026',
+    genre: 'Bass House', accent: 'green', video: BG_VIDEOS[90],
+    info: "Rafael Cerato brings a rolling, hypnotic groove to Catch & Release. TCFS burns slow and steady — pure bonfire energy.",
+    short: "Rolling, hypnotic — burns slow and steady.",
+    links: { spotify: 'https://open.spotify.com/track/4V3SzxQdZxMgxj2Db6OHoT', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-03',
+    date: '2026-08-03',
+    title: "Can't Lose My Pace (Extended Mix)",
+    artist: 'CASTLE J, LOOZBONE',
+    bpm: 130, key: 'Eb Major', label: 'HUB Records', release: '10 Jul 2026',
+    genre: 'Bass House', accent: 'blue', video: BG_VIDEOS[89],
+    info: "Castle J and LOOZBONE keep the tempo locked on HUB Records. Can't Lose My Pace is relentless — the tide keeps pushing forward.",
+    short: "Relentless — the tide keeps pushing forward.",
+    links: { spotify: 'https://open.spotify.com/track/0Wn8xXRJwWYrYlZutuJG3e', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-02',
+    date: '2026-08-02',
+    title: 'The Melody (Original Mix)',
+    artist: 'CLOUDRIDER',
+    bpm: 128, key: 'Eb Major', label: 'Black Lizard Records', release: '03 Jul 2026',
+    genre: 'Bass House', accent: 'pink', video: BG_VIDEOS[88],
+    info: "Cloudrider leans into pure melodic bounce on Black Lizard Records. The Melody is warm and bright — the neon lights around the fire, translated into sound.",
+    short: "Warm, bright — neon lights around the fire.",
+    links: { spotify: 'https://open.spotify.com/track/59WUYTYYAcKx4wvKzEHpwQ', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-01',
+    date: '2026-08-01',
+    title: 'No Brakes All Cake (Original Mix)',
+    artist: 'SHADED (LA)',
+    bpm: 128, key: 'Ab Major', label: 'Trick', release: '10 Jul 2026',
+    genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[87],
+    info: "Shaded (LA) goes full send on Trick. No Brakes All Cake is exactly what the title promises — no brakes, all cake, straight through.",
+    short: "No brakes, all cake, straight through.",
+    links: { spotify: 'https://open.spotify.com/track/2YlJTRecCxvjbd1rAwmAJC', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-07-31',
+    date: '2026-07-31',
+    title: 'Party Time (feat. Aatig) (Extended Mix)',
+    artist: 'TIGA, CHRIS LAKE, AATIG',
+    bpm: 126, key: 'Ab Major', label: 'Black Book Records', release: '10 Jul 2026',
+    genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[86],
+    info: "Tiga and Chris Lake team up with Aatig on Black Book Records to open Radar 011 right. Party Time lights the fire and turns the volume all the way up — Tide's Back In, and it's turning up.",
+    short: "Lights the fire, turns the volume up. Radar 011 begins.",
+    links: { spotify: 'https://open.spotify.com/track/5yYY6UIqKUIgv1gFnlIokW', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
 
   // ── MUSIC RADAR 010 — 21–30 Jul 2026 ──────────────────────────────────────
   {
