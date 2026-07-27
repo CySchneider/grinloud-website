@@ -1426,42 +1426,42 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 010 ────────────────────────────────────────────────────
+// ── CURRENT RADAR — 011 ────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-010',
-  number: '010',
-  title: 'Music Radar 010',
-  subtitle: 'Low Tide. High Vibe.',
-  cover: 'Music Radar Cover 010.jpg',
-  date: '21 JUL 2026',
-  liveDate: '2026-07-21', // public visibility date — same as first pick of this radar
-  nextDate: '31 JUL 2026', // TODO: confirm with Cy
-  youtubeId: 'Lxlb94ttnwQ',
-  spotifyUrl: 'https://open.spotify.com/playlist/0WOo5T3QBU29y73gAShJBO?si=7bd395ce9af147e6',
-  duration: '25:07',
+  id: 'radar-011',
+  number: '011',
+  title: 'Music Radar 011',
+  subtitle: "Tide's Back In. Turn It Up.",
+  cover: 'Music Radar Cover 011.jpg',
+  date: '31 JUL 2026',
+  liveDate: '2026-07-31', // public visibility date — same as first pick of this radar
+  nextDate: '10 AUG 2026', // TODO: confirm with Cy
+  youtubeId: 'LELsGkyGX18',
+  spotifyUrl: 'https://open.spotify.com/playlist/1otl6xFvGhkeu11vzmyZY3?si=5fb4f90dcb2243c8',
+  duration: 'TBA',
   videos: [
-    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a.mp4',
-    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (1).mp4',
-    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (2).mp4',
-    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (3).mp4',
-    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (4).mp4',
-    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (5).mp4',
-    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (6).mp4',
-    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (7).mp4',
-    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (8).mp4',
-    'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (9).mp4',
+    'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21.mp4',
+    'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (1).mp4',
+    'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (2).mp4',
+    'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (3).mp4',
+    'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (4).mp4',
+    'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (5).mp4',
+    'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (6).mp4',
+    'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (7).mp4',
+    'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (8).mp4',
+    'bonfire/grok-video-61cb8554-6998-491d-b848-13f537174e21 (9).mp4',
   ],
   tracks: [
-    { n: '01', title: 'Edge of Desire (Extended Mix)',   artist: 'Jonas Blue, Malive',                 bpm: 123, key: 'G Major',  genre: 'House',                    cue: '00:18' },
-    { n: '02', title: 'For A Long Time (Original Mix)',  artist: 'The Deepshakerz',                    bpm: 126, key: 'F Minor',  genre: 'Tech House',               cue: '02:13' },
-    { n: '03', title: 'Take Our Time (Extended Mix)',    artist: 'Chico Rose (NL)',                    bpm: 129, key: 'F Minor',  genre: 'Tech House',               cue: '04:50' },
-    { n: '04', title: 'Coming For Ya (Original Mix)',    artist: 'Chris Child',                        bpm: 125, key: 'C Minor',  genre: 'Tech House',               cue: '08:08' },
-    { n: '05', title: 'So Good (Extended Mix)',          artist: 'Marco Lys, Ben Miller (Aus)',        bpm: 128, key: 'G Minor',  genre: 'House',                    cue: '10:02' },
-    { n: '06', title: 'Kick Back (Original Mix)',        artist: 'MARTA (CA), Eve Lauren',             bpm: 128, key: 'F Major',  genre: 'Tech House',               cue: '12:08' },
-    { n: '07', title: 'Funk Drunk (Original Mix)',       artist: 'Felix Da Housecat, Fatboy Slim, Carola, 7KY', bpm: 128, key: 'F Major', genre: 'Tech House',      cue: '14:19' },
-    { n: '08', title: 'Carnaval (Original Mix)',         artist: 'Late Replies',                       bpm: 130, key: 'Gb Minor', genre: 'Minimal / Deep Tech',      cue: '16:26' },
-    { n: '09', title: 'Gotta Be Cool (Original Mix)',    artist: 'Rafael',                             bpm: 124, key: 'Db Minor', genre: 'Dance / Pop',              cue: '18:59' },
-    { n: '10', title: 'Donde el Sol (Original Mix)',     artist: 'Javi Reina, Carlos Agraz',           bpm: 128, key: 'Eb Minor', genre: 'Tech House | Latin Tech',  cue: '21:10' },
+    { n: '01', title: 'Party Time (feat. Aatig) (Extended Mix)', artist: 'Tiga, Chris Lake, Aatig',    bpm: 126, key: 'Ab Major', genre: 'Tech House', cue: 'TBA' },
+    { n: '02', title: 'No Brakes All Cake (Original Mix)',       artist: 'Shaded (LA)',                bpm: 128, key: 'Ab Major', genre: 'Tech House', cue: 'TBA' },
+    { n: '03', title: 'The Melody (Original Mix)',                artist: 'Cloudrider',                 bpm: 128, key: 'Eb Major', genre: 'Bass House', cue: 'TBA' },
+    { n: '04', title: "Can't Lose My Pace (Extended Mix)",       artist: 'Castle J, LOOZBONE',         bpm: 130, key: 'Eb Major', genre: 'Bass House', cue: 'TBA' },
+    { n: '05', title: 'TCFS (Extended Mix)',                      artist: 'Rafael Cerato',              bpm: 129, key: 'G Minor',  genre: 'Bass House', cue: 'TBA' },
+    { n: '06', title: 'TooDance (Original Mix)',                  artist: 'Lowderz, Haluem',            bpm: 130, key: 'Ab Minor', genre: 'Tech House', cue: 'TBA' },
+    { n: '07', title: 'Stop, Go (Original Mix)',                  artist: 'Suburbia',                   bpm: 130, key: 'E Major',  genre: 'Bass House', cue: 'TBA' },
+    { n: '08', title: 'Can I Ride (Extended Mix)',                artist: '95 South, SIDEPIECE',        bpm: 132, key: 'Gb Major', genre: 'Tech House', cue: 'TBA' },
+    { n: '09', title: 'DANCE (Extended Mix)',                     artist: 'Vion Konger',                bpm: 132, key: 'Db Major', genre: 'Bass House', cue: 'TBA' },
+    { n: '10', title: 'Renegade (Original Mix)',                  artist: '3Beat, Faiolli',             bpm: 132, key: 'F Major',  genre: 'Bass House', cue: 'TBA' },
   ]
 };
 
@@ -1469,6 +1469,43 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    id: 'radar-010',
+    number: '010',
+    title: 'Music Radar 010',
+    subtitle: 'Low Tide. High Vibe.',
+    cover: 'Music Radar Cover 010.jpg',
+    date: '21 JUL 2026',
+    liveDate: '2026-07-21',
+    nextDate: '31 JUL 2026',
+    youtubeId: 'Lxlb94ttnwQ',
+    spotifyUrl: 'https://open.spotify.com/playlist/0WOo5T3QBU29y73gAShJBO?si=7bd395ce9af147e6',
+    duration: '25:07',
+    videos: [
+      'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a.mp4',
+      'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (1).mp4',
+      'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (2).mp4',
+      'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (3).mp4',
+      'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (4).mp4',
+      'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (5).mp4',
+      'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (6).mp4',
+      'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (7).mp4',
+      'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (8).mp4',
+      'beach/grok-video-e13ba9c0-efd4-4d90-aabc-6d20f578448a (9).mp4',
+    ],
+    tracks: [
+      { n: '01', title: 'Edge of Desire (Extended Mix)',   artist: 'Jonas Blue, Malive',                 bpm: 123, key: 'G Major',  genre: 'House',                    cue: '00:18' },
+      { n: '02', title: 'For A Long Time (Original Mix)',  artist: 'The Deepshakerz',                    bpm: 126, key: 'F Minor',  genre: 'Tech House',               cue: '02:13' },
+      { n: '03', title: 'Take Our Time (Extended Mix)',    artist: 'Chico Rose (NL)',                    bpm: 129, key: 'F Minor',  genre: 'Tech House',               cue: '04:50' },
+      { n: '04', title: 'Coming For Ya (Original Mix)',    artist: 'Chris Child',                        bpm: 125, key: 'C Minor',  genre: 'Tech House',               cue: '08:08' },
+      { n: '05', title: 'So Good (Extended Mix)',          artist: 'Marco Lys, Ben Miller (Aus)',        bpm: 128, key: 'G Minor',  genre: 'House',                    cue: '10:02' },
+      { n: '06', title: 'Kick Back (Original Mix)',        artist: 'MARTA (CA), Eve Lauren',             bpm: 128, key: 'F Major',  genre: 'Tech House',               cue: '12:08' },
+      { n: '07', title: 'Funk Drunk (Original Mix)',       artist: 'Felix Da Housecat, Fatboy Slim, Carola, 7KY', bpm: 128, key: 'F Major', genre: 'Tech House',      cue: '14:19' },
+      { n: '08', title: 'Carnaval (Original Mix)',         artist: 'Late Replies',                       bpm: 130, key: 'Gb Minor', genre: 'Minimal / Deep Tech',      cue: '16:26' },
+      { n: '09', title: 'Gotta Be Cool (Original Mix)',    artist: 'Rafael',                             bpm: 124, key: 'Db Minor', genre: 'Dance / Pop',              cue: '18:59' },
+      { n: '10', title: 'Donde el Sol (Original Mix)',     artist: 'Javi Reina, Carlos Agraz',           bpm: 128, key: 'Eb Minor', genre: 'Tech House | Latin Tech',  cue: '21:10' },
+    ]
+  },
   {
     id: 'radar-009',
     number: '009',

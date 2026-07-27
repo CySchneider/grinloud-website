@@ -19,6 +19,7 @@ export default defineConfig({
         { src: 'GRINLOUD Partyboat/*.mp4', dest: 'partyboat' },
         { src: 'GRINLOUD Dance Stadion/*.mp4', dest: 'stadion' },
         { src: 'GRINLOUD DANCING - BEACH WITH PARROT/*.mp4', dest: 'beach' },
+        { src: 'GRINLOUD Dancing at the Bonfire/*.mp4', dest: 'bonfire' },
         { src: 'robots.txt', dest: '.' },
         { src: 'sitemap.xml', dest: '.' },
         { src: 'llms.txt', dest: '.' },
