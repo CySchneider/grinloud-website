@@ -1,12 +1,16 @@
 // Homepage Variant A
-import { BackgroundVideo, StreamingLinks, ShareButton, LegalLinks, SpotifyCover } from './shared.jsx'
+import { CoverBackground, PickCarousel, StreamingLinks, ShareButton, LegalLinks, SpotifyCover } from './shared.jsx'
 import { Icon } from './icons.jsx'
 
 function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, infoDensity, logoPos, overlayOpacity, onGotoRadar, isAdmin }) {
-  const titleSize = 8 * typeScale;
+  // cqw (container query width), not vw — sized off .home-a__main's own
+  // rendered width so the chars-per-line ratio stays constant at every
+  // viewport instead of drifting between vw-based font and vw-based
+  // container clamps (that mismatch caused 1↔2-line flips on resize).
+  const titleSize = 6.8 * typeScale;
   return (
     <div className="home home--a" style={{ '--accent': accent, '--ink': contrastInk }}>
-      <BackgroundVideo accent={accent} overlayOpacity={overlayOpacity} src={pick.video} />
+      <CoverBackground accent={accent} overlayOpacity={overlayOpacity} spotifyUrl={pick.links?.spotify} />
 
       {canPrev && (
         <button className="nav-arrow nav-arrow--left" onClick={prev} aria-label="Previous pick">
@@ -32,25 +36,16 @@ function HomeA({ pick, accent, contrastInk, prev, next, canPrev, canNext, onPlay
           <SpotifyCover spotifyUrl={pick.links?.spotify} alt={`${pick.title} — ${pick.artist} cover art`} />
         </div>
 
-        <h1 className="track-title track-title--a" style={{ fontSize: `clamp(40px, ${titleSize}vw, 176px)` }}>
+        <h1 className="track-title track-title--a" style={{ fontSize: `clamp(32px, ${titleSize}cqw, var(--track-title-max, 104px))` }}>
           {pick.title}
         </h1>
 
-        <div className="pick-artist">{pick.artist}</div>
-        <div className="pick-submeta">{pick.genre.toUpperCase()} · {pick.bpm} BPM · {pick.key}</div>
-
-        {/* Grinloud Says — narrow lines with label between them */}
-        {infoDensity !== 'minimal' && (
-          <div className="pick-quote">
-            <div className="pick-quote__header">
-              <div className="pick-quote__rule" />
-              <span className="pick-quote__label">GRINLOUD SAYS:</span>
-              <div className="pick-quote__rule" />
-            </div>
-            <p className="pick-quote__text">{pick.info}</p>
-            <div className="pick-quote__rule pick-quote__rule--solo" />
-          </div>
-        )}
+        {/* Swipeable info card — Artist / Track Info / GRINLOUD SAYS /
+            Fun Fact (if present) / Label. Replaces the old stacked blocks.
+            Artist was always shown before regardless of infoDensity, so
+            (unlike the old quote-only gate) this isn't hidden in minimal
+            mode either — it's now the only place that info lives. */}
+        <PickCarousel pick={pick} />
 
         {/* Play + Streaming */}
         <div className="pick-actions">

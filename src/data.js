@@ -131,6 +131,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'green', video: BG_VIDEOS[95],
     info: "3Beat and Faiolli close Radar 011 on Cat House Records at full throttle. Renegade is the last log on the fire — the bonfire's still burning when this one drops.",
     short: "The last log on the fire. Closes it out at full throttle.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/df9827282eb83f9b6f4f8bb422ee16ff/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/70NDNlmdgU1X12CfS6C6br', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -142,6 +143,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'blue', video: BG_VIDEOS[94],
     info: "Vion Konger keeps it simple on Smash The House Official — the title is the instruction. DANCE doesn't ask twice.",
     short: "The title is the instruction. Doesn't ask twice.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/099dcfc9e95f19f7c514b6bd114c755f/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/7bDqDcHAd54V7cdIsDCsfs', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -153,6 +155,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[93],
     info: "95 South and SIDEPIECE link up on LIP SERVICE with a bassline built for movement. Can I Ride doesn't wait for an answer — it's already rolling.",
     short: "A bassline built for movement — already rolling.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/41fdb0a176616928665cd60ee00a9ba4/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/3gXGtYT41b4FXYctdxMwCI', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -164,6 +167,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'yellow', video: BG_VIDEOS[92],
     info: "Suburbia toys with tension on ESSEntial. Stop, Go plays with the pause before the drop — and lets the fire flare back up every time.",
     short: "Plays with the pause before the drop.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/dc6472f7ff01bb50780cf04a932edb66/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/6tyHuj4Wl5bBjVrePGbRGe', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -175,6 +179,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[91],
     info: "Lowderz and Haluem land on the legendary Nervous Records. TooDance is exactly what it sounds like — too much groove to sit still to.",
     short: "Too much groove to sit still to.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/b7436716d8e585cef920a3c61411095e/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5QucpQw51gNKWKp97twx85', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -186,6 +191,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'green', video: BG_VIDEOS[90],
     info: "Rafael Cerato brings a rolling, hypnotic groove to Catch & Release. TCFS burns slow and steady — pure bonfire energy.",
     short: "Rolling, hypnotic — burns slow and steady.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/6ba0c562fbaf67f7ac5e3826bc2919ad/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/4V3SzxQdZxMgxj2Db6OHoT', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -197,6 +203,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'blue', video: BG_VIDEOS[89],
     info: "Castle J and LOOZBONE keep the tempo locked on HUB Records. Can't Lose My Pace is relentless — the tide keeps pushing forward.",
     short: "Relentless — the tide keeps pushing forward.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/ab7a8f5e2173d08883fa6aea0f3aec55/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/0Wn8xXRJwWYrYlZutuJG3e', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -208,6 +215,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'pink', video: BG_VIDEOS[88],
     info: "Cloudrider leans into pure melodic bounce on Black Lizard Records. The Melody is warm and bright — the neon lights around the fire, translated into sound.",
     short: "Warm, bright — neon lights around the fire.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/035862e27bb0172eaa740fa1a48a3420/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/59WUYTYYAcKx4wvKzEHpwQ', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -219,6 +227,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[87],
     info: "Shaded (LA) goes full send on Trick. No Brakes All Cake is exactly what the title promises — no brakes, all cake, straight through.",
     short: "No brakes, all cake, straight through.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/4051a974f8b56f19c5836a4d831feebf/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/2YlJTRecCxvjbd1rAwmAJC', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -230,6 +239,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[86],
     info: "Tiga and Chris Lake team up with Aatig on Black Book Records to open Radar 011 right. Party Time lights the fire and turns the volume all the way up — Tide's Back In, and it's turning up.",
     short: "Lights the fire, turns the volume up. Radar 011 begins.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/bac70428661be07d87075b37eef1a263/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5yYY6UIqKUIgv1gFnlIokW', youtube: '#', beatport: '#', soundcloud: '#' }
   },
 
@@ -243,6 +253,7 @@ const PICKS = [
     genre: 'Tech House | Latin Tech', accent: 'green', video: BG_VIDEOS[85],
     info: "Javi Reina and Carlos Agraz close Radar 010 on Clarisse Records with a sunny Latin groove. Donde el Sol is where the sun is — Low Tide, all the way to shore.",
     short: "A sunny Latin groove to close it out.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/de1002d3e3e3b3a028677996a2d8d71d/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/3SX1QOSDksj7KvVKNJ2M7O', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -254,6 +265,7 @@ const PICKS = [
     genre: 'Dance / Pop', accent: 'blue', video: BG_VIDEOS[84],
     info: "Rafael keeps it smooth on Crosstown Rebels. Gotta Be Cool is unbothered and exactly as cool as the title promises.",
     short: "Smooth, unbothered, exactly as cool as it sounds.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/6ffb4f04d5e3fcd0d98eb963b10a6c28/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/0BYTKcBcRU9w9S8QqbTIUR', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -265,6 +277,9 @@ const PICKS = [
     genre: 'Minimal / Deep Tech', accent: 'pink', video: BG_VIDEOS[83],
     info: "Late Replies goes darker on Deeperfect. Carnaval is deeper and a little hypnotic — the moment the mix leans into the shade.",
     short: "Darker, deeper, a little hypnotic.",
+    funFact: "Deeperfect just landed Beatport's Label of the Month for January 2026 — and Late Replies (the London duo Kas & Josh) have already scored a #1 on Beatport's overall chart, not just their genre lane.",
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebf4036cdfa5edc35b73926893',
+    labelImage: 'https://geo-media.beatport.com/image_size/500x500/88532549-f8ca-45d0-b073-90ed74238a65.jpg',
     links: { spotify: 'https://open.spotify.com/track/38gAR0EyI21lCdOucIN1kK', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -276,6 +291,8 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[82],
     info: "Felix Da Housecat and Fatboy Slim team up with Carola and 7KY on Southern Fried Records. Funk Drunk is Chicago house meets Brighton big beat — punchy, funky, impossible to sit still to.",
     short: "Chicago house meets big beat. Impossible to sit still.",
+    funFact: "Felix Da Housecat is a two-time Grammy nominee and Chicago house pioneer who's remixed Madonna, Garbage and Kylie Minogue. On Funk Drunk he teams up with Fatboy Slim — the Brighton big beat legend behind \"The Rockafeller Skank\" — plus Carola and 7KY, out via Southern Fried Records.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/17a4e6b4ce623794ea7de12149309644/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/19h72fx2iP7Y4Xvct4x7Fs', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -287,6 +304,8 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[81],
     info: "MARTA and Eve Lauren land on tszr with something deep and pocketed. Kick Back is ready whenever you are — the title says it all.",
     short: "Deep, pocketed, ready whenever you are.",
+    funFact: "MARTA is a Toronto DJ/producer building her name through her own curated club nights, while tszr — the label behind Kick Back — is the dance imprint of Three Six Zero, the management company behind Calvin Harris. Just over a week after release, the track already landed on Raoul Schram's The Boom Room radio show.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/431848b4f01c7f5254a2f36567779e71/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/3PLXh3XJRYXmKRsbmONqDd', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -298,6 +317,8 @@ const PICKS = [
     genre: 'House', accent: 'green', video: BG_VIDEOS[80],
     info: "Marco Lys and Ben Miller keep it straightforward on Club Sweat. So Good feels good because it doesn't try too hard — straight-up house, straight-up vibe.",
     short: "Straight-up house, straight-up vibe.",
+    funFact: "Marco Lys has been producing tech-tinged house for over two decades and is now one of the most-streamed tech house artists on Spotify — while Ben Miller's Club Sweat sound has earned fans in MK's and Sonny Fodera's camp.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/afdcde46fe66701ad376f2f0f72fadaa/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/242Uhtg4wD6SAmrJkHxW02', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -309,6 +330,8 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[79],
     info: "Chris Child brings a deep pocket and a steady pulse on Clubshine Records. Coming For Ya is the kind of groove you sink into, not fight.",
     short: "Deep pocket, steady pulse — sink in, don't fight it.",
+    funFact: "Chris Child's biggest track to date is Pulling Me, a collab with house legend Erick Morillo on his own Subliminal Records — still his most-streamed cut, by miles.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/5d0477747e8f85797ce97f0cf950cf65/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1oxuhXJpeFCEpUO72mt1Sm', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -320,6 +343,8 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[78],
     info: "Chico Rose lands on Sound D'Elite with a rolling bassline that's in no hurry. Take Our Time stays patient, but don't get it twisted — this one still fills a floor.",
     short: "Patient and rolling — still fills a floor.",
+    funFact: "\"Take Our Time\" is Chico Rose's debut on Ilario Alicante's label Sound D'Elite — and it wasted no time storming the Beatport charts, picked up by Franky Rizardo, Marco Carola and Mau P.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/573cd1540696d785d36c208d97ff6046/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/21MLXf9dmt0bJpFQjeK7kK', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -331,6 +356,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[77],
     info: "The Deepshakerz keep it steady on Safe Music. For A Long Time doesn't need to prove anything — a groove built to last the whole session, not just the drop.",
     short: "A groove built to last, not just the drop.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/24fc75b920893f983e85bc59d9217ef8/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1G0SPNPFSeKWwOJQ84fAL3', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -342,6 +368,8 @@ const PICKS = [
     genre: 'House', accent: 'orange', video: BG_VIDEOS[76],
     info: "Jonas Blue teams up with Malive on Defected to open Radar 010 exactly right. Edge of Desire is warm and wide open — no rush, all vibe. This is where Low Tide begins.",
     short: "Warm and wide open. Low Tide begins here.",
+    funFact: "Edge of Desire gave Jonas Blue his first-ever Beatport #1 — and it landed on a day both he and Malive happen to share as a birthday. 100 million streams and six figures of radio plays later, it's still climbing.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/49f84318807cd6e2ba0acf4986f66ea6/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/4A56h4B9xUuMMXoKuj18HT', youtube: '#', beatport: '#', soundcloud: '#' }
   },
 
@@ -355,6 +383,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'green', video: BG_VIDEOS[75],
     info: "Marten Hørger closes Radar 009 with this year's official PAROOKAVILLE anthem. Rave is exactly what it says — big, bold, and built for a festival crowd screaming the hook back.",
     short: "This year's official PAROOKAVILLE anthem.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/cb976bbd3b331e2dc1a0bcda194cba39/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1cRRRqlpF8yFANcY1q2jX3', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -366,6 +395,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[74],
     info: "Shermanology and Danny Howard team up on Nothing Else Matters. Party Girl is warm, groove-forward Tech House that keeps the energy up without ever forcing it.",
     short: "Warm, groove-forward, never forced.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/efecc33465b961f6ab93f523417cbda6/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/6zMrPt3XD04z5XOPr1FJ93', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -377,6 +407,7 @@ const PICKS = [
     genre: 'Mainstage', accent: 'pink', video: BG_VIDEOS[73],
     info: "Axwell returns to Axtone with Bonn for something big-room and anthemic. Whatever Turns You On is Mainstage through and through — built for festival crowds with hands in the air.",
     short: "Big-room and anthemic. Built for festival crowds.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/10969e2c188125c32613134d123b8920/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/4j9lTzGOw6a0XpM3qNr2Mu', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -388,6 +419,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[72],
     info: "Green Velvet and Detlef on Hellbent Records deliver exactly what the title promises. Bounce UR Body is rolling, percussive, and built for peak hour.",
     short: "Rolling, percussive, built for peak hour.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/b0a56315df2977ebb0740c414330b831/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5o9ddwUhXw50hymQN26U90', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -399,6 +431,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'orange', video: BG_VIDEOS[71],
     info: "Walker & Royce and Odd Mob join forces with Benni Ola on Insomniac Records. Can't Say Nah is exactly the kind of hook-driven Bass House that turns a good set into a great one.",
     short: "Hook-driven Bass House. Impossible to say no to.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/d9bbc30198623f48c1dfee62bbb2d72b/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/2mNmhfLfnaSCMTxFJIdN0f', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -410,6 +443,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'green', video: BG_VIDEOS[70],
     info: "CID keeps AFFAIRS moving with something low and physical. Outside is stripped-back Bass House — all bounce, no filler.",
     short: "Stripped-back Bass House. All bounce, no filler.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/14c4ba2d41030af8f07f934a6558de62/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/0EGfjwccH40OvhUI5uz57k', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -421,6 +455,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[69],
     info: "Benny Benassi and dualité flip a classic into a proper club weapon. California Dreamin' rides a familiar melody over a driving Tech House pulse — instantly recognisable, built for right now.",
     short: "A classic flipped into a proper club weapon.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/74a381f2d9dc13e743ef13b41e67f7ba/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5auOVqNBRXTfyejSXYNYkn', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -432,6 +467,7 @@ const PICKS = [
     genre: 'Tech House | Latin Tech', accent: 'pink', video: BG_VIDEOS[68],
     info: "Iglesias lands on Insomniac's IN/ROTATION with a Latin-flavoured groove that doesn't let go. Fixation earns its name — hypnotic, rhythm-first, hard to shake.",
     short: "Hypnotic, rhythm-first, hard to shake.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/9eb11c0d28e42e5ddecd6fd5d38f0bf2/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5djL4RcVrHp6WpcIHmInaM', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -443,6 +479,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[67],
     info: "Matroda and San Pacho keep building out their AFTER MIDNIGHT imprint. Party After Midnight is rolling, bass-driven, and built for the hours when the night really gets going.",
     short: "Rolling and bass-driven. Built for after hours.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/a71c2bc0f2faf9f997f654a682fa10f6/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/2HQS3pP1U1d1IdF2LcAD9J', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -454,6 +491,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[66],
     info: "Tony Romera teams up with Jamie Coins on Edible for something built to move fast. Check It doesn't ease in — tight groove, straight to the point, right from the first bar.",
     short: "Tight groove, straight to the point.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/a09e76f5786d49b451007c605c22ad66/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5OauoeDZgfHyi454ojQUSG', youtube: '#', beatport: '#', soundcloud: '#' }
   },
 
@@ -478,6 +516,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[64],
     info: "Dennis Cruz and Patrick Luna keep it simmering rather than boiling over. Bubbling earns its name — patient, percussive, building all the way through.",
     short: "Patient, percussive, building all the way through.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/60e2d7ffc2cd73b90772c7a084d9e805/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/6GvfH6m9biXR8bL6WW8YX7', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -489,6 +528,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[63],
     info: "Michael Bibi stays true to Solid Grooves form. Let's Get High is deep, hypnotic, and exactly as advertised.",
     short: "Deep, hypnotic, and exactly as advertised.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/237ee06636d89562b7b523d0a60b4a18/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/2QhWUUeC1C53aycexa4M1u', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -500,6 +540,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'yellow', video: BG_VIDEOS[62],
     info: "Disco Lines and Maesic flip Princess Superstar's vocal into something built for right now. Push It does exactly that — relentlessly.",
     short: "Built for right now. Does exactly that — relentlessly.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/d7fbbed3e0bfd7ac61434c6e7641c005/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5Ef5Df4m9y7X4ixO4TgBWy', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -511,6 +552,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'orange', video: BG_VIDEOS[61],
     info: "Chris Lake and Skrillex don't need an introduction. É o Bonde brings Brazilian bounce to a bassline built for big rooms.",
     short: "Brazilian bounce. Bassline built for big rooms.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/d7eb70e435507e4a1ea9398330bdbc65/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1tVOfZtPzGX5F8zynaurBW', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -522,6 +564,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'green', video: BG_VIDEOS[60],
     info: "WELKER lands on Tomorrowland's own label with something gritty. Tussy keeps it low and loose — groove first, no rush.",
     short: "Low and loose. Groove first, no rush.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/b2c898e297c128df1a88ff2864067d3c/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1EfOxdqEUahIOapO5AqRnt', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -533,6 +576,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[59],
     info: "Breaking Beattz and Adam Sellouk bring Latin heat to Cloonee's own imprint. Bom Dia greets the floor like it never left.",
     short: "Latin heat on Cloonee's imprint. Greets the floor like it never left.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/6efd88edc8ec3cab7d02d32002819cc2/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/4XwAXL9rSGfAWMFmxHLVsv', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -544,6 +588,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'pink', video: BG_VIDEOS[58],
     info: "Eats Everything doesn't ease in. Make Some Noise is exactly the command it sounds like — raw, rolling, unmistakably club.",
     short: "Exactly the command it sounds like. Raw, rolling, unmistakably club.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/90d6c2c90172720e981a75aa4c449aef/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/4maoPRr7kjuafK4oZBoF6o', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -555,6 +600,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[57],
     info: "Wax Motif sinks his teeth in. Bite Down is sharp, low-slung, and built to be felt before it's heard.",
     short: "Sharp, low-slung. Built to be felt before it's heard.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/6807e7032eaa1e291b1973c2c423f2bd/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/4sCBDKHWDP3cBYrJW3fDzO', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -566,6 +612,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'orange', video: BG_VIDEOS[56],
     info: "Volkoder opens the month slow and heavy. Trajadão rolls in on a thick, swung bassline — built for the long burn, not the quick hit.",
     short: "Thick, swung bassline. Built for the long burn.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/6629a6d262ffd6ecccdda364003df8fb/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/3DNROV85RpzdQP7E1Erpa0', youtube: '#', beatport: '#', soundcloud: '#' }
   },
 
@@ -579,6 +626,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[55],
     info: "Joshwa closes 007 on FISHER's Catch & Release — and the title is not a suggestion. Work Your Body is relentless peak-hour fuel with no off switch.",
     short: "Not a suggestion. Relentless peak-hour fuel.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/c3215c46437150964c910ec22ad24de7/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/2eUZAef6lJ9hBvw7XeExDf', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -590,6 +638,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[54],
     info: "San Pacho is back on LIBERA and still at full speed. Bootay is tight, playful, and loaded with that irresistible bounce that makes floors break wide open.",
     short: "Tight, playful, irresistible bounce.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/f2099c9babbb1cbfa4879e26115da5e9/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1s0xmXddfQzw33uQ7eR0Cu', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -601,6 +650,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[53],
     info: "Sapian and AVIV SAB land on Black Book Records with something mechanical and deep. The pump is in the name and the track delivers on every count.",
     short: "Mechanical and deep. Delivers on every count.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/86f7a9fc398de16a16efd949cadd85aa/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/7q7qRayofPCxLoeUZ4Ng7p', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -612,6 +662,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'pink', video: BG_VIDEOS[52],
     info: "Kelland and Brosa make manners sound dangerous. Say Please is bass-forward and relentless — the kind of Bass House that reminds you why the genre matters.",
     short: "Manners sound dangerous. Bass-forward and relentless.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/fe4675699579a46ce417f844b391b097/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/2W4XGUcESlgss1WAmFCHqv', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -623,6 +674,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[51],
     info: "Angel Heredia brings Latin heat to KoBBoK. BAILONGO is rhythm-first and uncompromising — a groove that takes hold of the floor before anyone knows what hit them.",
     short: "Rhythm-first. Takes hold before anyone knows what hit them.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/e27c78f76ca715bca758f84dabc14f1b/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/401RFEgbQLSrB8oD2J1HDT', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -634,6 +686,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'green', video: BG_VIDEOS[50],
     info: "Rello tears apart Joshwa's original and rebuilds it from the ground up. Punchy, relentless, and fully loaded — Hellbent Records doing what they do best.",
     short: "Punchy, relentless, and fully loaded.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/c3215c46437150964c910ec22ad24de7/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1m8qbseW8yMcRDNiIjyijT', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -656,6 +709,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[48],
     info: "Shermanology delivers exactly what the title promises. Insane is tight, percussive, and locks in immediately — the kind of track that turns a warm-up set into peak hour.",
     short: "Locks in immediately. Turns warm-up into peak hour.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/efecc33465b961f6ab93f523417cbda6/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/07ke5nx6iwoBo2ERqCK1Xl', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -667,6 +721,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[47],
     info: "Four producers, one direction. eMbi teams up with Mason Collective, Ollie BC and Dany Gomez on MVSON for something hypnotic, rolling, and impossible to leave alone.",
     short: "Hypnotic, rolling, impossible to leave alone.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/039065fed0de9fefa12772c37b5ee5ae/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/2G6AM2rmjjJcyiOvizYawc', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -678,6 +733,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[46],
     info: "OMRI. and Yamagucci open 007 with a track that earns its name. My Killers has a rolling darkness underneath — Collecting Dots quality through and through.",
     short: "Rolling darkness through and through.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/df0e9bb033cb6dd38535d0dba1c48a9b/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/03KDjQ54ghLmdABNti9XsI', youtube: '#', beatport: '#', soundcloud: '#' }
   },
 
@@ -691,6 +747,7 @@ const PICKS = [
     genre: 'House', accent: 'orange', video: BG_VIDEOS[45],
     info: "ANOTR back on NO ART and they haven't lost a step. Effortless, cool, with that signature understated groove that sounds simple until you try to do it yourself.",
     short: "Effortless, cool, signature understated groove.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/e9397a0104521972c9d71baaa0a4379f/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/45k8qYkYZJ87ckRq3O3fVj', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -702,6 +759,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[44],
     info: "Gabss keeps it clean and effective. Locked groove, understated vocal chops, pure dancefloor logic. Exactly the kind of track that makes a Beatport Hype Top 10 feel earned.",
     short: "Locked groove, pure dancefloor logic.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/87f0418d399d48ce7711ae0a1d5f65ce/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/7k8T2aK5vHPiP6HExfFOI3', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -713,6 +771,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[43],
     info: "Vintage Culture and Volkoder take Jitwam's warm original and inject pure club energy. Deep groove, emotional undertow — one of the best remixes of the year.",
     short: "Deep groove, emotional undertow. One of the year's best remixes.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/e215c84949bafdf5638a62d3e3bee2b3/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/0U62uEAcEBfWab5CyQLaEg', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -724,6 +783,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[42],
     info: "Max Styler and Greggio doing exactly what the title promises. Old references, new execution — the kind of track that feels familiar and fresh at the same time.",
     short: "Old references, new execution. Familiar and fresh at the same time.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/eb050be68c88feb90e8aa975c7aad42f/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1RaDR9M8gan0KxZOSl2i8Y', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -746,6 +806,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[40],
     info: "Cloonee flips 90s rave nostalgia into a proper floor weapon. Jocelyn Enriquez's voice over a driving Tech House groove — this one hits different.",
     short: "90s rave nostalgia turned into a proper floor weapon.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/2f4004a1404096a89f788c75a0975f97/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/6bIvgjuhHG2tNldfu6WTZE', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -757,6 +818,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[39],
     info: "Prospa is on a streak and this one proves it. Tight groove, that vocal hook that doesn't quit — CircoLoco quality all the way through.",
     short: "Tight groove, vocal hook that doesn't quit.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/3ee4dcafbb0852dac6d478f98153ec16/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5q6QXK4K3DvIlwGEtElny3', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -768,6 +830,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[38],
     info: "A 2001 anthem rebuilt for 2026. Green Velvet's classic was already untouchable — MEDUZA and the Italian crew give it new legs without losing the soul.",
     short: "Green Velvet's classic reborn. New legs, same soul.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/b0a56315df2977ebb0740c414330b831/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5hYSsLVQ6Isk6YZrnsBj4E', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -779,6 +842,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[37],
     info: "POLOVICH and HILLS locked in. Confident, rolling, with that effortless swagger that only sounds easy when it's actually very precise.",
     short: "Effortless swagger that's actually very precise.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/7c3a471ecd42a0ab52c9a94b5747baae/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/3KTsWPqBSAnpPkH3IuLUAf', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -790,6 +854,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[36],
     info: "Fallon's debut on Black Book and he walks in like he owns the place. Built around a vocal sample that's hard to forget — bold, cheeky, and designed to make floors move.",
     short: "Bold, cheeky, and built to make floors move.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/e23066163f21176a822b54001ee648a2/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5YPiLbMJ4qdTSjiNvjoJzZ', youtube: '#', beatport: '#', soundcloud: '#' }
   },
 
@@ -803,6 +868,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[35],
     info: "San Pacho on LIBERA closes 005 in style. Alcoholic is the kind of track that keeps going long after the night ends.",
     short: "Keeps going long after the night ends.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/f2099c9babbb1cbfa4879e26115da5e9/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5Iedc3D20KJoj95uQRp5p0', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -814,6 +880,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[34],
     info: "Bibi on EMPIRE. Bad Wolf has teeth — dark, muscular, completely in control. One of his sharpest.",
     short: "Dark, muscular, completely in control.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/237ee06636d89562b7b523d0a60b4a18/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/4S8bYzrUHwoAsPzJWRt4QM', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -825,6 +892,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[33],
     info: "Afrojack steps into Tech House territory on Black Book Records and doesn't miss. Control is smooth, relentless, and impossible to ignore.",
     short: "Smooth and relentless. Afrojack doesn't miss.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/73ac0571eb4a75e4158b146b44b02f7b/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/4e1L2pH75XOtCE0I0XzxlU', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -836,6 +904,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[32],
     info: "GREG 99 builds something infectious — a groove that takes over the floor before you even realise it's happening.",
     short: "A groove that takes over before you realise it.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/355843c5632444650c53b9bdbd2f0863/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/7HzUjBSzXpS3vsmz8VG7yW', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -847,6 +916,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'green', video: BG_VIDEOS[31],
     info: "KENZ on Repopulate Mars. Rake It Up has the swagger of a late-night set closer — minimal but fully loaded.",
     short: "The swagger of a late-night set closer.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/3fdde5e4cade928fc1aea6951ccfaac5/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/6YNRSnDi92sAhYO8XzonVT', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -858,6 +928,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[30],
     info: "Three names, one weapon. Matroda, San Pacho and AFTER MIDNIGHT deliver something slick, dark and impossible to ignore.",
     short: "Slick, dark and impossible to ignore.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/87cacee35b1a433397a816b7c1a5615f/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1oeljccOyFQGPOY8gaVnnH', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -880,6 +951,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'blue', video: BG_VIDEOS[28],
     info: "Toolroom's finest doing what they do best. Lipstick is proper floor-first Tech House — tight, punchy, and impossible to shake.",
     short: "Proper floor-first Tech House. Tight and impossible to shake.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/c627ebc0a16befde9a19555fb3000c8f/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5DeNvGYijFobt2ufPFGhsK', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -891,6 +963,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[27],
     info: "LOOZBONE locks in on Catch & Release with a groove that doesn't let go. The bass takes the wheel and the floor follows.",
     short: "The bass takes the wheel and the floor follows.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/8de6a3d7160525daa6febdaff82d8d49/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/0ucs704ejvx402bCbDC7ms', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -902,6 +975,7 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[26],
     info: "Dark and relentless. Qobra builds a room-ready Tech House weapon from scratch — no filler, no mercy. Opens 005 exactly right.",
     short: "Dark and relentless. No filler, no mercy.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/4eff99d50e26adbcd3bb92e60a5127fb/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/75386mOXWOPoHCjNRc3rgj', youtube: '#', beatport: '#', soundcloud: '#' }
   },
 
@@ -920,6 +994,7 @@ const PICKS = [
     video: BG_VIDEOS[0],
     info: "James Hype closes the month with pure euphoria. Seratonin is exactly what it promises — a rush that peaks the floor and doesn't apologise.",
     short: "James Hype closes the month with pure euphoria.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/9e567fe860f1caca9be09512edee3dc8/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/0SZKacJ8DMFQjmdUfSJX2C', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -936,6 +1011,7 @@ const PICKS = [
     video: BG_VIDEOS[1],
     info: "SIDEPIECE at peak form. Function is what happens when two of tech house's sharpest are fully locked in.",
     short: "SIDEPIECE at peak form.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/202f9d0c9ba5ed3036f5cd461e847263/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1bhRw5feZyeh5Ti0o40wC9', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -984,6 +1060,7 @@ const PICKS = [
     video: BG_VIDEOS[4],
     info: "Prospa is everywhere right now and Don't Stop is the reason. Clean, energetic, completely relentless.",
     short: "Clean, energetic, completely relentless.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/3ee4dcafbb0852dac6d478f98153ec16/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/13cX2o4cASGLYXNaQyXWxt', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1000,6 +1077,7 @@ const PICKS = [
     video: BG_VIDEOS[5],
     info: 'Walker & Royce bring swagger, Alok brings Brazilian heat. Rolling tech house that keeps moving.',
     short: 'Walker & Royce bring swagger, Alok brings Brazilian heat.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/d9bbc30198623f48c1dfee62bbb2d72b/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/675XtSIBWY5q5D5lxdp40M', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1016,6 +1094,7 @@ const PICKS = [
     video: BG_VIDEOS[6],
     info: "Odd Mob hits Beatport Bass House top 5. Made for floors that don't discriminate.",
     short: "Made for floors that don't discriminate.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/18d297a10798128c2cc9bf90106e69a7/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/6i7J4zXJU7ZQVuLfb9bPGD', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1048,6 +1127,7 @@ const PICKS = [
     video: BG_VIDEOS[8],
     info: "Tony Romera is relentless. Can't Sleep doesn't let you rest — rolling bass, locked groove, no exits.",
     short: "Rolling bass, locked groove, no exits.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/a09e76f5786d49b451007c605c22ad66/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1j2iVhhHif1dMifGtQhwUa', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1112,6 +1192,7 @@ const PICKS = [
     video: BG_VIDEOS[12],
     info: 'KC Lights brings infectious Latin flair to the Toolroom stable. Dança is warm, percussive, and impossible to stand still to — proper peak-hour material.',
     short: 'Warm, percussive, impossible to stand still to.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/9fea5b3a41f778655f30db7af6b41786/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1bSEok2LJmdLzaIYAj14bk', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1128,6 +1209,7 @@ const PICKS = [
     video: BG_VIDEOS[13],
     info: "The title isn't a suggestion. Greggio goes straight for the jugular — a precision-built tech house weapon with zero filler and maximum impact.",
     short: "Precision-built tech house weapon. Zero filler, maximum impact.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/6b99c4251347f3254150c53ccc43b2d7/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/44vqflfNrPLnAW1Y5B1e4c', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1176,6 +1258,7 @@ const PICKS = [
     video: BG_VIDEOS[16],
     info: "Faraone doesn't waste a single bar. Tight, driving, purposeful — this is what tech house sounds like when someone truly understands the dancefloor.",
     short: "Tight, driving, purposeful. Not a bar wasted.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/d040e96decedf36f967c64794a3f71c0/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/2G9EQucmyuipl9wXCO1oNx', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1192,6 +1275,7 @@ const PICKS = [
     video: BG_VIDEOS[17],
     info: 'CID loads the chamber and fires. Pure bass house aggression wrapped in a deceptively clean package. Festival-ready from the first bar.',
     short: 'Pure bass house aggression. Festival-ready from bar one.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/14c4ba2d41030af8f07f934a6558de62/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/19PBU0nWYBOMzHOAxDBEcg', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1224,6 +1308,7 @@ const PICKS = [
     video: BG_VIDEOS[19],
     info: 'Deeper Purpose teams up with Jack Orley and Michael Ekow for a hypnotic tech house groover. Dark, surgical, and relentless — the kind of track that builds tension until the room breaks.',
     short: 'Dark, surgical, relentless. The room breaks.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/e1ca294a9efbe2e94230bdde9e00de4a/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/6RmHESttla4I4g4vr0NLkQ', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1240,6 +1325,7 @@ const PICKS = [
     video: BG_VIDEOS[20],
     info: 'Started as a Melbourne secret weapon. Spread globally via set clips before anyone knew the name. Peggy Gou, Chris Lake, Interplanetary Criminal — they all played it.',
     short: 'Melbourne secret weapon. Everyone played it.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/ea447b773d3476f4cfa5a47665f4ac30/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/507j66jaEEUU11uFSTOHFM', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1256,6 +1342,7 @@ const PICKS = [
     video: BG_VIDEOS[21],
     info: "FISHER's label doesn't miss, and Noizu doesn't miss. A relentless groove machine with enough swagger to carry an entire set.",
     short: "A relentless groove machine with enough swagger to carry an entire set.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/1129a6acbcb761540648a895178014b7/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/6l5L3mJwDFqNsizPysrCNo', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1352,6 +1439,7 @@ const PICKS = [
     video: BG_VIDEOS[1],
     info: "Two years as a secret weapon in Beltran's sets — the ID that everyone was hunting. Finally released and it hits exactly as hard as the clips promised.",
     short: "The ID everyone was hunting. It hits as hard as the clips promised.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/23d2cbad697ebcbcf2b9cef4366652ec/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/6XqRL8W59LbyLuIQ7wyjON', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1400,6 +1488,7 @@ const PICKS = [
     video: BG_VIDEOS[4],
     info: 'A love letter to Miami house culture. Back To The 305 has the warmth and groove of a classic with the production of something built for right now.',
     short: 'A love letter to Miami house culture.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/166d9adb223b246d82c7d9628881305b/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1tWkiHe2UtNye350uhqwVm', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1416,6 +1505,7 @@ const PICKS = [
     video: BG_VIDEOS[5],
     info: "Solomun's presence elevates everything. One More is melodic, warm, and quietly devastating — the kind of track you feel before you understand it.",
     short: "Melodic, warm, and quietly devastating.",
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/eb050be68c88feb90e8aa975c7aad42f/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/7hOwCb0vcnpNRBQUoI5smE', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1432,6 +1522,7 @@ const PICKS = [
     video: BG_VIDEOS[6],
     info: 'Mau P is relentless and Neck is the proof. Dark groove, unexpected structure, maximum dancefloor intent. One of his best.',
     short: 'Dark groove, unexpected structure, maximum intent.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/0f40555bc579fc175b726c518dc15766/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/6KrrcOQiX7NQ4h038wKTUy', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1448,6 +1539,7 @@ const PICKS = [
     video: BG_VIDEOS[7],
     info: 'Brazilian bass energy at full force. Dubdogz knows exactly how to build tension and release it — How Does It Feel does both with precision.',
     short: 'Brazilian bass energy at full force.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/a803ebd6536b38adafcbd838485feed5/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/0XJzkaWALsvlMEQbBSEIX2', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1464,6 +1556,7 @@ const PICKS = [
     video: BG_VIDEOS[8],
     info: 'An unlikely collab that works. Summit brings the underground credibility, The Chainsmokers bring the hook. All The Time lands exactly where it aims.',
     short: 'Underground credibility meets the hook. It lands exactly where it aims.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/200982268dcabae98644b1601a90a948/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/1V8eQfZ1zpcdA9ctIb6fY7', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1480,6 +1573,7 @@ const PICKS = [
     video: BG_VIDEOS[9],
     info: 'Dom Dolla flips a classic into something entirely contemporary. Addicted To Bass hits like a statement — and it is.',
     short: 'Dom Dolla flips a classic. Hits like a statement.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/64e51b9c69e898c15cf61e200e277a17/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/0umvGSFCXSyrHGcXKwsvCg', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1496,6 +1590,7 @@ const PICKS = [
     video: BG_VIDEOS[10],
     info: 'Max Styler and Vintage Culture lock in together on a track that earns its name. Freaky 1 is bold, elastic, and built for peak hour.',
     short: 'Bold, elastic, and built for peak hour.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/eb050be68c88feb90e8aa975c7aad42f/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/5cefCIhgIJgsG3r3LcRmwB', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1512,6 +1607,7 @@ const PICKS = [
     video: BG_VIDEOS[11],
     info: 'ANOTR continues their streak of effortlessly cool house music. Talk To You is groovy, understated, and impossible to ignore on a good soundsystem.',
     short: 'Groovy, understated, impossible to ignore on a good soundsystem.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/e9397a0104521972c9d71baaa0a4379f/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/0kl6Ozan3fuUdCl6TlB15v', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1528,6 +1624,7 @@ const PICKS = [
     video: BG_VIDEOS[12],
     info: 'Tiësto teams up with Lucas & Steve and the result is pure euphoria. Free Your Mind is anthemic without being obvious — a rare balance in modern house.',
     short: 'Anthemic without being obvious. Pure euphoria.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/b6ff15612b6ef51e5a552e4bd6abefd6/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/4KXq783lFLVnmC9dkI7j7l', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1544,6 +1641,7 @@ const PICKS = [
     video: BG_VIDEOS[13],
     info: 'James Hype strips it back to pure instinct. Trigger Finger is minimal, muscular, and merciless — the kind of track that resets a room with a single drop.',
     short: 'Minimal, muscular, merciless. Resets a room with a single drop.',
+    artistImage: 'https://cdn-images.dzcdn.net/images/artist/9e567fe860f1caca9be09512edee3dc8/1000x1000-000000-80-0-0.jpg',
     links: { spotify: 'https://open.spotify.com/track/0lXUyVhxuJOchIjOsVNkIj', youtube: '#', beatport: '#', soundcloud: '#' }
   },
 ];

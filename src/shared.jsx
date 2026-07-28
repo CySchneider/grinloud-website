@@ -62,6 +62,166 @@ function BackgroundVideo({ overlayOpacity = 0.35, accent, src }) {
   );
 }
 
+// Ken Burns + grain background sourced from the track's own Spotify cover,
+// used on the Pick of the Day page instead of a dance-clip video.
+function CoverBackground({ overlayOpacity = 0.35, accent, spotifyUrl }) {
+  const [src, setSrc] = React.useState(null);
+
+  React.useEffect(() => {
+    if (!spotifyUrl || spotifyUrl === '#') return;
+    let cancelled = false;
+    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
+      .then(r => r.json())
+      .then(d => {
+        if (cancelled || !d.thumbnail_url) return;
+        // oEmbed hands back the 300px CDN variant; swap the size prefix for
+        // the 640px one — same image, same host, just a different crop code.
+        setSrc(d.thumbnail_url.replace('ab67616d00001e02', 'ab67616d0000b273'));
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [spotifyUrl]);
+
+  return (
+    <div className="bg-cover-stage" aria-hidden="true">
+      {src && <img className="bg-cover-img" src={src} alt="" />}
+      <div className="bg-cover-grain" />
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundColor: accent, opacity: overlayOpacity * 0.5,
+      }} />
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.62) 100%)',
+      }} />
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.38) 100%)',
+      }} />
+    </div>
+  );
+}
+
+// Swipeable info card, replaces the old stacked artist/meta/quote/details
+// blocks on the Pick page. One slide per fact: Artist, Track Info (incl.
+// label + release), GRINLOUD SAYS, Fun Fact (only if the pick has one).
+// Native horizontal scroll-snap — no carousel library, works with
+// touch/trackpad swipe out of the box. All the same text still ships in
+// full, unpaginated, in the static SEO fallback (generate-static-pages.js)
+// — this is a presentation layer on top of the hydrated app only, nothing
+// is hidden from crawlers.
+//
+// Square thumbnails (not full-bleed backgrounds) sit left of the text,
+// framed the same way as every other card/button on the site: hard
+// border-w outline + shadow-offset, no blur/scrim.
+function PickCarousel({ pick }) {
+  const trackRef = React.useRef(null);
+  const [active, setActive] = React.useState(0);
+
+  // Only the lead artist gets a photo — split "Main, Feat One, Feat Two"
+  // so the name row can match: lead name big, everyone else small beside it.
+  const [mainArtist, ...featArtists] = pick.artist.split(', ');
+
+  // labelImage is a manual override (rare — one pick has a real Beatport
+  // label-logo asset) for almost every pick it's unset, so the TRACK INFO
+  // slide falls back to the track's own Spotify cover — same oEmbed fetch
+  // CoverBackground/SpotifyCover already use elsewhere on this page.
+  const [trackCover, setTrackCover] = React.useState(null);
+  React.useEffect(() => {
+    if (pick.labelImage) return;
+    const spotifyUrl = pick.links?.spotify;
+    if (!spotifyUrl || spotifyUrl === '#') return;
+    let cancelled = false;
+    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
+      .then(r => r.json())
+      .then(d => { if (!cancelled && d.thumbnail_url) setTrackCover(d.thumbnail_url); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [pick.labelImage, pick.links?.spotify]);
+
+  const slides = [
+    {
+      key: 'artist', label: 'ARTIST', image: pick.artistImage,
+      body: (
+        <div className="pcard__artist-wrap">
+          <div className="pcard__artist">{mainArtist}</div>
+          {featArtists.length > 0 && (
+            <div className="pcard__artist-feat">{featArtists.join(', ')}</div>
+          )}
+        </div>
+      ),
+    },
+    {
+      // Track + label info — the record label's square logo (or, absent
+      // that, the track's own cover) is this slide's image.
+      key: 'track', label: 'TRACK INFO', image: pick.labelImage || trackCover,
+      body: (
+        <div className="pcard__meta">
+          <div className="pcard__meta-row"><span>Genre</span><strong>{pick.genre}</strong></div>
+          <div className="pcard__meta-row"><span>BPM</span><strong>{pick.bpm}</strong></div>
+          <div className="pcard__meta-row"><span>Key</span><strong>{pick.key}</strong></div>
+          <div className="pcard__meta-row"><span>Label</span><strong>{pick.label}</strong></div>
+          <div className="pcard__meta-row"><span>Release</span><strong>{pick.release}</strong></div>
+        </div>
+      ),
+    },
+    {
+      // Same still used on the Instagram carousel's "GRINLOUD SAYS" slide —
+      // static asset, copied in via vite.config.js's viteStaticCopy list.
+      key: 'says', label: 'GRINLOUD SAYS', image: 'grinloud-says-still.jpg',
+      body: <p className="pcard__quote">{pick.info}</p>,
+    },
+    ...(pick.funFact ? [{
+      // Fixed brand image for this slide — same static asset for every
+      // pick, copied in via vite.config.js's viteStaticCopy list.
+      key: 'fact', label: 'FUN FACT', image: 'grok-image-25c6fdac-4b59-417b-bcb0-10956d297150.jpg',
+      body: <p className="pcard__fact">{pick.funFact}</p>,
+    }] : []),
+  ];
+
+  const goTo = (i) => {
+    const track = trackRef.current;
+    if (!track) return;
+    track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+  };
+
+  // Slide index follows scroll position — works for swipe, trackpad, and
+  // the dot clicks below (goTo triggers a scroll, which lands here too).
+  const onScroll = () => {
+    const track = trackRef.current;
+    if (!track || !track.clientWidth) return;
+    setActive(Math.round(track.scrollLeft / track.clientWidth));
+  };
+
+  return (
+    <div className="pick-carousel">
+      <div className="pick-carousel__track" ref={trackRef} onScroll={onScroll}>
+        {slides.map((s) => (
+          <div className={`pick-carousel__slide ${s.image ? 'has-image' : ''}`} key={s.key}>
+            {s.image && (
+              <img className="pick-carousel__thumb" src={s.image} alt="" loading="lazy" />
+            )}
+            <div className="pick-carousel__content">
+              <div className="pick-carousel__label">{s.label}</div>
+              {s.body}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="pick-carousel__dots">
+        {slides.map((s, i) => (
+          <button
+            key={s.key}
+            className={`pick-carousel__dot ${i === active ? 'is-active' : ''}`}
+            onClick={() => goTo(i)}
+            aria-label={`Go to ${s.label}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const LOGO_ANIMS = ['bounce','wobble','spin','shake','heartbeat','flip','squish','nod','pop','dizzy'];
 
 function LogoMark({ size = 84, position = 'top', onClick }) {
@@ -512,4 +672,4 @@ function SpotifyCover({ spotifyUrl, alt = '' }) {
   );
 }
 
-export { BackgroundVideo, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover };
+export { BackgroundVideo, CoverBackground, PickCarousel, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover };

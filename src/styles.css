@@ -13,6 +13,55 @@
   --display: 'Archivo Black', 'Helvetica Neue', sans-serif;
   --sans: 'Space Grotesk', 'Helvetica Neue', sans-serif;
   --mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --border-w: 4px;
+  --shadow-offset: 6px 6px 0 var(--ink);
+  --shadow-offset-hover: 8px 8px 0 var(--ink);
+  --shadow-offset-active: 3px 3px 0 var(--ink);
+  --shadow-cover: 0 10px 30px rgba(0,0,0,0.3);
+
+  /* Scalable poster-text treatment (headline/artist type) — em-based so it
+     shrinks proportionally at smaller font-sizes instead of staying a
+     fixed px value like the UI-chrome shadow above.
+     --text-outline is the same "16 shadows in a circle" technique used on
+     .radar__number — a smooth round outline with no -webkit-text-stroke
+     cusp-spikes. --text-shadow is the big single offset "poster" shadow,
+     layered on top of the outline. */
+  --text-outline:
+    0.045em 0em 0 var(--ink), 0.042em 0.017em 0 var(--ink), 0.032em 0.032em 0 var(--ink), 0.017em 0.042em 0 var(--ink),
+    0em 0.045em 0 var(--ink), -0.017em 0.042em 0 var(--ink), -0.032em 0.032em 0 var(--ink), -0.042em 0.017em 0 var(--ink),
+    -0.045em 0em 0 var(--ink), -0.042em -0.017em 0 var(--ink), -0.032em -0.032em 0 var(--ink), -0.017em -0.042em 0 var(--ink),
+    0em -0.045em 0 var(--ink), 0.017em -0.042em 0 var(--ink), 0.032em -0.032em 0 var(--ink), 0.042em -0.017em 0 var(--ink);
+  /* Same technique, wider radius — for smaller type (e.g. artist name)
+     where the thin ratio above reads as too faint to register. */
+  --text-outline-bold:
+    0.1em 0em 0 var(--ink), 0.092em 0.038em 0 var(--ink), 0.071em 0.071em 0 var(--ink), 0.038em 0.092em 0 var(--ink),
+    0em 0.1em 0 var(--ink), -0.038em 0.092em 0 var(--ink), -0.071em 0.071em 0 var(--ink), -0.092em 0.038em 0 var(--ink),
+    -0.1em 0em 0 var(--ink), -0.092em -0.038em 0 var(--ink), -0.071em -0.071em 0 var(--ink), -0.038em -0.092em 0 var(--ink),
+    0em -0.1em 0 var(--ink), 0.038em -0.092em 0 var(--ink), 0.071em -0.071em 0 var(--ink), 0.092em -0.038em 0 var(--ink);
+  /* Single hard directional offset — same technique as the pill/logo
+     box-shadow (solid, no blur, no ring around the whole shape), just
+     bigger so it visibly grows thicker toward the bottom-right instead of
+     reading as a second symmetric outline. */
+  --text-shadow: 0.06em 0.06em 0 var(--ink);
+  --text-shadow-bold: 0.1em 0.1em 0 var(--ink);
+
+  /* Spacing scale (Phase 2) — replaces the two overlapping ad-hoc grids
+     (÷4 and 6/10/14/18/22) the audit found. Available for new work now;
+     existing gap/padding values get migrated selector by selector, not in
+     one blind sweep — see Phase 2 notes. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
 }
 
 * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -50,7 +99,7 @@ a { color: inherit; text-decoration: none; }
   flex-shrink: 0;
   transition: background 0.15s, color 0.15s;
 }
-.nav-back:hover { background: #FF1F8F; }
+.nav-back:hover { background: var(--page-bg); }
 
 /* Radar pill under nav — accent colour */
 .top-nav__radar-pill {
@@ -59,9 +108,9 @@ a { color: inherit; text-decoration: none; }
   margin-left: auto;
   margin-top: 6px;
   padding: 6px 16px;
-  background: var(--accent, #FFE000);
+  background: var(--accent, #FFE600);
   color: var(--ink);
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
   border-radius: 999px;
   font-family: var(--mono);
   font-size: 10px;
@@ -69,12 +118,12 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   cursor: pointer;
   pointer-events: auto;
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: var(--shadow-offset);
   transition: transform 0.15s, box-shadow 0.15s;
 }
 .top-nav__radar-pill:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: var(--shadow-offset);
 }
 
 .top-nav {
@@ -94,7 +143,7 @@ a { color: inherit; text-decoration: none; }
   background: rgba(245, 242, 238, 0.85);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 4px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
   border-radius: 999px;
   padding: 6px;
 }
@@ -122,8 +171,8 @@ a { color: inherit; text-decoration: none; }
   background: var(--ink);
   color: var(--paper);
 }
-.nav-link--ghost:hover { background: var(--ink); color: #FFE000; }
-a.nav-link--ghost:hover svg { color: #FFE000; }
+.nav-link--ghost:hover { background: var(--ink); color: #FFE600; }
+a.nav-link--ghost:hover svg { color: #FFE600; }
 .nav-spacer { width: 1.5px; height: 22px; background: var(--ink); opacity: 0.2; margin: 0 4px; }
 .nav-dot { display: none; }
 
@@ -164,6 +213,45 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 }
 
 /* ============================================================
+   BACKGROUND COVER STAGE (test) — Ken Burns + grain on a Spotify cover
+   ============================================================ */
+.bg-cover-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+}
+.bg-cover-img {
+  position: absolute;
+  inset: -25%;
+  width: 150%;
+  height: 150%;
+  object-fit: cover;
+  filter: blur(32px) brightness(0.82) saturate(1.15);
+  animation: bgCoverKenBurns 26s ease-in-out infinite;
+  transform-origin: 50% 35%;
+}
+@keyframes bgCoverKenBurns {
+  0%   { transform: scale(1) translate(0%, 0%); }
+  50%  { transform: scale(1.18) translate(-1.5%, -1%); }
+  100% { transform: scale(1) translate(0%, 0%); }
+}
+.bg-cover-grain {
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-cover-img { animation: none; }
+}
+
+/* ============================================================
    NAV ARROWS (left / right circle buttons)
    ============================================================ */
 .nav-arrow {
@@ -176,22 +264,22 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   border-radius: 50%;
   background: var(--paper);
   color: var(--ink);
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: var(--shadow-offset);
   transition: transform 0.14s, box-shadow 0.14s, background 0.18s;
 }
 .nav-arrow:hover {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--accent);
+  color: var(--ink);
   transform: translateY(calc(-50% - 2px));
-  box-shadow: 6px 6px 0 rgba(0,0,0,0.4);
+  box-shadow: var(--shadow-offset-hover);
 }
 .nav-arrow:active {
   transform: translateY(-50%);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: var(--shadow-offset-active);
 }
 .nav-arrow--left  { left: 32px; }
 .nav-arrow--right { right: 32px; }
@@ -229,7 +317,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .play-overlay.is-playing {
   background: var(--accent);
   color: var(--ink);
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
 }
 .play-overlay--b {
   top: auto;
@@ -244,7 +332,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   gap: 10px;
   padding: 12px 20px;
   background: var(--ink);
-  color: var(--accent, #FF1F8F);
+  color: var(--accent, var(--page-bg));
   border-radius: 999px;
   font-family: var(--mono);
   font-size: 11px;
@@ -253,8 +341,8 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   transition: background 0.18s, color 0.18s;
   border: none;
 }
-.play-btn:hover { background: var(--accent, #FF1F8F); color: var(--ink); }
-.play-btn.is-playing { background: var(--accent, #FFE000); color: var(--ink); }
+.play-btn:hover { background: var(--accent, var(--page-bg)); color: var(--ink); }
+.play-btn.is-playing { background: var(--accent, #FFE600); color: var(--ink); }
 
 /* ============================================================
    HOME COMMON
@@ -290,9 +378,16 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   justify-content: center;
   text-align: center;
   gap: 18px;
-  max-width: 900px;
+  max-width: clamp(900px, 70vw, 1500px);
   margin: 0 auto;
   width: 100%;
+  /* lets .track-title size itself off this box's own rendered width (cqw)
+     instead of the raw viewport (vw) — since max-width above is itself a
+     vw-based clamp, sizing the title from vw independently let the
+     chars-per-line ratio drift and flip between 1 and 2 lines at certain
+     window widths. Container units make font-size and line-wrap width
+     mathematically proportional at every viewport, so that can't happen. */
+  container-type: inline-size;
 }
 
 .eyebrow-row {
@@ -304,7 +399,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   letter-spacing: 0.18em;
   color: var(--ink);
   padding: 6px 14px;
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
   border-radius: 999px;
   background: rgba(245, 242, 238, 0.5);
   backdrop-filter: blur(6px);
@@ -324,12 +419,21 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .track-title {
   font-family: var(--display);
   font-weight: 900;
-  line-height: 0.86;
-  letter-spacing: -0.04em;
+  line-height: 1.02;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--paper);
   margin: 0;
   text-wrap: balance;
+  text-shadow: var(--text-outline-bold), var(--text-shadow-bold);
+}
+/* extra breathing room on top of .home-a__main's 18px flex gap (cover → title) */
+.track-title--a { margin-top: 16px; }
+/* .home-a__main widens on large viewports (see max-width above) — let the
+   title's font-size ceiling grow with it so long titles land on 2 lines
+   instead of 3, rather than just leaving the extra width empty. */
+@media (min-width: 1440px) {
+  .track-title--a { --track-title-max: 140px; }
 }
 
 .artist-row {
@@ -377,8 +481,8 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
+  border: var(--border-w) solid var(--ink);
+  border-radius: var(--radius-sm);
   font-family: var(--mono);
   letter-spacing: 0.12em;
   font-size: inherit;
@@ -390,7 +494,12 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   position: relative;
   z-index: 10;
   display: flex;
-  justify-content: space-between;
+  /* Only LegalLinks lives here — .brand-footer (GRINLOUD wordmark) is a
+     separate absolutely-positioned bottom-left element, so space-between
+     had nothing to push against and left LegalLinks sitting at flex-start,
+     behind the wordmark. Push it to the right instead, matching every
+     other page's subpage-footer layout. */
+  justify-content: flex-end;
   align-items: flex-end;
   gap: 24px;
   padding-top: 32px;
@@ -401,14 +510,14 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
    ============================================================ */
 .logo-mark {
   border-radius: 50%;
-  background: #FFE000;
-  border: 4px solid var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
+  background: #FFE600;
+  border: var(--border-w) solid var(--ink);
+  box-shadow: var(--shadow-offset);
   overflow: hidden;
   transition: transform 0.18s, box-shadow 0.18s;
   flex-shrink: 0;
 }
-.logo-mark:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.logo-mark:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-offset-hover); }
 .logo-mark image-slot::part(empty) { background: #FFE600 !important; }
 .logo-pos-big { width: 200px !important; height: 200px !important; }
 .logo-pos-corner { width: 64px !important; height: 64px !important; }
@@ -422,27 +531,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   gap: 6px;
   justify-content: center;
 }
-.streaming-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 7px 12px;
-  border: none;
-  border-radius: 999px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-  background: var(--ink);
-  color: var(--paper);
-  transition: background 0.16s, color 0.16s, transform 0.14s;
-}
-.streaming-link:hover {
-  background: #FF1F8F;
-  color: var(--paper);
-  transform: translateY(-1px);
-}
-
+.streaming-link,
 .share-btn {
   display: inline-flex;
   align-items: center;
@@ -458,8 +547,9 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   color: var(--paper);
   transition: background 0.16s, color 0.16s, transform 0.14s;
 }
+.streaming-link:hover,
 .share-btn:hover {
-  background: #FF1F8F;
+  background: var(--page-bg);
   color: var(--paper);
   transform: translateY(-1px);
 }
@@ -474,61 +564,184 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 }
 .pick-actions .streaming-links { margin-top: 0; }
 
-/* Artist + submeta */
-.pick-artist {
-  font-family: var(--display);
-  font-size: clamp(18px, 2.5vw, 32px);
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  color: var(--paper);
-  text-transform: uppercase;
-}
-.pick-submeta {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  color: rgba(245,242,238,0.6);
-}
-
-/* Grinloud Says — narrow decorative lines, label between them */
-.pick-quote {
-  max-width: 480px;
+/* ============================================================
+   PICK CAROUSEL — swipeable card replacing the old stacked
+   artist/submeta/quote/details blocks. Native scroll-snap, no JS library.
+   Uses the Phase-1/2 token system throughout: border-w, radius-md,
+   shadow-offset, spacing scale.
+   ============================================================ */
+.pick-carousel {
   width: 100%;
+  /* Wide enough that a long one-word artist name (SHERMANOLOGY) has room to
+     sit on one line instead of wrapping — scales a bit with the viewport
+     rather than staying pinned at a narrow fixed width now that the page
+     itself can go much wider (see .home-a__main). Text-heavy slides
+     (GRINLOUD SAYS/FUN FACT/TRACK INFO) don't stretch to fill this — they
+     keep their own readable max-width (see .pcard__quote/.pcard__meta). */
+  max-width: clamp(480px, 42vw, 640px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-3);
 }
-.pick-quote__header {
+.pick-carousel__track {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-radius: var(--radius-md);
+}
+.pick-carousel__track::-webkit-scrollbar { display: none; }
+.pick-carousel__slide {
+  flex: 0 0 100%;
+  /* Without this, a slide whose content can't wrap (a long one-word artist
+     name, a long label name) refuses to shrink below its content's natural
+     width — flex items default to min-width:auto — and grows past the
+     other slides' 100%, throwing off scroll-snap so shorter slides land
+     shifted left instead of centered. */
+  min-width: 0;
+  scroll-snap-align: center;
   display: flex;
   align-items: center;
-  gap: 10px;
+  /* Center the thumb+text block as a unit so short content (e.g. "CID")
+     doesn't just hug the left edge with empty space on the right. */
   justify-content: center;
+  gap: var(--space-4);
+  min-height: 160px;
+  padding: var(--space-4);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: left;
 }
-.pick-quote__rule {
-  width: 48px; /* ~25% of full width */
-  height: 1px;
-  background: rgba(245,242,238,0.35);
+/* Fallback for the rare pick missing an artist image — centered, no thumb gap */
+.pick-carousel__slide:not(.has-image) {
+  text-align: center;
+}
+.pick-carousel__thumb {
   flex-shrink: 0;
+  width: 92px;
+  height: 92px;
+  object-fit: cover;
+  /* Same hard outline + offset shadow as the pill/logo/nav — no blur,
+     no scrim, framed like every other card on the site. */
+  border: var(--border-w) solid var(--ink);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-offset);
 }
-.pick-quote__rule--solo {
-  width: 48px;
+.pick-carousel__content {
+  /* Not flex:1 — that force-grows this column to fill the whole row even
+     when the slide is centered, so short text (e.g. "CID") still renders
+     pinned to its own text-align:left instead of centering with the thumb.
+     Shrink-wrap to the actual content instead, so the thumb+text block
+     centers as one compact unit; text-heavy slides are unaffected since
+     .pcard__meta/.pcard__quote/.pcard__fact carry their own max-width. */
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  max-width: 100%;
 }
-.pick-quote__label {
+.pick-carousel__slide:not(.has-image) .pick-carousel__content {
+  align-items: center;
+}
+.pick-carousel__label {
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.18em;
-  color: rgba(245,242,238,0.45);
-  white-space: nowrap;
+  color: var(--accent);
+  text-transform: uppercase;
 }
-.pick-quote__text {
+.pick-carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.pick-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--paper);
+  background: transparent;
+  opacity: 0.5;
+  padding: 0;
+  transition: all 0.18s;
+}
+.pick-carousel__dot.is-active {
+  background: var(--paper);
+  opacity: 1;
+  width: 20px;
+  border-radius: 4px;
+}
+
+/* Slide content */
+.pcard__artist-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pcard__artist {
+  font-family: var(--display);
+  font-size: clamp(22px, 4vw, 38px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: var(--paper);
+  text-transform: uppercase;
+  text-shadow: var(--text-outline-bold), var(--text-shadow-bold);
+  /* A long one-word name (SHERMANOLOGY) doesn't have a space to break on,
+     so without this it overflows the card instead of wrapping — the tail
+     end (often a descender like the "y") got visually clipped. */
+  overflow-wrap: break-word;
+}
+/* Featured/support artists — same row as the lead name on wide slides,
+   wraps under it once it can't fit; always visibly smaller and dimmer. */
+.pcard__artist-feat {
+  font-family: var(--sans);
+  font-size: clamp(12px, 1.6vw, 15px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--paper);
+  opacity: 0.65;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+.pick-carousel__slide:not(.has-image) .pcard__artist-wrap { align-items: center; }
+.pcard__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 280px;
+}
+.pcard__meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--paper);
+}
+.pcard__meta-row span { opacity: 0.55; text-transform: uppercase; font-size: 11px; }
+.pcard__quote {
+  margin: 0;
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(245,242,238,0.9);
+  max-width: 380px;
+}
+.pcard__fact {
   margin: 0;
   font-family: var(--sans);
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.6;
   color: rgba(245,242,238,0.85);
-  text-align: center;
-  font-style: italic;
+  max-width: 380px;
 }
 
 /* GRINLOUD text brand — absolutely positioned, flush-left with smiley */
@@ -577,13 +790,18 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .pick-cover {
   width: clamp(96px, 11vw, 160px);
   height: clamp(96px, 11vw, 160px);
+  /* extra breathing room on top of .home-a__main's 18px flex gap (pill → cover) */
+  margin-top: 16px;
 }
 .pick-cover .track-cover {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  border: 2px solid var(--ink);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-lg);
+  border: var(--border-w) solid var(--ink);
+  /* Hard offset shadow, same as the artist thumb and every other card on
+     the site — the old soft blur (--shadow-cover) just vanished into the
+     blurred cover background instead of reading as a shadow. */
+  box-shadow: var(--shadow-offset);
 }
 
 /* Pick of the Day pill — reuses top-nav__radar-pill styles */
@@ -605,8 +823,8 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   font-size: 8px;
   letter-spacing: 0.14em;
   padding: 2px 6px;
-  border-radius: 4px;
-  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  border: var(--border-w) solid var(--ink);
   margin-left: 4px;
 }
 
@@ -618,7 +836,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   align-items: center;
   gap: 16px;
   padding: 12px 18px 12px 12px;
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
   border-radius: 999px;
   background: var(--paper);
 }
@@ -630,7 +848,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   border-radius: 999px;
   font-size: 16px;
   color: var(--ink);
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
 }
 .claim-chip__line {
   font-family: var(--mono);
@@ -661,7 +879,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
    ============================================================ */
 .radar-link {
   padding: 12px 18px;
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
   border-radius: 999px;
   background: var(--ink);
   color: var(--paper);
@@ -834,10 +1052,10 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   margin-left: auto;
   text-align: left;
   padding: 16px 20px;
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
   background: var(--paper);
-  border-radius: 4px;
-  box-shadow: 4px 4px 0 var(--ink);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-offset);
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto auto;
@@ -845,7 +1063,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   row-gap: 2px;
   transition: transform 0.14s, box-shadow 0.14s;
 }
-.home-b__radar:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.home-b__radar:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-offset-hover); }
 .home-b__radar-eyebrow {
   grid-column: 1;
   font-family: var(--mono);
@@ -896,7 +1114,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   letter-spacing: 0.16em;
   font-weight: 600;
   padding: 10px 14px;
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
@@ -930,9 +1148,16 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   letter-spacing: -0.06em;
   margin: 0;
   color: var(--paper);
-  -webkit-text-stroke: 14px var(--ink);
-  paint-order: stroke fill;
-  text-shadow: 12px 12px 0 var(--ink);
+  /* Round "outline" built from 16 shadow copies in a circle instead of
+     -webkit-text-stroke — a real vector stroke has no line-join control
+     and spikes at sharp interior corners (e.g. the "1"'s flag). Stacking
+     copies avoids that entirely. Final layer is the big poster shadow. */
+  text-shadow:
+    14px 0 0 var(--ink), 13px 5px 0 var(--ink), 10px 10px 0 var(--ink), 5px 13px 0 var(--ink),
+    0 14px 0 var(--ink), -5px 13px 0 var(--ink), -10px 10px 0 var(--ink), -13px 5px 0 var(--ink),
+    -14px 0 0 var(--ink), -13px -5px 0 var(--ink), -10px -10px 0 var(--ink), -5px -13px 0 var(--ink),
+    0 -14px 0 var(--ink), 5px -13px 0 var(--ink), 10px -10px 0 var(--ink), 13px -5px 0 var(--ink),
+    12px 12px 0 var(--ink);
 }
 .radar__hero-side { padding-bottom: 24px; }
 .radar__hero-title {
@@ -1008,7 +1233,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .radar-row__cover .track-cover {
   width: 44px;
   height: 44px;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 .radar-row:hover {
   background: rgba(10,10,10,0.06);
@@ -1086,10 +1311,10 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   gap: 16px;
 }
 .radar__player {
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
   background: var(--paper);
-  box-shadow: 6px 6px 0 var(--ink);
-  border-radius: 6px;
+  box-shadow: var(--shadow-offset-hover);
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 .radar__player-frame {
@@ -1121,7 +1346,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   font-family: var(--display);
   font-size: 16px;
   letter-spacing: 0.1em;
-  color: var(--accent, #FFE000);
+  color: var(--accent, #FFE600);
 }
 .radar__player-pending-sub {
   font-family: var(--mono);
@@ -1147,8 +1372,8 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 
 .radar__archive-link {
   padding: 14px 18px;
-  border: 2px solid var(--ink);
-  border-radius: 6px;
+  border: var(--border-w) solid var(--ink);
+  border-radius: var(--radius-pill);
   background: var(--ink);
   color: var(--paper);
   font-family: var(--mono);
@@ -1192,7 +1417,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   display: inline-flex;
   gap: 4px;
   background: var(--paper);
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
   padding: 4px;
   border-radius: 999px;
   align-self: end;
@@ -1233,14 +1458,14 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   gap: 8px;
   padding: 20px;
   background: var(--paper);
-  border: 2px solid var(--ink);
-  border-radius: 6px;
+  border: var(--border-w) solid var(--ink);
+  border-radius: var(--radius-md);
   transition: transform 0.14s, box-shadow 0.14s;
   min-height: 200px;
 }
 .archive-card:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: var(--shadow-offset);
 }
 .archive-card.is-playing {
   background: var(--ink);
@@ -1299,7 +1524,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   width: 72px;
   height: 72px;
   flex-shrink: 0;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   align-self: flex-start;
 }
@@ -1356,8 +1581,8 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   width: 100%;
   max-width: 480px;
   background: var(--paper);
-  border: 2px solid var(--ink);
-  border-radius: 8px;
+  border: var(--border-w) solid var(--ink);
+  border-radius: var(--radius-md);
   padding: 36px 32px 28px;
   box-shadow: 10px 10px 0 var(--accent), 12px 12px 0 var(--ink);
 }
@@ -1367,7 +1592,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   width: 32px; height: 32px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
 }
 .modal-close:hover { background: var(--ink); color: var(--paper); }
 .modal-eyebrow {
@@ -1391,8 +1616,8 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   font-family: var(--mono);
   font-size: 14px;
   padding: 14px 16px;
-  border: 2px solid var(--ink);
-  border-radius: 6px;
+  border: var(--border-w) solid var(--ink);
+  border-radius: var(--radius-md);
   background: white;
   outline: none;
 }
@@ -1405,7 +1630,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   padding: 14px 16px;
   background: var(--ink);
   color: var(--paper);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   transition: background 0.16s, color 0.16s;
 }
 .modal-submit:hover { background: var(--accent); color: var(--ink); }
@@ -1435,6 +1660,10 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .home .home-b__vertical-claim {
   color: var(--paper);
 }
+/* legal-links defaults to --ink (dark) at 0.4 opacity, fine on the light
+   subpages — nearly invisible over a photo/video background, so brighten
+   both on .home. */
+.home .legal-links { color: var(--paper); opacity: 0.6; }
 /* Streaming links on home: dark bg, white text — no accent override */
 .home .streaming-link {
   background: var(--ink);
@@ -1442,7 +1671,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   border: none;
 }
 .home .streaming-link:hover {
-  background: #FF1F8F;
+  background: var(--page-bg);
   color: var(--paper);
 }
 
@@ -1499,6 +1728,9 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 
   /* ── Home A ── */
   .home-a__main { gap: 14px; }
+  /* extra breathing room on top of the 14px mobile gap, same rule as desktop */
+  .pick-cover { margin-top: 12px; }
+  .track-title--a { margin-top: 12px; }
   .home-a__footer { flex-direction: column; align-items: stretch; }
 
   /* ── Footer on mobile ── */
@@ -1561,9 +1793,12 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   .radar__number {
     font-size: clamp(56px, 22vw, 96px);
     line-height: 1;
-    -webkit-text-stroke: 6px var(--ink);
-    paint-order: stroke fill;
-    text-shadow: 6px 6px 0 var(--ink);
+    text-shadow:
+      6px 0 0 var(--ink), 6px 2px 0 var(--ink), 4px 4px 0 var(--ink), 2px 6px 0 var(--ink),
+      0 6px 0 var(--ink), -2px 6px 0 var(--ink), -4px 4px 0 var(--ink), -6px 2px 0 var(--ink),
+      -6px 0 0 var(--ink), -6px -2px 0 var(--ink), -4px -4px 0 var(--ink), -2px -6px 0 var(--ink),
+      0 -6px 0 var(--ink), 2px -6px 0 var(--ink), 4px -4px 0 var(--ink), 6px -2px 0 var(--ink),
+      6px 6px 0 var(--ink);
   }
   .radar__hero-side { padding-bottom: 0; }
   .radar__hero-title { font-size: clamp(20px, 5.5vw, 32px); }
@@ -1783,7 +2018,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   font-family: var(--mono);
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.16em;
-  border: 2px solid var(--ink);
+  border: var(--border-w) solid var(--ink);
 }
 /* Cover art — 2x the size of the normal-mode pick-cover (clamp(96px,11vw,160px)) */
 .cinema__cover {
@@ -1794,9 +2029,9 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .cinema__cover .track-cover {
   width: 100%;
   height: 100%;
-  border-radius: 14px;
-  border: 2px solid var(--ink);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  border-radius: var(--radius-lg);
+  border: var(--border-w) solid var(--ink);
+  box-shadow: var(--shadow-cover);
 }
 .cinema__title {
   font-family: var(--display);
@@ -1807,7 +2042,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
 .cinema__artist {
   font-family: var(--display);
   font-size: clamp(13px, 3.2vw, 24px);
-  letter-spacing: 0.06em; color: #FFE000; text-transform: uppercase;
+  letter-spacing: 0.06em; color: #FFE600; text-transform: uppercase;
 }
 .cinema__meta {
   font-family: var(--mono); font-size: 10px;
@@ -1826,7 +2061,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   margin-top: 4px;
   padding: 18px 22px;
   border: 2px solid var(--ink, #0A0A0A);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   background: rgba(10,10,10,0.42);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -1862,7 +2097,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.18em;
-  color: #FFE000;
+  color: #FFE600;
   white-space: nowrap;
 }
 .cinema__quote-text {
@@ -1956,9 +2191,12 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   line-height: 0.85;
   letter-spacing: -0.06em;
   color: var(--paper);
-  -webkit-text-stroke: 10px var(--ink);
-  paint-order: stroke fill;
-  text-shadow: 8px 8px 0 var(--ink);
+  text-shadow:
+    10px 0 0 var(--ink), 9px 4px 0 var(--ink), 7px 7px 0 var(--ink), 4px 9px 0 var(--ink),
+    0 10px 0 var(--ink), -4px 9px 0 var(--ink), -7px 7px 0 var(--ink), -9px 4px 0 var(--ink),
+    -10px 0 0 var(--ink), -9px -4px 0 var(--ink), -7px -7px 0 var(--ink), -4px -9px 0 var(--ink),
+    0 -10px 0 var(--ink), 4px -9px 0 var(--ink), 7px -7px 0 var(--ink), 9px -4px 0 var(--ink),
+    8px 8px 0 var(--ink);
   margin: 0;
 }
 
@@ -1992,7 +2230,7 @@ a.nav-link--ghost:hover svg { color: #FFE000; }
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.14em;
-  color: #FFE000;
+  color: #FFE600;
   opacity: 0.70;
   flex-shrink: 0;
   min-width: 20px;
