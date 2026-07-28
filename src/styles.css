@@ -146,6 +146,7 @@ a { color: inherit; text-decoration: none; }
   border: var(--border-w) solid var(--ink);
   border-radius: 999px;
   padding: 6px;
+  box-shadow: var(--shadow-offset);
 }
 .nav-link {
   font-family: var(--mono);
@@ -714,17 +715,23 @@ a.nav-link--ghost:hover svg { color: #FFE600; }
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  width: 100%;
-  max-width: 280px;
+  /* Fixed, not width:100% — .pick-carousel__content shrink-wraps its
+     content now (see above), so a percentage width here just matched
+     whichever row was already widest, leaving space-between nothing to
+     distribute and the label/value of that row glued together. */
+  width: 280px;
+  max-width: 100%;
 }
 .pcard__meta-row {
   display: flex;
   justify-content: space-between;
+  gap: var(--space-3);
   font-family: var(--mono);
   font-size: 13px;
   letter-spacing: 0.08em;
   color: var(--paper);
 }
+.pcard__meta-row span { flex-shrink: 0; }
 .pcard__meta-row span { opacity: 0.55; text-transform: uppercase; font-size: 11px; }
 .pcard__quote {
   margin: 0;

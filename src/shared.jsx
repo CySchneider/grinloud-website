@@ -2,6 +2,23 @@
 import React from 'react'
 import { Icon } from './icons.jsx'
 
+// CoverBackground, SpotifyCover, and PickCarousel's Track Info slide all
+// want the same track's Spotify cover art. Each used to fire its own
+// independent oEmbed fetch, so the foreground cover (SpotifyCover) visibly
+// lagged behind the background even though it's the identical response —
+// one shared in-flight/cached promise per URL fixes that and cuts the
+// request count on every pick switch from 3 down to 1.
+const _oembedCache = new Map(); // spotifyUrl -> Promise<oEmbed response | null>
+function fetchSpotifyOembed(spotifyUrl) {
+  if (!spotifyUrl || spotifyUrl === '#') return Promise.resolve(null);
+  if (!_oembedCache.has(spotifyUrl)) {
+    _oembedCache.set(spotifyUrl, fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
+      .then(r => r.json())
+      .catch(() => null));
+  }
+  return _oembedCache.get(spotifyUrl);
+}
+
 function BackgroundVideo({ overlayOpacity = 0.35, accent, src }) {
   const videoRef = React.useRef(null);
   const loadedSrc = React.useRef(null);
@@ -68,17 +85,13 @@ function CoverBackground({ overlayOpacity = 0.35, accent, spotifyUrl }) {
   const [src, setSrc] = React.useState(null);
 
   React.useEffect(() => {
-    if (!spotifyUrl || spotifyUrl === '#') return;
     let cancelled = false;
-    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
-      .then(r => r.json())
-      .then(d => {
-        if (cancelled || !d.thumbnail_url) return;
-        // oEmbed hands back the 300px CDN variant; swap the size prefix for
-        // the 640px one — same image, same host, just a different crop code.
-        setSrc(d.thumbnail_url.replace('ab67616d00001e02', 'ab67616d0000b273'));
-      })
-      .catch(() => {});
+    fetchSpotifyOembed(spotifyUrl).then(d => {
+      if (cancelled || !d?.thumbnail_url) return;
+      // oEmbed hands back the 300px CDN variant; swap the size prefix for
+      // the 640px one — same image, same host, just a different crop code.
+      setSrc(d.thumbnail_url.replace('ab67616d00001e02', 'ab67616d0000b273'));
+    });
     return () => { cancelled = true; };
   }, [spotifyUrl]);
 
@@ -129,13 +142,8 @@ function PickCarousel({ pick }) {
   const [trackCover, setTrackCover] = React.useState(null);
   React.useEffect(() => {
     if (pick.labelImage) return;
-    const spotifyUrl = pick.links?.spotify;
-    if (!spotifyUrl || spotifyUrl === '#') return;
     let cancelled = false;
-    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
-      .then(r => r.json())
-      .then(d => { if (!cancelled && d.thumbnail_url) setTrackCover(d.thumbnail_url); })
-      .catch(() => {});
+    fetchSpotifyOembed(pick.links?.spotify).then(d => { if (!cancelled && d?.thumbnail_url) setTrackCover(d.thumbnail_url); });
     return () => { cancelled = true; };
   }, [pick.labelImage, pick.links?.spotify]);
 
@@ -656,10 +664,7 @@ function SpotifyCover({ spotifyUrl, alt = '' }) {
     const observer = new IntersectionObserver((entries) => {
       if (!entries[0].isIntersecting) return;
       observer.disconnect();
-      fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
-        .then(r => r.json())
-        .then(d => { if (!cancelled && d.thumbnail_url) setSrc(d.thumbnail_url); })
-        .catch(() => {});
+      fetchSpotifyOembed(spotifyUrl).then(d => { if (!cancelled && d?.thumbnail_url) setSrc(d.thumbnail_url); });
     }, { rootMargin: '200px' });
     observer.observe(el);
     return () => { cancelled = true; observer.disconnect(); };

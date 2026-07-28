@@ -119,8 +119,23 @@ function App() {
 
   const canPrev = pickIdx < picks.length - 1; // can go to older pick
   const canNext = pickIdx > 0;                // can go to newer pick
-  const prev = () => canPrev && setPickIdx((i) => i + 1);
-  const next = () => canNext && setPickIdx((i) => i - 1);
+
+  // If a preview is already playing, prev/next should carry it over to the
+  // new pick instead of just stopping — grinloudPlaySpotify must be called
+  // synchronously in this click handler (not from an effect) or iOS Safari
+  // drops the user-gesture token and refuses to autoplay.
+  const continueAcrossPickRef = React.useRef(false);
+  const gotoPick = (idx) => {
+    const target = picks[idx];
+    const canContinue = isPlaying && target?.links?.spotify && target.links.spotify !== '#';
+    if (canContinue) {
+      continueAcrossPickRef.current = true;
+      window.grinloudPlaySpotify(target.links.spotify);
+    }
+    setPickIdx(idx);
+  };
+  const prev = () => canPrev && gotoPick(pickIdx + 1);
+  const next = () => canNext && gotoPick(pickIdx - 1);
 
   React.useEffect(() => {
     // Apply background color to root so it bleeds behind the scaled stage.
@@ -128,8 +143,12 @@ function App() {
     document.documentElement.style.setProperty('--ink', palette.ink);
   }, [palette]);
 
-  // Stop preview when route or pick changes; clear track override when leaving radar
-  React.useEffect(() => { setIsPlaying(false); }, [route, pickIdx]);
+  // Stop preview when route or pick changes — except right after prev/next
+  // carried an active preview over to the new pick (see gotoPick above).
+  React.useEffect(() => {
+    if (continueAcrossPickRef.current) { continueAcrossPickRef.current = false; return; }
+    setIsPlaying(false);
+  }, [route, pickIdx]);
   React.useEffect(() => { if (route !== 'radar') setPreviewUrl(null); }, [route]);
 
   // Keep the address bar in sync with in-app navigation, so the current
