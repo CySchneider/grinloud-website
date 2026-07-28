@@ -135,6 +135,35 @@ function PickCarousel({ pick }) {
   // so the name row can match: lead name big, everyone else small beside it.
   const [mainArtist, ...featArtists] = pick.artist.split(', ');
 
+  // The name+feat block is capped at max-width (see .pcard__artist-wrap)
+  // so a long name that wraps onto two lines doesn't blow out the whole
+  // row's width. But CSS has no way to shrink that box back down to the
+  // width the wrapped lines actually render at — it just pins the box at
+  // the full max-width, which left-aligned text then only half-fills,
+  // making it look shoved left instead of centered next to the thumb.
+  // So measure the widest rendered line ourselves and shrink the box's
+  // own width to match, whatever the name/viewport/font-size clamp.
+  const artistWrapRef = React.useRef(null);
+  React.useLayoutEffect(() => {
+    const wrap = artistWrapRef.current;
+    if (!wrap) return;
+    const measure = () => {
+      wrap.style.width = '';
+      let widest = 0;
+      wrap.querySelectorAll('.pcard__artist, .pcard__artist-feat').forEach((el) => {
+        const textNode = el.firstChild;
+        if (!textNode) return;
+        const range = document.createRange();
+        range.selectNodeContents(textNode);
+        Array.from(range.getClientRects()).forEach((r) => { widest = Math.max(widest, r.width); });
+      });
+      wrap.style.width = widest ? `${Math.ceil(widest)}px` : '';
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [pick.artist]);
+
   // labelImage is a manual override (rare — one pick has a real Beatport
   // label-logo asset) for almost every pick it's unset, so the TRACK INFO
   // slide falls back to the track's own Spotify cover — same oEmbed fetch
@@ -151,7 +180,7 @@ function PickCarousel({ pick }) {
     {
       key: 'artist', label: 'ARTIST', image: pick.artistImage,
       body: (
-        <div className="pcard__artist-wrap">
+        <div className="pcard__artist-wrap" ref={artistWrapRef}>
           <div className="pcard__artist">{mainArtist}</div>
           {featArtists.length > 0 && (
             <div className="pcard__artist-feat">{featArtists.join(', ')}</div>

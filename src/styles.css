@@ -684,6 +684,16 @@ a.nav-link--ghost:hover svg { color: #FFE600; }
   display: flex;
   flex-direction: column;
   gap: 4px;
+  /* Fixed, like .pcard__meta/.pcard__quote/.pcard__fact — without it, a
+     name long enough to wrap onto two lines (FELIX DA HOUSECAT) has no
+     width to shrink-wrap to, so it expands to fill the whole remaining
+     row instead of staying a compact block .pick-carousel__slide can
+     center alongside the thumb. That fixed-width box still can't shrink
+     down to the exact rendered width of a wrapped two-line name — CSS
+     pins it at the full max-width — so without centering the text inside
+     it, the glyphs sit flush-left against the slide's text-align:left
+     and look shoved left even though the box itself is centered. */
+  max-width: 320px;
 }
 .pcard__artist {
   font-family: var(--display);
