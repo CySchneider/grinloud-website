@@ -201,9 +201,31 @@ function PickCarousel({ pick }) {
     setActive(Math.round(track.scrollLeft / track.clientWidth));
   };
 
+  // Auto-advance so visitors notice there's more than one slide behind the
+  // dots. Stops for good the moment someone touches the carousel themselves
+  // (swipe or dot tap) — at that point they already know it scrolls.
+  const activeRef = React.useRef(0);
+  activeRef.current = active;
+  const [autoplay, setAutoplay] = React.useState(true);
+  const stopAutoplay = () => setAutoplay(false);
+
+  React.useEffect(() => {
+    if (!autoplay || slides.length < 2) return;
+    const id = setInterval(() => {
+      if (document.hidden) return;
+      goTo((activeRef.current + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [autoplay, slides.length]);
+
   return (
     <div className="pick-carousel">
-      <div className="pick-carousel__track" ref={trackRef} onScroll={onScroll}>
+      <div
+        className="pick-carousel__track"
+        ref={trackRef}
+        onScroll={onScroll}
+        onPointerDown={stopAutoplay}
+      >
         {slides.map((s) => (
           <div className={`pick-carousel__slide ${s.image ? 'has-image' : ''}`} key={s.key}>
             {s.image && (
@@ -221,7 +243,7 @@ function PickCarousel({ pick }) {
           <button
             key={s.key}
             className={`pick-carousel__dot ${i === active ? 'is-active' : ''}`}
-            onClick={() => goTo(i)}
+            onClick={() => { stopAutoplay(); goTo(i); }}
             aria-label={`Go to ${s.label}`}
           />
         ))}
