@@ -69,27 +69,29 @@ function writePage(relPath, html) {
 // Scoped to .gl-fb-* so it can never collide with the real app's styles.css
 // — this only styles the pre-hydration fallback, which React fully replaces.
 const FALLBACK_STYLE = `
-  .gl-fb { background: #0A0A0A; color: #F5F2EE; font-family: 'JetBrains Mono', monospace; padding: 48px 24px 120px; max-width: 680px; margin: 0 auto; }
-  .gl-fb a { color: #FFE000; text-decoration: none; }
+  .gl-fb { background: #FAF7F2; color: #0E0E0E; font-family: 'JetBrains Mono', monospace; padding: 48px 24px 120px; max-width: 680px; margin: 0 auto; }
+  .gl-fb a { color: #FF0090; text-decoration: none; }
   .gl-fb a:hover { text-decoration: underline; }
-  .gl-fb .gl-fb-back { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; border: 1.5px solid rgba(245,242,238,0.3); padding: 8px 16px; border-radius: 999px; margin-bottom: 48px; }
-  .gl-fb .gl-fb-eyebrow { font-size: 10px; letter-spacing: 0.18em; opacity: 0.45; margin-bottom: 12px; }
-  .gl-fb h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 8px; }
+  .gl-fb .gl-fb-back { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: rgba(14,14,14,0.55); margin-bottom: 48px; }
+  .gl-fb .gl-fb-eyebrow { font-size: 10px; letter-spacing: 0.18em; opacity: 0.4; margin-bottom: 12px; }
+  .gl-fb h1 { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 8px; }
   .gl-fb .gl-fb-sub { font-size: 14px; opacity: 0.7; margin-bottom: 24px; }
   .gl-fb .gl-fb-meta { font-size: 12px; opacity: 0.55; letter-spacing: 0.04em; margin-bottom: 28px; }
   .gl-fb p.gl-fb-info { font-size: 13px; line-height: 1.8; opacity: 0.85; margin-bottom: 36px; max-width: 56ch; }
   .gl-fb p.gl-fb-context { font-size: 12px; line-height: 1.7; opacity: 0.6; max-width: 56ch; margin: -8px 0 32px; }
-  .gl-fb .gl-fb-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
-  .gl-fb .gl-fb-cta { display: inline-flex; padding: 10px 20px; border: 1.5px solid rgba(245,242,238,0.3); border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #F5F2EE; }
-  .gl-fb .gl-fb-cta--accent { background: #FFE000; border-color: #FFE000; color: #0A0A0A; }
-  .gl-fb h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; opacity: 0.5; margin: 0 0 16px; }
+  .gl-fb p.gl-fb-fact { font-size: 12px; line-height: 1.7; opacity: 0.75; max-width: 56ch; margin: -8px 0 32px; border-top: 1px solid rgba(14,14,14,0.12); padding-top: 16px; }
+  .gl-fb p.gl-fb-fact strong { opacity: 0.5; font-size: 10px; letter-spacing: 0.14em; display: block; margin-bottom: 6px; }
+  .gl-fb .gl-fb-cta-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 48px; }
+  .gl-fb .gl-fb-cta { display: inline-flex; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: rgba(14,14,14,0.55); border-bottom: 1px solid rgba(14,14,14,0.3); padding-bottom: 1px; }
+  .gl-fb .gl-fb-cta--accent { color: #FF0090; border-color: #FF0090; }
+  .gl-fb h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; opacity: 0.45; margin: 0 0 16px; }
   .gl-fb .gl-fb-tracklist { list-style: none; }
-  .gl-fb .gl-fb-track { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(245,242,238,0.08); font-size: 13px; }
+  .gl-fb .gl-fb-track { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(14,14,14,0.08); font-size: 13px; }
   .gl-fb .gl-fb-track__n { opacity: 0.35; width: 24px; flex-shrink: 0; }
   .gl-fb .gl-fb-track__title { font-weight: 600; }
   .gl-fb .gl-fb-track__artist { opacity: 0.6; }
   .gl-fb .gl-fb-track__meta { opacity: 0.4; font-size: 11px; margin-left: auto; white-space: nowrap; padding-left: 12px; }
-  .gl-fb hr { border: none; border-top: 1px solid rgba(245,242,238,0.1); margin: 48px 0; }
+  .gl-fb hr { border: none; border-top: 1px solid rgba(14,14,14,0.1); margin: 48px 0; }
 `;
 
 function head({ title, desc, url, ogType, image, jsonLd }) {
@@ -101,8 +103,8 @@ function head({ title, desc, url, ogType, image, jsonLd }) {
      relative, no-leading-slash paths that assume they run at "/". <base>
      forces those relative URLs back to the site root once the app hydrates. -->
 <base href="/">
-<link rel="icon" type="image/svg+xml" href="/Logo%20GRINLOUD%20Smiley%20Yellow%20black.svg" />
-<link rel="apple-touch-icon" href="/Logo%20GRINLOUD%20Smiley%20Yellow%20black.png" />
+<link rel="icon" type="image/png" href="/grinloud-smiley-2026.png" />
+<link rel="apple-touch-icon" href="/grinloud-smiley-2026.png" />
 <link rel="canonical" href="${url}" />
 <meta name="description" content="${esc(desc)}" />
 <meta property="og:type" content="${ogType}" />
@@ -117,7 +119,7 @@ function head({ title, desc, url, ogType, image, jsonLd }) {
 <meta name="twitter:description" content="${esc(desc)}" />
 <meta name="twitter:image" content="${image}" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=UnifrakturMaguntia&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=UnifrakturMaguntia&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 ${APP_CSS_TAG}
 ${APP_SCRIPT_TAG}
 <style>${FALLBACK_STYLE}</style>`;
@@ -162,6 +164,7 @@ ${head({ title, desc, url, ogType: 'music.song', image: OG_IMAGE_DEFAULT, jsonLd
     <div class="gl-fb-sub">${esc(pick.artist)}</div>
     <div class="gl-fb-meta">${esc(pick.genre)} · ${pick.bpm} BPM · ${esc(pick.key)}${pick.label ? ` · ${esc(pick.label)}` : ''}</div>
     <p class="gl-fb-info">${esc(desc)}</p>
+    ${pick.funFact ? `<p class="gl-fb-fact"><strong>THE DETAILS</strong>${esc(pick.funFact)}</p>` : ''}
     <div class="gl-fb-cta-row">
       ${spotify ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${spotify}" target="_blank" rel="noreferrer">LISTEN ON SPOTIFY →</a>` : ''}
       <a class="gl-fb-cta" href="/">MORE PICKS →</a>
@@ -277,6 +280,7 @@ if (homePick) {
     <div class="gl-fb-sub">${esc(homePick.artist)}</div>
     <div class="gl-fb-meta">${esc(homePick.genre)} · ${homePick.bpm} BPM · ${esc(homePick.key)}${homePick.label ? ` · ${esc(homePick.label)}` : ''}</div>
     <p class="gl-fb-info">${esc(desc)}</p>
+    ${homePick.funFact ? `<p class="gl-fb-fact"><strong>THE DETAILS</strong>${esc(homePick.funFact)}</p>` : ''}
     <div class="gl-fb-cta-row">
       ${spotify ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${spotify}" target="_blank" rel="noreferrer">LISTEN ON SPOTIFY →</a>` : ''}
       <a class="gl-fb-cta" href="/about.html">ABOUT GRINLOUD →</a>

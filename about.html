@@ -32,25 +32,39 @@
   }
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #0A0A0A; color: #F5F2EE; font-family: 'JetBrains Mono', monospace; padding: 48px 24px 120px; max-width: 680px; margin: 0 auto; }
-    a { color: #FFE000; text-decoration: none; }
+    body { background: #FAF7F2; color: #0E0E0E; font-family: 'JetBrains Mono', monospace; padding: 48px 24px 120px; max-width: 680px; margin: 0 auto; }
+    a { color: #FF0090; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .back { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; border: 1.5px solid rgba(245,242,238,0.3); padding: 8px 16px; border-radius: 999px; margin-bottom: 48px; }
-    .eyebrow { font-size: 10px; letter-spacing: 0.18em; opacity: 0.45; margin-bottom: 12px; }
-    h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 20px; }
-    .intro { font-size: 13px; line-height: 1.8; color: rgba(245,242,238,0.8); margin-bottom: 48px; }
-    h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; opacity: 0.5; margin: 32px 0 10px; }
-    p { font-size: 13px; line-height: 1.8; color: rgba(245,242,238,0.8); margin-bottom: 4px; }
-    hr { border: none; border-top: 1px solid rgba(245,242,238,0.1); margin: 48px 0; }
-    .hero { width: 100%; height: auto; border-radius: 8px; margin: 32px 0 24px; display: block; }
+    /* Same header treatment as the app (TopBrand): the wordmark sits flush
+       with the page's left edge; the smiley is pulled out of flow and hangs
+       slightly to the left of it, overlapping the margin. */
+    .brand { position: relative; display: inline-flex; align-items: baseline; gap: 10px; margin-bottom: 48px; }
+    .brand img {
+      position: absolute; left: -20px; top: 50%; margin-top: -13px;
+      width: 26px; height: 26px; display: block; border-radius: 50%; background: #FAF7F2;
+    }
+    .brand .wordmark { font-family: 'UnifrakturMaguntia', cursive; font-size: 18px; color: #0E0E0E; -webkit-text-stroke: 0.4px #0E0E0E; }
+    .brand .tagline { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(14,14,14,0.4); }
+    .eyebrow { font-size: 10px; letter-spacing: 0.18em; opacity: 0.4; margin-bottom: 12px; }
+    h1 { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 20px; }
+    .intro { font-size: 13px; line-height: 1.8; color: rgba(14,14,14,0.75); margin-bottom: 48px; }
+    h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; opacity: 0.45; margin: 32px 0 10px; }
+    p { font-size: 13px; line-height: 1.8; color: rgba(14,14,14,0.75); margin-bottom: 4px; }
+    hr { border: none; border-top: 1px solid rgba(14,14,14,0.12); margin: 48px 0; }
+    .hero { width: 100%; height: auto; border-radius: 2px; margin: 32px 0 24px; display: block; }
+    @media (max-width: 480px) {
+      /* No room to hang the smiley over the margin at this width without
+         clipping it or colliding with the wordmark. */
+      .brand img { position: static; margin-top: 0; }
+    }
   </style>
 </head>
 <body>
-  <a href="/" class="back">← GRINLOUD</a>
-  <div class="eyebrow">GRINLOUD · ABOUT</div>
+  <a href="/" class="brand"><img src="/grinloud-smiley-2026.png" alt="" /><span class="wordmark">grinloud.com</span><span class="tagline">HOUSE MUSIC CURATED</span></a>
+  <div class="eyebrow">ABOUT</div>
   <h1>House Music, Curated by Hand.</h1>
   <p class="intro">Hi — I'm Grin. Yellow head, permanent smile, professional House Music enthusiast. This page is me explaining who we are and why we bother doing this every single day.</p>
 

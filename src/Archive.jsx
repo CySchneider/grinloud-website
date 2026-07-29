@@ -3,7 +3,7 @@ import React from 'react'
 import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks, SpotifyCover } from './shared.jsx'
 
-function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, tab, onTabChange, isAdmin }) {
+function Archive({ accent, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, tab, onTabChange, isAdmin }) {
   const allPicks = window.GRINLOUD_DATA.PICKS;
   const radars = window.GRINLOUD_DATA.PREVIOUS_RADARS;
   const currentRadar = window.GRINLOUD_DATA.RADAR;
@@ -23,22 +23,22 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
   };
 
   return (
-    <div className="archive" style={{ '--accent': accent, '--ink': contrastInk }}>
+    <div className="archive" style={{ '--accent': accent }}>
       <header className="archive__header">
-        <h1 className="archive__title">ARCHIVE</h1>
+        <h1 className="archive__title">Archive</h1>
         <div className="archive__tabs">
           <button
             className={`archive__tab ${tab === 'picks' ? 'is-active' : ''}`}
             onClick={() => onTabChange('picks')}
           >
-            PICKS OF THE DAY <span className="archive__count">{picks.length}</span>
+            PICKS · <span className="archive__count">{picks.length}</span>
           {isAdmin && picks.length < allPicks.length && <span className="pick-scheduled-badge">+{allPicks.length - picks.length} SCHEDULED</span>}
           </button>
           <button
             className={`archive__tab ${tab === 'radars' ? 'is-active' : ''}`}
             onClick={() => onTabChange('radars')}
           >
-            MUSIC RADARS <span className="archive__count">{radars.length + (showCurrentRadar ? 1 : 0)}</span>
+            RADARS · <span className="archive__count">{radars.length + (showCurrentRadar ? 1 : 0)}</span>
           {isAdmin && !radarActuallyLive && <span className="pick-scheduled-badge">+1 SCHEDULED</span>}
           </button>
         </div>
@@ -46,7 +46,7 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
 
       {tab === 'picks' && (
         <div className="archive__grid">
-          {picks.map((p, i) => {
+          {picks.map((p) => {
             const isActive = activePick && activePick === p.links?.spotify;
             return (
               <button
@@ -54,27 +54,20 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
                 className={`archive-card${isActive ? ' is-playing' : ''}`}
                 onClick={() => handlePickClick(p)}
               >
-                <div className="archive-card__top">
-                  <div className="archive-card__date">{p.date}</div>
-                  <div className="archive-card__n">#{String(picks.length - i).padStart(3, '0')}</div>
-                </div>
-                <div className="archive-card__body">
-                  <div className="archive-card__text">
-                    <div className="archive-card__title">{p.title}</div>
-                    <div className="archive-card__artist">{p.artist}</div>
-                    <div className="archive-card__meta">
-                      <span>{p.bpm} BPM</span>
-                      <span className="archive-card__dot">·</span>
-                      <span>{p.key}</span>
-                      <span className="archive-card__dot">·</span>
-                      <span>{p.genre}</span>
-                    </div>
-                  </div>
-                  <SpotifyCover spotifyUrl={p.links?.spotify} alt={`${p.title} — ${p.artist} cover art`} />
-                </div>
-                <div className="archive-card__open">
-                  {isActive ? <>NOW PLAYING <Icon.Arrow size={12} /></> : <>PLAY TRACK <Icon.Arrow size={12} /></>}
-                </div>
+                <span className="archive-card__date">{p.date}</span>
+                <SpotifyCover spotifyUrl={p.links?.spotify} alt={`${p.title} — ${p.artist} cover art`} />
+                <span className="archive-card__text">
+                  <span className="archive-card__title">{p.title}</span>
+                  <span className="archive-card__artist">{p.artist}</span>
+                </span>
+                <span className="archive-card__meta">
+                  <span>{p.bpm}</span>
+                  <span className="archive-card__dot">·</span>
+                  <span>{p.key}</span>
+                </span>
+                <span className="archive-card__open">
+                  {isActive ? <>PLAYING <Icon.Arrow size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
+                </span>
               </button>
             );
           })}
@@ -89,50 +82,40 @@ function Archive({ accent, contrastInk, onBack, onGotoRadar, onOpenRadar, onPrev
               style={isAdmin && !radarActuallyLive ? { opacity: 0.5 } : undefined}
               onClick={onGotoRadar}
             >
-              <div className="archive-card__top">
-                <div className="archive-card__date">{currentRadar.date}</div>
-                <div className="archive-card__n">#{currentRadar.number}</div>
-              </div>
-              <div className="archive-card__body">
-                <div className="archive-card__text">
-                  <div className="archive-card__title">{currentRadar.title}</div>
-                  {currentRadar.subtitle && <div className="archive-card__artist">{currentRadar.subtitle}</div>}
-                  <div className="archive-card__meta">
-                    <span>{currentRadar.tracks.length} TRACKS</span>
-                    <span className="archive-card__dot">·</span>
-                    <span>{currentRadar.duration}</span>
-                    <span className="archive-card__dot">·</span>
-                    <span>{isAdmin && !radarActuallyLive ? 'SCHEDULED' : 'LATEST'}</span>
-                  </div>
-                </div>
-                <div className="track-cover">
-                  {currentRadar.cover && <img src={currentRadar.cover} alt={currentRadar.title} loading="lazy" />}
-                </div>
-              </div>
-              <div className="archive-card__open">PLAY <Icon.Arrow size={12} /></div>
+              <span className="archive-card__date">{currentRadar.date}</span>
+              <span className="track-cover">
+                {currentRadar.cover && <img src={currentRadar.cover} alt={currentRadar.title} loading="lazy" />}
+              </span>
+              <span className="archive-card__text">
+                <span className="archive-card__title">Music Radar {currentRadar.number}</span>
+                {currentRadar.subtitle && <span className="archive-card__artist">{currentRadar.subtitle}</span>}
+              </span>
+              <span className="archive-card__meta">
+                <span>{currentRadar.tracks.length} TRACKS</span>
+                <span className="archive-card__dot">·</span>
+                <span>{currentRadar.duration}</span>
+              </span>
+              <span className="archive-card__open">
+                {isAdmin && !radarActuallyLive ? 'SCHEDULED' : <>PLAY <Icon.Arrow size={11} /></>}
+              </span>
             </button>
           )}
           {radars.map((r) => (
             <button key={r.number} className="archive-card" onClick={() => onOpenRadar(r)}>
-              <div className="archive-card__top">
-                <div className="archive-card__date">{r.date}</div>
-                <div className="archive-card__n">#{r.number}</div>
-              </div>
-              <div className="archive-card__body">
-                <div className="archive-card__text">
-                  <div className="archive-card__title">{r.title}</div>
-                  {r.subtitle && <div className="archive-card__artist">{r.subtitle}</div>}
-                  <div className="archive-card__meta">
-                    <span>{r.tracks.length} TRACKS</span>
-                    <span className="archive-card__dot">·</span>
-                    <span>{r.duration}</span>
-                  </div>
-                </div>
-                <div className="track-cover">
-                  {r.cover && <img src={r.cover} alt={r.title} loading="lazy" />}
-                </div>
-              </div>
-              <div className="archive-card__open">OPEN <Icon.Arrow size={12} /></div>
+              <span className="archive-card__date">{r.date}</span>
+              <span className="track-cover">
+                {r.cover && <img src={r.cover} alt={r.title} loading="lazy" />}
+              </span>
+              <span className="archive-card__text">
+                <span className="archive-card__title">Music Radar {r.number}</span>
+                {r.subtitle && <span className="archive-card__artist">{r.subtitle}</span>}
+              </span>
+              <span className="archive-card__meta">
+                <span>{r.tracks.length} TRACKS</span>
+                <span className="archive-card__dot">·</span>
+                <span>{r.duration}</span>
+              </span>
+              <span className="archive-card__open">OPEN <Icon.Arrow size={11} /></span>
             </button>
           ))}
         </div>

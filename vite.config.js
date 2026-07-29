@@ -10,6 +10,7 @@ export default defineConfig({
         { src: '*.mp4',      dest: '.' },
         { src: 'Logo*.svg',  dest: '.' },
         { src: 'Logo*.png',  dest: '.' },
+        { src: 'grinloud-smiley-2026.png', dest: '.' },
         { src: 'OG-Graph.jpg', dest: '.' },
         { src: 'about-hero-cy-and-grin.jpg', dest: '.' },
         { src: 'grinloud-says-still.jpg', dest: '.' },

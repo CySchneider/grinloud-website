@@ -2,12 +2,9 @@
 import React from 'react'
 import { Icon } from './icons.jsx'
 
-// CoverBackground, SpotifyCover, and PickCarousel's Track Info slide all
-// want the same track's Spotify cover art. Each used to fire its own
-// independent oEmbed fetch, so the foreground cover (SpotifyCover) visibly
-// lagged behind the background even though it's the identical response —
-// one shared in-flight/cached promise per URL fixes that and cuts the
-// request count on every pick switch from 3 down to 1.
+// SpotifyCover and PickCarousel's Track Info slide both want the same
+// track's Spotify cover art — one shared in-flight/cached promise per URL
+// avoids firing the same oEmbed request twice on every pick switch.
 const _oembedCache = new Map(); // spotifyUrl -> Promise<oEmbed response | null>
 function fetchSpotifyOembed(spotifyUrl) {
   if (!spotifyUrl || spotifyUrl === '#') return Promise.resolve(null);
@@ -79,42 +76,6 @@ function BackgroundVideo({ overlayOpacity = 0.35, accent, src }) {
   );
 }
 
-// Ken Burns + grain background sourced from the track's own Spotify cover,
-// used on the Pick of the Day page instead of a dance-clip video.
-function CoverBackground({ overlayOpacity = 0.35, accent, spotifyUrl }) {
-  const [src, setSrc] = React.useState(null);
-
-  React.useEffect(() => {
-    let cancelled = false;
-    fetchSpotifyOembed(spotifyUrl).then(d => {
-      if (cancelled || !d?.thumbnail_url) return;
-      // oEmbed hands back the 300px CDN variant; swap the size prefix for
-      // the 640px one — same image, same host, just a different crop code.
-      setSrc(d.thumbnail_url.replace('ab67616d00001e02', 'ab67616d0000b273'));
-    });
-    return () => { cancelled = true; };
-  }, [spotifyUrl]);
-
-  return (
-    <div className="bg-cover-stage" aria-hidden="true">
-      {src && <img className="bg-cover-img" src={src} alt="" />}
-      <div className="bg-cover-grain" />
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        backgroundColor: accent, opacity: overlayOpacity * 0.5,
-      }} />
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.62) 100%)',
-      }} />
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.38) 100%)',
-      }} />
-    </div>
-  );
-}
-
 // Swipeable info card, replaces the old stacked artist/meta/quote/details
 // blocks on the Pick page. One slide per fact: Artist, Track Info (incl.
 // label + release), GRINLOUD SAYS, Fun Fact (only if the pick has one).
@@ -169,18 +130,9 @@ function PickCarousel({ pick }) {
     return () => window.removeEventListener('resize', measure);
   }, [pick.artist]);
 
-  // labelImage is a manual override (rare — one pick has a real Beatport
-  // label-logo asset) for almost every pick it's unset, so the TRACK INFO
-  // slide falls back to the track's own Spotify cover — same oEmbed fetch
-  // CoverBackground/SpotifyCover already use elsewhere on this page.
-  const [trackCover, setTrackCover] = React.useState(null);
-  React.useEffect(() => {
-    if (pick.labelImage) return;
-    let cancelled = false;
-    fetchSpotifyOembed(pick.links?.spotify).then(d => { if (!cancelled && d?.thumbnail_url) setTrackCover(d.thumbnail_url); });
-    return () => { cancelled = true; };
-  }, [pick.labelImage, pick.links?.spotify]);
-
+  // Only the ARTIST slide keeps a photo (on the right); the other slides
+  // are text-only now. Every label shares the same colour — this pick's own
+  // --accent (set by the caller from pick.accent), not a fixed per-slide hue.
   const slides = [
     {
       key: 'artist', label: 'ARTIST', image: pick.artistImage,
@@ -194,9 +146,7 @@ function PickCarousel({ pick }) {
       ),
     },
     {
-      // Track + label info — the record label's square logo (or, absent
-      // that, the track's own cover) is this slide's image.
-      key: 'track', label: 'TRACK INFO', image: pick.labelImage || trackCover,
+      key: 'track', label: 'TRACK INFO',
       body: (
         <div className="pcard__meta">
           <div className="pcard__meta-row"><span>Genre</span><strong>{pick.genre}</strong></div>
@@ -208,15 +158,11 @@ function PickCarousel({ pick }) {
       ),
     },
     {
-      // Same still used on the Instagram carousel's "GRINLOUD SAYS" slide —
-      // static asset, copied in via vite.config.js's viteStaticCopy list.
-      key: 'says', label: 'GRINLOUD SAYS', image: 'grinloud-says-still.jpg',
+      key: 'says', label: 'GRINLOUD SAYS',
       body: <p className="pcard__quote">{pick.info}</p>,
     },
     ...(pick.funFact ? [{
-      // Fixed brand image for this slide — same static asset for every
-      // pick, copied in via vite.config.js's viteStaticCopy list.
-      key: 'fact', label: 'FUN FACT', image: 'grok-image-25c6fdac-4b59-417b-bcb0-10956d297150.jpg',
+      key: 'fact', label: 'FUN FACT',
       body: <p className="pcard__fact">{pick.funFact}</p>,
     }] : []),
   ];
@@ -262,13 +208,16 @@ function PickCarousel({ pick }) {
       >
         {slides.map((s) => (
           <div className={`pick-carousel__slide ${s.image ? 'has-image' : ''}`} key={s.key}>
-            {s.image && (
-              <img className="pick-carousel__thumb" src={s.image} alt="" loading="lazy" />
-            )}
             <div className="pick-carousel__content">
               <div className="pick-carousel__label">{s.label}</div>
               {s.body}
             </div>
+            {/* Only the ARTIST slide still carries a photo — pinned to the
+                right, after the text, instead of the old left-hand thumb
+                every slide used to share. */}
+            {s.image && (
+              <img className="pick-carousel__thumb" src={s.image} alt="" loading="lazy" />
+            )}
           </div>
         ))}
       </div>
@@ -309,7 +258,7 @@ function LogoMark({ size = 84, position = 'top', onClick }) {
       aria-label="GRINLOUD home"
     >
       <img
-        src="Logo%20GRINLOUD%20Smiley%20Yellow%20black.svg"
+        src="grinloud-smiley-2026.png"
         alt="GRINLOUD"
         className={anim ? `logo-anim logo-anim--${anim}` : ''}
         onAnimationEnd={() => setAnim(null)}
@@ -466,10 +415,14 @@ function NewsletterModal({ open, onClose, accent }) {
   );
 }
 
-function TopBrand() {
+function TopBrand({ onHome }) {
   return (
     <div className="top-brand">
-      <LogoMark size={80} />
+      <div className="top-brand__inner">
+        <LogoMark size={26} onClick={onHome} />
+        <button className="top-brand__wordmark" onClick={onHome}>grinloud.com</button>
+        <span className="top-brand__tagline">HOUSE MUSIC CURATED</span>
+      </div>
     </div>
   );
 }
@@ -487,7 +440,7 @@ function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar, is
   return (
     <nav className="top-nav">
       <div className="top-nav__inner">
-        {/* Back arrow — shown on all non-home pages, left of PICK */}
+        {/* Back arrow — shown on all non-home pages, left of PICK (mobile only, see CSS) */}
         {route !== 'home' && (
           <button className="nav-back" onClick={onBack} aria-label="Back to Pick">
             <Icon.Arrow dir="left" size={14} />
@@ -497,28 +450,26 @@ function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar, is
           <button
             key={it.id}
             className={`nav-link ${route === it.id ? 'is-active' : ''}`}
-            style={{ '--accent': accent }}
             onClick={() => setRoute(it.id)}
           >
             {it.label}
-            {route === it.id && <span className="nav-dot" />}
           </button>
         ))}
         <span className="nav-spacer" />
         <a className="nav-link nav-link--ghost" href="https://instagram.com/grinloud" target="_blank" rel="noreferrer" aria-label="Instagram">
-          <Icon.Instagram size={14} />
+          <Icon.Instagram size={13} />
         </a>
         <a className="nav-link nav-link--ghost" href="https://youtube.com/@grinloud" target="_blank" rel="noreferrer" aria-label="YouTube">
-          <Icon.YouTube size={14} />
+          <Icon.YouTube size={13} />
         </a>
         <button className="nav-link nav-link--ghost" onClick={onNewsletter} aria-label="Subscribe">
-          <Icon.Mail size={14} /> <span className="nav-subscribe-label">SUBSCRIBE</span>
+          <Icon.Mail size={13} /> <span className="nav-subscribe-label">SUBSCRIBE</span>
         </button>
       </div>
       {route === 'home' && onGotoRadar && radarIsLive && (
         <button
-          className="top-nav__radar-pill"
-          style={{ '--accent': accent, ...(!radarActuallyLive ? { opacity: 0.5 } : {}) }}
+          className="site-radar-pill"
+          style={!radarActuallyLive ? { opacity: 0.5 } : undefined}
           onClick={onGotoRadar}
         >
           MUSIC RADAR {radar.number} → OUT NOW
@@ -530,11 +481,9 @@ function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar, is
 }
 
 function ClaimChip({ accent }) {
-  // On subpages (light/coloured bg) — plain text brand, ink colour for readability
   return (
     <div className="brand-footer brand-footer--subpage">
-      <div className="brand-footer__name">GRINLOUD</div>
-      <div className="brand-footer__claim">HOUSE MUSIC CURATED DAILY</div>
+      © 2026 – Grinloud.com
     </div>
   );
 }
@@ -733,4 +682,4 @@ function SpotifyCover({ spotifyUrl, alt = '' }) {
   );
 }
 
-export { BackgroundVideo, CoverBackground, PickCarousel, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover };
+export { BackgroundVideo, PickCarousel, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover };

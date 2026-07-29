@@ -4,7 +4,7 @@ import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks, SpotifyCover } from './shared.jsx'
 // Layout: numbered poster-style tracklist on the left, sticky YouTube embed on the right.
 
-function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPreviewTrack }) {
+function MusicRadar({ radar, accent, onBack, onGotoArchive, onPreviewTrack }) {
   radar = radar || window.GRINLOUD_DATA.RADAR;
   const [activeTrack, setActiveTrack] = React.useState(null);
 
@@ -46,7 +46,7 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
   };
 
   return (
-    <div className="radar" style={{ '--accent': accent, '--ink': contrastInk }}>
+    <div className="radar" style={{ '--accent': accent }}>
       <header className="radar__header">
         <div className="radar__masthead">
           <div className="radar__masthead-eyebrow">MUSIC RADAR · NEW EVERY 10 DAYS</div>
@@ -78,7 +78,6 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
             <span>#</span>
             <span>TRACK / ARTIST</span>
             <span>BPM</span>
-            <span>KEY</span>
             <span>CUE</span>
           </div>
 
@@ -102,7 +101,6 @@ function MusicRadar({ radar, accent, contrastInk, onBack, onGotoArchive, onPrevi
               </div>
 
               <div className="radar-row__bpm">{t.bpm}</div>
-              <div className="radar-row__key">{t.key}</div>
               <div className="radar-row__cue">
                 <Icon.Play size={11} />
                 <span>{t.cue}</span>

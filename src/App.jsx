@@ -2,19 +2,15 @@
 import React from 'react'
 import { useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSlider } from '../tweaks-panel.jsx'
 import { TopBrand, TopNav, NewsletterModal, SpotifyPreviewBar } from './shared.jsx'
-import { HomeA } from './HomeA.jsx'
-import { HomeB } from './HomeB.jsx'
+import { Home } from './Home.jsx'
 import { Cinema } from './Cinema.jsx'
 import { RadarCover } from './RadarCover.jsx'
 import { MusicRadar } from './MusicRadar.jsx'
 import { Archive } from './Archive.jsx'
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "variant": "A",
   "bgColor": "pink",
   "typeScale": 1.0,
-  "logoPos": "top",
-  "overlay": 0.30,
   "density": "regular"
 }/*EDITMODE-END*/;
 
@@ -137,12 +133,6 @@ function App() {
   const prev = () => canPrev && gotoPick(pickIdx + 1);
   const next = () => canNext && gotoPick(pickIdx - 1);
 
-  React.useEffect(() => {
-    // Apply background color to root so it bleeds behind the scaled stage.
-    document.documentElement.style.setProperty('--page-bg', palette.bg);
-    document.documentElement.style.setProperty('--ink', palette.ink);
-  }, [palette]);
-
   // Stop preview when route or pick changes — except right after prev/next
   // carried an active preview over to the new pick (see gotoPick above).
   React.useEffect(() => {
@@ -203,8 +193,6 @@ function App() {
     document.title = titles[route] || 'GRINLOUD — House Music Curated Daily';
   }, [route, pickIdx, selectedRadar]);
 
-  const Home = t.variant === 'A' ? HomeA : HomeB;
-
   // Guard: if picks is empty or pickIdx is out of range, render nothing
   if (!pick) return null;
 
@@ -215,8 +203,8 @@ function App() {
   if (isRadarMode) return <RadarCover radar={window.GRINLOUD_DATA.RADAR} />;
 
   return (
-    <div className="app" style={{ background: palette.bg, color: palette.ink }}>
-      <TopBrand />
+    <div className="app">
+      <TopBrand onHome={() => setRoute('home')} />
       <TopNav
         route={route}
         setRoute={(r) => {
@@ -234,7 +222,6 @@ function App() {
         <Home
           pick={pick}
           accent={palette.bg}
-          contrastInk={palette.ink}
           prev={prev}
           next={next}
           canPrev={canPrev}
@@ -243,8 +230,6 @@ function App() {
           isPlaying={isPlaying}
           typeScale={t.typeScale}
           infoDensity={t.density}
-          logoPos={t.logoPos}
-          overlayOpacity={t.overlay}
           onGotoRadar={() => setRoute('radar')}
           isAdmin={isAdmin}
         />
@@ -254,7 +239,6 @@ function App() {
         <MusicRadar
           radar={selectedRadar}
           accent={palette.bg}
-          contrastInk={palette.ink}
           onBack={() => setRoute('home')}
           onGotoArchive={() => { setArchiveTab('radars'); setRoute('archive'); }}
           onPreviewTrack={(url) => { setPreviewUrl(url); setIsPlaying(true); }}
@@ -264,7 +248,6 @@ function App() {
       {route === 'archive' && (
         <Archive
           accent={palette.bg}
-          contrastInk={palette.ink}
           onBack={() => setRoute('home')}
           onGotoRadar={() => { setSelectedRadar(liveRadar); setRoute('radar'); }}
           onOpenRadar={(r) => { setSelectedRadar(r); setRoute('radar'); }}
@@ -286,29 +269,15 @@ function App() {
       />
 
       <TweaksPanel title="Tweaks">
-        <TweakSection label="Variant" />
-        <TweakRadio
-          label="Homepage"
-          value={t.variant}
-          options={['A', 'B']}
-          onChange={(v) => setTweak('variant', v)}
-        />
-
-        <TweakSection label="Background" />
+        <TweakSection label="Accent" />
         <TweakColor
-          label="Accent"
+          label="Accent dot"
           value={palette.bg}
           options={['#FF1F8F', '#FFE600', '#FF6200', '#00C2FF', '#39FF14']}
           onChange={(hex) => {
             const map = { '#FF1F8F': 'pink', '#FFE600': 'yellow', '#FF6200': 'orange', '#00C2FF': 'blue', '#39FF14': 'green' };
             setTweak('bgColor', map[hex] || 'pink');
           }}
-        />
-        <TweakSlider
-          label="Video overlay"
-          value={t.overlay}
-          min={0} max={1} step={0.05}
-          onChange={(v) => setTweak('overlay', v)}
         />
 
         <TweakSection label="Typography" />
@@ -323,14 +292,6 @@ function App() {
           value={t.density}
           options={['minimal', 'regular', 'comfy']}
           onChange={(v) => setTweak('density', v)}
-        />
-
-        <TweakSection label="Logo" />
-        <TweakRadio
-          label="Position"
-          value={t.logoPos}
-          options={['top', 'corner', 'big']}
-          onChange={(v) => setTweak('logoPos', v)}
         />
       </TweaksPanel>
     </div>

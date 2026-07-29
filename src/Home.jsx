@@ -1,0 +1,86 @@
+// Pick of the Day (homepage) — "Quiet Signal"
+// Replaces the old HomeA/HomeB split: one flat, off-white layout, cover art
+// top-left/left-column, no full-bleed video/color background.
+import { PickCarousel, StreamingLinks, ShareButton, LegalLinks, SpotifyCover } from './shared.jsx'
+import { Icon } from './icons.jsx'
+
+function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, onGotoRadar, isAdmin }) {
+  // cqw (container query width, off .home__text's own rendered width), not vw —
+  // keeps the chars-per-line ratio constant whatever width the flex layout
+  // actually hands the text column, instead of drifting/overflowing based on
+  // raw viewport width the way a vw-based size would.
+  const titleSize = 6.8 * typeScale;
+  const radar = window.GRINLOUD_DATA.RADAR;
+  const isScheduled = isAdmin && pick.date > new Date().toISOString().slice(0, 10);
+
+  return (
+    <div className="home" style={{ '--accent': accent }}>
+      {canPrev && (
+        <button className="nav-arrow nav-arrow--left" onClick={prev} aria-label="Previous pick">
+          <Icon.Chevron dir="left" size={22} />
+        </button>
+      )}
+      {canNext && (
+        <button className="nav-arrow nav-arrow--right" onClick={next} aria-label="Next pick">
+          <Icon.Chevron dir="right" size={22} />
+        </button>
+      )}
+
+      <div className="home__eyebrow">
+        <span className="home__eyebrow-dot" />
+        PICK OF THE DAY — {pick.date}
+        {isScheduled && <span className="pick-scheduled-badge">SCHEDULED</span>}
+      </div>
+
+      <div className="home__hero">
+        <div className="pick-cover">
+          <SpotifyCover spotifyUrl={pick.links?.spotify} alt={`${pick.title} — ${pick.artist} cover art`} />
+        </div>
+
+        <div className="home__text">
+          <h1 className="track-title" style={{ fontSize: `clamp(28px, ${titleSize}cqw, 104px)` }}>
+            {pick.title}
+          </h1>
+          <div className="artist-row">{pick.artist}</div>
+
+          <div className="meta-pills">
+            <span className="meta-pill"><span className="meta-pill__v">{pick.bpm} BPM</span></span>
+            <span className="meta-pill"><span className="meta-pill__v">{pick.key}</span></span>
+            <span className="meta-pill"><span className="meta-pill__v">{pick.label}</span></span>
+          </div>
+
+          <PickCarousel pick={pick} />
+
+          <div className="home__divider" />
+
+          <div className="pick-actions">
+            <button
+              className={`play-btn ${isPlaying ? 'is-playing' : ''}`}
+              onClick={() => { isPlaying ? window.grinloudPauseSpotify() : window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
+            >
+              {isPlaying ? <Icon.Pause size={12} /> : null}
+              <span>{isPlaying ? 'PAUSE' : '▶ PLAY PREVIEW'}</span>
+            </button>
+            <StreamingLinks links={pick.links} accent={accent} />
+            <ShareButton
+              url={`https://grinloud.com/pick/${pick.date}/`}
+              title={`${pick.title} — ${pick.artist} · GRINLOUD`}
+              text={`GRINLOUD Pick of the Day: ${pick.title} by ${pick.artist}`}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="home__footer-row">
+        <button className="home__footer-prev" onClick={prev} disabled={!canPrev}>← PREV</button>
+        <button className="site-radar-pill" onClick={onGotoRadar}>MUSIC RADAR {radar.number} →</button>
+      </div>
+
+      <footer className="home__legal-footer">
+        <LegalLinks />
+      </footer>
+    </div>
+  );
+}
+
+export { Home };
