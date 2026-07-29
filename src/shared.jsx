@@ -161,6 +161,11 @@ function PickCarousel({ pick }) {
     };
     measure();
     window.addEventListener('resize', measure);
+    // Re-measure once webfonts finish loading — the very first measure can
+    // land while the display font is still swapping in (slow connection,
+    // cold cache), locking the box to a fallback font's metrics that don't
+    // match the real glyph widths once Archivo Black takes over.
+    document.fonts?.ready.then(measure);
     return () => window.removeEventListener('resize', measure);
   }, [pick.artist]);
 

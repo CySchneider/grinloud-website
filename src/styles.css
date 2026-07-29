@@ -694,6 +694,13 @@ a.nav-link--ghost:hover svg { color: #FFE600; }
      it, the glyphs sit flush-left against the slide's text-align:left
      and look shoved left even though the box itself is centered. */
   max-width: 320px;
+  /* Never shrink below the width the JS measurement above just locked in
+     (see PickCarousel's artistWrapRef effect) — on a narrow phone, the
+     thumb (flex-shrink:0) + gap already eat most of the slide's width, and
+     without this the flex row squeezes this box past its own measured
+     content width, forcing a long name to keep re-wrapping down past
+     whole words to single syllables/letters. */
+  flex-shrink: 0;
 }
 .pcard__artist {
   font-family: var(--display);
@@ -1252,9 +1259,16 @@ a.nav-link--ghost:hover svg { color: #FFE600; }
   height: 44px;
   border-radius: var(--radius-sm);
 }
-.radar-row:hover {
-  background: rgba(10,10,10,0.06);
-  padding-left: 20px;
+/* Only apply the hover state on devices that actually have a hover-capable
+   pointer. Touch browsers (mobile Safari included) simulate :hover on the
+   first tap and only fire the click on a second one — since this row's
+   onClick is what starts playback, that turned "tap a track" into
+   "tap a track twice" on every touch device. */
+@media (hover: hover) {
+  .radar-row:hover {
+    background: rgba(10,10,10,0.06);
+    padding-left: 20px;
+  }
 }
 .radar-row.is-active {
   background: var(--ink);
@@ -1480,9 +1494,14 @@ a.nav-link--ghost:hover svg { color: #FFE600; }
   transition: transform 0.14s, box-shadow 0.14s;
   min-height: 200px;
 }
-.archive-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: var(--shadow-offset);
+/* Hover-capable pointers only — see .radar-row:hover for why: a :hover
+   state on a touch device makes the first tap "arm" the hover style and
+   only the second tap actually fires the click that starts playback. */
+@media (hover: hover) {
+  .archive-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-offset);
+  }
 }
 .archive-card.is-playing {
   background: var(--ink);
@@ -1748,19 +1767,45 @@ a.nav-link--ghost:hover svg { color: #FFE600; }
   /* extra breathing room on top of the 14px mobile gap, same rule as desktop */
   .pick-cover { margin-top: 12px; }
   .track-title--a { margin-top: 12px; }
-  .home-a__footer { flex-direction: column; align-items: stretch; }
+
+  /* ── Pick carousel: keep the thumb clear of the fixed left nav arrow
+     (52px wide, 8px from the edge — reaching 60px in). The desktop 16px
+     slide padding is fine on wide screens where the arrow sits outside the
+     carousel's own width, but on a phone the thumb renders right under it.
+     Only the left side needs the extra inset — the thumb is what sits
+     near that edge; text-heavy slides no longer stretch to the slide's
+     full width (see .pcard__meta-row below), so they don't need it. Going
+     symmetric here would eat further into the already-tight remaining
+     width and re-break long single-word artist names (see
+     .pcard__artist-wrap's flex-shrink note). ── */
+  .pick-carousel__slide { padding-left: 46px; }
+  /* TRACK INFO rows: on desktop, space-between stretches label/value to
+     .pcard__meta's full (comfortably wide) box. On a phone that box has
+     already shrunk to fit whatever room the thumb leaves — space-between
+     still stretches label and value to ITS edges, so the value lands right
+     at the carousel's right edge (under the fixed nav arrow) with a bare
+     gap where the row's slack used to be. Hug label + value together
+     instead so the row is only as wide as its own text, wherever the box's
+     invisible edge ends up. */
+  .pcard__meta-row { justify-content: flex-start; gap: var(--space-3); }
+  .pcard__meta-row span { width: 68px; }
 
   /* ── Footer on mobile ── */
-  .home-a__footer { flex-direction: column; align-items: stretch; gap: 10px; }
-  .home-a__footer-right { align-items: flex-start; }
-  .legal-links { margin-top: 4px; }
+  /* GRINLOUD wordmark flows in document order here instead of being
+     pinned at a fixed distance from the bottom — that fixed offset was
+     tuned for one content height and collides with the Play/Streaming/
+     Share row whenever a pick's carousel is taller (long title, feat
+     artists, a fun fact slide) on a short mobile viewport. Static + a
+     margin keeps it directly under that row on every pick, every time.
+     LegalLinks then keeps the base rule's flex-end alignment (this footer
+     only ever holds LegalLinks — see HomeA.jsx) so About/Privacy/Impressum
+     stay right-aligned instead of the column+stretch override left them
+     flush left. */
+  .brand-footer { position: static; margin: 28px 0 4px; }
 
   /* ── Header on mobile: smiley below nav ── */
   .top-brand { top: 68px; left: 14px; }
   .home-a__header { display: none; }
-  .brand-footer { bottom: 140px; left: 14px; }
-  /* Legal links: ensure they sit below brand footer */
-  .home-a__footer { padding-bottom: 8px; }
 
   /* G: Radar pill — show on mobile, smaller */
   .top-nav__radar-pill {
