@@ -803,16 +803,6 @@ a { color: inherit; text-decoration: none; }
   background: transparent;
   color: var(--qs-pink);
 }
-.radar-row.is-active::before {
-  content: '▶ PLAYING';
-  position: absolute;
-  top: -2px;
-  right: 0;
-  font-family: var(--qs-mono);
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  color: var(--qs-pink);
-}
 .radar-row__n {
   font-family: var(--qs-mono);
   font-size: 12px;
@@ -840,15 +830,18 @@ a { color: inherit; text-decoration: none; }
   font-size: 12px;
   color: var(--qs-ink-70);
 }
-.radar-row__cue {
+.radar-row__status {
   display: inline-flex;
   align-items: center;
   gap: 5px;
   font-family: var(--qs-mono);
   font-size: 11px;
-  color: var(--qs-ink-55);
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--qs-ink-35);
   justify-self: end;
 }
+.radar-row.is-active .radar-row__status { color: var(--qs-pink); }
 .radar__footnote {
   font-family: var(--qs-mono);
   font-size: 10px;
@@ -1182,13 +1175,15 @@ a { color: inherit; text-decoration: none; }
   .top-nav__inner { gap: 12px; }
   .nav-link { font-size: 9.5px; letter-spacing: 0.06em; }
   .nav-subscribe-label { display: none; }
-  .top-brand { top: 56px; left: 20px; }
+  /* Wordmark stays the flush element like every other breakpoint (same
+     rule as desktop/about/impressum/privacy) — just inset a little further
+     than the page's own 20px content padding, so the overhanging smiley
+     has room to sit fully on-screen instead of colliding with the text or
+     clipping off the viewport edge. */
+  .top-brand { top: 56px; left: 30px; }
   .top-brand__wordmark { font-size: 15px; }
   .top-brand__tagline { display: none; }
-  /* No room to hang the smiley over the margin at this width without
-     clipping it or colliding with the wordmark — fall back to normal
-     side-by-side flow, smiley first. */
-  .top-brand__inner .logo-mark { position: static; margin-top: 0; }
+  .top-brand__inner .logo-mark { left: -26px; width: 22px !important; height: 22px !important; margin-top: -11px; }
 
   .nav-arrow { display: none; }
 
@@ -1208,8 +1203,7 @@ a { color: inherit; text-decoration: none; }
     padding: 12px 0;
   }
   .radar-row__bpm { display: none; }
-  .radar-row__key { display: none; }
-  .radar-row__cue { grid-column: 4; }
+  .radar-row__status { grid-column: 4; }
 
   .archive__header { flex-direction: column; align-items: flex-start; gap: 14px; }
   .archive-card {

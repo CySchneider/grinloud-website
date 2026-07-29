@@ -78,15 +78,16 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, onPreviewTrack }) {
             <span>#</span>
             <span>TRACK / ARTIST</span>
             <span>BPM</span>
-            <span>CUE</span>
+            <span></span>
           </div>
 
           {radar.tracks.map((t, i) => {
             const spotifyUrl = spotifyByTitle[t.title.toLowerCase()];
+            const isActive = activeTrack === i;
             return (
             <div
               key={i}
-              className={`radar-row ${activeTrack === i ? 'is-active' : ''}`}
+              className={`radar-row ${isActive ? 'is-active' : ''}`}
               onClick={() => onPlayCue(t, i)}
             >
               <div className="radar-row__n">{t.n}</div>
@@ -101,16 +102,15 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, onPreviewTrack }) {
               </div>
 
               <div className="radar-row__bpm">{t.bpm}</div>
-              <div className="radar-row__cue">
-                <Icon.Play size={11} />
-                <span>{t.cue}</span>
+              <div className="radar-row__status">
+                {isActive ? <>PLAYING <Icon.Arrow size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
               </div>
             </div>
             );
           })}
 
           <div className="radar__footnote">
-            CLICK A ROW TO JUMP TO THE CUE IN THE STREAM. ALL TIMES MATCH THE YOUTUBE EMBED.
+            CLICK A ROW TO PLAY THE TRACK'S SPOTIFY PREVIEW.
           </div>
         </section>
 
