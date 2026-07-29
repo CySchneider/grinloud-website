@@ -85,78 +85,17 @@ function BackgroundVideo({ overlayOpacity = 0.35, accent, src }) {
 // — this is a presentation layer on top of the hydrated app only, nothing
 // is hidden from crawlers.
 //
-// Square thumbnails (not full-bleed backgrounds) sit left of the text,
-// framed the same way as every other card/button on the site: hard
-// border-w outline + shadow-offset, no blur/scrim.
+// Text-only now — the artist photo and the BPM/Key/Label/Genre/Release
+// facts moved out to Home.jsx's persistent artist block above this, so
+// nothing here would just repeat what's already on screen. Only the two
+// "quote" slides (GRINLOUD SAYS, FUN FACT) are left to actually swipe between.
 function PickCarousel({ pick }) {
   const trackRef = React.useRef(null);
   const [active, setActive] = React.useState(0);
 
-  // Only the lead artist gets a photo — split "Main, Feat One, Feat Two"
-  // so the name row can match: lead name big, everyone else small beside it.
-  const [mainArtist, ...featArtists] = pick.artist.split(', ');
-
-  // The name+feat block is capped at max-width (see .pcard__artist-wrap)
-  // so a long name that wraps onto two lines doesn't blow out the whole
-  // row's width. But CSS has no way to shrink that box back down to the
-  // width the wrapped lines actually render at — it just pins the box at
-  // the full max-width, which left-aligned text then only half-fills,
-  // making it look shoved left instead of centered next to the thumb.
-  // So measure the widest rendered line ourselves and shrink the box's
-  // own width to match, whatever the name/viewport/font-size clamp.
-  const artistWrapRef = React.useRef(null);
-  React.useLayoutEffect(() => {
-    const wrap = artistWrapRef.current;
-    if (!wrap) return;
-    const measure = () => {
-      wrap.style.width = '';
-      let widest = 0;
-      wrap.querySelectorAll('.pcard__artist, .pcard__artist-feat').forEach((el) => {
-        const textNode = el.firstChild;
-        if (!textNode) return;
-        const range = document.createRange();
-        range.selectNodeContents(textNode);
-        Array.from(range.getClientRects()).forEach((r) => { widest = Math.max(widest, r.width); });
-      });
-      wrap.style.width = widest ? `${Math.ceil(widest)}px` : '';
-    };
-    measure();
-    window.addEventListener('resize', measure);
-    // Re-measure once webfonts finish loading — the very first measure can
-    // land while the display font is still swapping in (slow connection,
-    // cold cache), locking the box to a fallback font's metrics that don't
-    // match the real glyph widths once Archivo Black takes over.
-    document.fonts?.ready.then(measure);
-    return () => window.removeEventListener('resize', measure);
-  }, [pick.artist]);
-
-  // Only the ARTIST slide keeps a photo (on the right); the other slides
-  // are text-only now. Every label shares the same colour — this pick's own
-  // --accent (set by the caller from pick.accent), not a fixed per-slide hue.
+  // Every label shares the same colour — this pick's own --accent (set by
+  // the caller from pick.accent), not a fixed per-slide hue.
   const slides = [
-    {
-      key: 'artist', label: 'ARTIST', image: pick.artistImage,
-      body: (
-        <div className="pcard__artist-wrap" ref={artistWrapRef}>
-          <div className="pcard__artist">{mainArtist}</div>
-          {featArtists.length > 0 && (
-            <div className="pcard__artist-feat">{featArtists.join(', ')}</div>
-          )}
-        </div>
-      ),
-    },
-    {
-      key: 'track', label: 'TRACK INFO',
-      body: (
-        <div className="pcard__meta">
-          <div className="pcard__meta-row"><span>Genre</span><strong>{pick.genre}</strong></div>
-          <div className="pcard__meta-row"><span>BPM</span><strong>{pick.bpm}</strong></div>
-          <div className="pcard__meta-row"><span>Key</span><strong>{pick.key}</strong></div>
-          <div className="pcard__meta-row"><span>Label</span><strong>{pick.label}</strong></div>
-          <div className="pcard__meta-row"><span>Release</span><strong>{pick.release}</strong></div>
-        </div>
-      ),
-    },
     {
       key: 'says', label: 'GRINLOUD SAYS',
       body: <p className="pcard__quote">{pick.info}</p>,
@@ -207,17 +146,11 @@ function PickCarousel({ pick }) {
         onPointerDown={stopAutoplay}
       >
         {slides.map((s) => (
-          <div className={`pick-carousel__slide ${s.image ? 'has-image' : ''}`} key={s.key}>
+          <div className="pick-carousel__slide" key={s.key}>
             <div className="pick-carousel__content">
               <div className="pick-carousel__label">{s.label}</div>
               {s.body}
             </div>
-            {/* Only the ARTIST slide still carries a photo — pinned to the
-                right, after the text, instead of the old left-hand thumb
-                every slide used to share. */}
-            {s.image && (
-              <img className="pick-carousel__thumb" src={s.image} alt="" loading="lazy" />
-            )}
           </div>
         ))}
       </div>

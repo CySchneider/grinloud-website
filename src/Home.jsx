@@ -41,12 +41,20 @@ function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, t
           <h1 className="track-title" style={{ fontSize: `clamp(28px, ${titleSize}cqw, 104px)` }}>
             {pick.title}
           </h1>
-          <div className="artist-row">{pick.artist}</div>
-
-          <div className="meta-pills">
-            <span className="meta-pill"><span className="meta-pill__v">{pick.bpm} BPM</span></span>
-            <span className="meta-pill"><span className="meta-pill__v">{pick.key}</span></span>
-            <span className="meta-pill"><span className="meta-pill__v">{pick.label}</span></span>
+          <div className="home__artist-block">
+            {pick.artistImage && (
+              <img className="home__artist-photo" src={pick.artistImage} alt={`${pick.artist} photo`} loading="lazy" />
+            )}
+            <div className="home__artist-info">
+              <div className="artist-row">{pick.artist}</div>
+              <div className="meta-pills">
+                <span className="meta-pill"><span className="meta-pill__v">{pick.bpm} BPM</span></span>
+                <span className="meta-pill"><span className="meta-pill__v">{pick.key}</span></span>
+                <span className="meta-pill"><span className="meta-pill__v">{pick.label}</span></span>
+                <span className="meta-pill"><span className="meta-pill__v">{pick.genre}</span></span>
+                <span className="meta-pill"><span className="meta-pill__v">{pick.release}</span></span>
+              </div>
+            </div>
           </div>
 
           <PickCarousel pick={pick} />
@@ -72,7 +80,10 @@ function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, t
       </div>
 
       <div className="home__footer-row">
-        <button className="home__footer-prev" onClick={prev} disabled={!canPrev}>← PREV</button>
+        <div className="home__footer-nav">
+          <button className="home__footer-prev" onClick={prev} disabled={!canPrev}>← PREV</button>
+          <button className="home__footer-next" onClick={next} disabled={!canNext}>NEXT →</button>
+        </div>
         <button className="site-radar-pill" onClick={onGotoRadar}>MUSIC RADAR {radar.number} →</button>
       </div>
 
