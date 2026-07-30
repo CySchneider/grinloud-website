@@ -423,7 +423,7 @@ function TopBrand({ onHome }) {
   );
 }
 
-function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar, isAdmin }) {
+function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar, isAdmin, onHome }) {
   const radar = window.GRINLOUD_DATA.RADAR;
   const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
   const radarActuallyLive = !radar.liveDate || todayStr >= radar.liveDate;
@@ -436,6 +436,17 @@ function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar, is
   return (
     <nav className="top-nav">
       <div className="top-nav__inner">
+        {/* Compact-tier only (see CSS) — the standalone .top-brand (with its
+            desktop logo-overhang treatment) hides below 900px in favour of
+            this one, so the wordmark and nav sit as a single tight cluster
+            with one small gap between them instead of the standalone brand
+            staying pinned far left while nav__inner's margin-left:auto
+            pushes the links all the way to the right, leaving a huge dead
+            gap in between at narrow-but-not-stacked widths. */}
+        <button className="top-nav__brand" onClick={onHome} aria-label="GRINLOUD home">
+          <img src="grinloud-smiley-2026.png" alt="" className="top-nav__brand-logo" />
+          <span className="top-nav__brand-word">grinloud.com</span>
+        </button>
         {/* Back arrow — shown on all non-home pages, left of PICK (mobile only, see CSS) */}
         {route !== 'home' && (
           <button className="nav-back" onClick={onBack} aria-label="Back to Pick">

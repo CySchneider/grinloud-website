@@ -191,6 +191,29 @@ a { color: inherit; text-decoration: none; }
   width: fit-content;
   margin-left: auto;
 }
+/* Compact-header wordmark — lives inside .top-nav__inner (see the <900px
+   tier below), hidden here since desktop uses the standalone .top-brand
+   with its own logo-overhang treatment instead. */
+.top-nav__brand {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.top-nav__brand-logo {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: block;
+}
+.top-nav__brand-word {
+  font-family: var(--qs-wordmark);
+  font-size: 13.5px;
+  color: var(--qs-ink);
+  white-space: nowrap;
+  -webkit-text-stroke: 0.4px var(--qs-ink);
+}
+.top-nav__brand:hover .top-nav__brand-word { opacity: 0.7; }
 .nav-link {
   font-family: var(--qs-mono);
   font-size: 11px;
@@ -204,6 +227,7 @@ a { color: inherit; text-decoration: none; }
   gap: 8px;
   border-bottom: 2px solid transparent;
   transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
 }
 .nav-link:hover { color: var(--qs-ink); }
 .nav-link.is-active {
@@ -1247,23 +1271,21 @@ a { color: inherit; text-decoration: none; }
   .radar   { padding: 108px 20px 112px; }
   .archive { padding: 108px 20px 112px; }
 
-  /* Nav compacts (smaller labels, subscribe text hidden) but brand STAYS
-     on the same row, flush left, as long as it fits — tightened further
-     (tighter gaps, smaller wordmark/logo) so this actually holds all the
-     way down to real phone widths (~375px) instead of just tablets; only
-     a much narrower breakpoint further down drops it to a second row as a
-     last resort nothing under ~340px hits in practice. Flush-left flow (no
-     overhang) here too: the overhang trick needs more margin room than
-     this tier's 20px content padding gives it. */
-  .top-nav { padding: 14px 12px; }
-  .top-nav__inner { gap: 7px; }
-  .nav-link { font-size: 9.5px; letter-spacing: 0.04em; }
+  /* Below 900px the standalone .top-brand (desktop logo-overhang, pinned
+     far left while .top-nav__inner's margin-left:auto pins the links far
+     right) is swapped for .top-nav__brand — the wordmark rendered as the
+     FIRST item inside .top-nav__inner itself, so it shares that row's
+     regular gap with the nav links right next to it instead of leaving a
+     huge dead gap between two independently-pinned elements. */
+  .top-nav { padding: 14px 10px; }
+  .top-nav__inner { gap: 6px; margin-left: 0; }
+  .nav-link { font-size: 9.2px; letter-spacing: 0.03em; }
+  .nav-link--ghost { margin-left: 2px; }
   .nav-subscribe-label { display: none; }
-  .top-brand { left: 14px; }
-  .top-brand__inner { gap: 6px; }
-  .top-brand__wordmark { font-size: 13.5px; }
-  .top-brand__tagline { display: none; }
-  .top-brand__inner .logo-mark { position: static; margin-top: 0; width: 20px !important; height: 20px !important; }
+  .top-brand { display: none; }
+  .top-nav__brand { display: flex; gap: 5px; }
+  .top-nav__brand-logo { width: 19px !important; height: 19px !important; }
+  .top-nav__brand-word { font-size: 13px; }
 
   .nav-arrow { display: none; }
 
@@ -1302,18 +1324,18 @@ a { color: inherit; text-decoration: none; }
   .archive-card__meta { grid-column: 2 / -1; grid-row: 3; }
 }
 
-/* Last resort: the 900px tier's sizing above is tuned to hold the brand on
-   the same row as the nav down to real phone widths (~375px+) — this
-   breakpoint only catches genuinely narrower viewports (foldables, browser
-   zoom) where it truly stops fitting, dropping the brand to its own row
-   and growing the header's backdrop band to cover both. This tier only
-   touches vertical position/sizing; flush-left flow/sizes come from above. */
+/* Last resort: the 900px tier's sizing above is tuned to hold the wordmark
+   + nav on one line down to real phone widths (~340px+) — this breakpoint
+   only catches genuinely narrower viewports (foldables, extreme browser
+   zoom) where it truly stops fitting. Let the row wrap instead of
+   overflowing; min-height grows to fit whatever that wrap ends up being
+   rather than a fixed guess. */
 @media (max-width: 340px) {
-  .home    { padding-top: 118px; }
-  .radar   { padding-top: 118px; }
-  .archive { padding-top: 118px; }
+  .home    { padding-top: 128px; }
+  .radar   { padding-top: 128px; }
+  .archive { padding-top: 128px; }
   .top-nav { min-height: 92px; }
-  .top-brand { top: 56px; }
+  .top-nav__inner { flex-wrap: wrap; }
 }
 
 @media (min-width: 901px) {
