@@ -402,15 +402,17 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  column-gap: 10px;
+  column-gap: 6px;
   row-gap: 4px;
   /* Matches the body copy used for "GRINLOUD SAYS" / "FUN FACT" (.pcard__quote,
      .pcard__fact) instead of the mono/all-caps treatment used elsewhere in
-     the header — this line reads as a sentence, not a label row. */
+     the header — this line reads as a sentence, not a label row. Same
+     font-weight (300) throughout, including .meta-pill__v below — no bolder
+     "value" treatment, so it reads as one continuous sentence weight. */
   font-family: var(--qs-body);
   font-weight: 300;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 0.8;
   color: var(--qs-ink-75);
   margin-bottom: 22px;
 }
@@ -424,11 +426,11 @@ a { color: inherit; text-decoration: none; }
 }
 .meta-pill:not(:last-child)::after {
   content: '·';
-  margin-left: 10px;
+  margin-left: 6px;
   opacity: 0.5;
 }
 .meta-pill__l { display: none; }
-.meta-pill__v { font-weight: 500; color: inherit; }
+.meta-pill__v { font-weight: inherit; color: inherit; }
 
 .track-info {
   max-width: 480px;
