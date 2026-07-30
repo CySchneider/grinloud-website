@@ -41,6 +41,7 @@
     /* Same footer on About/Privacy/Impressum — kept identical across all three. */
     .legal-foot { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; font-size: 11px; opacity: 0.35; }
     .legal-foot a { color: inherit; }
+    .legal-foot__news { color: #FF0090 !important; font-weight: 700; }
     @media (max-width: 480px) {
       .brand img { position: static; margin-top: 0; }
     }
@@ -79,7 +80,7 @@
   <hr>
   <footer class="legal-foot">
     <p class="legal-foot__copy">© Grinloud.com 2026</p>
-    <p class="legal-foot__nav"><a href="/news.html">News</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
+    <p class="legal-foot__nav"><a href="/news.html" class="legal-foot__news">NEWS</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
   </footer>
 </body>
 </html>

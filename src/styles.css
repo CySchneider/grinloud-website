@@ -731,6 +731,8 @@ a { color: inherit; text-decoration: none; }
 }
 .legal-links a { text-decoration: none; color: inherit; }
 .legal-links a:hover { color: var(--qs-ink); text-decoration: underline; }
+.legal-links__news { color: var(--qs-pink) !important; font-weight: 700; }
+.legal-links__news:hover { color: var(--qs-pink) !important; }
 
 /* Admin: scheduled future pick/radar badge */
 .pick-scheduled-badge {
