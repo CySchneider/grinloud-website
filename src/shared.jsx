@@ -557,17 +557,27 @@ window.grinloudPauseSpotify = function() {
   if (_spotifyCtrl) _spotifyCtrl.pause();
 };
 
+// A Spotify URL is either a single track (per-pick preview) or a playlist
+// (a full Radar cycle's tracklist, played back-to-back via "PLAY FULL RADAR").
+// Both load into the same persistent iframe controller — only the URI type
+// (spotify:track: vs spotify:playlist:) differs.
+function spotifyUriFromUrl(spotifyUrl) {
+  if (!spotifyUrl || spotifyUrl === '#') return null;
+  const trackId = spotifyUrl.split('/track/')[1]?.split('?')[0];
+  if (trackId) return 'spotify:track:' + trackId;
+  const playlistId = spotifyUrl.split('/playlist/')[1]?.split('?')[0];
+  if (playlistId) return 'spotify:playlist:' + playlistId;
+  return null;
+}
+
 // Called SYNCHRONOUSLY inside click handlers to keep user-gesture context.
 // loadUri + immediate play() is the only pattern that works on iOS Safari —
 // the Spotify embed queues the play internally until the URI is ready.
 // (Do not swap this order — play()-before-loadUri was tried and it made
 // playback silently fail instead of just needing a 2nd tap.)
 window.grinloudPlaySpotify = function(spotifyUrl) {
-  const trackId = spotifyUrl && spotifyUrl !== '#'
-    ? spotifyUrl.split('/track/')[1]?.split('?')[0]
-    : null;
-  if (!trackId) return;
-  const uri = 'spotify:track:' + trackId;
+  const uri = spotifyUriFromUrl(spotifyUrl);
+  if (!uri) return;
 
   if (_spotifyCtrl) {
     try {
@@ -594,17 +604,15 @@ window.grinloudPlaySpotify = function(spotifyUrl) {
 
 function SpotifyPreviewBar({ spotifyUrl }) {
   const containerRef = React.useRef(null);
-  const trackId = spotifyUrl && spotifyUrl !== '#'
-    ? spotifyUrl.split('/track/')[1]?.split('?')[0]
-    : null;
+  const uriToLoad = spotifyUriFromUrl(spotifyUrl);
 
   React.useEffect(function() {
-    if (!containerRef.current || !trackId) return;
+    if (!containerRef.current || !uriToLoad) return;
     _containerEl = containerRef.current;
 
     function initPlayer() {
       if (!_spotifyAPI) return;
-      const uri = 'spotify:track:' + trackId;
+      const uri = uriToLoad;
       if (_spotifyCtrl) {
         // Skip if grinloudPlaySpotify already loaded this URI to avoid
         // interrupting active playback with a redundant loadUri call.
@@ -639,7 +647,7 @@ function SpotifyPreviewBar({ spotifyUrl }) {
       window.addEventListener('sp-api-ready', initPlayer, { once: true });
       return function() { window.removeEventListener('sp-api-ready', initPlayer); };
     }
-  }, [trackId]);
+  }, [uriToLoad]);
 
   // Both elements are always in the DOM — never conditionally mounted/unmounted.
   // The Spotify IFrame API can replace or move the container node in the DOM,
@@ -651,11 +659,11 @@ function SpotifyPreviewBar({ spotifyUrl }) {
     <div className="spotify-bar">
       <div
         ref={containerRef}
-        style={{ flex: 1, height: 80, overflow: 'hidden', display: trackId ? 'block' : 'none' }}
+        style={{ flex: 1, height: 80, overflow: 'hidden', display: uriToLoad ? 'block' : 'none' }}
       />
       <div
         className="spotify-bar__unavailable-msg"
-        style={{ display: trackId ? 'none' : 'flex' }}
+        style={{ display: uriToLoad ? 'none' : 'flex' }}
       >
         <span>PREVIEW NOT YET AVAILABLE FOR THIS PICK</span>
       </div>

@@ -141,6 +141,14 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlayin
               </div>
             </div>
           </div>
+          <button
+            className={`radar__playlist-link ${isRowPlaying(radar.spotifyUrl) ? 'is-active' : ''}`}
+            onClick={() => onToggleTrack(radar.spotifyUrl)}
+            disabled={!radar.spotifyUrl || radar.spotifyUrl === '#'}
+          >
+            <span>PLAY FULL RADAR</span>
+            {isRowPlaying(radar.spotifyUrl) ? <>PAUSE <Icon.Pause size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
+          </button>
           <button className="radar__archive-link" onClick={onGotoArchive}>
             <span>BROWSE PREVIOUS RADARS</span>
             <Icon.Arrow />
