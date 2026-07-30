@@ -12,10 +12,23 @@
     a:hover { text-decoration: underline; }
     /* Same header treatment as the app (TopBrand): the wordmark sits flush
        with the page's left edge; the smiley is pulled out of flow and hangs
-       slightly to the left of it, overlapping the margin. */
-    .brand { position: relative; display: inline-flex; align-items: baseline; gap: 10px; margin-bottom: 48px; }
+       slightly to the left of it, overlapping the margin.
+       align-items: center, not baseline — matters once the smiley sits
+       back in normal flow at the mobile breakpoint below, where baseline
+       aligned it to the wordmark's text baseline instead of its vertical
+       middle. Doesn't affect the desktop overhang treatment above: that
+       smiley is absolutely positioned and centers itself via
+       top:50%/margin-top regardless. */
+    .brand { position: relative; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 48px; }
+    /* Override the global a:hover underline — .brand is one big link, so
+       hovering it would otherwise underline the wordmark + tagline text too. */
+    .brand:hover { text-decoration: none; opacity: 0.7; }
     .brand img {
-      position: absolute; left: -20px; top: 50%; margin-top: -13px;
+      /* -34px, not -20px — a 26px-wide image at -20px only clears 20px of
+         its own width, so it overlapped the "g" of the wordmark by 6px.
+         -34px matches the app's own header (.top-brand__inner .logo-mark)
+         for the same 26px size, clearing it with an 8px gap. */
+      position: absolute; left: -34px; top: 50%; margin-top: -13px;
       width: 26px; height: 26px; display: block; border-radius: 50%; background: #FAF7F2;
     }
     .brand .wordmark { font-family: 'UnifrakturMaguntia', cursive; font-size: 18px; color: #0E0E0E; -webkit-text-stroke: 0.4px #0E0E0E; }
@@ -25,6 +38,10 @@
     h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; opacity: 0.45; margin: 32px 0 10px; }
     p { font-size: 13px; line-height: 1.8; color: rgba(14,14,14,0.75); margin-bottom: 4px; }
     hr { border: none; border-top: 1px solid rgba(14,14,14,0.12); margin: 48px 0; }
+    /* Same footer on About/Privacy/Impressum — kept identical across all three. */
+    .legal-foot { font-size: 11px; opacity: 0.35; }
+    .legal-foot__nav { margin-top: 6px; }
+    .legal-foot a { color: inherit; }
     @media (max-width: 480px) {
       .brand img { position: static; margin-top: 0; }
     }
@@ -61,6 +78,9 @@
   <p>All linked external content (Spotify, YouTube, Beatport) is subject to the respective providers' terms of service. GRINLOUD assumes no liability for external content.</p>
 
   <hr>
-  <p style="font-size:11px; opacity:0.35;">© 2026 Isuntu GmbH · All rights reserved</p>
+  <footer class="legal-foot">
+    <p class="legal-foot__copy">© 2026 – Grinloud.com · Isuntu GmbH · Weidenweg 26 · Kaiseraugst · Switzerland</p>
+    <p class="legal-foot__nav"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
+  </footer>
 </body>
 </html>

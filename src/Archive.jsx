@@ -1,9 +1,9 @@
 // Archive page — past Picks of the Day + past Music Radars.
 import React from 'react'
 import { Icon } from './icons.jsx'
-import { ClaimChip, LegalLinks, SpotifyCover } from './shared.jsx'
+import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer } from './shared.jsx'
 
-function Archive({ accent, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, tab, onTabChange, isAdmin }) {
+function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlaying, onToggleTrack, tab, onTabChange, isAdmin }) {
   const allPicks = window.GRINLOUD_DATA.PICKS;
   const radars = window.GRINLOUD_DATA.PREVIOUS_RADARS;
   const currentRadar = window.GRINLOUD_DATA.RADAR;
@@ -11,16 +11,9 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, tab
   const picks = isAdmin ? allPicks : allPicks.filter(p => p.date <= todayStr);
   const radarActuallyLive = !currentRadar.liveDate || todayStr >= currentRadar.liveDate;
   const showCurrentRadar = isAdmin || radarActuallyLive;
-  const [activePick, setActivePick] = React.useState(null);
+  const [openTrack, setOpenTrack] = React.useState(null);
 
-  const handlePickClick = (p) => {
-    const url = p.links?.spotify;
-    if (!url || url === '#') return;
-    // Must be synchronous before React state updates to keep user-gesture context on iOS
-    window.grinloudPlaySpotify(url);
-    setActivePick(url);
-    onPreviewTrack?.(url);
-  };
+  const isRowPlaying = (url) => Boolean(url) && url !== '#' && isPlaying && previewUrl === url;
 
   return (
     <div className="archive" style={{ '--accent': accent }}>
@@ -47,28 +40,31 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, tab
       {tab === 'picks' && (
         <div className="archive__grid">
           {picks.map((p) => {
-            const isActive = activePick && activePick === p.links?.spotify;
+            const url = p.links?.spotify;
+            const isActive = isRowPlaying(url);
             return (
-              <button
-                key={p.id}
-                className={`archive-card${isActive ? ' is-playing' : ''}`}
-                onClick={() => handlePickClick(p)}
-              >
+              <div key={p.id} className={`archive-card${isActive ? ' is-playing' : ''}`}>
                 <span className="archive-card__date">{p.date}</span>
-                <SpotifyCover spotifyUrl={p.links?.spotify} alt={`${p.title} — ${p.artist} cover art`} />
-                <span className="archive-card__text">
+                <button className="archive-card__cover-hit" onClick={() => setOpenTrack(p)} aria-label={`View ${p.title} — ${p.artist}`}>
+                  <SpotifyCover spotifyUrl={url} alt={`${p.title} — ${p.artist} cover art`} />
+                </button>
+                <button className="archive-card__text-hit" onClick={() => setOpenTrack(p)}>
                   <span className="archive-card__title">{p.title}</span>
                   <span className="archive-card__artist">{p.artist}</span>
-                </span>
+                </button>
                 <span className="archive-card__meta">
                   <span>{p.bpm}</span>
                   <span className="archive-card__dot">·</span>
                   <span>{p.key}</span>
                 </span>
-                <span className="archive-card__open">
-                  {isActive ? <>PLAYING <Icon.Arrow size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
-                </span>
-              </button>
+                <button
+                  className="archive-card__open"
+                  onClick={() => onToggleTrack(url)}
+                  disabled={!url || url === '#'}
+                >
+                  {isActive ? <>PAUSE <Icon.Pause size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
+                </button>
+              </div>
             );
           })}
         </div>
@@ -125,6 +121,14 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, onPreviewTrack, tab
         <ClaimChip accent={accent} />
         <LegalLinks />
       </div>
+
+      <TrackInfoLayer
+        track={openTrack}
+        accent={accent}
+        isPlaying={isRowPlaying(openTrack?.links?.spotify)}
+        onToggle={onToggleTrack}
+        onClose={() => setOpenTrack(null)}
+      />
     </div>
   );
 }

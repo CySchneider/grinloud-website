@@ -1,19 +1,29 @@
 // Music Radar subpage
 import React from 'react'
 import { Icon } from './icons.jsx'
-import { ClaimChip, LegalLinks, SpotifyCover } from './shared.jsx'
+import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer } from './shared.jsx'
 // Layout: numbered poster-style tracklist on the left, sticky YouTube embed on the right.
 
-function MusicRadar({ radar, accent, onBack, onGotoArchive, onPreviewTrack }) {
+function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlaying, onToggleTrack }) {
   radar = radar || window.GRINLOUD_DATA.RADAR;
-  const [activeTrack, setActiveTrack] = React.useState(null);
+  const [openTrack, setOpenTrack] = React.useState(null);
 
   const picks = window.GRINLOUD_DATA.PICKS;
-  const spotifyByTitle = React.useMemo(() => {
+  // Radar tracks only carry n/title/artist/bpm/key/genre — the matching Pick
+  // (same track, published as that day's Pick of the Day) carries the full
+  // facts (label, release, GRINLOUD SAYS, Spotify link) the info layer wants.
+  const pickByTitle = React.useMemo(() => {
     const map = {};
-    picks.forEach(p => { map[p.title.toLowerCase()] = p.links?.spotify; });
+    picks.forEach(p => { map[p.title.toLowerCase()] = p; });
     return map;
   }, [picks]);
+
+  const isRowPlaying = (url) => Boolean(url) && url !== '#' && isPlaying && previewUrl === url;
+
+  const openTrackLayer = (t) => {
+    const match = pickByTitle[t.title.toLowerCase()];
+    setOpenTrack(match || { title: t.title, artist: t.artist, bpm: t.bpm, key: t.key, genre: t.genre, links: {} });
+  };
 
   // Only show genres that actually occur among this radar's tracks, in the
   // order they first appear. A track's genre field can list more than one
@@ -29,21 +39,6 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, onPreviewTrack }) {
     });
     return tags;
   }, [radar]);
-
-  const onPlayCue = (track, idx) => {
-    setActiveTrack(idx);
-
-    // Find matching pick to get Spotify URL
-    const picks = window.GRINLOUD_DATA.PICKS;
-    const match = picks.find(p => p.title.toLowerCase() === track.title.toLowerCase());
-    const url = match?.links?.spotify;
-
-    if (url && url !== '#') {
-      // ↓ synchronous — must happen before React re-renders to keep user-gesture context
-      window.grinloudPlaySpotify(url);
-      if (onPreviewTrack) onPreviewTrack(url);
-    }
-  };
 
   return (
     <div className="radar" style={{ '--accent': accent }}>
@@ -82,35 +77,35 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, onPreviewTrack }) {
           </div>
 
           {radar.tracks.map((t, i) => {
-            const spotifyUrl = spotifyByTitle[t.title.toLowerCase()];
-            const isActive = activeTrack === i;
+            const spotifyUrl = pickByTitle[t.title.toLowerCase()]?.links?.spotify;
+            const isActive = isRowPlaying(spotifyUrl);
             return (
-            <div
-              key={i}
-              className={`radar-row ${isActive ? 'is-active' : ''}`}
-              onClick={() => onPlayCue(t, i)}
-            >
+            <div key={i} className={`radar-row ${isActive ? 'is-active' : ''}`}>
               <div className="radar-row__n">{t.n}</div>
 
-              <div className="radar-row__cover">
+              <button className="radar-row__cover" onClick={() => openTrackLayer(t)} aria-label={`View ${t.title} — ${t.artist}`}>
                 <SpotifyCover spotifyUrl={spotifyUrl} alt={`${t.title} — ${t.artist} cover art`} />
-              </div>
+              </button>
 
-              <div className="radar-row__title">
+              <button className="radar-row__title" onClick={() => openTrackLayer(t)}>
                 <div className="radar-row__name">{t.title}</div>
                 <div className="radar-row__artist">{t.artist}<span className="radar-row__dot">·</span>{t.genre}</div>
-              </div>
+              </button>
 
               <div className="radar-row__bpm">{t.bpm}</div>
-              <div className="radar-row__status">
-                {isActive ? <>PLAYING <Icon.Arrow size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
-              </div>
+              <button
+                className="radar-row__status"
+                onClick={() => onToggleTrack(spotifyUrl)}
+                disabled={!spotifyUrl || spotifyUrl === '#'}
+              >
+                {isActive ? <>PAUSE <Icon.Pause size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
+              </button>
             </div>
             );
           })}
 
           <div className="radar__footnote">
-            CLICK A ROW TO PLAY THE TRACK'S SPOTIFY PREVIEW.
+            TAP A COVER OR TITLE FOR TRACK INFO — TAP PLAY TO HEAR THE PREVIEW.
           </div>
         </section>
 
@@ -157,6 +152,14 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, onPreviewTrack }) {
         <ClaimChip accent={accent} />
         <LegalLinks />
       </div>
+
+      <TrackInfoLayer
+        track={openTrack}
+        accent={accent}
+        isPlaying={isRowPlaying(openTrack?.links?.spotify)}
+        onToggle={onToggleTrack}
+        onClose={() => setOpenTrack(null)}
+      />
     </div>
   );
 }

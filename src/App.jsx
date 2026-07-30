@@ -116,6 +116,29 @@ function App() {
   const canPrev = pickIdx < picks.length - 1; // can go to older pick
   const canNext = pickIdx > 0;                // can go to newer pick
 
+  // "PICK" nav link / logo / wordmark always land on today's pick, never
+  // wherever prev/next last left the carousel — clicking Home should feel
+  // like a fresh reload, not "back to where I was browsing".
+  const goHome = () => {
+    setPickIdx(todayIdx >= 0 ? todayIdx : 0);
+    setRoute('home');
+  };
+
+  // Shared play/pause toggle for Music Radar and Archive tracklists — a row
+  // is "playing" when its own Spotify URL matches previewUrl AND isPlaying
+  // is true, so pressing its Play control again pauses instead of restarting.
+  const toggleTrackPreview = (url) => {
+    if (!url || url === '#') return;
+    if (isPlaying && previewUrl === url) {
+      window.grinloudPauseSpotify();
+      setIsPlaying(false);
+    } else {
+      window.grinloudPlaySpotify(url);
+      setPreviewUrl(url);
+      setIsPlaying(true);
+    }
+  };
+
   // If a preview is already playing, prev/next should carry it over to the
   // new pick instead of just stopping — grinloudPlaySpotify must be called
   // synchronously in this click handler (not from an effect) or iOS Safari
@@ -139,7 +162,7 @@ function App() {
     if (continueAcrossPickRef.current) { continueAcrossPickRef.current = false; return; }
     setIsPlaying(false);
   }, [route, pickIdx]);
-  React.useEffect(() => { if (route !== 'radar') setPreviewUrl(null); }, [route]);
+  React.useEffect(() => { if (route !== 'radar' && route !== 'archive') setPreviewUrl(null); }, [route]);
 
   // Keep the address bar in sync with in-app navigation, so the current
   // screen can be copied, refreshed, or reached via the browser back/forward
@@ -204,11 +227,12 @@ function App() {
 
   return (
     <div className="app">
-      <TopBrand onHome={() => setRoute('home')} />
+      <TopBrand onHome={goHome} />
       <TopNav
         route={route}
         setRoute={(r) => {
           if (r === 'archive') setArchiveTab(route === 'radar' ? 'radars' : 'picks');
+          if (r === 'home') { goHome(); return; }
           setRoute(r);
         }}
         onBack={() => setRoute('home')}
@@ -241,7 +265,9 @@ function App() {
           accent={palette.bg}
           onBack={() => setRoute('home')}
           onGotoArchive={() => { setArchiveTab('radars'); setRoute('archive'); }}
-          onPreviewTrack={(url) => { setPreviewUrl(url); setIsPlaying(true); }}
+          previewUrl={previewUrl}
+          isPlaying={isPlaying}
+          onToggleTrack={toggleTrackPreview}
         />
       )}
 
@@ -251,7 +277,9 @@ function App() {
           onBack={() => setRoute('home')}
           onGotoRadar={() => { setSelectedRadar(liveRadar); setRoute('radar'); }}
           onOpenRadar={(r) => { setSelectedRadar(r); setRoute('radar'); }}
-          onPreviewTrack={(url) => { setPreviewUrl(url); setIsPlaying(true); }}
+          previewUrl={previewUrl}
+          isPlaying={isPlaying}
+          onToggleTrack={toggleTrackPreview}
           tab={archiveTab}
           onTabChange={setArchiveTab}
           isAdmin={isAdmin}

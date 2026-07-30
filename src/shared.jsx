@@ -348,6 +348,62 @@ function NewsletterModal({ open, onClose, accent }) {
   );
 }
 
+// Info layer opened by tapping a track's cover/title in the Music Radar
+// tracklist or the Archive picks grid — same facts as the Pick of the Day
+// hero (cover, meta, GRINLOUD SAYS), but as a dismissible overlay since
+// these rows live in a list, not a full page. Play/Pause lives inside the
+// layer too, but the row's own Play control (outside this component) is
+// the primary way to trigger playback without opening it at all.
+function TrackInfoLayer({ track, accent, isPlaying, onToggle, onClose }) {
+  if (!track) return null;
+  const spotifyUrl = track.links?.spotify;
+  const canPlay = spotifyUrl && spotifyUrl !== '#';
+  return (
+    <div className="modal-scrim" onClick={onClose}>
+      <div className="track-layer" onClick={(e) => e.stopPropagation()} style={{ '--accent': accent }}>
+        <button className="modal-close" onClick={onClose} aria-label="Close"><Icon.Close /></button>
+
+        <div className="track-layer__cover">
+          <SpotifyCover spotifyUrl={spotifyUrl} alt={`${track.title} — ${track.artist} cover art`} />
+        </div>
+
+        <div className="track-layer__body">
+          <h2 className="track-layer__title">{track.title}</h2>
+          <div className="track-layer__artist">{track.artist}</div>
+
+          <div className="meta-pills">
+            {track.bpm && <span className="meta-pill"><span className="meta-pill__v">{track.bpm} BPM</span></span>}
+            {track.key && <span className="meta-pill"><span className="meta-pill__v">{track.key}</span></span>}
+            {track.label && <span className="meta-pill"><span className="meta-pill__v">{track.label}</span></span>}
+            {track.genre && <span className="meta-pill"><span className="meta-pill__v">{track.genre}</span></span>}
+            {track.release && <span className="meta-pill"><span className="meta-pill__v">{track.release}</span></span>}
+          </div>
+
+          {track.info && (
+            <React.Fragment>
+              <div className="track-layer__label">GRINLOUD SAYS</div>
+              <p className="track-layer__quote">{track.info}</p>
+            </React.Fragment>
+          )}
+
+          <div className="pick-actions">
+            {canPlay && (
+              <button
+                className={`play-btn ${isPlaying ? 'is-playing' : ''}`}
+                onClick={() => onToggle(spotifyUrl)}
+              >
+                {isPlaying ? <Icon.Pause size={12} /> : null}
+                <span>{isPlaying ? 'PAUSE' : '▶ PLAY PREVIEW'}</span>
+              </button>
+            )}
+            {track.links && <StreamingLinks links={track.links} accent={accent} />}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function TopBrand({ onHome }) {
   return (
     <div className="top-brand">
@@ -484,8 +540,7 @@ window.grinloudPauseSpotify = function() {
 };
 
 // Called SYNCHRONOUSLY inside click handlers to keep user-gesture context.
-// loadUri + immediate play() is the only pattern that works on iOS Safari —
-// the Spotify embed queues the play internally until the URI is ready.
+// See the play()-before-loadUri comment below for why the order matters.
 window.grinloudPlaySpotify = function(spotifyUrl) {
   const trackId = spotifyUrl && spotifyUrl !== '#'
     ? spotifyUrl.split('/track/')[1]?.split('?')[0]
@@ -497,9 +552,18 @@ window.grinloudPlaySpotify = function(spotifyUrl) {
     try {
       if (_currentUri !== uri) {
         _currentUri = uri;
+        // play() BEFORE loadUri, not after — calling loadUri then immediately
+        // play() races the embed's internal URI swap and silently drops the
+        // play on iOS (needs a 2nd tap to take effect, since by then the new
+        // URI has finished loading). play() first primes the controller's
+        // "should be playing" state synchronously within the gesture; the
+        // Spotify embed then carries that state over once loadUri's track
+        // finishes loading, so it starts audibly on the very first tap.
+        _spotifyCtrl.play();
         _spotifyCtrl.loadUri(uri);
+      } else {
+        _spotifyCtrl.play(); // synchronous — still inside user-gesture call stack
       }
-      _spotifyCtrl.play(); // synchronous — still inside user-gesture call stack
     } catch (_) {
       // Controller stale — reset and fall through to createController
       _spotifyCtrl = null;
@@ -615,4 +679,4 @@ function SpotifyCover({ spotifyUrl, alt = '' }) {
   );
 }
 
-export { BackgroundVideo, PickCarousel, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover };
+export { BackgroundVideo, PickCarousel, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TrackInfoLayer, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover };
