@@ -288,7 +288,13 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .home {
   position: relative;
-  min-height: 100vh;
+  /* dvh, not vh — iPadOS/iOS Safari's 100vh is measured against the layout
+     viewport (as if the browser chrome were hidden), taller than what's
+     actually on screen. With vh, .home__footer-row's margin-top:auto push
+     lands below the visible area, right behind the fixed .spotify-bar,
+     even though there's visible cream space above the bar. dvh tracks the
+     real visual viewport instead. */
+  min-height: 100dvh;
   padding: 96px 84px 112px; /* bottom clears the fixed 80px .spotify-bar */
   display: flex;
   flex-direction: column;
@@ -398,17 +404,22 @@ a { color: inherit; text-decoration: none; }
   align-items: baseline;
   column-gap: 10px;
   row-gap: 4px;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--qs-ink-55);
+  /* Matches the body copy used for "GRINLOUD SAYS" / "FUN FACT" (.pcard__quote,
+     .pcard__fact) instead of the mono/all-caps treatment used elsewhere in
+     the header — this line reads as a sentence, not a label row. */
+  font-family: var(--qs-body);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--qs-ink-75);
   margin-bottom: 22px;
 }
 .meta-pill {
   display: inline-flex;
   align-items: baseline;
   gap: 5px;
-  font-family: var(--qs-mono);
-  letter-spacing: 0.06em;
+  font-family: inherit;
+  font-weight: inherit;
   font-size: inherit;
 }
 .meta-pill:not(:last-child)::after {
@@ -417,7 +428,7 @@ a { color: inherit; text-decoration: none; }
   opacity: 0.5;
 }
 .meta-pill__l { display: none; }
-.meta-pill__v { font-weight: 600; color: var(--qs-ink-70); }
+.meta-pill__v { font-weight: 500; color: inherit; }
 
 .track-info {
   max-width: 480px;
@@ -696,7 +707,7 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .radar {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 96px 84px 112px; /* bottom clears the fixed 80px .spotify-bar */
   background: var(--qs-bg);
   color: var(--qs-ink);
@@ -956,7 +967,7 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .archive {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 96px 84px 112px; /* bottom clears the fixed 80px .spotify-bar */
   background: var(--qs-bg);
   color: var(--qs-ink);
@@ -1279,13 +1290,13 @@ a { color: inherit; text-decoration: none; }
      huge dead gap between two independently-pinned elements. */
   .top-nav { padding: 14px 10px; }
   .top-nav__inner { gap: 6px; margin-left: 0; }
-  .nav-link { font-size: 9.2px; letter-spacing: 0.03em; }
+  .nav-link { font-size: 10.2px; letter-spacing: 0.03em; }
   .nav-link--ghost { margin-left: 2px; }
   .nav-subscribe-label { display: none; }
   .top-brand { display: none; }
   .top-nav__brand { display: flex; gap: 5px; }
-  .top-nav__brand-logo { width: 19px !important; height: 19px !important; }
-  .top-nav__brand-word { font-size: 13px; }
+  .top-nav__brand-logo { width: 21px !important; height: 21px !important; }
+  .top-nav__brand-word { font-size: 14.5px; }
 
   .nav-arrow { display: none; }
 
@@ -1322,6 +1333,39 @@ a { color: inherit; text-decoration: none; }
   .archive-card__text,
   .archive-card__text-hit { grid-column: 2 / -1; grid-row: 2; }
   .archive-card__meta { grid-column: 2 / -1; grid-row: 3; }
+}
+
+/* Tablet portrait (iPad portrait ≈768–834px logical width and similar) —
+   the <900px tier above was tuned for phone widths: header text/logo sized
+   down to survive ~340px, hero stacked into a single narrow column, and
+   only 20px of side padding. On an actual tablet that leaves the header
+   looking undersized, the hero column looking tiny against a wide canvas
+   (cover + text stacked instead of sitting side by side), and everything
+   pinned flush to a 20px left edge. This tier re-widens the header, goes
+   back to the side-by-side hero (there's room), and gives the page real
+   side margins again. */
+@media (min-width: 601px) and (max-width: 900px) {
+  .home    { padding-left: 56px; padding-right: 56px; }
+  .radar   { padding-left: 56px; padding-right: 56px; }
+  .archive { padding-left: 56px; padding-right: 56px; }
+
+  .top-nav { padding: 20px 24px; }
+  .top-nav__inner { gap: 20px; }
+  .nav-link { font-size: 12px; letter-spacing: 0.08em; }
+  .top-nav__brand { gap: 8px; }
+  .top-nav__brand-logo { width: 26px !important; height: 26px !important; }
+  .top-nav__brand-word { font-size: 17px; }
+
+  /* flex:0 (not 1) + flex-start — on the tall iPad-portrait canvas, flex:1
+     plus .home's default vertical centering stretched the hero to fill the
+     whole column and then centered cover+text inside it, leaving a huge
+     empty band above the title and another below it. Letting the hero take
+     only its natural height and sit right under the eyebrow moves any
+     leftover space to before the footer row (already margin-top:auto)
+     instead of splitting it awkwardly around the content. */
+  .home__hero { flex: 0 1 auto; flex-direction: row; align-items: center; gap: 48px; margin-top: 32px; }
+  .pick-cover { width: clamp(160px, 26vw, 260px); height: clamp(160px, 26vw, 260px); }
+  .track-title { font-size: clamp(34px, 6vw, 58px) !important; }
 }
 
 /* Last resort: the 900px tier's sizing above is tuned to hold the wordmark

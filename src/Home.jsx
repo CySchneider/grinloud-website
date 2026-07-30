@@ -1,8 +1,36 @@
 // Pick of the Day (homepage) — "Quiet Signal"
 // Replaces the old HomeA/HomeB split: one flat, off-white layout, cover art
 // top-left/left-column, no full-bleed video/color background.
+import React from 'react'
 import { PickCarousel, StreamingLinks, ShareButton, LegalLinks, SpotifyCover } from './shared.jsx'
 import { Icon } from './icons.jsx'
+
+// Horizontal swipe → prev/next pick, mirroring the desktop arrow buttons.
+// Ignores swipes that start inside .pick-carousel — that element has its
+// own horizontal scroll-snap track (GRINLOUD SAYS / FUN FACT slides) and
+// must keep handling its own touch gestures.
+const SWIPE_MIN_DX = 60;
+
+function useSwipeNav(prev, next) {
+  const touch = React.useRef(null);
+
+  const onTouchStart = (e) => {
+    if (e.target.closest('.pick-carousel')) { touch.current = null; return; }
+    const t = e.touches[0];
+    touch.current = { x: t.clientX, y: t.clientY };
+  };
+  const onTouchEnd = (e) => {
+    if (!touch.current) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touch.current.x;
+    const dy = t.clientY - touch.current.y;
+    touch.current = null;
+    if (Math.abs(dx) < SWIPE_MIN_DX || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    if (dx < 0) next(); else prev();
+  };
+
+  return { onTouchStart, onTouchEnd };
+}
 
 function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, onGotoRadar, isAdmin }) {
   // cqw (container query width, off .home__text's own rendered width), not vw —
@@ -12,9 +40,10 @@ function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, t
   const titleSize = 6.8 * typeScale;
   const radar = window.GRINLOUD_DATA.RADAR;
   const isScheduled = isAdmin && pick.date > new Date().toISOString().slice(0, 10);
+  const swipe = useSwipeNav(() => canPrev && prev(), () => canNext && next());
 
   return (
-    <div className="home" style={{ '--accent': accent }}>
+    <div className="home" style={{ '--accent': accent }} onTouchStart={swipe.onTouchStart} onTouchEnd={swipe.onTouchEnd}>
       {canPrev && (
         <button className="nav-arrow nav-arrow--left" onClick={prev} aria-label="Previous pick">
           <Icon.Chevron dir="left" size={22} />
