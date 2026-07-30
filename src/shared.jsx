@@ -498,6 +498,8 @@ function ClaimChip({ accent }) {
 function LegalLinks() {
   return (
     <div className="legal-links">
+      <a href="/news.html" target="_blank" rel="noreferrer">News</a>
+      <span>·</span>
       <a href="/about.html" target="_blank" rel="noreferrer">About</a>
       <span>·</span>
       <a href="/privacy.html" target="_blank" rel="noreferrer">Privacy</a>
