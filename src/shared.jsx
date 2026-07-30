@@ -371,7 +371,7 @@ function TrackInfoLayer({ track, accent, isPlaying, onToggle, onClose }) {
           <h2 className="track-layer__title">{track.title}</h2>
           <div className="track-layer__artist">{track.artist}</div>
 
-          <div className="meta-pills">
+          <div className="meta-pills track-layer__meta">
             {track.bpm && <span className="meta-pill"><span className="meta-pill__v">{track.bpm} BPM</span></span>}
             {track.key && <span className="meta-pill"><span className="meta-pill__v">{track.key}</span></span>}
             {track.label && <span className="meta-pill"><span className="meta-pill__v">{track.label}</span></span>}
@@ -383,6 +383,13 @@ function TrackInfoLayer({ track, accent, isPlaying, onToggle, onClose }) {
             <React.Fragment>
               <div className="track-layer__label">GRINLOUD SAYS</div>
               <p className="track-layer__quote">{track.info}</p>
+            </React.Fragment>
+          )}
+
+          {track.funFact && (
+            <React.Fragment>
+              <div className="track-layer__label">FUN FACT</div>
+              <p className="track-layer__quote">{track.funFact}</p>
             </React.Fragment>
           )}
 
@@ -540,7 +547,10 @@ window.grinloudPauseSpotify = function() {
 };
 
 // Called SYNCHRONOUSLY inside click handlers to keep user-gesture context.
-// See the play()-before-loadUri comment below for why the order matters.
+// loadUri + immediate play() is the only pattern that works on iOS Safari —
+// the Spotify embed queues the play internally until the URI is ready.
+// (Do not swap this order — play()-before-loadUri was tried and it made
+// playback silently fail instead of just needing a 2nd tap.)
 window.grinloudPlaySpotify = function(spotifyUrl) {
   const trackId = spotifyUrl && spotifyUrl !== '#'
     ? spotifyUrl.split('/track/')[1]?.split('?')[0]
@@ -552,18 +562,9 @@ window.grinloudPlaySpotify = function(spotifyUrl) {
     try {
       if (_currentUri !== uri) {
         _currentUri = uri;
-        // play() BEFORE loadUri, not after — calling loadUri then immediately
-        // play() races the embed's internal URI swap and silently drops the
-        // play on iOS (needs a 2nd tap to take effect, since by then the new
-        // URI has finished loading). play() first primes the controller's
-        // "should be playing" state synchronously within the gesture; the
-        // Spotify embed then carries that state over once loadUri's track
-        // finishes loading, so it starts audibly on the very first tap.
-        _spotifyCtrl.play();
         _spotifyCtrl.loadUri(uri);
-      } else {
-        _spotifyCtrl.play(); // synchronous — still inside user-gesture call stack
       }
+      _spotifyCtrl.play(); // synchronous — still inside user-gesture call stack
     } catch (_) {
       // Controller stale — reset and fall through to createController
       _spotifyCtrl = null;

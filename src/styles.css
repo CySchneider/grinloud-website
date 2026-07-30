@@ -1202,6 +1202,14 @@ a { color: inherit; text-decoration: none; }
   color: var(--qs-ink);
   margin-bottom: 14px;
 }
+/* Smaller + lighter than the default .meta-pills (which reads fine as a
+   caption line under Home's big track title, but next to this layer's own
+   14px quote text it was reading as loud as a second headline). */
+.track-layer__meta {
+  font-size: 12px;
+  margin-bottom: 18px;
+}
+.track-layer__meta .meta-pill__v { font-weight: 500; }
 .track-layer__label {
   font-family: var(--qs-mono);
   font-size: 10px;
@@ -1238,13 +1246,12 @@ a { color: inherit; text-decoration: none; }
   .top-nav { padding: 14px 12px; }
   .top-nav__inner { gap: 7px; }
   .nav-link { font-size: 9.5px; letter-spacing: 0.04em; }
-  .nav-link--ghost { margin-left: 0; }
   .nav-subscribe-label { display: none; }
   .top-brand { left: 14px; }
   .top-brand__inner { gap: 6px; }
-  .top-brand__wordmark { font-size: 13px; }
+  .top-brand__wordmark { font-size: 13.5px; }
   .top-brand__tagline { display: none; }
-  .top-brand__inner .logo-mark { position: static; margin-top: 0; width: 18px !important; height: 18px !important; }
+  .top-brand__inner .logo-mark { position: static; margin-top: 0; width: 20px !important; height: 20px !important; }
 
   .nav-arrow { display: none; }
 
