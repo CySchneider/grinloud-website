@@ -548,13 +548,21 @@ a { color: inherit; text-decoration: none; }
   max-width: 100%;
 }
 .pick-carousel__label {
+  display: inline-block;
+  align-self: flex-start; /* parent is a flex column — without this the chip would stretch full-width instead of hugging the text */
   font-family: var(--qs-mono);
   font-size: 10px;
   letter-spacing: 0.14em;
   /* Same colour for every slide — the current pick's own --accent (set by
-     Home.jsx from pick.accent), not a fixed per-slide hue. */
+     Home.jsx from pick.accent), not a fixed per-slide hue. Some accents
+     (yellow, pale green) are close to the off-white page background and
+     unreadable on their own — a tight dark "marker" chip behind the text
+     keeps every accent legible regardless of how light it is. */
   color: var(--accent, var(--qs-pink));
   text-transform: uppercase;
+  background: var(--qs-ink);
+  padding: 3px 6px;
+  border-radius: 2px;
 }
 .pick-carousel__dots {
   display: flex;
@@ -1211,11 +1219,15 @@ a { color: inherit; text-decoration: none; }
 }
 .track-layer__meta .meta-pill__v { font-weight: 500; }
 .track-layer__label {
+  display: inline-block;
   font-family: var(--qs-mono);
   font-size: 10px;
   letter-spacing: 0.14em;
   color: var(--accent, var(--qs-pink));
   margin: 18px 0 8px;
+  background: var(--qs-ink);
+  padding: 3px 6px;
+  border-radius: 2px;
 }
 .track-layer__quote {
   margin: 0;
