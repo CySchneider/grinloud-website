@@ -422,7 +422,9 @@ a { color: inherit; text-decoration: none; }
 .meta-pill {
   display: inline-flex;
   align-items: baseline;
-  gap: 5px;
+  /* No gap — .meta-pill has a single real child (.meta-pill__v); the ::after
+     "·" below counts as a second flex item though, so a gap here was adding
+     extra space before the dot on top of its own margin, on only one side. */
   font-family: inherit;
   font-weight: inherit;
   font-size: inherit;
