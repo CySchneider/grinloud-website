@@ -56,18 +56,18 @@ function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, t
       )}
 
       <div className="home__main">
-        <div className="home__eyebrow">
-          <span className="home__eyebrow-dot" />
-          PICK OF THE DAY — {pick.date}
-          {isScheduled && <span className="pick-scheduled-badge">SCHEDULED</span>}
-        </div>
-
         <div className="home__hero">
           <div className="pick-cover">
             <SpotifyCover spotifyUrl={pick.links?.spotify} alt={`${pick.title} — ${pick.artist} cover art`} />
           </div>
 
           <div className="home__text">
+            <div className="home__eyebrow">
+              <span className="home__eyebrow-dot" />
+              PICK OF THE DAY — {pick.date}
+              {isScheduled && <span className="pick-scheduled-badge">SCHEDULED</span>}
+            </div>
+
             <h1 className="track-title" style={{ fontSize: `clamp(28px, ${titleSize}cqw, 104px)` }}>
               {pick.title}
             </h1>

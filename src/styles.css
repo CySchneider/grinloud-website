@@ -319,15 +319,12 @@ a { color: inherit; text-decoration: none; }
   min-height: 0;
 }
 
-/* Shared width cap for the eyebrow/hero/footer-row column: on very wide
-   viewports .home's content box is much wider than the hero content (cover
-   + gap + 1000px-max text column) ever grows to, so without this the hero
-   row just sat flush against the left padding with all the leftover width
-   dumped unused on the right, and the eyebrow line (which doesn't share
-   this cap) looked like a stray fragment stuck in the top-left corner
-   instead of sitting above the block it introduces. Matches the hero's own
-   intrinsic max width (380px cover + 80px gap + 1000px text). */
-.home__eyebrow,
+/* Shared width cap for the hero/footer-row column: on very wide viewports
+   .home's content box is much wider than the hero content (cover + gap +
+   1000px-max text column) ever grows to, so without this the hero row just
+   sat flush against the left padding with all the leftover width dumped
+   unused on the right. Matches the hero's own intrinsic max width (380px
+   cover + 80px gap + 1000px text). */
 .home__hero,
 .home__footer-row {
   width: 100%;
