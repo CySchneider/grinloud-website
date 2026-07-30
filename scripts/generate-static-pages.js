@@ -305,6 +305,7 @@ if (homePick) {
 // ── Sitemap ──────────────────────────────────────────────────────────────
 const staticUrls = [
   { loc: `${SITE}/`, lastmod: TODAY, changefreq: 'daily', priority: '1.0' },
+  { loc: `${SITE}/news.html`, lastmod: TODAY, changefreq: 'weekly', priority: '0.6' },
   { loc: `${SITE}/about.html`, lastmod: TODAY, changefreq: 'monthly', priority: '0.5' },
   { loc: `${SITE}/privacy.html`, lastmod: TODAY, changefreq: 'yearly', priority: '0.2' },
   { loc: `${SITE}/impressum.html`, lastmod: TODAY, changefreq: 'yearly', priority: '0.2' },
