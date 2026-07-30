@@ -55,55 +55,57 @@ function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, t
         </button>
       )}
 
-      <div className="home__eyebrow">
-        <span className="home__eyebrow-dot" />
-        PICK OF THE DAY — {pick.date}
-        {isScheduled && <span className="pick-scheduled-badge">SCHEDULED</span>}
-      </div>
-
-      <div className="home__hero">
-        <div className="pick-cover">
-          <SpotifyCover spotifyUrl={pick.links?.spotify} alt={`${pick.title} — ${pick.artist} cover art`} />
+      <div className="home__main">
+        <div className="home__eyebrow">
+          <span className="home__eyebrow-dot" />
+          PICK OF THE DAY — {pick.date}
+          {isScheduled && <span className="pick-scheduled-badge">SCHEDULED</span>}
         </div>
 
-        <div className="home__text">
-          <h1 className="track-title" style={{ fontSize: `clamp(28px, ${titleSize}cqw, 104px)` }}>
-            {pick.title}
-          </h1>
-          <div className="home__artist-block">
-            {pick.artistImage && (
-              <img className="home__artist-photo" src={pick.artistImage} alt={`${pick.artist} photo`} loading="lazy" />
-            )}
-            <div className="home__artist-info">
-              <div className="artist-row">{pick.artist}</div>
-              <div className="meta-pills">
-                <span className="meta-pill"><span className="meta-pill__v">{pick.bpm} BPM</span></span>
-                <span className="meta-pill"><span className="meta-pill__v">{pick.key}</span></span>
-                <span className="meta-pill"><span className="meta-pill__v">{pick.label}</span></span>
-                <span className="meta-pill"><span className="meta-pill__v">{pick.genre}</span></span>
-                <span className="meta-pill"><span className="meta-pill__v">{pick.release}</span></span>
-              </div>
-            </div>
+        <div className="home__hero">
+          <div className="pick-cover">
+            <SpotifyCover spotifyUrl={pick.links?.spotify} alt={`${pick.title} — ${pick.artist} cover art`} />
           </div>
 
-          <PickCarousel pick={pick} />
+          <div className="home__text">
+            <h1 className="track-title" style={{ fontSize: `clamp(28px, ${titleSize}cqw, 104px)` }}>
+              {pick.title}
+            </h1>
+            <div className="home__artist-block">
+              {pick.artistImage && (
+                <img className="home__artist-photo" src={pick.artistImage} alt={`${pick.artist} photo`} loading="lazy" />
+              )}
+              <div className="home__artist-info">
+                <div className="artist-row">{pick.artist}</div>
+                <div className="meta-pills">
+                  <span className="meta-pill"><span className="meta-pill__v">{pick.bpm} BPM</span></span>
+                  <span className="meta-pill"><span className="meta-pill__v">{pick.key}</span></span>
+                  <span className="meta-pill"><span className="meta-pill__v">{pick.label}</span></span>
+                  <span className="meta-pill"><span className="meta-pill__v">{pick.genre}</span></span>
+                  <span className="meta-pill"><span className="meta-pill__v">{pick.release}</span></span>
+                </div>
+              </div>
+            </div>
 
-          <div className="home__divider" />
+            <PickCarousel pick={pick} />
 
-          <div className="pick-actions">
-            <button
-              className={`play-btn ${isPlaying ? 'is-playing' : ''}`}
-              onClick={() => { isPlaying ? window.grinloudPauseSpotify() : window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
-            >
-              {isPlaying ? <Icon.Pause size={12} /> : null}
-              <span>{isPlaying ? 'PAUSE' : '▶ PLAY PREVIEW'}</span>
-            </button>
-            <StreamingLinks links={pick.links} accent={accent} />
-            <ShareButton
-              url={`https://grinloud.com/pick/${pick.date}/`}
-              title={`${pick.title} — ${pick.artist} · GRINLOUD`}
-              text={`GRINLOUD Pick of the Day: ${pick.title} by ${pick.artist}`}
-            />
+            <div className="home__divider" />
+
+            <div className="pick-actions">
+              <button
+                className={`play-btn ${isPlaying ? 'is-playing' : ''}`}
+                onClick={() => { isPlaying ? window.grinloudPauseSpotify() : window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
+              >
+                {isPlaying ? <Icon.Pause size={12} /> : null}
+                <span>{isPlaying ? 'PAUSE' : '▶ PLAY PREVIEW'}</span>
+              </button>
+              <StreamingLinks links={pick.links} accent={accent} />
+              <ShareButton
+                url={`https://grinloud.com/pick/${pick.date}/`}
+                title={`${pick.title} — ${pick.artist} · GRINLOUD`}
+                text={`GRINLOUD Pick of the Day: ${pick.title} by ${pick.artist}`}
+              />
+            </div>
           </div>
         </div>
       </div>
