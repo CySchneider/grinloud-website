@@ -1289,7 +1289,13 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   width: 100%;
   max-width: 480px;
-  max-height: calc(100vh - 48px);
+  /* dvh, not vh (see .home's dvh comment above) — and the 96px, beyond the
+     scrim's own 48px of top+bottom padding, clears the fixed 80px
+     .spotify-bar. Without it, a track with a long GRINLOUD SAYS/FUN FACT
+     ends up tall enough that the play/pause + streaming-links row at the
+     bottom scrolls to right where the fixed bar sits and gets hidden or
+     visually overlaps it (the bar has a higher z-index and is opaque). */
+  max-height: calc(100dvh - 48px - 96px);
   overflow-y: auto;
   background: var(--qs-bg);
   border: 1px solid var(--qs-ink-12);
