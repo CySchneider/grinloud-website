@@ -531,14 +531,34 @@ function MetaPills({ pick, scale = 1 }) {
 
 // ── Spotify Iframe API — the only reliable way to programmatically play ──
 // autoplay=1 URL param no longer works (Spotify removed it in 2023).
-// controller.play() called from a user-gesture context works reliably.
-// On iOS, play() MUST be called synchronously within the user-gesture handler —
-// async listeners (playback_update, setTimeout) lose the gesture token.
-
+//
+// The ONE pattern that's actually reliable (confirmed both by the Home page
+// Play button, which never fails, and by a screen recording of the exact
+// failure elsewhere) is createController({uri, ...}, ctrl => ctrl.play()):
+// the URI is baked into the iframe's initial load, so by the time the
+// ready-callback fires the iframe already has that exact track loaded, and
+// play() targets a fully-ready player. Home's button "just works" because
+// it only ever calls play() on a track SpotifyPreviewBar already preloaded
+// this way in the background — it's a resume, not a switch.
+//
+// Reusing one persistent controller across track switches via
+// loadUri()+immediate play() — the previous approach — is NOT reliable:
+// loadUri() doesn't reliably finish inside the iframe before the
+// immediately-following play() call arrives, so that play() gets silently
+// dropped (the row's button flips to "PAUSE" while the Spotify widget
+// itself keeps showing an unplayed ▶). So every switch below goes through
+// the same createController()+play() pattern the Home button uses, instead
+// of trying to reuse an existing controller.
+//
+// controller.destroy() removes its host element from the page (per
+// Spotify's docs, confirmed directly), so it can't reuse one fixed
+// container across rebuilds — _wrapperEl is a stable outer div we control
+// that's never touched by the Spotify API; each rebuild clears it and gives
+// Spotify a brand-new disposable inner div to attach to.
 let _spotifyAPI  = null;  // IFrameAPI once loaded
 let _spotifyCtrl = null;  // active controller
-let _containerEl = null;  // DOM element for the embed
-let _currentUri  = null;  // URI currently loaded in the controller
+let _wrapperEl   = null;  // stable outer container, never touched by Spotify
+let _currentUri  = null;  // URI currently loaded (or being loaded) in the controller
 
 // Load API script immediately (before any user interaction)
 (function() {
@@ -561,8 +581,6 @@ window.grinloudPauseSpotify = function() {
 
 // A Spotify URL is either a single track (per-pick preview) or a playlist
 // (a full Radar cycle's tracklist, played back-to-back via "PLAY FULL RADAR").
-// Both load into the same persistent iframe controller — only the URI type
-// (spotify:track: vs spotify:playlist:) differs.
 function spotifyUriFromUrl(spotifyUrl) {
   if (!spotifyUrl || spotifyUrl === '#') return null;
   const trackId = spotifyUrl.split('/track/')[1]?.split('?')[0];
@@ -572,107 +590,65 @@ function spotifyUriFromUrl(spotifyUrl) {
   return null;
 }
 
-// Called SYNCHRONOUSLY inside click handlers to keep user-gesture context.
-// loadUri + immediate play() is attempted first (needed for iOS gesture
-// context), but confirmed via screen recording that this pair alone is not
-// reliable when switching FROM an already-playing track: loadUri() does not
-// always finish inside the iframe before the immediately-following play()
-// arrives, so that play() gets silently dropped — the row's button flips to
-// "PAUSE" but the Spotify widget itself keeps showing a plain unplayed ▶ for
-// several seconds. As a safety net, also listen once for the controller's
-// own playback_update signal that THIS uri has actually loaded, and retry
-// play() then if it's still paused. (Do not "fix" this by destroying and
-// recreating the controller instead — controller.destroy() removes the
-// container element from the page per Spotify's docs, breaking the
-// persistent container SpotifyPreviewBar and every future call here rely on.)
-// TEMPORARY diagnostics — remove once the iOS play-button race is actually
-// confirmed fixed on a real device. Prefixed so it's easy to filter/find.
-function _spLog(msg, extra) {
-  try { console.log('[grinloud-spotify] ' + msg, extra !== undefined ? extra : ''); } catch (_) {}
+// Tears down whatever controller exists and creates a fresh one bound to a
+// fresh inner div inside _wrapperEl. Called SYNCHRONOUSLY inside click
+// handlers to keep user-gesture context for the resulting play() call.
+function _rebuildSpotifyController(uri, autoplay) {
+  if (_spotifyCtrl) {
+    try { _spotifyCtrl.destroy(); } catch (_) { /* already gone */ }
+    _spotifyCtrl = null;
+  }
+  if (!_spotifyAPI || !_wrapperEl) return;
+  _wrapperEl.innerHTML = '';
+  const el = document.createElement('div');
+  _wrapperEl.appendChild(el);
+  _currentUri = uri;
+  _spotifyAPI.createController(
+    el,
+    { uri: uri, width: '100%', height: 80 },
+    function(ctrl) {
+      _spotifyCtrl = ctrl;
+      if (autoplay) ctrl.play();
+    }
+  );
 }
 
 window.grinloudPlaySpotify = function(spotifyUrl) {
   const uri = spotifyUriFromUrl(spotifyUrl);
-  _spLog('grinloudPlaySpotify called', { uri, hasCtrl: !!_spotifyCtrl, currentUri: _currentUri });
   if (!uri) return;
 
-  if (_spotifyCtrl) {
+  // Same track already loaded (e.g. resuming after pause, or the Home page
+  // button playing the pick SpotifyPreviewBar already preloaded) — no
+  // switch involved, so a direct play() is safe and instant.
+  if (_spotifyCtrl && _currentUri === uri) {
     try {
-      if (_currentUri !== uri) {
-        _currentUri = uri;
-        _spLog('loadUri()', uri);
-        _spotifyCtrl.loadUri(uri);
-        const ctrl = _spotifyCtrl;
-        const retryPlayWhenLoaded = function(e) {
-          const d = (e && e.data) || {};
-          _spLog('playback_update fired', d);
-          if (d.playingURI !== uri) return;
-          if (d.isPaused) {
-            _spLog('retrying play() after load confirmed', uri);
-            try { ctrl.play(); } catch (err) { _spLog('retry play() threw', String(err)); }
-          } else {
-            _spLog('playback_update says already playing, no retry needed', uri);
-          }
-        };
-        ctrl.addListener('playback_update', retryPlayWhenLoaded);
-      }
-      _spLog('calling play() (existing controller)', uri);
-      _spotifyCtrl.play(); // synchronous — still inside user-gesture call stack
-    } catch (err) {
-      _spLog('existing-controller path threw, falling back to createController', String(err));
-      // Controller stale — reset and fall through to createController
+      _spotifyCtrl.play();
+      return;
+    } catch (_) {
       _spotifyCtrl = null;
       _currentUri = null;
     }
   }
-  if (!_spotifyCtrl && _spotifyAPI && _containerEl) {
-    _currentUri = uri;
-    _spLog('createController() (no existing controller)', uri);
-    _spotifyAPI.createController(
-      _containerEl,
-      { uri: uri, width: '100%', height: 80 },
-      function(ctrl) { _spLog('createController ready, calling play()', uri); _spotifyCtrl = ctrl; ctrl.play(); }
-    );
-  }
+
+  _rebuildSpotifyController(uri, true);
 };
 
 function SpotifyPreviewBar({ spotifyUrl }) {
-  const containerRef = React.useRef(null);
+  const wrapperRef = React.useRef(null);
   const uriToLoad = spotifyUriFromUrl(spotifyUrl);
 
   React.useEffect(function() {
-    if (!containerRef.current || !uriToLoad) return;
-    _containerEl = containerRef.current;
+    if (!wrapperRef.current || !uriToLoad) return;
+    _wrapperEl = wrapperRef.current;
 
     function initPlayer() {
       if (!_spotifyAPI) return;
-      const uri = uriToLoad;
-      if (_spotifyCtrl) {
-        // Skip if grinloudPlaySpotify already loaded this URI to avoid
-        // interrupting active playback with a redundant loadUri call.
-        if (_currentUri !== uri) {
-          _currentUri = uri;
-          try {
-            _spotifyCtrl.loadUri(uri);
-          } catch (_) {
-            // Controller is stale (its IFrame was removed from the DOM while
-            // navigating through a pick with no preview). Create a fresh one.
-            _spotifyCtrl = null;
-            _spotifyAPI.createController(
-              _containerEl,
-              { uri: uri, width: '100%', height: 80 },
-              function(ctrl) { _spotifyCtrl = ctrl; }
-            );
-          }
-        }
-      } else {
-        _currentUri = uri;
-        _spotifyAPI.createController(
-          _containerEl,
-          { uri: uri, width: '100%', height: 80 },
-          function(ctrl) { _spotifyCtrl = ctrl; }
-        );
-      }
+      // Skip if grinloudPlaySpotify already claimed this exact URI (it sets
+      // _currentUri synchronously before its own rebuild's async
+      // createController callback resolves) — otherwise this background
+      // sync would race it and create a second, competing controller.
+      if (_currentUri === uriToLoad) return;
+      _rebuildSpotifyController(uriToLoad, false);
     }
 
     if (_spotifyAPI) {
@@ -683,16 +659,10 @@ function SpotifyPreviewBar({ spotifyUrl }) {
     }
   }, [uriToLoad]);
 
-  // Both elements are always in the DOM — never conditionally mounted/unmounted.
-  // The Spotify IFrame API can replace or move the container node in the DOM,
-  // which detaches containerRef.current. If React then calls insertBefore or
-  // removeChild referencing that detached node it throws NotFoundError.
-  // Using style.display instead of conditional rendering means React never
-  // needs to call those DOM mutation methods on these nodes.
   return (
     <div className="spotify-bar">
       <div
-        ref={containerRef}
+        ref={wrapperRef}
         style={{ flex: 1, height: 80, overflow: 'hidden', display: uriToLoad ? 'block' : 'none' }}
       />
       <div
