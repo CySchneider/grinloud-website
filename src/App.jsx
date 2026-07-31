@@ -78,6 +78,20 @@ function App() {
   const [previewUrl, setPreviewUrl] = React.useState(null); // overrides pick spotify when set
   const [showNewsletter, setShowNewsletter] = React.useState(false);
 
+  // On iOS, tapping Play before the Spotify iframe controller exists loses
+  // the user-gesture token (see markSpotifyCtrlReady in shared.jsx) and
+  // silently fails to play even though the button already flips to "PAUSE".
+  // Keeping Play buttons disabled until this becomes true closes that gap —
+  // by the time a tap is possible, the controller is already there.
+  const [spotifyReady, setSpotifyReady] = React.useState(() => window.grinloudSpotifyIsReady?.() ?? false);
+  React.useEffect(() => {
+    if (spotifyReady) return;
+    if (window.grinloudSpotifyIsReady?.()) { setSpotifyReady(true); return; }
+    const onReady = () => setSpotifyReady(true);
+    window.addEventListener('sp-ctrl-ready', onReady, { once: true });
+    return () => window.removeEventListener('sp-ctrl-ready', onReady);
+  }, [spotifyReady]);
+
   // Regular users: only past + today picks. Admin (?admin): all picks incl. future.
   const picks = isAdmin
     ? allPicks
@@ -253,6 +267,7 @@ function App() {
           canNext={canNext}
           onPlay={() => setIsPlaying((p) => !p)}
           isPlaying={isPlaying}
+          spotifyReady={spotifyReady}
           typeScale={t.typeScale}
           infoDensity={t.density}
           onGotoRadar={() => setRoute('radar')}
@@ -268,6 +283,7 @@ function App() {
           onGotoArchive={() => { setArchiveTab('radars'); setRoute('archive'); }}
           previewUrl={previewUrl}
           isPlaying={isPlaying}
+          spotifyReady={spotifyReady}
           onToggleTrack={toggleTrackPreview}
         />
       )}
@@ -280,6 +296,7 @@ function App() {
           onOpenRadar={(r) => { setSelectedRadar(r); setRoute('radar'); }}
           previewUrl={previewUrl}
           isPlaying={isPlaying}
+          spotifyReady={spotifyReady}
           onToggleTrack={toggleTrackPreview}
           tab={archiveTab}
           onTabChange={setArchiveTab}

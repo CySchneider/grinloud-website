@@ -4,7 +4,7 @@ import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer } from './shared.jsx'
 // Layout: numbered poster-style tracklist on the left, sticky YouTube embed on the right.
 
-function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlaying, onToggleTrack }) {
+function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlaying, spotifyReady, onToggleTrack }) {
   radar = radar || window.GRINLOUD_DATA.RADAR;
   const [openTrack, setOpenTrack] = React.useState(null);
 
@@ -92,11 +92,11 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlayin
                 <div className="radar-row__artist">{t.artist}<span className="radar-row__dot">·</span>{t.genre}</div>
               </button>
 
-              <div className="radar-row__bpm">{t.bpm}</div>
+              <div className="radar-row__bpm">{t.bpm}<span className="radar-row__dot">·</span>{t.key}</div>
               <button
                 className="radar-row__status"
                 onClick={() => onToggleTrack(spotifyUrl)}
-                disabled={!spotifyUrl || spotifyUrl === '#'}
+                disabled={!spotifyReady || !spotifyUrl || spotifyUrl === '#'}
               >
                 {isActive ? <>PAUSE <Icon.Pause size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
               </button>
@@ -144,7 +144,7 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlayin
           <button
             className={`radar__playlist-link ${isRowPlaying(radar.spotifyUrl) ? 'is-active' : ''}`}
             onClick={() => onToggleTrack(radar.spotifyUrl)}
-            disabled={!radar.spotifyUrl || radar.spotifyUrl === '#'}
+            disabled={!spotifyReady || !radar.spotifyUrl || radar.spotifyUrl === '#'}
           >
             <span>PLAY FULL RADAR</span>
             {isRowPlaying(radar.spotifyUrl) ? <>PAUSE <Icon.Pause size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
@@ -165,6 +165,7 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlayin
         track={openTrack}
         accent={accent}
         isPlaying={isRowPlaying(openTrack?.links?.spotify)}
+        spotifyReady={spotifyReady}
         onToggle={onToggleTrack}
         onClose={() => setOpenTrack(null)}
       />

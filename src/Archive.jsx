@@ -3,7 +3,7 @@ import React from 'react'
 import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer } from './shared.jsx'
 
-function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlaying, onToggleTrack, tab, onTabChange, isAdmin }) {
+function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlaying, spotifyReady, onToggleTrack, tab, onTabChange, isAdmin }) {
   const allPicks = window.GRINLOUD_DATA.PICKS;
   const radars = window.GRINLOUD_DATA.PREVIOUS_RADARS;
   const currentRadar = window.GRINLOUD_DATA.RADAR;
@@ -43,24 +43,23 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlayi
             const url = p.links?.spotify;
             const isActive = isRowPlaying(url);
             return (
-              <div key={p.id} className={`archive-card${isActive ? ' is-playing' : ''}`}>
-                <span className="archive-card__date">{p.date}</span>
-                <button className="archive-card__cover-hit" onClick={() => setOpenTrack(p)} aria-label={`View ${p.title} — ${p.artist}`}>
+              <div key={p.id} className={`radar-row ${isActive ? 'is-active' : ''}`}>
+                <div className="radar-row__n">{p.date}</div>
+
+                <button className="radar-row__cover" onClick={() => setOpenTrack(p)} aria-label={`View ${p.title} — ${p.artist}`}>
                   <SpotifyCover spotifyUrl={url} alt={`${p.title} — ${p.artist} cover art`} />
                 </button>
-                <button className="archive-card__text-hit" onClick={() => setOpenTrack(p)}>
-                  <span className="archive-card__title">{p.title}</span>
-                  <span className="archive-card__artist">{p.artist}</span>
+
+                <button className="radar-row__title" onClick={() => setOpenTrack(p)}>
+                  <div className="radar-row__name">{p.title}</div>
+                  <div className="radar-row__artist">{p.artist}</div>
                 </button>
-                <span className="archive-card__meta">
-                  <span>{p.bpm}</span>
-                  <span className="archive-card__dot">·</span>
-                  <span>{p.key}</span>
-                </span>
+
+                <div className="radar-row__bpm">{p.bpm}<span className="radar-row__dot">·</span>{p.key}</div>
                 <button
-                  className="archive-card__open"
+                  className="radar-row__status"
                   onClick={() => onToggleTrack(url)}
-                  disabled={!url || url === '#'}
+                  disabled={!spotifyReady || !url || url === '#'}
                 >
                   {isActive ? <>PAUSE <Icon.Pause size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
                 </button>
@@ -126,6 +125,7 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlayi
         track={openTrack}
         accent={accent}
         isPlaying={isRowPlaying(openTrack?.links?.spotify)}
+        spotifyReady={spotifyReady}
         onToggle={onToggleTrack}
         onClose={() => setOpenTrack(null)}
       />
