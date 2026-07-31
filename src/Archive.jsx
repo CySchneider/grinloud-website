@@ -69,6 +69,7 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlayi
 
                 <div className="radar-row__bpm">{p.bpm}<span className="radar-row__dot">·</span>{p.key}</div>
                 <button
+                  key={isActive ? 'pause' : 'play'}
                   className="radar-row__status"
                   onClick={() => onToggleTrack(url)}
                   disabled={!url || url === '#'}

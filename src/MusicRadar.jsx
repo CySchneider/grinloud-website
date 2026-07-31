@@ -94,6 +94,7 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlayin
 
               <div className="radar-row__bpm">{t.bpm}<span className="radar-row__dot">·</span>{t.key}</div>
               <button
+                key={isActive ? 'pause' : 'play'}
                 className="radar-row__status"
                 onClick={() => onToggleTrack(spotifyUrl)}
                 disabled={!spotifyUrl || spotifyUrl === '#'}
@@ -142,6 +143,7 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlayin
             </div>
           </div>
           <button
+            key={isRowPlaying(radar.spotifyUrl) ? 'pause' : 'play'}
             className={`radar__playlist-link ${isRowPlaying(radar.spotifyUrl) ? 'is-active' : ''}`}
             onClick={() => onToggleTrack(radar.spotifyUrl)}
             disabled={!radar.spotifyUrl || radar.spotifyUrl === '#'}
