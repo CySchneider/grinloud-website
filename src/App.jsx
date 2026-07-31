@@ -237,10 +237,8 @@ function App() {
         }}
         onBack={() => setRoute('home')}
         onNewsletter={() => setShowNewsletter(true)}
-        onGotoRadar={() => { setSelectedRadar(liveRadar); setRoute('radar'); }}
         onHome={goHome}
         accent={palette.bg}
-        isAdmin={isAdmin}
       />
 
       {route === 'home' && (

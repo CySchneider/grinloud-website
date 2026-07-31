@@ -423,11 +423,7 @@ function TopBrand({ onHome }) {
   );
 }
 
-function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar, isAdmin, onHome }) {
-  const radar = window.GRINLOUD_DATA.RADAR;
-  const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
-  const radarActuallyLive = !radar.liveDate || todayStr >= radar.liveDate;
-  const radarIsLive = isAdmin || radarActuallyLive;
+function TopNav({ route, setRoute, onBack, onNewsletter, accent, onHome }) {
   const items = [
     { id: 'home',    label: 'PICK' },
     { id: 'radar',   label: 'MUSIC RADAR' },
@@ -473,16 +469,6 @@ function TopNav({ route, setRoute, onBack, onNewsletter, accent, onGotoRadar, is
           <Icon.Mail size={13} /> <span className="nav-subscribe-label">SUBSCRIBE</span>
         </button>
       </div>
-      {route === 'home' && onGotoRadar && radarIsLive && (
-        <button
-          className="site-radar-pill"
-          style={!radarActuallyLive ? { opacity: 0.5 } : undefined}
-          onClick={onGotoRadar}
-        >
-          MUSIC RADAR {radar.number} → OUT NOW
-          {isAdmin && !radarActuallyLive && <span className="pick-scheduled-badge">SCHEDULED</span>}
-        </button>
-      )}
     </nav>
   );
 }
