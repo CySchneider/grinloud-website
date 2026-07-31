@@ -573,10 +573,18 @@ function spotifyUriFromUrl(spotifyUrl) {
 }
 
 // Called SYNCHRONOUSLY inside click handlers to keep user-gesture context.
-// loadUri + immediate play() is the only pattern that works on iOS Safari —
-// the Spotify embed queues the play internally until the URI is ready.
-// (Do not swap this order — play()-before-loadUri was tried and it made
-// playback silently fail instead of just needing a 2nd tap.)
+// loadUri + immediate play() is attempted first (needed for iOS gesture
+// context), but confirmed via screen recording that this pair alone is not
+// reliable when switching FROM an already-playing track: loadUri() does not
+// always finish inside the iframe before the immediately-following play()
+// arrives, so that play() gets silently dropped — the row's button flips to
+// "PAUSE" but the Spotify widget itself keeps showing a plain unplayed ▶ for
+// several seconds. As a safety net, also listen once for the controller's
+// own playback_update signal that THIS uri has actually loaded, and retry
+// play() then if it's still paused. (Do not "fix" this by destroying and
+// recreating the controller instead — controller.destroy() removes the
+// container element from the page per Spotify's docs, breaking the
+// persistent container SpotifyPreviewBar and every future call here rely on.)
 window.grinloudPlaySpotify = function(spotifyUrl) {
   const uri = spotifyUriFromUrl(spotifyUrl);
   if (!uri) return;
@@ -586,6 +594,15 @@ window.grinloudPlaySpotify = function(spotifyUrl) {
       if (_currentUri !== uri) {
         _currentUri = uri;
         _spotifyCtrl.loadUri(uri);
+        const ctrl = _spotifyCtrl;
+        const retryPlayWhenLoaded = function(e) {
+          const d = (e && e.data) || {};
+          if (d.playingURI !== uri) return;
+          if (d.isPaused) {
+            try { ctrl.play(); } catch (_) {}
+          }
+        };
+        ctrl.addListener('playback_update', retryPlayWhenLoaded);
       }
       _spotifyCtrl.play(); // synchronous — still inside user-gesture call stack
     } catch (_) {
