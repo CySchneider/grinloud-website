@@ -354,7 +354,7 @@ function NewsletterModal({ open, onClose, accent }) {
 // these rows live in a list, not a full page. Play/Pause lives inside the
 // layer too, but the row's own Play control (outside this component) is
 // the primary way to trigger playback without opening it at all.
-function TrackInfoLayer({ track, accent, isPlaying, spotifyReady, onToggle, onClose }) {
+function TrackInfoLayer({ track, accent, isPlaying, onToggle, onClose }) {
   if (!track) return null;
   const spotifyUrl = track.links?.spotify;
   const canPlay = spotifyUrl && spotifyUrl !== '#';
@@ -398,7 +398,6 @@ function TrackInfoLayer({ track, accent, isPlaying, spotifyReady, onToggle, onCl
               <button
                 className={`play-btn ${isPlaying ? 'is-playing' : ''}`}
                 onClick={() => onToggle(spotifyUrl)}
-                disabled={!spotifyReady}
               >
                 {isPlaying ? <Icon.Pause size={12} /> : null}
                 <span>{isPlaying ? 'PAUSE' : '▶ PLAY PREVIEW'}</span>
@@ -541,20 +540,6 @@ let _spotifyCtrl = null;  // active controller
 let _containerEl = null;  // DOM element for the embed
 let _currentUri  = null;  // URI currently loaded in the controller
 
-// Play buttons stay disabled (see spotifyReady in App.jsx) until this fires —
-// on iOS, tapping Play before the controller exists forces grinloudPlaySpotify
-// into the createController() fallback below, whose play() call only fires
-// once the iframe has actually loaded (an async callback), by which point the
-// user-gesture token is gone and iOS silently drops the play. Gating the UI
-// on this event means the controller is always already there (created here,
-// no play() involved) by the time a tap can happen, so every tap goes through
-// the synchronous loadUri()+play() branch that iOS actually honors.
-window.grinloudSpotifyIsReady = () => false;
-function markSpotifyCtrlReady() {
-  window.grinloudSpotifyIsReady = () => true;
-  window.dispatchEvent(new Event('sp-ctrl-ready'));
-}
-
 // Load API script immediately (before any user interaction)
 (function() {
   if (typeof document === 'undefined') return;
@@ -614,7 +599,7 @@ window.grinloudPlaySpotify = function(spotifyUrl) {
     _spotifyAPI.createController(
       _containerEl,
       { uri: uri, width: '100%', height: 80 },
-      function(ctrl) { _spotifyCtrl = ctrl; markSpotifyCtrlReady(); ctrl.play(); }
+      function(ctrl) { _spotifyCtrl = ctrl; ctrl.play(); }
     );
   }
 };
@@ -644,7 +629,7 @@ function SpotifyPreviewBar({ spotifyUrl }) {
             _spotifyAPI.createController(
               _containerEl,
               { uri: uri, width: '100%', height: 80 },
-              function(ctrl) { _spotifyCtrl = ctrl; markSpotifyCtrlReady(); }
+              function(ctrl) { _spotifyCtrl = ctrl; }
             );
           }
         }
@@ -653,7 +638,7 @@ function SpotifyPreviewBar({ spotifyUrl }) {
         _spotifyAPI.createController(
           _containerEl,
           { uri: uri, width: '100%', height: 80 },
-          function(ctrl) { _spotifyCtrl = ctrl; markSpotifyCtrlReady(); }
+          function(ctrl) { _spotifyCtrl = ctrl; }
         );
       }
     }

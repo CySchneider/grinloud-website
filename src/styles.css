@@ -282,7 +282,6 @@ a { color: inherit; text-decoration: none; }
 }
 .play-btn:hover { opacity: 0.7; }
 .play-btn.is-playing { color: var(--qs-pink); border-bottom-color: var(--qs-pink); }
-.play-btn:disabled { opacity: 0.3; cursor: default; }
 
 /* ============================================================
    PICK OF THE DAY (home)
@@ -837,7 +836,7 @@ a { color: inherit; text-decoration: none; }
 /* Tracks — real table */
 .radar__tracks-head {
   display: grid;
-  grid-template-columns: 76px 1fr 130px 90px;
+  grid-template-columns: 24px 1fr 130px 90px;
   gap: 16px;
   align-items: center;
   font-family: var(--qs-mono);
@@ -849,13 +848,19 @@ a { color: inherit; text-decoration: none; }
 }
 .radar-row {
   display: grid;
-  grid-template-columns: 76px 36px 1fr 130px 90px;
+  grid-template-columns: 24px 36px 1fr 130px 90px;
   gap: 16px;
   align-items: center;
   padding: 13px 0;
   border-bottom: 1px solid var(--qs-ink-08);
   transition: background 0.14s;
   position: relative;
+}
+/* Archive/Picks reuses .radar-row for identical typography/spacing (see
+   MusicRadar's .radar-row), but its first column holds a full date
+   ("2026-07-31") instead of a 2-digit index — needs more room. */
+.radar-row.archive-row {
+  grid-template-columns: 76px 36px 1fr 130px 90px;
 }
 /* Cover + title are their own tap targets (open the track info layer) —
    separate from the Play control below, which used to share a click
@@ -1380,11 +1385,15 @@ a { color: inherit; text-decoration: none; }
   .radar__sticky { position: static; order: -1; }
   .radar__tracks-head { display: none; }
   .radar-row {
-    grid-template-columns: 60px 40px 1fr auto;
-    gap: 8px;
+    grid-template-columns: 20px 40px 1fr auto;
+    gap: 10px;
     padding: 12px 0;
   }
-  .radar-row__n { font-size: 10px; white-space: nowrap; }
+  .radar-row.archive-row {
+    grid-template-columns: 56px 40px 1fr auto;
+    gap: 8px;
+  }
+  .radar-row.archive-row .radar-row__n { font-size: 10px; white-space: nowrap; }
   .radar-row__bpm { display: none; }
   .radar-row__status { grid-column: 4; }
 

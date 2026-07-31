@@ -3,7 +3,19 @@ import React from 'react'
 import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer } from './shared.jsx'
 
-function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlaying, spotifyReady, onToggleTrack, tab, onTabChange, isAdmin }) {
+// PICKS stores artist names in ALL CAPS (used elsewhere as-is, e.g. the Home
+// hero); Music Radar's tracks carry hand-typed mixed case instead. To match
+// Music Radar's row style here, title-case each word for display only —
+// parenthesised country codes ("(NL)", "(AUS)") are left untouched. This is
+// an approximation: a handful of artists stylize their own name in caps
+// (e.g. SIDEPIECE) and will show title-cased here instead.
+function displayArtist(artist) {
+  return artist.replace(/\([^)]*\)|[^\s(),]+/g, (token) =>
+    token.startsWith('(') ? token : token.charAt(0) + token.slice(1).toLowerCase()
+  );
+}
+
+function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlaying, onToggleTrack, tab, onTabChange, isAdmin }) {
   const allPicks = window.GRINLOUD_DATA.PICKS;
   const radars = window.GRINLOUD_DATA.PREVIOUS_RADARS;
   const currentRadar = window.GRINLOUD_DATA.RADAR;
@@ -43,7 +55,7 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlayi
             const url = p.links?.spotify;
             const isActive = isRowPlaying(url);
             return (
-              <div key={p.id} className={`radar-row ${isActive ? 'is-active' : ''}`}>
+              <div key={p.id} className={`radar-row archive-row ${isActive ? 'is-active' : ''}`}>
                 <div className="radar-row__n">{p.date}</div>
 
                 <button className="radar-row__cover" onClick={() => setOpenTrack(p)} aria-label={`View ${p.title} — ${p.artist}`}>
@@ -52,14 +64,14 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlayi
 
                 <button className="radar-row__title" onClick={() => setOpenTrack(p)}>
                   <div className="radar-row__name">{p.title}</div>
-                  <div className="radar-row__artist">{p.artist}</div>
+                  <div className="radar-row__artist">{displayArtist(p.artist)}</div>
                 </button>
 
                 <div className="radar-row__bpm">{p.bpm}<span className="radar-row__dot">·</span>{p.key}</div>
                 <button
                   className="radar-row__status"
                   onClick={() => onToggleTrack(url)}
-                  disabled={!spotifyReady || !url || url === '#'}
+                  disabled={!url || url === '#'}
                 >
                   {isActive ? <>PAUSE <Icon.Pause size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
                 </button>
@@ -125,7 +137,6 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlayi
         track={openTrack}
         accent={accent}
         isPlaying={isRowPlaying(openTrack?.links?.spotify)}
-        spotifyReady={spotifyReady}
         onToggle={onToggleTrack}
         onClose={() => setOpenTrack(null)}
       />

@@ -4,7 +4,7 @@ import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer } from './shared.jsx'
 // Layout: numbered poster-style tracklist on the left, sticky YouTube embed on the right.
 
-function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlaying, spotifyReady, onToggleTrack }) {
+function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlaying, onToggleTrack }) {
   radar = radar || window.GRINLOUD_DATA.RADAR;
   const [openTrack, setOpenTrack] = React.useState(null);
 
@@ -96,7 +96,7 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlayin
               <button
                 className="radar-row__status"
                 onClick={() => onToggleTrack(spotifyUrl)}
-                disabled={!spotifyReady || !spotifyUrl || spotifyUrl === '#'}
+                disabled={!spotifyUrl || spotifyUrl === '#'}
               >
                 {isActive ? <>PAUSE <Icon.Pause size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
               </button>
@@ -144,7 +144,7 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlayin
           <button
             className={`radar__playlist-link ${isRowPlaying(radar.spotifyUrl) ? 'is-active' : ''}`}
             onClick={() => onToggleTrack(radar.spotifyUrl)}
-            disabled={!spotifyReady || !radar.spotifyUrl || radar.spotifyUrl === '#'}
+            disabled={!radar.spotifyUrl || radar.spotifyUrl === '#'}
           >
             <span>PLAY FULL RADAR</span>
             {isRowPlaying(radar.spotifyUrl) ? <>PAUSE <Icon.Pause size={11} /></> : <>PLAY <Icon.Arrow size={11} /></>}
@@ -165,7 +165,6 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlayin
         track={openTrack}
         accent={accent}
         isPlaying={isRowPlaying(openTrack?.links?.spotify)}
-        spotifyReady={spotifyReady}
         onToggle={onToggleTrack}
         onClose={() => setOpenTrack(null)}
       />

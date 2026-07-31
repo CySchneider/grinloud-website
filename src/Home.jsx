@@ -32,7 +32,7 @@ function useSwipeNav(prev, next) {
   return { onTouchStart, onTouchEnd };
 }
 
-function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, spotifyReady, typeScale, onGotoRadar, isAdmin }) {
+function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, onGotoRadar, isAdmin }) {
   // cqw (container query width, off .home__text's own rendered width), not vw —
   // keeps the chars-per-line ratio constant whatever width the flex layout
   // actually hands the text column, instead of drifting/overflowing based on
@@ -95,7 +95,6 @@ function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, s
               <button
                 className={`play-btn ${isPlaying ? 'is-playing' : ''}`}
                 onClick={() => { isPlaying ? window.grinloudPauseSpotify() : window.grinloudPlaySpotify(pick.links.spotify); onPlay(); }}
-                disabled={!spotifyReady}
               >
                 {isPlaying ? <Icon.Pause size={12} /> : null}
                 <span>{isPlaying ? 'PAUSE' : '▶ PLAY PREVIEW'}</span>
