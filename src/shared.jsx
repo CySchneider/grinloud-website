@@ -591,8 +591,7 @@ function spotifyUriFromUrl(spotifyUrl) {
 }
 
 // Tears down whatever controller exists and creates a fresh one bound to a
-// fresh inner div inside _wrapperEl. Called SYNCHRONOUSLY inside click
-// handlers to keep user-gesture context for the resulting play() call.
+// fresh inner div inside _wrapperEl.
 function _rebuildSpotifyController(uri, autoplay) {
   if (_spotifyCtrl) {
     try { _spotifyCtrl.destroy(); } catch (_) { /* already gone */ }
@@ -608,7 +607,25 @@ function _rebuildSpotifyController(uri, autoplay) {
     { uri: uri, width: '100%', height: 80 },
     function(ctrl) {
       _spotifyCtrl = ctrl;
-      if (autoplay) ctrl.play();
+      if (!autoplay) return;
+      // The controller's ready-callback firing does not mean the track
+      // itself has finished loading in the iframe yet — calling play() the
+      // instant it fires can still race an in-progress load and get
+      // silently dropped. Wait for the controller's own playback_update
+      // signal that this uri is actually loaded before playing, with a
+      // short fallback timer so playback never gets permanently stuck if
+      // that event doesn't fire for some reason.
+      let played = false;
+      const tryPlay = function() {
+        if (played) return;
+        played = true;
+        try { ctrl.play(); } catch (_) {}
+      };
+      ctrl.addListener('playback_update', function(e) {
+        const d = (e && e.data) || {};
+        if (d.playingURI === uri) tryPlay();
+      });
+      setTimeout(tryPlay, 400);
     }
   );
 }
