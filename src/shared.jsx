@@ -585,27 +585,41 @@ function spotifyUriFromUrl(spotifyUrl) {
 // recreating the controller instead — controller.destroy() removes the
 // container element from the page per Spotify's docs, breaking the
 // persistent container SpotifyPreviewBar and every future call here rely on.)
+// TEMPORARY diagnostics — remove once the iOS play-button race is actually
+// confirmed fixed on a real device. Prefixed so it's easy to filter/find.
+function _spLog(msg, extra) {
+  try { console.log('[grinloud-spotify] ' + msg, extra !== undefined ? extra : ''); } catch (_) {}
+}
+
 window.grinloudPlaySpotify = function(spotifyUrl) {
   const uri = spotifyUriFromUrl(spotifyUrl);
+  _spLog('grinloudPlaySpotify called', { uri, hasCtrl: !!_spotifyCtrl, currentUri: _currentUri });
   if (!uri) return;
 
   if (_spotifyCtrl) {
     try {
       if (_currentUri !== uri) {
         _currentUri = uri;
+        _spLog('loadUri()', uri);
         _spotifyCtrl.loadUri(uri);
         const ctrl = _spotifyCtrl;
         const retryPlayWhenLoaded = function(e) {
           const d = (e && e.data) || {};
+          _spLog('playback_update fired', d);
           if (d.playingURI !== uri) return;
           if (d.isPaused) {
-            try { ctrl.play(); } catch (_) {}
+            _spLog('retrying play() after load confirmed', uri);
+            try { ctrl.play(); } catch (err) { _spLog('retry play() threw', String(err)); }
+          } else {
+            _spLog('playback_update says already playing, no retry needed', uri);
           }
         };
         ctrl.addListener('playback_update', retryPlayWhenLoaded);
       }
+      _spLog('calling play() (existing controller)', uri);
       _spotifyCtrl.play(); // synchronous — still inside user-gesture call stack
-    } catch (_) {
+    } catch (err) {
+      _spLog('existing-controller path threw, falling back to createController', String(err));
       // Controller stale — reset and fall through to createController
       _spotifyCtrl = null;
       _currentUri = null;
@@ -613,10 +627,11 @@ window.grinloudPlaySpotify = function(spotifyUrl) {
   }
   if (!_spotifyCtrl && _spotifyAPI && _containerEl) {
     _currentUri = uri;
+    _spLog('createController() (no existing controller)', uri);
     _spotifyAPI.createController(
       _containerEl,
       { uri: uri, width: '100%', height: 80 },
-      function(ctrl) { _spotifyCtrl = ctrl; ctrl.play(); }
+      function(ctrl) { _spLog('createController ready, calling play()', uri); _spotifyCtrl = ctrl; ctrl.play(); }
     );
   }
 };
