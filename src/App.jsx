@@ -4,6 +4,7 @@ import { useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSlid
 import { TopBrand, TopNav, NewsletterModal, SpotifyPreviewBar } from './shared.jsx'
 import { Home } from './Home.jsx'
 import { Cinema } from './Cinema.jsx'
+import { Social } from './Social.jsx'
 import { RadarCover } from './RadarCover.jsx'
 import { MusicRadar } from './MusicRadar.jsx'
 import { Archive } from './Archive.jsx'
@@ -26,6 +27,7 @@ const COLOR_MAP = {
 // ── Special modes ─────────────────────────────────────────────────────────
 const _params      = new URLSearchParams(window.location.search);
 const isCinemaMode = _params.has('cinema');
+const isSocialMode = _params.has('social');
 const isRadarMode  = _params.has('radar');
 const isAdmin      = _params.has('admin');
 
@@ -170,7 +172,11 @@ function App() {
   // ships; archive has no static page, so it lives behind a query param on "/".
   const hasSyncedUrlRef = React.useRef(false);
   React.useEffect(() => {
-    if (!pick) return;
+    // Special modes (?cinema, ?social, ?radar) render fullscreen below and
+    // never reach this component's normal routes — don't let this effect
+    // rewrite their query param out of the address bar on mount, or a
+    // refresh/re-share of the link silently drops back to the pick page.
+    if (!pick || isCinemaMode || isSocialMode || isRadarMode) return;
     const url = route === 'radar' ? `/radar/${selectedRadar.number}/`
       : route === 'archive' ? `/?archive=${archiveTab}`
       : `/pick/${pick.date}/`;
@@ -221,6 +227,9 @@ function App() {
 
   // Cinema mode — render fullscreen pick view, no UI
   if (isCinemaMode) return <Cinema pick={pick} />;
+
+  // Social mode — copy-ready assets + caption text for hand-building posts
+  if (isSocialMode) return <Social pick={pick} />;
 
   // Radar cover mode — fullscreen promo card for Instagram / TikTok
   if (isRadarMode) return <RadarCover radar={window.GRINLOUD_DATA.RADAR} />;

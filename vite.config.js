@@ -16,6 +16,7 @@ export default defineConfig({
         { src: 'news-hero-relaunch.jpg', dest: '.' },
         { src: 'grinloud-says-still.jpg', dest: '.' },
         { src: 'grok-image-25c6fdac-4b59-417b-bcb0-10956d297150.jpg', dest: '.' },
+        { src: 'Neue Assets/Badge Pick of the Day.png', dest: '.' },
         { src: 'GRINLOUD Music Radar Cover*.jpg', dest: '.' },
         { src: 'Music Radar Cover*.jpg', dest: '.' },
         { src: 'GRINLOUD Dance Beach Ibiza/*.mp4', dest: 'ibiza' },
