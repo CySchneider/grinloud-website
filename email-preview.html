@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GRINLOUD Email Preview</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@300;400&family=JetBrains+Mono:wght@600;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <style>
   body { margin: 0; padding: 40px 20px; background: #888; font-family: sans-serif; }
   .preview-label { text-align: center; font-size: 12px; color: #fff; opacity: 0.6; margin-bottom: 16px; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -15,10 +15,10 @@
 </style>
 </head>
 <body>
-<p class="preview-label">GRINLOUD — Email Preview</p>
+<p class="preview-label">GRINLOUD — Email Preview (Quiet Signal)</p>
 <div class="swatches">
   <button onclick="setAccent('pink','#FF1F8F')">Pink</button>
-  <button onclick="setAccent('yellow','#FFE000')">Yellow</button>
+  <button onclick="setAccent('yellow','#FFE600')">Yellow</button>
   <button onclick="setAccent('blue','#00C2FF')">Blue</button>
   <button onclick="setAccent('green','#39FF14')">Green</button>
   <button onclick="setAccent('orange','#FF6200')">Orange</button>
@@ -26,88 +26,133 @@
 <div id="email-wrap"></div>
 
 <script>
+// Mirrors scripts/send-daily-pick.js's buildHtml() — same markup/styles, kept
+// in sync by hand since one runs in Node (real subscriber sends) and this one
+// runs in a browser tab as a designer's sanity check.
 const picks = {
-  pink:   { title: 'Bad Wolf',  artist: 'MICHAEL BIBI',  bpm: 131, key: 'Ab Major', label: 'EMPIRE',  genre: 'Tech House', date: '2026-06-09', info: "Bibi on EMPIRE. Bad Wolf has teeth — dark, muscular, completely in control. One of his sharpest.", spotify: 'https://open.spotify.com/track/4S8bYzrUHwoAsPzJWRt4QM' },
-  yellow: { title: 'Alcoholic', artist: 'SAN PACHO',     bpm: 132, key: 'Eb Major', label: 'LIBERA',  genre: 'Tech House', date: '2026-06-10', info: "San Pacho on LIBERA closes 005 in style. Alcoholic is the kind of track that keeps going long after the night ends.", spotify: 'https://open.spotify.com/track/5Iedc3D20KJoj95uQRp5p0' },
-  blue:   { title: 'Lipstick',  artist: 'ALAIA & GALLO', bpm: 128, key: 'D Minor',  label: 'Toolroom', genre: 'Tech House', date: '2026-06-03', info: "Toolroom's finest doing what they do best. Lipstick is proper floor-first Tech House — tight, punchy, and impossible to shake.", spotify: '#' },
-  green:  { title: 'Control',   artist: 'FISHER',        bpm: 130, key: 'F Minor',  label: 'Catch & Release', genre: 'Tech House', date: '2026-06-08', info: "Fisher keeps the pressure on. Control is stripped back and relentless — the kind of weapon that works at 2am when nothing else will.", spotify: '#' },
-  orange: { title: 'Pulse',     artist: 'CHRIS LAKE',    bpm: 127, key: 'A Minor',  label: 'Black Book', genre: 'House', date: '2026-06-07', info: "Chris Lake distilling house music to its core. Pulse runs clean and deep, built for rooms with serious speakers.", spotify: '#' },
+  pink:   { title: 'Bad Wolf',  artist: 'MICHAEL BIBI',  bpm: 131, key: 'Ab Major', label: 'EMPIRE',  release: '12 May 2026', genre: 'Tech House', date: '2026-06-09', info: "Bibi on EMPIRE. Bad Wolf has teeth — dark, muscular, completely in control. One of his sharpest.", funFact: "Michael Bibi founded his own label, Sola, in 2018 — Bad Wolf later became one of his most-played EMPIRE releases on tour.", artistImage: 'https://i.scdn.co/image/ab6761610000e5eb0424982e6dcbccf304da7ca3', spotify: 'https://open.spotify.com/track/4S8bYzrUHwoAsPzJWRt4QM' },
+  yellow: { title: 'Alcoholic', artist: 'SAN PACHO',     bpm: 132, key: 'Eb Major', label: 'LIBERA',  release: '03 Jun 2026', genre: 'Tech House', date: '2026-06-10', info: "San Pacho on LIBERA closes 005 in style. Alcoholic is the kind of track that keeps going long after the night ends.", spotify: 'https://open.spotify.com/track/5Iedc3D20KJoj95uQRp5p0' },
+  blue:   { title: 'Lipstick',  artist: 'ALAIA & GALLO', bpm: 128, key: 'D Minor',  label: 'Toolroom', release: '21 Apr 2026', genre: 'Tech House', date: '2026-06-03', info: "Toolroom's finest doing what they do best. Lipstick is proper floor-first Tech House — tight, punchy, and impossible to shake.", spotify: '#' },
+  green:  { title: 'Control',   artist: 'FISHER',        bpm: 130, key: 'F Minor',  label: 'Catch & Release', release: '02 Jun 2026', genre: 'Tech House', date: '2026-06-08', info: "Fisher keeps the pressure on. Control is stripped back and relentless — the kind of weapon that works at 2am when nothing else will.", spotify: '#' },
+  orange: { title: 'Pulse',     artist: 'CHRIS LAKE',    bpm: 127, key: 'A Minor',  label: 'Black Book', release: '18 May 2026', genre: 'House', date: '2026-06-07', info: "Chris Lake distilling house music to its core. Pulse runs clean and deep, built for rooms with serious speakers.", spotify: '#' },
 };
 
-function buildEmail(accentKey, accent) {
+const ACCENT_COLORS = { pink: '#FF1F8F', yellow: '#FFE600', blue: '#00C2FF', green: '#39FF14', orange: '#FF6200' };
+
+function metaLine(p) {
+  return [`${p.bpm} BPM`, p.key, p.label, p.genre, p.release].filter(Boolean).join(' <span style="opacity:0.5;">&middot;</span> ');
+}
+
+function quoteCard(ink, ink75, accent, label, text) {
+  if (!text) return '';
+  return `
+      <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+        <tr><td>
+          <span style="display:inline-block;background:${ink};color:${accent};font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:3px 6px;border-radius:2px;margin-bottom:8px;">${label}</span>
+        </td></tr>
+        <tr><td style="padding-top:8px;">
+          <p style="margin:0;font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:14px;line-height:1.6;color:${ink75};max-width:420px;">${text}</p>
+        </td></tr>
+      </table>`;
+}
+
+function buildEmail(accentKey) {
   const p = picks[accentKey];
-  const ink = '#0A0A0A';
-  const inkDim = 'rgba(10,10,10,0.45)';
-  const paper = '#F5F2EE';
+  const accent = ACCENT_COLORS[accentKey];
+  const bg = '#FAF7F2';
+  const ink = '#0E0E0E';
+  const ink75 = 'rgba(14,14,14,0.75)';
+  const ink40 = 'rgba(14,14,14,0.40)';
+  const ink35 = 'rgba(14,14,14,0.35)';
+  const ink12 = 'rgba(14,14,14,0.12)';
+  const ink08 = 'rgba(14,14,14,0.08)';
+  const ink55 = 'rgba(14,14,14,0.55)';
   const [yyyy, mm, dd] = p.date.split('-');
   const dateFmt = `${dd} · ${mm} · ${yyyy}`;
-  const btnStyle = `display:inline-block;background:#0A0A0A;color:#F5F2EE;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:11px;font-weight:700;letter-spacing:0.14em;padding:10px 20px;border-radius:999px;text-decoration:none;margin:0 6px 6px 0;text-transform:uppercase;`;
-  const spotifyBtn = p.spotify && p.spotify !== '#' ? `<a href="${p.spotify}" style="${btnStyle}">&#9654; Spotify</a>` : '';
+  const linkStyle = `display:inline-block;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:11px;font-weight:600;letter-spacing:0.1em;color:${ink55};text-decoration:none;border-bottom:1px solid ${ink35};padding-bottom:1px;text-transform:uppercase;`;
+  const spotifyLink = p.spotify && p.spotify !== '#' ? `<a href="${p.spotify}" style="${linkStyle}">SPOTIFY &#8599;</a>` : '';
 
   return `<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@300;400&family=JetBrains+Mono:wght@600;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 </head>
-<body style="margin:0;padding:0;background:${accent};">
-<table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" style="background:${accent};min-height:100vh;">
+<body style="margin:0;padding:0;background:${bg};">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${bg};">
 <tr><td align="center" valign="top" style="padding:40px 0;">
   <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
 
-    <!-- NAV -->
-    <tr><td style="padding:20px 32px 18px;border-bottom:2px solid ${ink};">
+    <!-- HEADER -->
+    <tr><td style="padding:20px 32px;border-bottom:1px solid ${ink08};">
       <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
         <td>
-          <img src="/Logo%20GRINLOUD%20Smiley%20Yellow%20black.png" width="36" height="36" alt="GRINLOUD" style="display:inline-block;vertical-align:middle;margin-right:10px;border-radius:50%;border:4px solid ${ink};box-shadow:4px 4px 0 ${ink};background:#FFE000;">
-          <span style="font-family:'Archivo Black','Helvetica Neue',Arial,sans-serif;font-size:18px;font-weight:900;letter-spacing:0;color:${ink};vertical-align:middle;text-transform:uppercase;">GRINLOUD</span>
+          <img src="/grinloud-smiley-2026.png" width="28" height="28" alt="GRINLOUD" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:50%;">
+          <span style="font-family:'UnifrakturMaguntia',cursive;font-size:20px;color:${ink};vertical-align:middle;">grinloud.com</span>
         </td>
         <td align="right">
-          <span style="font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:9px;font-weight:700;letter-spacing:0.18em;color:${inkDim};text-transform:uppercase;">Pick of the Day</span>
+          <span style="font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:9px;font-weight:700;letter-spacing:0.14em;color:${ink40};text-transform:uppercase;">House Music Curated</span>
         </td>
       </tr></table>
     </td></tr>
 
     <!-- HERO -->
     <tr><td style="padding:40px 32px 0;">
-      <p style="margin:0 0 20px;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;color:${inkDim};text-transform:uppercase;">
-        ${dateFmt} &nbsp;·&nbsp; ${p.genre.toUpperCase()}
-      </p>
-      <h1 style="margin:0 0 14px;font-family:'Archivo Black','Helvetica Neue',Arial,sans-serif;font-size:52px;font-weight:900;line-height:0.9;letter-spacing:-0.03em;color:${ink};text-transform:uppercase;">
-        ${p.title}
-      </h1>
-      <p style="margin:0 0 28px;font-family:'Space Grotesk','Helvetica Neue',Arial,sans-serif;font-size:20px;font-weight:700;letter-spacing:-0.01em;color:${ink};">
-        ${p.artist}
-      </p>
-      <div style="height:2px;background:${ink};opacity:0.15;margin-bottom:28px;"></div>
-      <p style="margin:0 0 32px;font-family:'Space Grotesk','Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:1.55;color:${ink};opacity:0.8;max-width:480px;">
-        ${p.info}
-      </p>
-      <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:32px;">
+
+      <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
         <tr>
-          ${[['BPM', p.bpm], ['KEY', p.key], ['LABEL', p.label]].map(([l, v]) => `
-          <td style="padding-right:6px;vertical-align:middle;">
-            <span style="display:inline-block;padding:6px 10px;border:2px solid ${ink};border-radius:4px;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:10px;letter-spacing:0.12em;color:${ink};white-space:nowrap;">
-              <span style="opacity:0.5;">${l}&ensp;</span><span style="font-weight:600;">${v || '—'}</span>
-            </span>
-          </td>`).join('')}
+          <td style="padding-right:8px;"><span style="display:inline-block;width:6px;height:6px;border-radius:1px;background:${accent};"></span></td>
+          <td><span style="font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:11px;font-weight:600;letter-spacing:0.14em;color:${ink40};text-transform:uppercase;">Pick of the Day — ${dateFmt}</span></td>
         </tr>
       </table>
-      <div style="margin-bottom:48px;">
-        <a href="https://grinloud.com" style="display:inline-block;background:${ink};color:#F5F2EE;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:10px;font-weight:700;letter-spacing:0.14em;padding:7px 14px;border-radius:999px;text-decoration:none;text-transform:uppercase;">GRINLOUD.COM &#8599;</a>
+
+      <div style="margin-bottom:24px;">
+        <img src="${p.cover || 'https://placehold.co/152x152/0e0e0e/faf7f2?text=%20'}" width="152" height="152" alt="${p.title} — ${p.artist} cover art" style="display:block;width:152px;height:152px;border-radius:2px;object-fit:cover;">
       </div>
+
+      <h1 style="margin:0 0 10px;font-family:'Space Grotesk','Helvetica Neue',Arial,sans-serif;font-size:34px;font-weight:700;line-height:1.05;letter-spacing:-0.015em;color:${ink};">
+        ${p.title}
+      </h1>
+
+      <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+        <tr>
+          ${p.artistImage ? `<td style="padding-right:14px;vertical-align:middle;"><img src="${p.artistImage}" width="52" height="52" alt="${p.artist} photo" style="display:block;width:52px;height:52px;border-radius:50%;object-fit:cover;"></td>` : ''}
+          <td style="vertical-align:middle;">
+            <p style="margin:0 0 4px;font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:18px;color:${ink};">${p.artist}</p>
+            <p style="margin:0;font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:13px;color:${ink75};">${metaLine(p)}</p>
+          </td>
+        </tr>
+      </table>
+
+      <div style="height:1px;background:${ink12};margin-bottom:22px;"></div>
+
+      ${quoteCard(ink, ink75, accent, 'Grinloud Says', p.info)}
+      ${quoteCard(ink, ink75, accent, 'Fun Fact', p.funFact)}
+
+      <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:44px;">
+        <tr>
+          <td style="padding-right:20px;">
+            <a href="${p.spotify || '#'}" style="display:inline-block;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;color:${ink};text-decoration:none;border-bottom:2px solid ${ink};padding-bottom:2px;">&#9654; PLAY PREVIEW</a>
+          </td>
+          ${spotifyLink ? `<td>${spotifyLink}</td>` : ''}
+        </tr>
+      </table>
+
     </td></tr>
 
     <!-- FOOTER -->
-    <tr><td style="padding:20px 32px 24px;">
-      <p style="margin:0 0 4px;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:9px;font-weight:700;letter-spacing:0.16em;color:${inkDim};text-transform:uppercase;">
-        House Music Curated Daily &nbsp;·&nbsp; Mixed All 10 Days
-      </p>
-      <p style="margin:0;font-family:'Space Grotesk','Helvetica Neue',Arial,sans-serif;font-size:11px;color:${inkDim};">
-        <a href="https://grinloud.com" style="color:${inkDim};text-decoration:none;">grinloud.com</a>
-        &nbsp;·&nbsp;
-        <a href="#" style="color:${inkDim};text-decoration:none;">Unsubscribe</a>
+    <tr><td style="padding:0 32px 32px;">
+      <p style="margin:0;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:10px;font-weight:600;letter-spacing:0.06em;color:${ink40};">
+        <a href="https://grinloud.com" style="color:${ink40};text-decoration:none;">grinloud.com</a>
+        <span style="opacity:0.6;">&middot;</span>
+        <a href="https://grinloud.com/about.html" style="color:${ink40};text-decoration:none;">About</a>
+        <span style="opacity:0.6;">&middot;</span>
+        <a href="https://grinloud.com/privacy.html" style="color:${ink40};text-decoration:none;">Privacy</a>
+        <span style="opacity:0.6;">&middot;</span>
+        <a href="https://grinloud.com/impressum.html" style="color:${ink40};text-decoration:none;">Impressum</a>
+        <span style="opacity:0.6;">&middot;</span>
+        <a href="#" style="color:${ink40};text-decoration:none;">Unsubscribe</a>
       </p>
     </td></tr>
 
@@ -118,7 +163,7 @@ function buildEmail(accentKey, accent) {
 </html>`;
 }
 
-function setAccent(key, hex) {
+function setAccent(key) {
   const wrap = document.getElementById('email-wrap');
   wrap.innerHTML = '';
   const iframe = document.createElement('iframe');
@@ -126,15 +171,14 @@ function setAccent(key, hex) {
   wrap.appendChild(iframe);
   const doc = iframe.contentDocument || iframe.contentWindow.document;
   doc.open();
-  doc.write(buildEmail(key, hex));
+  doc.write(buildEmail(key));
   doc.close();
-  // Adjust height after load
   iframe.onload = () => {
     iframe.style.height = (iframe.contentDocument.body.scrollHeight + 40) + 'px';
   };
 }
 
-setAccent('blue', '#00C2FF');
+setAccent('blue');
 </script>
 </body>
 </html>
