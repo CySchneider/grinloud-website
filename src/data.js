@@ -131,7 +131,9 @@ const PICKS = [
     genre: 'Bass House', accent: 'green', video: BG_VIDEOS[95],
     info: "3Beat and Faiolli close Radar 011 on Cat House Records at full throttle. Renegade is the last log on the fire — the bonfire's still burning when this one drops.",
     short: "The last log on the fire. Closes it out at full throttle.",
+    funFact: "Faiolli is a Brazilian producer who's already landed music on Tomorrowland Music, STMPD Records and Protocol Recordings, with his Cat Dealers collabs picked up by top-tier DJs worldwide — his tracks have played the Tomorrowland main stage in both Belgium and Brazil.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb0424982e6dcbccf304da7ca3',
+    artistInstagram: '@followfaiolli',
     links: { spotify: 'https://open.spotify.com/track/70NDNlmdgU1X12CfS6C6br', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -143,7 +145,10 @@ const PICKS = [
     genre: 'Bass House', accent: 'blue', video: BG_VIDEOS[94],
     info: "Vion Konger keeps it simple on Smash The House Official — the title is the instruction. DANCE doesn't ask twice.",
     short: "The title is the instruction. Doesn't ask twice.",
+    funFact: "Vion Konger is a Russian producer building his name on Dimitri Vegas & Like Mike's own label — DANCE lands on Smash The House, the same imprint that recently put out his collab with Laidback Luke.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb90c727675ad76ae0951624a9',
+    artistInstagram: '@vionkonger',
+    artistTiktok: '@vionkonger',
     links: { spotify: 'https://open.spotify.com/track/7bDqDcHAd54V7cdIsDCsfs', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -155,7 +160,10 @@ const PICKS = [
     genre: 'Tech House', accent: 'pink', video: BG_VIDEOS[93],
     info: "95 South and SIDEPIECE link up on LIP SERVICE with a bassline built for movement. Can I Ride doesn't wait for an answer — it's already rolling.",
     short: "A bassline built for movement — already rolling.",
+    funFact: "SIDEPIECE — the house duo of Party Favor and Nitti Gritti — picked up a Grammy nomination for Best Dance Recording in 2021 for \"On My Mind\" with Diplo, a track that's since passed 220 million Spotify streams.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb21705221c7f192d4a7963910',
+    artistInstagram: '@sidepiece',
+    artistTiktok: '@youasidepiece',
     links: { spotify: 'https://open.spotify.com/track/3gXGtYT41b4FXYctdxMwCI', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -167,6 +175,7 @@ const PICKS = [
     genre: 'Bass House', accent: 'yellow', video: BG_VIDEOS[92],
     info: "Suburbia toys with tension on ESSEntial. Stop, Go plays with the pause before the drop — and lets the fire flare back up every time.",
     short: "Plays with the pause before the drop.",
+    artistInstagram: '@suburbia.duo',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb6c5f58efeecce8598961010e',
     links: { spotify: 'https://open.spotify.com/track/6tyHuj4Wl5bBjVrePGbRGe', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -179,7 +188,9 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[91],
     info: "Lowderz and Haluem land on the legendary Nervous Records. TooDance is exactly what it sounds like — too much groove to sit still to.",
     short: "Too much groove to sit still to.",
+    funFact: "Haluem is a Brazilian producer who brings Trap and Hip-Hop influences into Tech House and Deep Tech — TooDance carries that same groove-first, genre-blending signature.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5ebf2a01e0f8e643a3482547cf8',
+    artistInstagram: '@haluemm',
     links: { spotify: 'https://open.spotify.com/track/5QucpQw51gNKWKp97twx85', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -191,7 +202,9 @@ const PICKS = [
     genre: 'Bass House', accent: 'green', video: BG_VIDEOS[90],
     info: "Rafael Cerato brings a rolling, hypnotic groove to Catch & Release. TCFS burns slow and steady — pure bonfire energy.",
     short: "Rolling, hypnotic — burns slow and steady.",
+    funFact: "Rafael Cerato is one of the artists who helped shape today's groove-driven club sound, splitting his time between Marseille and Ibiza — he's played B2B sets with Solomun, released with ARTBAT, and TCFS lands on Catch & Release, the label run by Fisher.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb51cb5384250dab2387f1319a',
+    artistInstagram: '@rafaelcerato_ofc',
     links: { spotify: 'https://open.spotify.com/track/4V3SzxQdZxMgxj2Db6OHoT', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -203,7 +216,10 @@ const PICKS = [
     genre: 'Bass House', accent: 'blue', video: BG_VIDEOS[89],
     info: "Castle J and LOOZBONE keep the tempo locked on HUB Records. Can't Lose My Pace is relentless — the tide keeps pushing forward.",
     short: "Relentless — the tide keeps pushing forward.",
+    funFact: "LOOZBONE is a South Korean bass/tech house producer who's taken his sound from Korea straight to the US underground, with support from Martin Garrix, Don Diablo and Jay Hardway along the way.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb7d359b8bd32eab448e2c46d3',
+    artistInstagram: '@loozbone',
+    artistTiktok: '@loozbone_',
     links: { spotify: 'https://open.spotify.com/track/0Wn8xXRJwWYrYlZutuJG3e', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -215,7 +231,9 @@ const PICKS = [
     genre: 'Bass House', accent: 'pink', video: BG_VIDEOS[88],
     info: "Cloudrider leans into pure melodic bounce on Black Lizard Records. The Melody is warm and bright — the neon lights around the fire, translated into sound.",
     short: "Warm, bright — neon lights around the fire.",
+    funFact: "Cloudrider is a Dutch producer building his sound on Protocol Lab — he also hosts his own show, INTHECLOUDS RADIO, showcasing the future house/bass house blend The Melody comes from.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5ebad6608742ec34161dbb65d43',
+    artistInstagram: '@cloudriderdj',
     links: { spotify: 'https://open.spotify.com/track/59WUYTYYAcKx4wvKzEHpwQ', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -227,7 +245,10 @@ const PICKS = [
     genre: 'Tech House', accent: 'yellow', video: BG_VIDEOS[87],
     info: "Shaded (LA) goes full send on Trick. No Brakes All Cake is exactly what the title promises — no brakes, all cake, straight through.",
     short: "No brakes, all cake, straight through.",
+    funFact: "Shaded counts John Summit, Dubfire and Patrick Topping among his fans, with releases on Dirtybird and Desert Hearts Records — No Brakes All Cake lands on TRICK, the same label behind his 2025 run.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb5a12f917564810ea448cc1e6',
+    artistInstagram: '@shaded_official',
+    artistTiktok: '@shaded_official',
     links: { spotify: 'https://open.spotify.com/track/2YlJTRecCxvjbd1rAwmAJC', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -239,7 +260,9 @@ const PICKS = [
     genre: 'Tech House', accent: 'orange', video: BG_VIDEOS[86],
     info: "Tiga and Chris Lake team up with Aatig on Black Book Records to open Radar 011 right. Party Time lights the fire and turns the volume all the way up — Tide's Back In, and it's turning up.",
     short: "Lights the fire, turns the volume up. Radar 011 begins.",
+    funFact: "Tiga founded Turbo Recordings back in 1998, a label that went on to launch Chromeo, Charlotte de Witte and Gesaffelstein — he's also remixed The xx, LCD Soundsystem and Justice along the way.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb84b93f0be0dcd5aeebc5870a',
+    artistInstagram: '@tiga',
     links: { spotify: 'https://open.spotify.com/track/5yYY6UIqKUIgv1gFnlIokW', youtube: '#', beatport: '#', soundcloud: '#' }
   },
 
@@ -253,7 +276,10 @@ const PICKS = [
     genre: 'Tech House | Latin Tech', accent: 'green', video: BG_VIDEOS[85],
     info: "Javi Reina and Carlos Agraz close Radar 010 on Clarisse Records with a sunny Latin groove. Donde el Sol is where the sun is — Low Tide, all the way to shore.",
     short: "A sunny Latin groove to close it out.",
+    funFact: "Javi Reina has been on dancefloors for over 23 years with 100+ releases and 8 industry awards to his name — one of Spain's biggest names in tech house, with support from Tiësto, David Guetta and Fedde Le Grand.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5ebb6d947869d709352fb4a9081',
+    artistInstagram: '@javireinadj',
+    artistTiktok: '@javireinadj',
     links: { spotify: 'https://open.spotify.com/track/3SX1QOSDksj7KvVKNJ2M7O', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -265,7 +291,10 @@ const PICKS = [
     genre: 'Dance / Pop', accent: 'blue', video: BG_VIDEOS[84],
     info: "Rafael keeps it smooth on Crosstown Rebels. Gotta Be Cool is unbothered and exactly as cool as the title promises.",
     short: "Smooth, unbothered, exactly as cool as it sounds.",
+    funFact: "Gotta Be Cool is Rafael's debut on Damian Lazarus' Crosstown Rebels — built around one of the most-requested unreleased IDs from Lazarus' own sets, with vocals from Tobias Wincorn.",
     artistImage: 'https://i.scdn.co/image/ab6761610000e5ebe81fa13ccd203b25572c34a7',
+    artistInstagram: '@rafael___music',
+    artistTiktok: '@rafael_music1',
     links: { spotify: 'https://open.spotify.com/track/0BYTKcBcRU9w9S8QqbTIUR', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {

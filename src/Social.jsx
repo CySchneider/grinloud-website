@@ -20,11 +20,16 @@ function genreHashtag(genre) {
 
 function buildInfoText(pick) {
   const funFact = pick.funFact || 'No fun fact saved for this pick yet — add one to data.js.';
+  const handles = [
+    pick.artistInstagram && `IG ${pick.artistInstagram}`,
+    pick.artistTiktok && `TikTok ${pick.artistTiktok}`,
+  ].filter(Boolean).join(' · ');
   return `PICK OF THE DAY
 ${pick.date}
 —
 ${pick.title}
 ${pick.artist}
+${handles || 'No artist handle saved for this pick yet — add one to data.js.'}
 —
 BPM: ${pick.bpm}
 Key: ${pick.key}
