@@ -16,6 +16,14 @@ function fetchSpotifyOembed(spotifyUrl) {
   return _oembedCache.get(spotifyUrl);
 }
 
+// oEmbed's thumbnail_url is capped at 300x300, but the image ID itself
+// encodes the size (ab67616d00001e02 = 300x300, ab67616d00004851 = 64x64,
+// ab67616d0000b273 = 640x640 — the largest Spotify serves, same underlying
+// image). Swapping the prefix gets the full-res cover with no extra request.
+function upscaleSpotifyThumbnail(url) {
+  return url.replace(/ab67616d0000(1e02|4851)/, 'ab67616d0000b273');
+}
+
 function BackgroundVideo({ overlayOpacity = 0.35, accent, src }) {
   const videoRef = React.useRef(null);
   const loadedSrc = React.useRef(null);
@@ -693,7 +701,7 @@ function SpotifyCover({ spotifyUrl, alt = '' }) {
     const observer = new IntersectionObserver((entries) => {
       if (!entries[0].isIntersecting) return;
       observer.disconnect();
-      fetchSpotifyOembed(spotifyUrl).then(d => { if (!cancelled && d?.thumbnail_url) setSrc(d.thumbnail_url); });
+      fetchSpotifyOembed(spotifyUrl).then(d => { if (!cancelled && d?.thumbnail_url) setSrc(upscaleSpotifyThumbnail(d.thumbnail_url)); });
     }, { rootMargin: '200px' });
     observer.observe(el);
     return () => { cancelled = true; observer.disconnect(); };
