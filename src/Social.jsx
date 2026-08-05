@@ -18,18 +18,36 @@ function genreHashtag(genre) {
   return (genre || '').split(/[|/]/)[0].trim().replace(/\s+/g, '');
 }
 
+// Primary artist (whichever Spotify credits first on the track — see
+// scripts/fetch-artist-images.mjs) plus every other credited artist from
+// `coArtists`, as a flat list of { name, image, instagram, tiktok }.
+function allArtists(pick) {
+  const primary = {
+    name: pick.artistName || pick.artist.split(',')[0].trim(),
+    image: pick.artistImage,
+    instagram: pick.artistInstagram,
+    tiktok: pick.artistTiktok,
+  };
+  return [primary, ...(pick.coArtists || [])];
+}
+
+function handleLine(artist, fallback) {
+  return [artist.instagram && `IG ${artist.instagram}`, artist.tiktok && `TikTok ${artist.tiktok}`]
+    .filter(Boolean).join(' · ') || fallback;
+}
+
 function buildInfoText(pick) {
   const funFact = pick.funFact || 'No fun fact saved for this pick yet — add one to data.js.';
-  const handles = [
-    pick.artistInstagram && `IG ${pick.artistInstagram}`,
-    pick.artistTiktok && `TikTok ${pick.artistTiktok}`,
-  ].filter(Boolean).join(' · ');
+  const artists = allArtists(pick);
+  const handles = artists.length > 1
+    ? artists.map((a) => `${a.name}: ${handleLine(a, 'no handle saved yet')}`).join('\n')
+    : handleLine(artists[0], 'No artist handle saved for this pick yet — add one to data.js.');
   return `PICK OF THE DAY
 ${pick.date}
 —
 ${pick.title}
 ${pick.artist}
-${handles || 'No artist handle saved for this pick yet — add one to data.js.'}
+${handles}
 —
 BPM: ${pick.bpm}
 Key: ${pick.key}
@@ -88,6 +106,7 @@ function ImageBlock({ label, src, alt, fit = 'cover' }) {
 }
 
 function Social({ pick }) {
+  const artists = allArtists(pick);
   return (
     <div className="social">
       <div className="social__header">
@@ -104,11 +123,14 @@ function Social({ pick }) {
           <div className="social__image-hint">Tap &amp; hold to save</div>
         </div>
 
-        <ImageBlock
-          label="ARTIST PHOTO"
-          src={pick.artistImage}
-          alt={`${pick.artist} photo`}
-        />
+        {artists.map((artist, i) => (
+          <ImageBlock
+            key={artist.name || i}
+            label={artists.length > 1 ? `ARTIST PHOTO — ${artist.name.toUpperCase()}` : 'ARTIST PHOTO'}
+            src={artist.image}
+            alt={`${artist.name} photo`}
+          />
+        ))}
 
         <ImageBlock
           label="BADGE / STICKER"
