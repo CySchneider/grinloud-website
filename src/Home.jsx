@@ -32,13 +32,12 @@ function useSwipeNav(prev, next) {
   return { onTouchStart, onTouchEnd };
 }
 
-function Home({ pick, accent, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, onGotoRadar, isAdmin }) {
+function Home({ pick, radar, accent, prev, next, canPrev, canNext, onPlay, isPlaying, typeScale, onGotoRadar, isAdmin }) {
   // cqw (container query width, off .home__text's own rendered width), not vw —
   // keeps the chars-per-line ratio constant whatever width the flex layout
   // actually hands the text column, instead of drifting/overflowing based on
   // raw viewport width the way a vw-based size would.
   const titleSize = 6.8 * typeScale;
-  const radar = window.GRINLOUD_DATA.RADAR;
   const isScheduled = isAdmin && pick.date > new Date().toISOString().slice(0, 10);
   const swipe = useSwipeNav(() => canPrev && prev(), () => canNext && next());
 

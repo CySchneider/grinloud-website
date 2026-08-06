@@ -253,6 +253,7 @@ function App() {
       {route === 'home' && (
         <Home
           pick={pick}
+          radar={liveRadar}
           accent={palette.bg}
           prev={prev}
           next={next}
