@@ -84,7 +84,7 @@ function RadarCover({ radar }) {
   const accent = '#FFE000'; // yellow — consistent radar brand
   const top3   = radar.tracks.slice(0, 3);
   const slug   = `radar-${radar.number}`;
-  const videos = radar.videos || window.GRINLOUD_DATA.BG_VIDEOS;
+  const videos = radar.videos?.length ? radar.videos : window.GRINLOUD_DATA.BG_VIDEOS;
 
   return (
     <div className="cinema radar-cover">
