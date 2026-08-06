@@ -2203,9 +2203,9 @@ const RADAR = {
   title: 'Music Radar 012',
   subtitle: 'Rising Now. Loud Later.',
   cover: 'Music Radar Cover 012.jpg',
-  date: '10 AUG 2026', // TODO: confirm exact live date with Cy
+  date: '10 AUG 2026',
   liveDate: '2026-08-10', // public visibility date — same as first pick of this radar
-  nextDate: '20 AUG 2026', // TODO: confirm with Cy
+  nextDate: '20 AUG 2026',
   youtubeId: 'gT6tejEhA1k',
   spotifyUrl: 'https://open.spotify.com/playlist/07G3Vx5oLzwHHwgDNor9IU?si=d9acddc595d04cfb',
   duration: 'TBA',
