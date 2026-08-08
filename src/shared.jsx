@@ -494,6 +494,8 @@ function LegalLinks() {
     <div className="legal-links">
       <a href="/news.html" target="_blank" rel="noreferrer" className="legal-links__news">NEWS</a>
       <span>·</span>
+      <a href="/archive/" target="_blank" rel="noreferrer">Archive</a>
+      <span>·</span>
       <a href="/about.html" target="_blank" rel="noreferrer">About</a>
       <span>·</span>
       <a href="/privacy.html" target="_blank" rel="noreferrer">Privacy</a>

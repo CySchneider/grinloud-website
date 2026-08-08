@@ -91,6 +91,8 @@ const FALLBACK_STYLE = `
   .gl-fb .gl-fb-track__title { font-weight: 600; }
   .gl-fb .gl-fb-track__artist { opacity: 0.6; }
   .gl-fb .gl-fb-track__meta { opacity: 0.4; font-size: 11px; margin-left: auto; white-space: nowrap; padding-left: 12px; }
+  .gl-fb .gl-fb-track > a { display: flex; align-items: center; gap: 16px; width: 100%; color: inherit; text-decoration: none; }
+  .gl-fb .gl-fb-archive-list .gl-fb-track__n { width: 84px; }
   .gl-fb hr { border: none; border-top: 1px solid rgba(14,14,14,0.1); margin: 48px 0; }
 `;
 
@@ -132,9 +134,18 @@ const publicPicks = PICKS.filter((p) => p.date <= TODAY);
 const radarActuallyLive = !RADAR.liveDate || TODAY >= RADAR.liveDate;
 const publicRadars = [...(radarActuallyLive ? [RADAR] : []), ...PREVIOUS_RADARS];
 
+// Shared footer — every generated page links to Archive alongside the legal
+// pages so each one sits in a real, crawlable link graph instead of being
+// reachable only via the sitemap (which Google treats as a weaker signal
+// than an actual in-page <a href>, and was leaving most Pick pages stuck at
+// "Discovered - currently not indexed").
+const FOOTER_LINKS = `<a href="/archive/">Archive</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a>`;
+
 // ── Pick of the Day pages ───────────────────────────────────────────────
+// publicPicks is newest-first (see PICKS in data.js), so the previous array
+// entry is the newer pick and the next entry is the older one.
 const pickUrls = [];
-for (const pick of publicPicks) {
+publicPicks.forEach((pick, i) => {
   const url = `${SITE}/pick/${pick.date}/`;
   const title = `${pick.title} — ${pick.artist} · GRINLOUD Pick of the Day`;
   const desc = pick.info || pick.short || `${pick.title} by ${pick.artist} — ${pick.genre}, curated by GRINLOUD.`;
@@ -150,6 +161,12 @@ for (const pick of publicPicks) {
     url: spotify || url,
     description: desc,
   };
+
+  // Real <a href> chain to the neighboring days, newest-first order means
+  // i-1 is newer and i+1 is older — gives crawlers a path from any one
+  // indexed Pick page to every other one without relying on the sitemap.
+  const newerPick = publicPicks[i - 1];
+  const olderPick = publicPicks[i + 1];
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -167,18 +184,22 @@ ${head({ title, desc, url, ogType: 'music.song', image: OG_IMAGE_DEFAULT, jsonLd
     ${pick.funFact ? `<p class="gl-fb-fact"><strong>THE DETAILS</strong>${esc(pick.funFact)}</p>` : ''}
     <div class="gl-fb-cta-row">
       ${spotify ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${spotify}" target="_blank" rel="noreferrer">LISTEN ON SPOTIFY →</a>` : ''}
-      <a class="gl-fb-cta" href="/">MORE PICKS →</a>
+      <a class="gl-fb-cta" href="/archive/">MORE PICKS →</a>
     </div>
     <p class="gl-fb-context">Part of GRINLOUD's daily ${seoGenre(pick.genre)} picks — new ${seoGenre(pick.genre)} tracks, hand-picked one at a time and mixed into the GRINLOUD Music Radar ${seoGenre(pick.genre)} mix every 10 days. <a href="/about.html">More about GRINLOUD</a>.</p>
+    <div class="gl-fb-cta-row">
+      ${olderPick ? `<a class="gl-fb-cta" href="/pick/${olderPick.date}/">← ${esc(olderPick.date)}</a>` : ''}
+      ${newerPick ? `<a class="gl-fb-cta" href="/pick/${newerPick.date}/">${esc(newerPick.date)} →</a>` : ''}
+    </div>
     <hr>
-    <p style="font-size:11px; opacity:0.35;"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
+    <p style="font-size:11px; opacity:0.35;">${FOOTER_LINKS}</p>
   </div></div>
 </body>
 </html>`;
 
   writePage(`pick/${pick.date}`, html);
   pickUrls.push({ loc: url, lastmod: pick.date, changefreq: 'yearly', priority: '0.6' });
-}
+});
 
 // ── Music Radar pages ────────────────────────────────────────────────────
 const radarUrls = [];
@@ -232,14 +253,14 @@ ${head({ title, desc, url, ogType: 'music.playlist', image, jsonLd })}
     <div class="gl-fb-meta">${trackCount} TRACKS${radar.duration ? ` · ${esc(radar.duration)}` : ''}</div>
     <div class="gl-fb-cta-row">
       ${radar.spotifyUrl ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${radar.spotifyUrl}" target="_blank" rel="noreferrer">PLAY ON SPOTIFY →</a>` : ''}
-      <a class="gl-fb-cta" href="/">MORE PICKS →</a>
+      <a class="gl-fb-cta" href="/archive/">MORE RADARS →</a>
     </div>
     <h2>TRACKLIST</h2>
     <ul class="gl-fb-tracklist">${tracklistHtml}
     </ul>
     <p class="gl-fb-context">GRINLOUD Music Radar is a ${genrePhrase} mix — ${trackCount} new tracks, hand-picked and mixed together into one set every 10 days. <a href="/about.html">More about GRINLOUD</a>.</p>
     <hr>
-    <p style="font-size:11px; opacity:0.35;"><a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/impressum.html">Impressum</a></p>
+    <p style="font-size:11px; opacity:0.35;">${FOOTER_LINKS}</p>
   </div></div>
 </body>
 </html>`;
@@ -283,9 +304,11 @@ if (homePick) {
     ${homePick.funFact ? `<p class="gl-fb-fact"><strong>THE DETAILS</strong>${esc(homePick.funFact)}</p>` : ''}
     <div class="gl-fb-cta-row">
       ${spotify ? `<a class="gl-fb-cta gl-fb-cta--accent" href="${spotify}" target="_blank" rel="noreferrer">LISTEN ON SPOTIFY →</a>` : ''}
-      <a class="gl-fb-cta" href="/about.html">ABOUT GRINLOUD →</a>
+      <a class="gl-fb-cta" href="/archive/">ARCHIVE →</a>
     </div>
     <p class="gl-fb-context">Today's ${seoGenre(homePick.genre)} Pick of the Day is part of GRINLOUD's daily ${seoGenre(homePick.genre)} picks. Every 10 days, the GRINLOUD Music Radar mixes 10 new Tech House and Bass House tracks into one set. <a href="/about.html">More about GRINLOUD</a>.</p>
+    <hr>
+    <p style="font-size:11px; opacity:0.35;">${FOOTER_LINKS}</p>
   </div>`;
 
   const patchedHome = builtShell
@@ -302,9 +325,73 @@ if (homePick) {
   console.log(`[generate-static-pages] Homepage fallback stamped for "${homePick.title} — ${homePick.artist}" (${homePick.date}).`);
 }
 
+// ── Archive page ─────────────────────────────────────────────────────────
+// A real, crawlable HTML index of every public Pick and Radar page — every
+// individual /pick/ and /radar/ page above only linked out to "/" and
+// "/about.html", so Google discovered them solely through the XML sitemap
+// and left most stuck at "Discovered - currently not indexed" (sitemap-only
+// URLs get far less crawl priority than URLs reachable through an actual
+// in-page link). This page is that missing link: it's linked for real from
+// the footer of every page (see LegalLinks in src/shared.jsx and FOOTER_LINKS
+// above) and itself links out to every single Pick/Radar page with a plain
+// <a href>, so the whole archive is reachable by crawling alone.
+{
+  const url = `${SITE}/archive/`;
+  const title = 'Archive — Every Pick of the Day & Music Radar · GRINLOUD';
+  const desc = `Every GRINLOUD Pick of the Day and Music Radar mix, in one place — ${publicPicks.length} daily picks and ${publicRadars.length} Radar episodes so far.`;
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    url,
+    description: desc,
+  };
+
+  const radarListHtml = publicRadars.map((r) => `
+      <li class="gl-fb-track"><a href="/radar/${r.number}/">
+        <span class="gl-fb-track__n">${esc(r.date)}</span>
+        <span><span class="gl-fb-track__title">Music Radar ${esc(r.number)}</span><br><span class="gl-fb-track__artist">${esc(r.subtitle || '')}</span></span>
+      </a></li>`).join('');
+
+  const pickListHtml = publicPicks.map((p) => `
+      <li class="gl-fb-track"><a href="/pick/${p.date}/">
+        <span class="gl-fb-track__n">${esc(p.date)}</span>
+        <span><span class="gl-fb-track__title">${esc(p.title)}</span><br><span class="gl-fb-track__artist">${esc(p.artist)}</span></span>
+        <span class="gl-fb-track__meta">${esc(p.genre)}</span>
+      </a></li>`).join('');
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+${head({ title, desc, url, ogType: 'website', image: OG_IMAGE_DEFAULT, jsonLd })}
+</head>
+<body>
+  <div id="root"><div class="gl-fb">
+    <a href="/" class="gl-fb-back">← GRINLOUD</a>
+    <div class="gl-fb-eyebrow">GRINLOUD · ARCHIVE</div>
+    <h1>Archive</h1>
+    <div class="gl-fb-sub">Every Pick of the Day and Music Radar mix, so far.</div>
+    <h2>MUSIC RADAR (${publicRadars.length})</h2>
+    <ul class="gl-fb-tracklist gl-fb-archive-list">${radarListHtml}
+    </ul>
+    <h2>PICK OF THE DAY (${publicPicks.length})</h2>
+    <ul class="gl-fb-tracklist gl-fb-archive-list">${pickListHtml}
+    </ul>
+    <hr>
+    <p style="font-size:11px; opacity:0.35;">${FOOTER_LINKS}</p>
+  </div></div>
+</body>
+</html>`;
+
+  writePage('archive', html);
+  console.log(`[generate-static-pages] Archive index stamped with ${publicRadars.length} radars, ${publicPicks.length} picks.`);
+}
+
 // ── Sitemap ──────────────────────────────────────────────────────────────
 const staticUrls = [
   { loc: `${SITE}/`, lastmod: TODAY, changefreq: 'daily', priority: '1.0' },
+  { loc: `${SITE}/archive/`, lastmod: TODAY, changefreq: 'daily', priority: '0.6' },
   { loc: `${SITE}/news.html`, lastmod: TODAY, changefreq: 'weekly', priority: '0.6' },
   { loc: `${SITE}/about.html`, lastmod: TODAY, changefreq: 'monthly', priority: '0.5' },
   { loc: `${SITE}/privacy.html`, lastmod: TODAY, changefreq: 'yearly', priority: '0.2' },

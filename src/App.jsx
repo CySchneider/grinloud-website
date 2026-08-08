@@ -33,7 +33,9 @@ const isAdmin      = _params.has('admin');
 
 // Parses the current address bar into the app state it points at: a radar
 // (?music-radar=005 or the static /radar/005/ path), a Pick of the Day
-// (?pick=2026-07-09 or /pick/2026-07-09/), or the archive (?archive=picks|radars).
+// (?pick=2026-07-09 or /pick/2026-07-09/), or the archive (?archive=picks|radars
+// or the static /archive/ path — see generate-static-pages.js, which ships a
+// real crawlable HTML page there so it isn't an SPA-only, sitemap-only orphan).
 // Used both for the initial deep-link on load and to restore state when the
 // user hits the browser back/forward buttons (see the popstate handler below).
 function parseLocationState() {
@@ -45,7 +47,7 @@ function parseLocationState() {
   return {
     radarNumber: params.get('music-radar') || radarPathMatch?.[1] || null,
     pickDate: params.get('pick') || pickPathMatch?.[1] || null,
-    isArchive: archiveParam === 'picks' || archiveParam === 'radars',
+    isArchive: archiveParam === 'picks' || archiveParam === 'radars' || path === '/archive/',
     archiveTab: archiveParam === 'radars' ? 'radars' : 'picks',
   };
 }
