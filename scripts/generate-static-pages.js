@@ -96,7 +96,7 @@ const FALLBACK_STYLE = `
   .gl-fb hr { border: none; border-top: 1px solid rgba(14,14,14,0.1); margin: 48px 0; }
 `;
 
-function head({ title, desc, url, ogType, image, jsonLd }) {
+function head({ title, desc, url, ogType, image, imageWidth = 1200, imageHeight = 630, jsonLd }) {
   return `<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>${esc(title)}</title>
@@ -114,8 +114,8 @@ function head({ title, desc, url, ogType, image, jsonLd }) {
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(desc)}" />
 <meta property="og:image" content="${image}" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="${imageWidth}" />
+<meta property="og:image:height" content="${imageHeight}" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="${esc(title)}" />
 <meta name="twitter:description" content="${esc(desc)}" />
@@ -133,6 +133,46 @@ ${APP_SCRIPT_TAG}
 const publicPicks = PICKS.filter((p) => p.date <= TODAY);
 const radarActuallyLive = !RADAR.liveDate || TODAY >= RADAR.liveDate;
 const publicRadars = [...(radarActuallyLive ? [RADAR] : []), ...PREVIOUS_RADARS];
+
+// Same Spotify oEmbed lookup + thumbnail upscale src/shared.jsx's SpotifyCover
+// does client-side, run at build time so a shared Pick link's og:image is the
+// track's actual cover instead of the generic GRINLOUD graphic — link
+// previews (iMessage, WhatsApp, Slack, ...) never execute JS, so this has to
+// be baked into the static HTML, not fetched after the page loads.
+async function fetchTrackCoverImage(spotifyUrl) {
+  if (!spotifyUrl || spotifyUrl === '#') return null;
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 6000);
+    const res = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`, { signal: controller.signal });
+    clearTimeout(timeout);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!data?.thumbnail_url) return null;
+    return data.thumbnail_url.replace(/ab67616d0000(1e02|4851)/, 'ab67616d0000b273'); // -> 640x640
+  } catch {
+    return null; // build must never fail because Spotify's oEmbed hiccuped
+  }
+}
+
+// Small concurrency cap so ~100+ picks don't fire that many requests at once.
+async function mapWithConcurrency(items, limit, fn) {
+  const results = new Array(items.length);
+  let next = 0;
+  async function worker() {
+    while (next < items.length) {
+      const i = next++;
+      results[i] = await fn(items[i], i);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
+  return results;
+}
+
+const coverImages = new Map(); // pick.id -> cover image URL | null
+const coverResults = await mapWithConcurrency(publicPicks, 8, (p) => fetchTrackCoverImage(p.links?.spotify));
+publicPicks.forEach((p, i) => coverImages.set(p.id, coverResults[i]));
+console.log(`[generate-static-pages] Fetched ${coverResults.filter(Boolean).length}/${publicPicks.length} Spotify cover images for Pick og:image tags.`);
 
 // Shared footer — every generated page links to Archive alongside the legal
 // pages so each one sits in a real, crawlable link graph instead of being
@@ -167,11 +207,12 @@ publicPicks.forEach((pick, i) => {
   // indexed Pick page to every other one without relying on the sitemap.
   const newerPick = publicPicks[i - 1];
   const olderPick = publicPicks[i + 1];
+  const cover = coverImages.get(pick.id);
 
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
-${head({ title, desc, url, ogType: 'music.song', image: OG_IMAGE_DEFAULT, jsonLd })}
+${head({ title, desc, url, ogType: 'music.song', image: cover || OG_IMAGE_DEFAULT, imageWidth: cover ? 640 : 1200, imageHeight: cover ? 640 : 630, jsonLd })}
 </head>
 <body>
   <div id="root"><div class="gl-fb">
@@ -311,7 +352,9 @@ if (homePick) {
     <p style="font-size:11px; opacity:0.35;">${FOOTER_LINKS}</p>
   </div>`;
 
-  const patchedHome = builtShell
+  const homeCover = coverImages.get(homePick.id);
+
+  let patchedHome = builtShell
     .replace(/<title>.*?<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
     .replace(/(<meta property="og:title"\s+content=")[^"]*(")/, `$1${esc(title)}$2`)
@@ -320,6 +363,16 @@ if (homePick) {
     .replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${esc(desc)}$2`)
     .replace('<div id="root"></div>', `<div id="root">${fallbackBody}</div>`)
     .replace('</head>', `<script id="ld-pick" type="application/ld+json">${JSON.stringify(jsonLd)}</script>\n<style>${FALLBACK_STYLE}</style>\n</head>`);
+
+  // Today's cover art beats the generic GRINLOUD graphic in link previews —
+  // only swap it in when the oEmbed fetch actually returned one.
+  if (homeCover) {
+    patchedHome = patchedHome
+      .replace(/(<meta property="og:image"\s+content=")[^"]*(")/, `$1${homeCover}$2`)
+      .replace(/(<meta property="og:image:width"\s+content=")[^"]*(")/, `$1640$2`)
+      .replace(/(<meta property="og:image:height"\s+content=")[^"]*(")/, `$1640$2`)
+      .replace(/(<meta name="twitter:image"\s+content=")[^"]*(")/, `$1${homeCover}$2`);
+  }
 
   writeFileSync(join(DIST, 'index.html'), patchedHome);
   console.log(`[generate-static-pages] Homepage fallback stamped for "${homePick.title} — ${homePick.artist}" (${homePick.date}).`);
