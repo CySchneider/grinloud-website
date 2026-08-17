@@ -121,6 +121,164 @@ const BG_VIDEOS = [
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
 
+  // ── MUSIC RADAR 013 — 20 Aug–29 Aug 2026 ──────────────────────────────────
+  {
+    id: 'pick-2026-08-29',
+    date: '2026-08-29',
+    title: 'Distant Star System (Original Mix)',
+    artist: 'DANNY SNOWDEN',
+    bpm: 132, key: 'F Major', label: 'UNLISH', release: '07 Aug 2026',
+    genre: 'House', accent: 'green',
+    info: "Danny Snowden debuts on UNLISH with Distant Star System, closing Radar 013 somewhere between staring at the ceiling and the speakers.",
+    short: "Closes Radar 013 staring at the ceiling and the speakers.",
+    funFact: "Danny Snowden is a Bedfordshire, UK producer and resident DJ for the Sulko event series, with support from Marco Carola and Chris Stussy.",
+    artistInstagram: '@dannysnowdendj',
+    artistName: 'Danny Snowden',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebc7c9de002b233c4910d20a0f',
+    links: { spotify: 'https://open.spotify.com/track/5k61XaunANvUpPYwCKSB6J', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-28',
+    date: '2026-08-28',
+    title: 'Margarine Head (Extended Mix)',
+    artist: 'EFIM KERBUT',
+    bpm: 131, key: 'E Major', label: 'Generation HEX', release: '14 Aug 2026',
+    genre: 'Bass House', accent: 'blue',
+    info: "Efim Kerbut turns up the absurd on Generation HEX — Margarine Head is a title you won't forget and a bassline you won't either.",
+    short: "A title you won't forget. A bassline you won't either.",
+    funFact: "Efim Kerbut went viral with his \"BEST DJ EVER EPIC FAIL\" video and the GIFs that followed it, racking up more than 100 million views, and now runs his own DJ school.",
+    artistInstagram: '@efimkerbut',
+    artistName: 'Efim Kerbut',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebdeb54f6e93ea3fc8fd11f895',
+    links: { spotify: 'https://open.spotify.com/track/6baCoT8vHAP2yTQmFawkT6', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-27',
+    date: '2026-08-27',
+    title: 'Around (Extended Mix)',
+    artist: 'ALOK',
+    bpm: 130, key: 'E Major', label: 'RAVE THE WORLD', release: '17 Jul 2026',
+    genre: 'Mainstage', accent: 'pink',
+    info: "Alok launches his own RAVE THE WORLD Records with Around, part of a four-track debut EP made in partnership with Tomorrowland Music.",
+    short: "The opening drop from Alok's brand new label.",
+    funFact: "Alok pulled a record 2.5 million people to his Copacabana Beach New Year's Eve set in 2024 — a Guinness World Record — and DJ Mag ranked him the world's #3 DJ in 2025.",
+    artistInstagram: '@alok',
+    artistName: 'Alok',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb6b07a040a57d013a7e49f908',
+    links: { spotify: 'https://open.spotify.com/track/2yZt69pBk4nk7q2qbi7ZPz', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-26',
+    date: '2026-08-26',
+    title: 'What Is It (Extended Mix)',
+    artist: 'VLUARR',
+    bpm: 130, key: 'Ab Minor', label: 'STMPD RCRDS', release: '14 Aug 2026',
+    genre: 'Bass House', accent: 'yellow',
+    info: "VLUARR trades the cello for full bass weight on STMPD RCRDS — What Is It is a question you don't actually need answered.",
+    short: "A question you don't actually need answered.",
+    funFact: "VLUARR has played cello since age four and builds his tracks around it — Martin Garrix has championed his music on stages including Ultra and Tomorrowland.",
+    artistInstagram: '@vluarr',
+    artistTiktok: '@vluarr',
+    artistName: 'Vluarr',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb9a573747b5c240e4e49f5902',
+    links: { spotify: 'https://open.spotify.com/track/6tYKmVSN3HjVoauc2IdNjW', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-25',
+    date: '2026-08-25',
+    title: 'Hypnotized (Extended Mix)',
+    artist: 'HUMAN404',
+    bpm: 129, key: 'D Major', label: 'HEXAGON', release: '07 Aug 2026',
+    genre: 'Bass House', accent: 'orange',
+    info: "HUMAN404 goes deep on HEXAGON — Hypnotized does exactly what it says, no snapping out of it.",
+    short: "Does exactly what it says. No snapping out of it.",
+    funFact: "HUMAN404 is a Las Vegas producer and founder of FACTION404 Records — his 2025 breakout Desire on Experts Only earned support from John Summit, Dom Dolla and Tiësto.",
+    artistInstagram: '@human404music',
+    artistName: 'HUMAN404',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebca81062708dabc11e2890ca9',
+    links: { spotify: 'https://open.spotify.com/track/1h7ZSSrOwxphckEh9sfBvS', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-24',
+    date: '2026-08-24',
+    title: 'Pacha (Original Mix)',
+    artist: 'ZARO',
+    bpm: 128, key: 'C Minor', label: 'Magnifik Music', release: '07 Aug 2026',
+    genre: 'Tech House', accent: 'green',
+    info: "ZARO channels Ibiza's most famous dancefloor on Magnifik Music — Pacha brings the legend home in under six minutes.",
+    short: "The legend, brought home in under six minutes.",
+    funFact: "ZARO is a Brazilian producer whose Indie Dance/House sound has picked up support from Vintage Culture, Adam Ten and Alok.",
+    artistInstagram: '@dj.zaro',
+    artistTiktok: '@zaromaro',
+    artistName: 'ZARO',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebb1129e23ecc7ab389fa3afcf',
+    links: { spotify: 'https://open.spotify.com/track/5QuiMSE8sWvGQ60RxUSvET', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-23',
+    date: '2026-08-23',
+    title: 'Track Record (Original Mix)',
+    artist: 'JULIAN FOX',
+    bpm: 127, key: 'Bb Minor', label: 'For Fox Sake', release: '14 Aug 2026',
+    genre: 'Tech House', accent: 'blue',
+    info: "Julian Fox keeps it in the family on his own For Fox Sake imprint — Track Record does exactly what the title promises.",
+    short: "Does exactly what the title promises.",
+    funFact: "Julian Fox played his first gig at Jet Pool Ibiza at 14 and became a resident at La Troya, the island's longest-running electronic party, before launching his own For Fox Sake label in 2025.",
+    artistInstagram: '@thisisjulianfox',
+    artistName: 'Julian Fox',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb3d5ed19374232026792c5683',
+    links: { spotify: 'https://open.spotify.com/track/5q9mYoa0otf0tYXJcl5F5X', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-22',
+    date: '2026-08-22',
+    title: 'MIAMI (Original Mix)',
+    artist: 'ANGEL HEREDIA',
+    bpm: 126, key: 'Db Major', label: 'KoBBoK', release: '24 Jul 2026',
+    genre: 'Tech House', accent: 'pink',
+    info: "Angel Heredia flies south on his own KoBBoK imprint — MIAMI is built for the exact moment the sun goes down.",
+    short: "Built for the exact moment the sun goes down.",
+    funFact: "Angel Heredia founded KoBBoK, his own imprint, which climbed into Beatport's Top 5 Tech House labels within two years and has landed support from David Guetta, Umek and Marco Carola.",
+    artistInstagram: '@angelheredia',
+    artistName: 'Angel Heredia',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb7441e1d82d3aa7aa237953ca',
+    links: { spotify: 'https://open.spotify.com/track/5JW8O2h31JT2D3hnkHrWsP', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-21',
+    date: '2026-08-21',
+    title: 'Cinnamon & Champagne (Original Mix)',
+    artist: 'HURLEE, PACO COLOMBÀS',
+    bpm: 126, key: 'F Major', label: 'Peppermint Jam Records', release: '14 Aug 2026',
+    genre: 'House', accent: 'yellow',
+    info: "Hurlee and Paco Colombàs mix spice with bubbles on Peppermint Jam Records — Cinnamon & Champagne is smoother than the name lets on.",
+    short: "Smoother than the name lets on.",
+    funFact: "Paco Colombàs is CEO of Panela Productions, the Mallorca-based agency behind more than 400 events a year across the Balearic Islands.",
+    artistInstagram: '@pacocolombas',
+    artistTiktok: '@pacocolombas',
+    artistName: 'Paco Colombàs',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebb952092c749bf18b505ccede',
+    coArtists: [
+      { name: 'Hurlee', image: 'https://i.scdn.co/image/ab6761610000e5ebecd9360572f9e5d9d461f60f', instagram: '@hurleemusic' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/13gvo6oILECHqTwNpFCrdK', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-20',
+    date: '2026-08-20',
+    title: 'Senses (Original Mix)',
+    artist: 'CLÜB DE COMBAT',
+    bpm: 124, key: 'E Minor', label: 'FIGHTCLÜB', release: '07 Aug 2026',
+    genre: 'Tech House', accent: 'orange',
+    info: "Clüb De Combat open Radar 013 on their own FIGHTCLÜB imprint — Senses is a slow build that never quite lets go.",
+    short: "A slow build that never quite lets go.",
+    funFact: "Clüb De Combat is an Israeli duo who launched their own FIGHTCLÜB imprint after releasing their Exciter EP on Solomun's Diynamic label — their Bad Habit remix with Lisa Millett and ATFC came out on Defected.",
+    artistInstagram: '@club_decombat',
+    artistName: 'Clüb De Combat',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb96fce39b8d6631e98ede4575',
+    links: { spotify: 'https://open.spotify.com/track/5Jp97CmcdRGMeKFoW4bhxE', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+
   // ── MUSIC RADAR 012 — 10 Aug–19 Aug 2026 ──────────────────────────────────
   {
     id: 'pick-2026-08-19',
@@ -149,7 +307,7 @@ const PICKS = [
     funFact: "Raised in New York by a hip-hop producer, Luke Alexander builds his sound on a deep bloghouse influence from the late 2000s — he's played Marquee New York, LIV and Story Miami.",
     artistInstagram: '@lukealexvnder',
     artistName: 'LUKE ALEXANDER',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eba670aef1800eb69f07cdb1c8',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebfc439c59d65e1c5c9324cb60',
     links: { spotify: 'https://open.spotify.com/track/0xp5zyT2zAzP9Egh7W1Nrv', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -453,7 +611,7 @@ const PICKS = [
     funFact: "Tiga founded Turbo Recordings back in 1998, a label that went on to launch Chromeo, Charlotte de Witte and Gesaffelstein — he's also remixed The xx, LCD Soundsystem and Justice along the way.",
     artistInstagram: '@tiga',
     artistName: 'Tiga',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb84b93f0be0dcd5aeebc5870a',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb4cadec9a07cd964d1420a7bc',
     coArtists: [
       { name: 'Chris Lake', image: 'https://i.scdn.co/image/ab6761610000e5eb95a592ff038e50ddfbf7df35' },
       { name: 'Aatig', image: 'https://i.scdn.co/image/ab6761610000e5eb98b6768edd938fe965d3aa48' },
@@ -590,7 +748,7 @@ const PICKS = [
     short: "Patient and rolling — still fills a floor.",
     funFact: "\"Take Our Time\" is Chico Rose's debut on Ilario Alicante's label Sound D'Elite — and it wasted no time storming the Beatport charts, picked up by Franky Rizardo, Marco Carola and Mau P.",
     artistName: 'Chico Rose (NL)',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb5f5834539c4a3b850a48843c',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebe5e6f3499bee2633508e246b',
     links: { spotify: 'https://open.spotify.com/track/21MLXf9dmt0bJpFQjeK7kK', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -648,7 +806,7 @@ const PICKS = [
     info: "Shermanology and Danny Howard team up on Nothing Else Matters. Party Girl is warm, groove-forward Tech House that keeps the energy up without ever forcing it.",
     short: "Warm, groove-forward, never forced.",
     artistName: 'Shermanology',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebbed0c2909ecf82bab30ea364',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eba32ee58041ad03613a99a89f',
     coArtists: [
       { name: 'Danny Howard', image: 'https://i.scdn.co/image/ab6761610000e5ebb57529fd224c4aa73a5e1fcc' },
     ],
@@ -728,7 +886,7 @@ const PICKS = [
     artistName: 'Benny Benassi',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb2612e3e011e53b3efe69ac7c',
     coArtists: [
-      { name: 'dualité', image: 'https://i.scdn.co/image/ab6761610000e5eb3de332f83c4f1ae64c05ba75' },
+      { name: 'dualité', image: 'https://i.scdn.co/image/ab6761610000e5eb778a92ba1e30c16874735001' },
     ],
     links: { spotify: 'https://open.spotify.com/track/5auOVqNBRXTfyejSXYNYkn', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -941,7 +1099,7 @@ const PICKS = [
     info: "Joshwa closes 007 on FISHER's Catch & Release — and the title is not a suggestion. Work Your Body is relentless peak-hour fuel with no off switch.",
     short: "Not a suggestion. Relentless peak-hour fuel.",
     artistName: 'Joshwa',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebd81c592f5fb2329bf02309ab',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb31f1ac2c4176f4be480c0977',
     links: { spotify: 'https://open.spotify.com/track/2eUZAef6lJ9hBvw7XeExDf', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -983,7 +1141,7 @@ const PICKS = [
     info: "Kelland and Brosa make manners sound dangerous. Say Please is bass-forward and relentless — the kind of Bass House that reminds you why the genre matters.",
     short: "Manners sound dangerous. Bass-forward and relentless.",
     artistName: 'Kelland',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebf60a1486ba85479cbb2bcd0a',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb4334a111d44a145700a346c4',
     coArtists: [
       { name: 'BROSA', image: 'https://i.scdn.co/image/ab6761610000e5eb74756e53b4ac670d4945d2b4' },
     ],
@@ -1012,7 +1170,7 @@ const PICKS = [
     info: "Rello tears apart Joshwa's original and rebuilds it from the ground up. Punchy, relentless, and fully loaded — Hellbent Records doing what they do best.",
     short: "Punchy, relentless, and fully loaded.",
     artistName: 'Joshwa',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebd81c592f5fb2329bf02309ab',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb31f1ac2c4176f4be480c0977',
     coArtists: [
       { name: 'Rello', image: 'https://i.scdn.co/image/ab6761610000e5eb73879eb8161bf22d568a3384' },
     ],
@@ -1041,7 +1199,7 @@ const PICKS = [
     info: "Shermanology delivers exactly what the title promises. Insane is tight, percussive, and locks in immediately — the kind of track that turns a warm-up set into peak hour.",
     short: "Locks in immediately. Turns warm-up into peak hour.",
     artistName: 'Shermanology',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebbed0c2909ecf82bab30ea364',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eba32ee58041ad03613a99a89f',
     links: { spotify: 'https://open.spotify.com/track/07ke5nx6iwoBo2ERqCK1Xl', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1834,7 +1992,7 @@ const PICKS = [
     artistName: 'Chris Lake',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb95a592ff038e50ddfbf7df35',
     coArtists: [
-      { name: 'ATRIP', image: 'https://i.scdn.co/image/ab6761610000e5eb559f56bd532ea854f48ea897' },
+      { name: 'ATRIP', image: 'https://i.scdn.co/image/ab6761610000e5ebdb672f2205d7446360cea8c9' },
     ],
     links: { spotify: 'https://open.spotify.com/track/5di9ztnBe0d2qim9ngmiMD', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -1855,7 +2013,7 @@ const PICKS = [
     artistName: 'Dom Dolla',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb9290e172cbcacc0521b02b11',
     coArtists: [
-      { name: 'Tiga', image: 'https://i.scdn.co/image/ab6761610000e5eb84b93f0be0dcd5aeebc5870a' },
+      { name: 'Tiga', image: 'https://i.scdn.co/image/ab6761610000e5eb4cadec9a07cd964d1420a7bc' },
     ],
     links: { spotify: 'https://open.spotify.com/track/0uFffwji3muqn5MEe7hiYw', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -2196,40 +2354,65 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 012 ────────────────────────────────────────────────────
+// ── CURRENT RADAR — 013 ────────────────────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-012',
-  number: '012',
-  title: 'Music Radar 012',
-  subtitle: 'Rising Now. Loud Later.',
-  cover: 'Music Radar Cover 012.jpg',
-  date: '10 AUG 2026',
-  liveDate: '2026-08-10', // public visibility date — same as first pick of this radar
-  nextDate: '20 AUG 2026',
-  youtubeId: 'gT6tejEhA1k',
-  spotifyUrl: 'https://open.spotify.com/playlist/07G3Vx5oLzwHHwgDNor9IU?si=d9acddc595d04cfb',
-  duration: 'TBA',
-  videos: [
-    // TODO: add background video loop clips once exported (mountain-lake dance scene)
-  ],
+  id: 'radar-013',
+  number: '013',
+  title: 'Music Radar 013',
+  subtitle: 'New Names. Known Bass.',
+  cover: 'Music Radar Cover 013.jpg',
+  date: '20 AUG 2026',
+  liveDate: '2026-08-20', // public visibility date — same as first pick of this radar
+  nextDate: '30 AUG 2026',
+  youtubeId: 'wivWTmJ6MCc',
+  spotifyUrl: 'https://open.spotify.com/playlist/6r5frQVSd6orl9MKocqeV2?si=1Bd9qKQjRh-D6X996kIHSQ',
+  duration: '23:51',
   tracks: [
-    { n: '01', title: 'Beat Goes On (Extended Mix)',       artist: 'Rafael, Adam Ten',                    bpm: 124, key: 'A Major',   genre: 'Tech House', cue: 'TBA' },
-    { n: '02', title: 'Take You There (Extended Mix)',     artist: 'Odd Mob, OMNOM, HYPERBEAM',           bpm: 128, key: 'F Major',   genre: 'Bass House', cue: 'TBA' },
-    { n: '03', title: 'Rumpta (Original Mix)',              artist: 'Solomun, Skrillex',                   bpm: 128, key: 'G Major',   genre: 'Tech House', cue: 'TBA' },
-    { n: '04', title: 'Girls To Da Front (Extended Mix)',   artist: 'Buka, Luxtides, ZSS',                 bpm: 128, key: 'Gb Major',  genre: 'Bass House', cue: 'TBA' },
-    { n: '05', title: 'LA TO IBIZA (Extended)',             artist: 'WELKER (BR)',                         bpm: 129, key: 'Bb Minor',  genre: 'Bass House', cue: 'TBA' },
-    { n: '06', title: 'That Funky Sound (Original Mix)',    artist: 'CASSIMM',                             bpm: 129, key: 'G Minor',   genre: 'Tech House', cue: 'TBA' },
-    { n: '07', title: 'Start The Dance (Extended Mix)',     artist: 'James Hype',                          bpm: 130, key: 'Eb Major',  genre: 'Tech House', cue: 'TBA' },
-    { n: '08', title: 'No Bite (Extended Mix)',             artist: 'MARTEN HØRGER',                       bpm: 130, key: 'Ab Major',  genre: 'Bass House', cue: 'TBA' },
-    { n: '09', title: 'In The Dark (Extended Mix)',         artist: 'Luke Alexander',                      bpm: 130, key: 'E Major',   genre: 'Bass House', cue: 'TBA' },
-    { n: '10', title: 'Technologic (Extended Mix)',         artist: 'Maesic',                              bpm: 132, key: 'D Major',   genre: 'Bass House', cue: 'TBA' },
+    { n: '01', title: 'Senses (Original Mix)',               artist: 'Clüb De Combat',                       bpm: 124, key: 'E Minor',   genre: 'Tech House', cue: 'TBA' },
+    { n: '02', title: 'Cinnamon & Champagne (Original Mix)',  artist: 'Hurlee, Paco Colombàs',                bpm: 126, key: 'F Major',   genre: 'House',      cue: 'TBA' },
+    { n: '03', title: 'MIAMI (Original Mix)',                 artist: 'Angel Heredia',                        bpm: 126, key: 'Db Major',  genre: 'Tech House', cue: 'TBA' },
+    { n: '04', title: 'Track Record (Original Mix)',          artist: 'Julian Fox',                           bpm: 127, key: 'Bb Minor',  genre: 'Tech House', cue: 'TBA' },
+    { n: '05', title: 'Pacha (Original Mix)',                 artist: 'ZARO',                                 bpm: 128, key: 'C Minor',   genre: 'Tech House', cue: 'TBA' },
+    { n: '06', title: 'Hypnotized (Extended Mix)',             artist: 'HUMAN404',                             bpm: 129, key: 'D Major',   genre: 'Bass House', cue: 'TBA' },
+    { n: '07', title: 'What Is It (Extended Mix)',             artist: 'VLUARR',                               bpm: 130, key: 'Ab Minor',  genre: 'Bass House', cue: 'TBA' },
+    { n: '08', title: 'Around (Extended Mix)',                 artist: 'Alok',                                 bpm: 130, key: 'E Major',   genre: 'Mainstage',  cue: 'TBA' },
+    { n: '09', title: 'Margarine Head (Extended Mix)',         artist: 'Efim Kerbut',                          bpm: 131, key: 'E Major',   genre: 'Bass House', cue: 'TBA' },
+    { n: '10', title: 'Distant Star System (Original Mix)',    artist: 'Danny Snowden',                        bpm: 132, key: 'F Major',   genre: 'House',      cue: 'TBA' },
   ]
 };
 
 
-// ── PREVIOUS RADARS — newest first ────────────────────────────────────────
+// ── PREVIOUS RADARS — newest first ───────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    id: 'radar-012',
+    number: '012',
+    title: 'Music Radar 012',
+    subtitle: 'Rising Now. Loud Later.',
+    cover: 'Music Radar Cover 012.jpg',
+    date: '10 AUG 2026',
+    liveDate: '2026-08-10',
+    nextDate: '20 AUG 2026',
+    youtubeId: 'gT6tejEhA1k',
+    spotifyUrl: 'https://open.spotify.com/playlist/07G3Vx5oLzwHHwgDNor9IU?si=d9acddc595d04cfb',
+    duration: 'TBA',
+    videos: [
+      // TODO: add background video loop clips once exported (mountain-lake dance scene)
+    ],
+    tracks: [
+      { n: '01', title: 'Beat Goes On (Extended Mix)',       artist: 'Rafael, Adam Ten',                    bpm: 124, key: 'A Major',   genre: 'Tech House', cue: 'TBA' },
+      { n: '02', title: 'Take You There (Extended Mix)',     artist: 'Odd Mob, OMNOM, HYPERBEAM',           bpm: 128, key: 'F Major',   genre: 'Bass House', cue: 'TBA' },
+      { n: '03', title: 'Rumpta (Original Mix)',              artist: 'Solomun, Skrillex',                   bpm: 128, key: 'G Major',   genre: 'Tech House', cue: 'TBA' },
+      { n: '04', title: 'Girls To Da Front (Extended Mix)',   artist: 'Buka, Luxtides, ZSS',                 bpm: 128, key: 'Gb Major',  genre: 'Bass House', cue: 'TBA' },
+      { n: '05', title: 'LA TO IBIZA (Extended)',             artist: 'WELKER (BR)',                         bpm: 129, key: 'Bb Minor',  genre: 'Bass House', cue: 'TBA' },
+      { n: '06', title: 'That Funky Sound (Original Mix)',    artist: 'CASSIMM',                             bpm: 129, key: 'G Minor',   genre: 'Tech House', cue: 'TBA' },
+      { n: '07', title: 'Start The Dance (Extended Mix)',     artist: 'James Hype',                          bpm: 130, key: 'Eb Major',  genre: 'Tech House', cue: 'TBA' },
+      { n: '08', title: 'No Bite (Extended Mix)',             artist: 'MARTEN HØRGER',                       bpm: 130, key: 'Ab Major',  genre: 'Bass House', cue: 'TBA' },
+      { n: '09', title: 'In The Dark (Extended Mix)',         artist: 'Luke Alexander',                      bpm: 130, key: 'E Major',   genre: 'Bass House', cue: 'TBA' },
+      { n: '10', title: 'Technologic (Extended Mix)',         artist: 'Maesic',                              bpm: 132, key: 'D Major',   genre: 'Bass House', cue: 'TBA' },
+    ]
+  },
   {
     id: 'radar-011',
     number: '011',
