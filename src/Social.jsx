@@ -8,9 +8,9 @@ import { SpotifyCover } from './shared.jsx'
 // Fixed engagement comment Cy posts himself right after publishing, on every
 // GRINLOUD post — see the grinloud-pick-of-the-day-carousel skill. Not
 // reinvented per post; keep this in sync if the skill's wording changes.
-const FIRST_COMMENT = `Yeah, we're new here. Not new to good music though.
-Like it if it slaps, comment if you've got opinions (we can take it), follow if you want more where this came from.
-Every bit helps right now — no shame in that. ☻`;
+const FIRST_COMMENT = `Like it if it slaps.
+Comment your take.
+Follow so you never miss a Pick or the next Radar. ☻`;
 
 // Hashtag can't contain spaces/slashes — take the primary genre only
 // ("Tech House | Latin Tech" -> "TechHouse", "Dance / Pop" -> "Dance").
