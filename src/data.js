@@ -121,6 +121,186 @@ const BG_VIDEOS = [
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
 
+  // ── MUSIC RADAR 014 — 30 Aug–8 Sep 2026 ───────────────────────────────────
+  {
+    id: 'pick-2026-09-08',
+    date: '2026-09-08',
+    title: 'Louboutin (Extended Mix)',
+    artist: 'BRADEAZY, ÖWNBOSS',
+    bpm: 132, key: 'D Major', label: 'GOTTA MOVE', release: '07 Aug 2026',
+    genre: 'Bass House', accent: 'green',
+    info: "bradeazy and Öwnboss close Radar 014 on GOTTA MOVE — Louboutin walks in expensive and leaves the floor a mess.",
+    short: "Walks in expensive. Leaves the floor a mess.",
+    funFact: "Öwnboss's \"Move Your Body\" (with Sevek) won Bass House Song of the Year at the 2022 EDM Awards and passed 200 million streams — he's since gone exclusive to Tiësto's own label, Musical Freedom.",
+    artistInstagram: '@ownbossmusic',
+    artistTiktok: '@ownbossmusic',
+    artistName: 'Öwnboss',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb532d892c7f578c2c266ed4e8',
+    coArtists: [
+      { name: 'bradeazy', image: 'https://i.scdn.co/image/ab6761610000e5eb1c9da6b48887663d291b8df4', instagram: '@bradeazy' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/4gB2PHBDWqjZV2ynWLqME8', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-07',
+    date: '2026-09-07',
+    title: 'Make You Sweat (Original Mix)',
+    artist: 'GASKIN, AMARHA',
+    bpm: 131, key: 'Gb Minor', label: 'Bass Jamz', release: '24 Jul 2026',
+    genre: 'House', accent: 'blue',
+    info: "Gaskin brings Amarha onto his own label Bass Jamz — Make You Sweat is a title that also doubles as a warning.",
+    short: "A title that also doubles as a warning.",
+    funFact: "Gaskin didn't just release this one on Bass Jamz — he founded the label, turning a UK event brand into his own house imprint that's also put out records from Archie Hamilton and Robbie Doherty.",
+    artistInstagram: '@gaskin._',
+    artistName: 'Gaskin',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb43b6d0109451472e72105e2e',
+    coArtists: [
+      { name: 'Amarha', image: 'https://i.scdn.co/image/ab6761610000e5eb295a30ba04b131f888cef41b' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/75BiU2s9nLodxFGiDoxWYc', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-06',
+    date: '2026-09-06',
+    title: 'Percolate (Original Mix)',
+    artist: 'SAN PACHO, TOBEHONEST',
+    bpm: 130, key: 'Gb Minor', label: 'Trick', release: '14 Aug 2026',
+    genre: 'Bass House', accent: 'pink',
+    info: "San Pacho and TOBEHONEST bring Latin-house heat to TRICK — Percolate bubbles up slow, then boils the whole floor over.",
+    short: "Bubbles up slow. Boils the floor over.",
+    funFact: "Croatian producer San Pacho got early support from Tchami and Matroda, then landed a release on Tchami's own label Confession — part of how he pioneered a Latin-house-meets-bass-house sound of his own.",
+    artistInstagram: '@sanpachomusic',
+    artistTiktok: '@sanpachomusic',
+    artistName: 'San Pacho',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebf1f493ad171b9f47e82d1f31',
+    coArtists: [
+      { name: 'TOBEHONEST', image: 'https://i.scdn.co/image/ab6761610000e5eb3e14fb2f37429db6bed45571' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/1gWJZZoUzScXlKgXEKuxFr', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-05',
+    date: '2026-09-05',
+    title: 'Sun is Shining (Lovelee Dae) (Extended Mix)',
+    artist: 'TOMMY PHILLIPS',
+    bpm: 130, key: 'G Minor', label: 'Safelight Records', release: '19 Aug 2026',
+    genre: 'House', accent: 'yellow',
+    info: "Tommy Phillips lights up Safelight Records — Sun is Shining (Lovelee Dae) is the kind of house record that turns a Tuesday into a terrace day.",
+    short: "Turns a Tuesday into a terrace day.",
+    funFact: "Tommy Phillips — real name Thomas Phillips, from Northampton — went viral with a bootleg remix of deadmau5 & Kaskade's \"I Remember\", and deadmau5 himself later partnered with him on an official release via mau5trap.",
+    artistInstagram: '@tommyphillipsdj',
+    artistName: 'Tommy Phillips',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebd87d3a4192a4c7715f558c25',
+    links: { spotify: 'https://open.spotify.com/track/4BnF9lzg2f7kc7wxydPhby', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-04',
+    date: '2026-09-04',
+    title: 'Discolo (Extended Mix)',
+    artist: 'ANGEL HEREDIA',
+    bpm: 130, key: 'G Minor', label: 'Toolroom Trax', release: '21 Aug 2026',
+    genre: 'House', accent: 'orange',
+    info: "Angel Heredia trades KoBBoK for Toolroom Trax — Discolo is disco-coded but built entirely for the dancefloor's low end.",
+    short: "Disco-coded. Built for the low end.",
+    funFact: "Before Angel Heredia ever DJed a record, he trained as a certified sound technician — a technical streak that still shows on Discolo, his first release for Toolroom's disco-leaning imprint Toolroom Trax.",
+    artistInstagram: '@angelheredia',
+    artistName: 'Angel Heredia',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb7441e1d82d3aa7aa237953ca',
+    links: { spotify: 'https://open.spotify.com/track/1jhfdv70A0I8Pb01N7Unfn', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-03',
+    date: '2026-09-03',
+    title: 'MYSTERY OF RAW (Extended Mix)',
+    artist: 'MICHAEL BIBI, KETTAMA, WU-TANG CLAN',
+    bpm: 130, key: 'Ab Major', label: 'CircoLoco Records', release: '14 Aug 2026',
+    genre: 'Tech House', accent: 'green',
+    info: "Michael Bibi and KETTAMA flip Wu-Tang Clan's own bars on CircoLoco Records — MYSTERY OF RAW brings 36 Chambers straight to the DJ booth.",
+    short: "36 Chambers, straight to the DJ booth.",
+    funFact: "MYSTERY OF RAW doesn't just namecheck Wu-Tang — it flips their 1993 classic \"Da Mystery of Chessboxin'\" into a full CircoLoco cut, dropping right after Michael Bibi and KETTAMA's first-ever back-to-back set at Tomorrowland.",
+    artistInstagram: '@michael_bibi_',
+    artistTiktok: '@michael_bibi',
+    artistName: 'Michael Bibi',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb5da9a30b4ebb31ba1212adb9',
+    coArtists: [
+      { name: 'KETTAMA', image: 'https://i.scdn.co/image/ab6761610000e5eb65eb52c5da399f337626be07' },
+      { name: 'Wu-Tang Clan', image: 'https://i.scdn.co/image/ab6761610000e5ebe60866298962b71792b2bf1a' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/2v4NP088R6LUgFBDF9JqBg', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-02',
+    date: '2026-09-02',
+    title: 'Reason Why (Extended Mix)',
+    artist: 'SAPIAN',
+    bpm: 130, key: 'E Minor', label: 'Prophecy', release: '14 Aug 2026',
+    genre: 'Tech House', accent: 'blue',
+    info: "Sapian christens Prophecy, Prospa's brand new label, with Reason Why — proof a debut single can still hit like a statement.",
+    short: "A debut single that hits like a statement.",
+    funFact: "SAPIAN's stage name started as a Call of Duty gamer tag — Reason Why is the debut single on Prospa's brand new label Prophecy, and he's already picked up co-signs from Jamie Jones, Michael Bibi and Mau P.",
+    artistInstagram: '@sapiannnn',
+    artistName: 'Sapian',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb8e2815d53fb2b8d9fa99ee3a',
+    links: { spotify: 'https://open.spotify.com/track/2gdRuTUTwNMSuuBpam6XS3', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-01',
+    date: '2026-09-01',
+    title: "Life's Too Short (MK Remix)",
+    artist: 'HOT SINCE 82, MK',
+    bpm: 128, key: 'Eb Minor', label: 'Knee Deep In Sound', release: '07 Aug 2026',
+    genre: 'House', accent: 'pink',
+    info: "Hot Since 82 hands Life's Too Short to MK for a Knee Deep In Sound rework — the title's a mood, the remix is a mission statement.",
+    short: "The title's a mood. The remix is a mission statement.",
+    funFact: "Hot Since 82 — real name Daley Padley — founded Knee Deep In Sound himself in 2014 to champion new underground talent, and has since headlined Creamfields and held a long-running Pacha Ibiza residency.",
+    artistInstagram: '@hotsince82',
+    artistTiktok: '@hotsince82music',
+    artistName: 'Hot Since 82',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebf0df756be5c6474f4e1f8a3b',
+    coArtists: [
+      { name: 'MK', image: 'https://i.scdn.co/image/ab6761610000e5ebe85ae0ce3fe84474211ef54b' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/4g0kbbdXakIB8hZIyibxUL', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-31',
+    date: '2026-08-31',
+    title: 'People Dancing (Original Mix)',
+    artist: 'PATRICK TOPPING, REBŪKE, 1111',
+    bpm: 128, key: 'A Major', label: 'Trick', release: '21 Aug 2026',
+    genre: 'Tech House', accent: 'yellow',
+    info: "Patrick Topping, Rebūke and 1111 team up on TRICK — People Dancing does exactly what the title promises, no more explanation needed.",
+    short: "Does exactly what the title promises.",
+    funFact: "Patrick Topping founded TRICK in 2019 and turned it into a phenomenon — a 9-week DC10 Ibiza residency, stages at Creamfields, and a fanbase that tattoos the label's lightning bolt on themselves.",
+    artistInstagram: '@patricktopping',
+    artistTiktok: '@patricktoppingdj',
+    artistName: 'Patrick Topping',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb0b5893bfc2eb2b275ef7fafb',
+    coArtists: [
+      { name: 'Rebūke', image: 'https://i.scdn.co/image/ab6761610000e5ebe5e8554dd363061d0357ee78' },
+      { name: '1111', image: 'https://i.scdn.co/image/ab6761610000e5eb5d696debb2bf2f852f5661f4' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/5lw0SO3kFw34eRuzYbLCvY', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-08-30',
+    date: '2026-08-30',
+    title: 'Yebisah (Extended Mix)',
+    artist: 'MARK KNIGHT, CRISTOPH',
+    bpm: 125, key: 'D Minor', label: 'Toolroom', release: '21 Aug 2026',
+    genre: 'House', accent: 'orange',
+    info: "Toolroom's own Mark Knight teams up with Cristoph to open Radar 014 — Yebisah is the slow-burn opener that gets the room moving without anyone noticing.",
+    short: "The slow-burn opener nobody notices working.",
+    funFact: "Mark Knight founded Toolroom Records back in 2003 and built it into a global house powerhouse — he's Grammy-nominated and was inducted into Pete Tong's Hall of Fame in 2015.",
+    artistInstagram: '@djmarkknight',
+    artistName: 'Mark Knight',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebc64ae41684ffb7dec7eeb685',
+    coArtists: [
+      { name: 'Cristoph', image: 'https://i.scdn.co/image/ab6761610000e5eb5c0dc438cc96e8e21f50ab4b' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/36lOWbbh35vk4sd7u16OKk', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+
   // ── MUSIC RADAR 013 — 20 Aug–29 Aug 2026 ──────────────────────────────────
   {
     id: 'pick-2026-08-29',
@@ -2354,30 +2534,30 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 013 ────────────────────────────────────────────────────────────────────
+// ── CURRENT RADAR — 014 ────────────────────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-013',
-  number: '013',
-  title: 'Music Radar 013',
-  subtitle: 'New Names. Known Bass.',
-  cover: 'Music Radar Cover 013.jpg',
-  date: '20 AUG 2026',
-  liveDate: '2026-08-20', // public visibility date — same as first pick of this radar
-  nextDate: '30 AUG 2026',
-  youtubeId: 'wivWTmJ6MCc',
-  spotifyUrl: 'https://open.spotify.com/playlist/6r5frQVSd6orl9MKocqeV2?si=1Bd9qKQjRh-D6X996kIHSQ',
-  duration: '23:51',
+  id: 'radar-014',
+  number: '014',
+  title: 'Music Radar 014',
+  subtitle: 'This Round. House Rules.',
+  cover: 'Music Radar Cover 014.jpg',
+  date: '30 AUG 2026',
+  liveDate: '2026-08-30', // public visibility date — same as first pick of this radar
+  nextDate: '09 SEP 2026',
+  youtubeId: 'xs_14ro4lw4',
+  spotifyUrl: 'https://open.spotify.com/playlist/7IyFDWlKuIWAwMpCxnHBbE',
+  duration: '25:30',
   tracks: [
-    { n: '01', title: 'Senses (Original Mix)',               artist: 'Clüb De Combat',                       bpm: 124, key: 'E Minor',   genre: 'Tech House', cue: 'TBA' },
-    { n: '02', title: 'Cinnamon & Champagne (Original Mix)',  artist: 'Hurlee, Paco Colombàs',                bpm: 126, key: 'F Major',   genre: 'House',      cue: 'TBA' },
-    { n: '03', title: 'MIAMI (Original Mix)',                 artist: 'Angel Heredia',                        bpm: 126, key: 'Db Major',  genre: 'Tech House', cue: 'TBA' },
-    { n: '04', title: 'Track Record (Original Mix)',          artist: 'Julian Fox',                           bpm: 127, key: 'Bb Minor',  genre: 'Tech House', cue: 'TBA' },
-    { n: '05', title: 'Pacha (Original Mix)',                 artist: 'ZARO',                                 bpm: 128, key: 'C Minor',   genre: 'Tech House', cue: 'TBA' },
-    { n: '06', title: 'Hypnotized (Extended Mix)',             artist: 'HUMAN404',                             bpm: 129, key: 'D Major',   genre: 'Bass House', cue: 'TBA' },
-    { n: '07', title: 'What Is It (Extended Mix)',             artist: 'VLUARR',                               bpm: 130, key: 'Ab Minor',  genre: 'Bass House', cue: 'TBA' },
-    { n: '08', title: 'Around (Extended Mix)',                 artist: 'Alok',                                 bpm: 130, key: 'E Major',   genre: 'Mainstage',  cue: 'TBA' },
-    { n: '09', title: 'Margarine Head (Extended Mix)',         artist: 'Efim Kerbut',                          bpm: 131, key: 'E Major',   genre: 'Bass House', cue: 'TBA' },
-    { n: '10', title: 'Distant Star System (Original Mix)',    artist: 'Danny Snowden',                        bpm: 132, key: 'F Major',   genre: 'House',      cue: 'TBA' },
+    { n: '01', title: 'Yebisah (Extended Mix)',                        artist: 'Mark Knight, Cristoph',               bpm: 125, key: 'D Minor',   genre: 'House',      cue: 'TBA' },
+    { n: '02', title: 'People Dancing (Original Mix)',                 artist: 'Patrick Topping, Rebūke, 1111',       bpm: 128, key: 'A Major',   genre: 'Tech House', cue: 'TBA' },
+    { n: '03', title: "Life's Too Short (MK Remix)",                   artist: 'Hot Since 82, MK',                    bpm: 128, key: 'Eb Minor',  genre: 'House',      cue: 'TBA' },
+    { n: '04', title: 'Reason Why (Extended Mix)',                     artist: 'Sapian',                              bpm: 130, key: 'E Minor',   genre: 'Tech House', cue: 'TBA' },
+    { n: '05', title: 'MYSTERY OF RAW (Extended Mix)',                 artist: 'Michael Bibi, KETTAMA, Wu-Tang Clan', bpm: 130, key: 'Ab Major',  genre: 'Tech House', cue: 'TBA' },
+    { n: '06', title: 'Discolo (Extended Mix)',                        artist: 'Angel Heredia',                       bpm: 130, key: 'G Minor',   genre: 'House',      cue: 'TBA' },
+    { n: '07', title: 'Sun is Shining (Lovelee Dae) (Extended Mix)',   artist: 'Tommy Phillips',                      bpm: 130, key: 'G Minor',   genre: 'House',      cue: 'TBA' },
+    { n: '08', title: 'Percolate (Original Mix)',                      artist: 'San Pacho, TOBEHONEST',               bpm: 130, key: 'Gb Minor',  genre: 'Bass House', cue: 'TBA' },
+    { n: '09', title: 'Make You Sweat (Original Mix)',                 artist: 'Gaskin, Amarha',                      bpm: 131, key: 'Gb Minor',  genre: 'House',      cue: 'TBA' },
+    { n: '10', title: 'Louboutin (Extended Mix)',                      artist: 'bradeazy, Öwnboss',                   bpm: 132, key: 'D Major',   genre: 'Bass House', cue: 'TBA' },
   ]
 };
 
@@ -2385,6 +2565,31 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ───────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    id: 'radar-013',
+    number: '013',
+    title: 'Music Radar 013',
+    subtitle: 'New Names. Known Bass.',
+    cover: 'Music Radar Cover 013.jpg',
+    date: '20 AUG 2026',
+    liveDate: '2026-08-20', // public visibility date — same as first pick of this radar
+    nextDate: '30 AUG 2026',
+    youtubeId: 'wivWTmJ6MCc',
+    spotifyUrl: 'https://open.spotify.com/playlist/6r5frQVSd6orl9MKocqeV2?si=1Bd9qKQjRh-D6X996kIHSQ',
+    duration: '23:51',
+    tracks: [
+      { n: '01', title: 'Senses (Original Mix)',               artist: 'Clüb De Combat',                       bpm: 124, key: 'E Minor',   genre: 'Tech House', cue: 'TBA' },
+      { n: '02', title: 'Cinnamon & Champagne (Original Mix)',  artist: 'Hurlee, Paco Colombàs',                bpm: 126, key: 'F Major',   genre: 'House',      cue: 'TBA' },
+      { n: '03', title: 'MIAMI (Original Mix)',                 artist: 'Angel Heredia',                        bpm: 126, key: 'Db Major',  genre: 'Tech House', cue: 'TBA' },
+      { n: '04', title: 'Track Record (Original Mix)',          artist: 'Julian Fox',                           bpm: 127, key: 'Bb Minor',  genre: 'Tech House', cue: 'TBA' },
+      { n: '05', title: 'Pacha (Original Mix)',                 artist: 'ZARO',                                 bpm: 128, key: 'C Minor',   genre: 'Tech House', cue: 'TBA' },
+      { n: '06', title: 'Hypnotized (Extended Mix)',             artist: 'HUMAN404',                             bpm: 129, key: 'D Major',   genre: 'Bass House', cue: 'TBA' },
+      { n: '07', title: 'What Is It (Extended Mix)',             artist: 'VLUARR',                               bpm: 130, key: 'Ab Minor',  genre: 'Bass House', cue: 'TBA' },
+      { n: '08', title: 'Around (Extended Mix)',                 artist: 'Alok',                                 bpm: 130, key: 'E Major',   genre: 'Mainstage',  cue: 'TBA' },
+      { n: '09', title: 'Margarine Head (Extended Mix)',         artist: 'Efim Kerbut',                          bpm: 131, key: 'E Major',   genre: 'Bass House', cue: 'TBA' },
+      { n: '10', title: 'Distant Star System (Original Mix)',    artist: 'Danny Snowden',                        bpm: 132, key: 'F Major',   genre: 'House',      cue: 'TBA' },
+    ]
+  },
   {
     id: 'radar-012',
     number: '012',
