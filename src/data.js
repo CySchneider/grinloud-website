@@ -2544,7 +2544,7 @@ const RADAR = {
   date: '30 AUG 2026',
   liveDate: '2026-08-30', // public visibility date — same as first pick of this radar
   nextDate: '09 SEP 2026',
-  youtubeId: 'xs_14ro4lw4',
+  youtubeId: 'YXlHK7sC_F8',
   spotifyUrl: 'https://open.spotify.com/playlist/7IyFDWlKuIWAwMpCxnHBbE',
   duration: '25:30',
   tracks: [
