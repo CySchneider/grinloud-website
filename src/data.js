@@ -121,6 +121,183 @@ const BG_VIDEOS = [
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
 
+  // ── MUSIC RADAR 015 — 9–18 Sep 2026 ───────────────────────────────────
+  {
+    id: 'pick-2026-09-18',
+    date: '2026-09-18',
+    title: 'Friction (Extended Mix)',
+    artist: 'RIORDAN, LOCKY',
+    bpm: 132, key: 'D Minor', label: 'Safelight Records.', release: '28 Aug 2026',
+    genre: 'Tech House', accent: 'green',
+    info: "Riordan teams up with Locky on Safelight Records — Friction closes Radar 015 exactly where it should: right on the edge.",
+    short: "Closes the radar right on the edge.",
+    funFact: "Riordan's breakout tech house cut \"As The Beat Goes Onnn\" was debuted by FISHER at Space Miami and spun by Michael Bibi at his own London day festival — now he teams up with Locky for \"Friction\".",
+    artistInstagram: '@riordan.uk',
+    artistTiktok: '@riordan_',
+    artistName: 'Riordan',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebe89f692d6217857b3e519c48',
+    coArtists: [
+      { name: 'Locky', image: 'https://i.scdn.co/image/ab6761610000e5eb5060c59fe063f3d597bbbd7b' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/09kvrg8hjr8G71mhIVARfu', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-17',
+    date: '2026-09-17',
+    title: '1997 (Original Mix)',
+    artist: 'BEAVE',
+    bpm: 132, key: 'Eb Minor', label: 'Staff Only', release: '27 Aug 2026',
+    genre: 'House', accent: 'blue',
+    info: "Beave makes his Staff Only debut with 1997 — years behind the mixing desk finally paying off in his own name.",
+    short: "Years behind the desk, finally in his own name.",
+    funFact: "Before \"1997\" became his debut on Staff Only, Essex producer Beave spent years as a session mixer and mastering engineer, racking up 200m+ combined streams and a Don Diablo collab on Hexagon Records.",
+    artistInstagram: '@beavedj',
+    artistTiktok: '@beavedj',
+    artistName: 'Beave',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eba383018ab32fdabbd53d029f',
+    links: { spotify: 'https://open.spotify.com/track/4rhLz3goPuMcJPkkqtX07g', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-16',
+    date: '2026-09-16',
+    title: 'Bring That Beat Back (Extended Mix)',
+    artist: 'AMMIL',
+    bpm: 130, key: 'Eb Minor', label: 'range.', release: '20 Aug 2026',
+    genre: 'Tech House', accent: 'pink',
+    info: "AMMIL debuts on range. with Bring That Beat Back — a stage name built from his two sisters' names, a sound built to move the room.",
+    short: "A sound built to move the room.",
+    funFact: "AMMIL's stage name is a mashup of his two sisters' names, Amber and Milou — \"Bring That Beat Back\" is his debut on Ranger Trucco's label range., landing early support from Cloonee and Interplanetary Criminal.",
+    artistInstagram: '@ammil.music',
+    artistTiktok: '@ammil.music',
+    artistName: 'AMMIL',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb7046c8d60fbd7fe2490b6b0e',
+    links: { spotify: 'https://open.spotify.com/track/3VyrgdbuNii6he47vV6Ryr', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-15',
+    date: '2026-09-15',
+    title: 'Invisible (Extended Mix)',
+    artist: 'JAZZY, CHRIS LORENZO',
+    bpm: 130, key: 'Eb Minor', label: 'Chaos', release: '19 Jun 2026',
+    genre: 'Tech House', accent: 'yellow',
+    info: "Jazzy returns to Chaos, the label she christened back in 2023, teaming up with Chris Lorenzo — Invisible is the lead single off her debut album.",
+    short: "The lead single off her debut album.",
+    funFact: "Jazzy christened Polydor's dance label Chaos back in 2023 with her chart-topping debut single \"Giving Me\" — she's back on the same label now with \"Invisible\", the lead single off her debut album Peace & Patience.",
+    artistInstagram: '@jazzy',
+    artistTiktok: '@jazzy',
+    artistName: 'Jazzy',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb64e029d1466b4e8d38eec59c',
+    coArtists: [
+      { name: 'Chris Lorenzo', image: 'https://i.scdn.co/image/ab6761610000e5eb454f6b508e265fa671caad9d', instagram: '@chrislorenzo66', tiktok: '@chrislorenzo66' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/2dt5AmiiAA7dOhE1xws9qY', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-14',
+    date: '2026-09-14',
+    title: 'Take It Higher (Extended Mix)',
+    artist: 'TUJAMO, STADIUMX',
+    bpm: 129, key: 'Eb Minor', label: 'CITY STARS RECORDS', release: '21 Aug 2026',
+    genre: 'Bass House', accent: 'orange',
+    info: "Tujamo brings Stadiumx onto his own label City Stars Records — Take It Higher does exactly what it says.",
+    short: "Does exactly what it says on the tin.",
+    funFact: "Tujamo didn't just release \"Take It Higher\" on City Stars Records — he founded the label himself, and its catalog is stacked almost entirely with his own tracks and collabs.",
+    artistInstagram: '@tujamo',
+    artistTiktok: '@tujamoofficial',
+    artistName: 'Tujamo',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb4ff3493ab05afb520e3a4380',
+    coArtists: [
+      { name: 'Stadiumx', image: 'https://i.scdn.co/image/ab6761610000e5eb3f839141cc650267ed6afa91', instagram: '@stadiumx' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/4TcDLZ64D57GAVfLUGBrr4', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-13',
+    date: '2026-09-13',
+    title: '1800 (Extended Mix)',
+    artist: 'CID, TAYLR RENEE',
+    bpm: 129, key: 'F Major', label: 'Broke', release: '28 Aug 2026',
+    genre: 'Bass House', accent: 'green',
+    info: "CID and Taylr Renee reunite on Broke after Fancy $hit — 1800 was road-tested in his own sets for eight months before it finally dropped.",
+    short: "Eight months in the making. Worth the wait.",
+    funFact: "CID first teased \"1800\" as an unreleased ID back in January 2026, road-testing it in his own sets with Taylr Renee on the mic for eight months before it finally dropped on Broke — their second collab after \"Fancy $hit\".",
+    artistInstagram: '@cidmusic',
+    artistTiktok: '@cidmusic',
+    artistName: 'CID',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebf8c717534576cbf925626910',
+    coArtists: [
+      { name: 'Taylr Renee', image: 'https://i.scdn.co/image/ab6761610000e5ebdc13cbe183ae731fae9e104b', instagram: '@taylr_renee' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/2zOk9axSPQeU5Dshj8GUO0', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-12',
+    date: '2026-09-12',
+    title: 'Champagne On Me (Extended Mix)',
+    artist: 'LUCY GUO',
+    bpm: 128, key: 'E Major', label: 'Lucy Guo', release: '10 Jul 2026',
+    genre: 'Dance/Pop', accent: 'blue',
+    info: "Lucy Guo traded the boardroom for the booth on her own self-titled label — Champagne On Me is a debut single built for the good nights.",
+    short: "A debut built for the good nights.",
+    funFact: "Lucy Guo co-founded Scale AI and became the world's youngest self-made female billionaire before trading the boardroom for the booth — Champagne On Me is her debut single, out on her own self-titled label.",
+    artistInstagram: '@guoforit',
+    artistTiktok: '@guoforit',
+    artistName: 'Lucy Guo',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebbfa66af2addf08e66edc70a2',
+    links: { spotify: 'https://open.spotify.com/track/6UXJCCh1id7g9yhlrUx3D3', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-11',
+    date: '2026-09-11',
+    title: 'Double The Funk (Radio Edit)',
+    artist: 'JOE THOMAS (UK)',
+    bpm: 128, key: 'E Major', label: 'Nervous Records', release: '14 Aug 2026',
+    genre: 'Tech House', accent: 'pink',
+    info: "Joe Thomas (UK) lands on the legendary Nervous Records — Double The Funk does exactly what the title promises.",
+    short: "Does exactly what the title promises.",
+    funFact: "Joe Thomas (UK) called landing on Nervous Records — the NYC house label running strong since 1990 — \"a really special one\", with early support from Josh Baker and Calussa.",
+    artistInstagram: '@joethomas.uk',
+    artistTiktok: '@joethomas.uk',
+    artistName: 'Joe Thomas (UK)',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb9db64108e297d8d7bc517382',
+    links: { spotify: 'https://open.spotify.com/track/16qVdETl7SUqnF0zkr212C', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-10',
+    date: '2026-09-10',
+    title: 'Appetite (Extended Mix)',
+    artist: 'LEISAN',
+    bpm: 127, key: 'F Minor', label: 'Club Sweat', release: '07 Aug 2026',
+    genre: 'Tech House', accent: 'yellow',
+    info: "Leisan serves up Appetite on Club Sweat — a groove built to make the floor hungry for more.",
+    short: "Built to make the floor hungry for more.",
+    funFact: "Leisan got early support from Solomun and landed a release, \"Rover\", on his own label Diynamic — she got her start throwing underground raves for LA's Post-Soviet community.",
+    artistInstagram: '@leisan.lealea',
+    artistTiktok: '@leisan.lealea',
+    artistName: 'Leisan',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb57925815a8a4965cf51126bd',
+    links: { spotify: 'https://open.spotify.com/track/18yGT1CxdaLgaAVEO5YQSP', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-09',
+    date: '2026-09-09',
+    title: "It's So Nice (Extended Mix)",
+    artist: 'ANOTR, 3DDY',
+    bpm: 127, key: 'E Minor', label: 'No Art', release: '12 Jun 2026',
+    genre: 'House', accent: 'orange',
+    info: "ANOTR open Radar 015 on their own label No Art, joined by 3DDY — It's So Nice is the kind of low-key opener that just keeps building.",
+    short: "Low-key opener. Keeps building.",
+    funFact: "ANOTR's own label No Art also carries their global hit \"Talk to You\", which went viral in 2026 when England defender John Stones broke into his signature dance to it in the dressing room.",
+    artistInstagram: '@anotr',
+    artistTiktok: '@anotrmusic',
+    artistName: 'ANOTR',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb48b2dcdf9a2e05e01694cc57',
+    coArtists: [
+      { name: '3DDY', image: 'https://i.scdn.co/image/ab6761610000e5ebea97a99a6ef3709ba93136fc', instagram: '@3ddy_ofc' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/7jSvYhvHcH5q0d3Vjd6Ht9', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+
   // ── MUSIC RADAR 014 — 30 Aug–8 Sep 2026 ───────────────────────────────────
   {
     id: 'pick-2026-09-08',
@@ -134,10 +311,10 @@ const PICKS = [
     funFact: "Öwnboss's \"Move Your Body\" (with Sevek) won Bass House Song of the Year at the 2022 EDM Awards and passed 200 million streams — he's since gone exclusive to Tiësto's own label, Musical Freedom.",
     artistInstagram: '@ownbossmusic',
     artistTiktok: '@ownbossmusic',
-    artistName: 'Öwnboss',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb532d892c7f578c2c266ed4e8',
+    artistName: 'bradeazy',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb1c9da6b48887663d291b8df4',
     coArtists: [
-      { name: 'bradeazy', image: 'https://i.scdn.co/image/ab6761610000e5eb1c9da6b48887663d291b8df4', instagram: '@bradeazy' },
+      { name: 'Öwnboss', image: 'https://i.scdn.co/image/ab6761610000e5eb532d892c7f578c2c266ed4e8' },
     ],
     links: { spotify: 'https://open.spotify.com/track/4gB2PHBDWqjZV2ynWLqME8', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -455,7 +632,7 @@ const PICKS = [
     funFact: "Clüb De Combat is an Israeli duo who launched their own FIGHTCLÜB imprint after releasing their Exciter EP on Solomun's Diynamic label — their Bad Habit remix with Lisa Millett and ATFC came out on Defected.",
     artistInstagram: '@club_decombat',
     artistName: 'Clüb De Combat',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb96fce39b8d6631e98ede4575',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebece2aa9edb642b5a1ff8a461',
     links: { spotify: 'https://open.spotify.com/track/5Jp97CmcdRGMeKFoW4bhxE', youtube: '#', beatport: '#', soundcloud: '#' }
   },
 
@@ -604,7 +781,7 @@ const PICKS = [
     artistName: 'Odd Mob',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb60a5642e7a0bf885809f7fac',
     coArtists: [
-      { name: 'OMNOM', image: 'https://i.scdn.co/image/ab6761610000e5eba9b9e8e9f12e78d2eb637a6a', instagram: '@imomnom' },
+      { name: 'OMNOM', image: 'https://i.scdn.co/image/ab6761610000e5eb083bbf2e09eb8fd5c6a72698', instagram: '@imomnom' },
       { name: 'HYPERBEAM', image: 'https://i.scdn.co/image/ab6761610000e5ebef4e640007dacdc0b3739032', instagram: '@hyperbeam_ofc' },
     ],
     links: { spotify: 'https://open.spotify.com/track/0TlJ9h0O9wJeda51rW9ktj', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -726,7 +903,7 @@ const PICKS = [
     funFact: "Rafael Cerato is one of the artists who helped shape today's groove-driven club sound, splitting his time between Marseille and Ibiza — he's played B2B sets with Solomun, released with ARTBAT, and TCFS lands on Catch & Release, the label run by Fisher.",
     artistInstagram: '@rafaelcerato_ofc',
     artistName: 'Rafael Cerato',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb51cb5384250dab2387f1319a',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb915109627c0a0aa3fb217fd2',
     links: { spotify: 'https://open.spotify.com/track/4V3SzxQdZxMgxj2Db6OHoT', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1366,7 +1543,7 @@ const PICKS = [
     info: "Snooko on 2NIGHT Recordings with a driving groove that takes you somewhere. Places is warm, purposeful, and exactly what a well-curated floor deserves.",
     short: "Warm, purposeful. Exactly what a good floor deserves.",
     artistName: 'Snooko',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb019f5b4c8784594103b8ee5d',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb17f593c303ae2e6a2bca360b',
     links: { spotify: 'https://open.spotify.com/track/6OVnACZ85MNWhGeJqOjwAX', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1430,7 +1607,7 @@ const PICKS = [
     artistName: 'ANOTR',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb48b2dcdf9a2e05e01694cc57',
     coArtists: [
-      { name: '3DDY', image: 'https://i.scdn.co/image/ab6761610000e5eb6d6814c1749b1cbce8bc2660' },
+      { name: '3DDY', image: 'https://i.scdn.co/image/ab6761610000e5ebea97a99a6ef3709ba93136fc' },
     ],
     links: { spotify: 'https://open.spotify.com/track/45k8qYkYZJ87ckRq3O3fVj', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -1661,7 +1838,7 @@ const PICKS = [
     coArtists: [
       { name: 'Matroda', image: 'https://i.scdn.co/image/ab6761610000e5eb67496827f683bf6ded6c8f1e' },
       { name: 'San Pacho', image: 'https://i.scdn.co/image/ab6761610000e5ebf1f493ad171b9f47e82d1f31' },
-      { name: 'CREG', image: 'https://i.scdn.co/image/ab6761610000e5eb4981b0c0be3fcc5a3126081f' },
+      { name: 'CREG', image: 'https://i.scdn.co/image/ab6761610000e5ebcb1ac1e96fd368c558a73931' },
     ],
     links: { spotify: 'https://open.spotify.com/track/1oeljccOyFQGPOY8gaVnnH', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -2114,7 +2291,7 @@ const PICKS = [
     artistName: 'Deeper Purpose',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb42da223a19fab118cf6d0ef5',
     coArtists: [
-      { name: 'Jack Orley', image: 'https://i.scdn.co/image/ab6761610000e5ebbb323502c6ca93ceaaac1671' },
+      { name: 'Jack Orley', image: 'https://i.scdn.co/image/ab6761610000e5eb6a5f1f9b24146ff58255be9f' },
       { name: 'Michael Ekow', image: 'https://i.scdn.co/image/ab6761610000e5ebc5e262b82607617c0e8697d1' },
     ],
     links: { spotify: 'https://open.spotify.com/track/6RmHESttla4I4g4vr0NLkQ', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -2275,7 +2452,7 @@ const PICKS = [
     info: "Two years as a secret weapon in Beltran's sets — the ID that everyone was hunting. Finally released and it hits exactly as hard as the clips promised.",
     short: "The ID everyone was hunting. It hits as hard as the clips promised.",
     artistName: 'Beltran',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb2859fd8baa2c643d855a5b75',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb0768085fa4e404e10cf30820',
     coArtists: [
       { name: 'The Flirts', image: 'https://i.scdn.co/image/ab6761610000e5ebddacf65df9265cc65309a850' },
     ],
@@ -2317,9 +2494,9 @@ const PICKS = [
     info: "Afterlife meets K-pop. Anyma brought LISA into his ÆDENverse — two worlds colliding into something cinematic and future-forward. Premiered at Coachella Mainstage with LISA's live surprise appearance.",
     short: "Afterlife meets K-pop. Cinematic and future-forward.",
     artistName: 'Anyma',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb55abdb92a86717a004e7a462',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eba5fe44561b6ce2a566c1f272',
     coArtists: [
-      { name: 'LISA', image: 'https://i.scdn.co/image/ab6761610000e5eb5cd3b3af8b72e32be78571ec' },
+      { name: 'LISA', image: 'https://i.scdn.co/image/ab6761610000e5eb3c88464ba063f0ae5d326738' },
     ],
     links: { spotify: 'https://open.spotify.com/track/4QR40LqFAbMdabh4AoZJGZ', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -2534,30 +2711,30 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 014 ────────────────────────────────────────────────────────────────────
+// ── CURRENT RADAR — 015 ────────────────────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-014',
-  number: '014',
-  title: 'Music Radar 014',
-  subtitle: 'This Round. House Rules.',
-  cover: 'Music Radar Cover 014.jpg',
-  date: '30 AUG 2026',
-  liveDate: '2026-08-30', // public visibility date — same as first pick of this radar
-  nextDate: '09 SEP 2026',
-  youtubeId: 'YXlHK7sC_F8',
-  spotifyUrl: 'https://open.spotify.com/playlist/7IyFDWlKuIWAwMpCxnHBbE',
-  duration: '25:30',
+  id: 'radar-015',
+  number: '015',
+  title: 'Music Radar 015',
+  subtitle: 'One Groove. Zero Breaks.',
+  cover: 'Music Radar Cover 015.jpg',
+  date: '09 SEP 2026',
+  liveDate: '2026-09-09', // public visibility date — same as first pick of this radar
+  nextDate: '19 SEP 2026',
+  youtubeId: 'K05st4DKXFY',
+  spotifyUrl: 'https://open.spotify.com/playlist/4WFoMQBNVkzy228SUjVpuZ',
+  duration: '24:29',
   tracks: [
-    { n: '01', title: 'Yebisah (Extended Mix)',                        artist: 'Mark Knight, Cristoph',               bpm: 125, key: 'D Minor',   genre: 'House',      cue: 'TBA' },
-    { n: '02', title: 'People Dancing (Original Mix)',                 artist: 'Patrick Topping, Rebūke, 1111',       bpm: 128, key: 'A Major',   genre: 'Tech House', cue: 'TBA' },
-    { n: '03', title: "Life's Too Short (MK Remix)",                   artist: 'Hot Since 82, MK',                    bpm: 128, key: 'Eb Minor',  genre: 'House',      cue: 'TBA' },
-    { n: '04', title: 'Reason Why (Extended Mix)',                     artist: 'Sapian',                              bpm: 130, key: 'E Minor',   genre: 'Tech House', cue: 'TBA' },
-    { n: '05', title: 'MYSTERY OF RAW (Extended Mix)',                 artist: 'Michael Bibi, KETTAMA, Wu-Tang Clan', bpm: 130, key: 'Ab Major',  genre: 'Tech House', cue: 'TBA' },
-    { n: '06', title: 'Discolo (Extended Mix)',                        artist: 'Angel Heredia',                       bpm: 130, key: 'G Minor',   genre: 'House',      cue: 'TBA' },
-    { n: '07', title: 'Sun is Shining (Lovelee Dae) (Extended Mix)',   artist: 'Tommy Phillips',                      bpm: 130, key: 'G Minor',   genre: 'House',      cue: 'TBA' },
-    { n: '08', title: 'Percolate (Original Mix)',                      artist: 'San Pacho, TOBEHONEST',               bpm: 130, key: 'Gb Minor',  genre: 'Bass House', cue: 'TBA' },
-    { n: '09', title: 'Make You Sweat (Original Mix)',                 artist: 'Gaskin, Amarha',                      bpm: 131, key: 'Gb Minor',  genre: 'House',      cue: 'TBA' },
-    { n: '10', title: 'Louboutin (Extended Mix)',                      artist: 'bradeazy, Öwnboss',                   bpm: 132, key: 'D Major',   genre: 'Bass House', cue: 'TBA' },
+    { n: '01', title: "It's So Nice (Extended Mix)",     artist: 'ANOTR, 3DDY',            bpm: 127, key: 'E Minor',  genre: 'House',      cue: 'TBA' },
+    { n: '02', title: 'Appetite (Extended Mix)',          artist: 'Leisan',                 bpm: 127, key: 'F Minor',  genre: 'Tech House', cue: 'TBA' },
+    { n: '03', title: 'Double The Funk (Radio Edit)',     artist: 'Joe Thomas (UK)',        bpm: 128, key: 'E Major',  genre: 'Tech House', cue: 'TBA' },
+    { n: '04', title: 'Champagne On Me (Extended Mix)',   artist: 'Lucy Guo',               bpm: 128, key: 'E Major',  genre: 'Dance/Pop',  cue: 'TBA' },
+    { n: '05', title: '1800 (Extended Mix)',              artist: 'CID, Taylr Renee',       bpm: 129, key: 'F Major',  genre: 'Bass House', cue: 'TBA' },
+    { n: '06', title: 'Take It Higher (Extended Mix)',    artist: 'Tujamo, Stadiumx',       bpm: 129, key: 'Eb Minor', genre: 'Bass House', cue: 'TBA' },
+    { n: '07', title: 'Invisible (Extended Mix)',         artist: 'Jazzy, Chris Lorenzo',   bpm: 130, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
+    { n: '08', title: 'Bring That Beat Back (Extended Mix)', artist: 'AMMIL',               bpm: 130, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
+    { n: '09', title: '1997 (Original Mix)',              artist: 'Beave',                  bpm: 132, key: 'Eb Minor', genre: 'House',      cue: 'TBA' },
+    { n: '10', title: 'Friction (Extended Mix)',          artist: 'Riordan, Locky',         bpm: 132, key: 'D Minor',  genre: 'Tech House', cue: 'TBA' },
   ]
 };
 
@@ -2565,6 +2742,31 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ───────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    id: 'radar-014',
+    number: '014',
+    title: 'Music Radar 014',
+    subtitle: 'This Round. House Rules.',
+    cover: 'Music Radar Cover 014.jpg',
+    date: '30 AUG 2026',
+    liveDate: '2026-08-30', // public visibility date — same as first pick of this radar
+    nextDate: '09 SEP 2026',
+    youtubeId: 'YXlHK7sC_F8',
+    spotifyUrl: 'https://open.spotify.com/playlist/7IyFDWlKuIWAwMpCxnHBbE',
+    duration: '25:30',
+    tracks: [
+      { n: '01', title: 'Yebisah (Extended Mix)',                        artist: 'Mark Knight, Cristoph',               bpm: 125, key: 'D Minor',   genre: 'House',      cue: 'TBA' },
+      { n: '02', title: 'People Dancing (Original Mix)',                 artist: 'Patrick Topping, Rebūke, 1111',       bpm: 128, key: 'A Major',   genre: 'Tech House', cue: 'TBA' },
+      { n: '03', title: "Life's Too Short (MK Remix)",                   artist: 'Hot Since 82, MK',                    bpm: 128, key: 'Eb Minor',  genre: 'House',      cue: 'TBA' },
+      { n: '04', title: 'Reason Why (Extended Mix)',                     artist: 'Sapian',                              bpm: 130, key: 'E Minor',   genre: 'Tech House', cue: 'TBA' },
+      { n: '05', title: 'MYSTERY OF RAW (Extended Mix)',                 artist: 'Michael Bibi, KETTAMA, Wu-Tang Clan', bpm: 130, key: 'Ab Major',  genre: 'Tech House', cue: 'TBA' },
+      { n: '06', title: 'Discolo (Extended Mix)',                        artist: 'Angel Heredia',                       bpm: 130, key: 'G Minor',   genre: 'House',      cue: 'TBA' },
+      { n: '07', title: 'Sun is Shining (Lovelee Dae) (Extended Mix)',   artist: 'Tommy Phillips',                      bpm: 130, key: 'G Minor',   genre: 'House',      cue: 'TBA' },
+      { n: '08', title: 'Percolate (Original Mix)',                      artist: 'San Pacho, TOBEHONEST',               bpm: 130, key: 'Gb Minor',  genre: 'Bass House', cue: 'TBA' },
+      { n: '09', title: 'Make You Sweat (Original Mix)',                 artist: 'Gaskin, Amarha',                      bpm: 131, key: 'Gb Minor',  genre: 'House',      cue: 'TBA' },
+      { n: '10', title: 'Louboutin (Extended Mix)',                      artist: 'bradeazy, Öwnboss',                   bpm: 132, key: 'D Major',   genre: 'Bass House', cue: 'TBA' },
+    ]
+  },
   {
     id: 'radar-013',
     number: '013',
