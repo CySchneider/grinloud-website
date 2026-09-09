@@ -177,7 +177,7 @@ function Home({ pick, radar, accent, prev, next, canPrev, canNext, previewUrl, i
           <div className="pick-cover">
             <SpotifyCover spotifyUrl={pick.links?.spotify} alt={`${pick.title} — ${pick.artist} cover art`} />
             <button
-              className={`home__cover-play ${heroIsPlaying ? 'is-playing' : ''}`}
+              className={`cover-play-btn ${heroIsPlaying ? 'is-playing' : ''}`}
               onClick={() => onToggleTrack(heroUrl)}
               aria-label={heroIsPlaying ? 'Pause preview' : 'Play preview'}
             >

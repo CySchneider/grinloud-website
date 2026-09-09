@@ -389,6 +389,15 @@ function TrackInfoLayer({ track, accent, isPlaying, onToggle, onClose }) {
 
         <div className="track-layer__cover">
           <SpotifyCover spotifyUrl={spotifyUrl} alt={`${track.title} — ${track.artist} cover art`} />
+          {canPlay && (
+            <button
+              className={`cover-play-btn ${isPlaying ? 'is-playing' : ''}`}
+              onClick={() => onToggle(spotifyUrl)}
+              aria-label={isPlaying ? 'Pause preview' : 'Play preview'}
+            >
+              {isPlaying ? <Icon.Pause size={20} /> : <Icon.Play size={20} />}
+            </button>
+          )}
         </div>
 
         <div className="track-layer__body">

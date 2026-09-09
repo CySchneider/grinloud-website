@@ -310,11 +310,13 @@ a { color: inherit; text-decoration: none; }
   border-radius: 2px;
 }
 
-/* Play/pause overlay on the cover itself — same onToggleTrack as
-   PLAY PREVIEW below (they always reflect the same state), added mainly
-   for mobile where PLAY PREVIEW can be a full scroll away from the cover
-   that's visible immediately. */
-.home__cover-play {
+/* Play/pause overlay on a cover itself — same play/pause action as the
+   PLAY PREVIEW button below it (always reflects the same state), added
+   mainly for mobile where that text button can be a full scroll away from
+   the cover that's visible immediately. Shared by .pick-cover (Home's own
+   hero, via Home.jsx) and .track-layer__cover (TrackInfoLayer, opened from
+   Archive/Music Radar rows and Home's random picks grid). */
+.cover-play-btn {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -329,17 +331,17 @@ a { color: inherit; text-decoration: none; }
   color: #fff;
   transition: background 0.15s, transform 0.1s;
 }
-.home__cover-play svg { margin-left: 2px; } /* optical centering for the play triangle */
-.home__cover-play.is-playing svg { margin-left: 0; }
-.home__cover-play.is-playing {
+.cover-play-btn svg { margin-left: 2px; } /* optical centering for the play triangle */
+.cover-play-btn.is-playing svg { margin-left: 0; }
+.cover-play-btn.is-playing {
   background: var(--accent, var(--qs-pink));
   color: #0A0A0A;
 }
 @media (hover: hover) {
-  .home__cover-play:hover { background: rgba(10, 10, 10, 0.75); }
-  .home__cover-play.is-playing:hover { background: var(--accent, var(--qs-pink)); opacity: 0.85; }
+  .cover-play-btn:hover { background: rgba(10, 10, 10, 0.75); }
+  .cover-play-btn.is-playing:hover { background: var(--accent, var(--qs-pink)); opacity: 0.85; }
 }
-.home__cover-play:active { transform: translate(-50%, -50%) scale(0.93); }
+.cover-play-btn:active { transform: translate(-50%, -50%) scale(0.93); }
 
 .home__text {
   /* Must stay flex:1 (not shrink-to-fit) — .track-title's font-size is set
@@ -1406,6 +1408,7 @@ a { color: inherit; text-decoration: none; }
   padding: 32px 28px 28px;
 }
 .track-layer__cover {
+  position: relative;
   width: 100%;
   aspect-ratio: 1;
   max-width: 220px;
