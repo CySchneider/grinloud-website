@@ -145,25 +145,6 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-back:hover { opacity: 1; }
 
-/* Home footer's "MUSIC RADAR N →" link — deliberately its OWN class (not
-   .top-nav__radar-pill, which Cinema's cinema__pill reuses and must keep
-   its thick-border/shadow look). Fixed pink, not per-pick accent — matches
-   the mockup exactly. */
-.site-radar-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  width: fit-content;
-  font-family: var(--qs-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  font-weight: 700;
-  color: var(--qs-pink);
-  cursor: pointer;
-  pointer-events: auto;
-}
-.site-radar-pill:hover { text-decoration: underline; }
-
 .top-nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -242,27 +223,6 @@ a { color: inherit; text-decoration: none; }
 .nav-dot { display: none; }
 
 /* ============================================================
-   NAV ARROWS (prev / next pick)
-   ============================================================ */
-.nav-arrow {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 30;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: var(--qs-ink-45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.15s, background 0.15s;
-}
-.nav-arrow:hover { color: var(--qs-ink); background: var(--qs-ink-08); }
-.nav-arrow--left  { left: 20px; }
-.nav-arrow--right { right: 20px; }
-
-/* ============================================================
    PLAY BUTTON — underlined text, no chrome
    ============================================================ */
 .play-btn {
@@ -286,12 +246,10 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .home {
   position: relative;
-  /* dvh, not vh — iPadOS/iOS Safari's 100vh is measured against the layout
-     viewport (as if the browser chrome were hidden), taller than what's
-     actually on screen. With vh, .home__footer-row's margin-top:auto push
-     lands below the visible area, right behind the fixed .spotify-bar,
-     even though there's visible cream space above the bar. dvh tracks the
-     real visual viewport instead. */
+  /* dvh, not vh — a floor so the background fills the real visual viewport
+     even when sections A+B+C together are shorter than it (iOS Safari's
+     100vh is measured against the taller layout viewport, as if the browser
+     chrome were hidden, and would leave a gap below short content). */
   min-height: 100dvh;
   padding: 96px 84px 112px; /* bottom clears the fixed 80px .spotify-bar */
   display: flex;
@@ -300,31 +258,13 @@ a { color: inherit; text-decoration: none; }
   color: var(--qs-ink);
 }
 
-/* Wraps eyebrow + hero as ONE unit that grows to fill the leftover vertical
-   space in .home's column and centers ITS OWN children (eyebrow, hero)
-   within that space — as a group, so they move together. Centering .home
-   itself (or .home__hero alone) doesn't do this: the eyebrow has no grow
-   behavior of its own, so it stays pinned at the very top while only the
-   hero drifts to the middle, leaving the eyebrow visually stranded far
-   above the title with a large empty gap. Grouping them first means
-   whatever vertical space is centered-into applies to the whole pair, not
-   just one piece of it. */
-.home__main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 0;
-}
-
-/* Shared width cap for the hero/footer-row column: on very wide viewports
-   .home's content box is much wider than the hero content (cover + gap +
-   1000px-max text column) ever grows to, so without this the hero row just
-   sat flush against the left padding with all the leftover width dumped
-   unused on the right. Matches the hero's own intrinsic max width (380px
-   cover + 80px gap + 1000px text). */
-.home__hero,
-.home__footer-row {
+/* Width cap for the hero column: on very wide viewports .home's content box
+   is much wider than the hero content (cover + gap + 1000px-max text
+   column) ever grows to, so without this the hero row just sat flush
+   against the left padding with all the leftover width dumped unused on
+   the right. Matches the hero's own intrinsic max width (380px cover +
+   80px gap + 1000px text). */
+.home__hero {
   width: 100%;
   max-width: 1460px;
   margin-left: auto;
@@ -347,13 +287,19 @@ a { color: inherit; text-decoration: none; }
   flex-shrink: 0;
 }
 
+/* position:relative anchors .home__footer-nav (absolute, desktop/tablet
+   only — see below) so PREV/NEXT can be placed at a JS-measured offset
+   matching .pick-actions' own top, however tall the rest of .home__text
+   (which now also carries the radar teaser below .pick-actions) ends up
+   being — see the layout effect in Home.jsx. */
 .home__hero {
+  position: relative;
   display: flex;
-  align-items: center;
   gap: 80px;
 }
 
 .pick-cover {
+  position: relative;
   width: clamp(132px, 20vw, 380px);
   height: clamp(132px, 20vw, 380px);
   flex-shrink: 0;
@@ -363,6 +309,37 @@ a { color: inherit; text-decoration: none; }
   height: 100%;
   border-radius: 2px;
 }
+
+/* Play/pause overlay on the cover itself — same onToggleTrack as
+   PLAY PREVIEW below (they always reflect the same state), added mainly
+   for mobile where PLAY PREVIEW can be a full scroll away from the cover
+   that's visible immediately. */
+.home__cover-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.55);
+  color: #fff;
+  transition: background 0.15s, transform 0.1s;
+}
+.home__cover-play svg { margin-left: 2px; } /* optical centering for the play triangle */
+.home__cover-play.is-playing svg { margin-left: 0; }
+.home__cover-play.is-playing {
+  background: var(--accent, var(--qs-pink));
+  color: #0A0A0A;
+}
+@media (hover: hover) {
+  .home__cover-play:hover { background: rgba(10, 10, 10, 0.75); }
+  .home__cover-play.is-playing:hover { background: var(--accent, var(--qs-pink)); opacity: 0.85; }
+}
+.home__cover-play:active { transform: translate(-50%, -50%) scale(0.93); }
 
 .home__text {
   /* Must stay flex:1 (not shrink-to-fit) — .track-title's font-size is set
@@ -496,21 +473,20 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
 }
 
-.home__footer-row {
+/* Desktop/tablet default: absolutely positioned under .pick-cover, `top`
+   set inline from Home.jsx's measurement of .pick-actions' own position
+   (see .home__hero's comment above). The <900px tier below reverts this to
+   normal flow, where `top` is simply unused. */
+.home__footer-nav {
+  position: absolute;
+  left: 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 20px;
   font-family: var(--qs-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
   color: var(--qs-ink-35);
-  padding-top: 24px;
-  margin-top: auto;
-}
-.home__footer-nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
 }
 .home__footer-prev,
 .home__footer-next {
@@ -528,6 +504,136 @@ a { color: inherit; text-decoration: none; }
   justify-content: flex-end;
   padding-top: 12px;
 }
+
+/* Separates sections B/C — plain hairline, no bottom margin of its own
+   (unlike .home__divider inside the hero card) since the section below
+   supplies its own top spacing. No divider between A and B — B is meant to
+   read as the next line about THIS pick, not a separate module. */
+.home__divider--section {
+  margin: 40px 0 0;
+}
+
+/* ============================================================
+   RADAR TEASER — nested inside .home__text, right after .pick-actions, so
+   it sits under the pick's own content column (not under .pick-cover) with
+   its own small cover to its left. Cover/title/meta are informational, not
+   a link — only OPEN is, styled like .play-btn and placed below the text,
+   same relationship PLAY PREVIEW has to the pick's own info above it.
+   ============================================================ */
+/* margin-top is double .home__divider's 22px bottom margin (44px) — same
+   "more room below than above" spacing PLAY PREVIEW/SPOTIFY/SHARE already
+   gets from that divider, so the teaser doesn't read as squeezed right up
+   against the actions row above it. */
+.home__radar-teaser {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  margin-top: 44px;
+}
+/* Two-class selector, not a bare .home__radar-teaser-cover rule — needs to
+   out-specificity .track-cover's own width:100%/height:100% (defined later
+   in this file), same technique .archive-card > .track-cover already uses
+   below for the same reason. Smaller than .pick-cover — section B reads as
+   a lighter, secondary follow-up to the pick's own hero, not a second
+   equally-weighted one. */
+.home__radar-teaser-cover.track-cover {
+  width: clamp(100px, 13.5vw, 230px);
+  height: clamp(100px, 13.5vw, 230px);
+  flex-shrink: 0;
+}
+.home__radar-teaser-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.home__radar-teaser-eyebrow {
+  font-family: var(--qs-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--qs-ink-40);
+}
+.home__radar-teaser-title {
+  font-family: var(--qs-display);
+  font-weight: 700;
+  font-size: clamp(20px, 2.4vw, 36px);
+  letter-spacing: -0.01em;
+  color: var(--qs-ink);
+  margin: 2px 0;
+}
+.home__radar-teaser-meta {
+  font-family: var(--qs-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--qs-ink-55);
+}
+.home__radar-teaser-dot { opacity: 0.5; margin: 0 5px; }
+/* Same look as .play-btn (underlined, bold mono) — the one clickable
+   element in section B, exactly like PLAY PREVIEW/SPOTIFY/SHARE are the
+   clickable elements in section A while the cover/title there aren't. */
+.home__radar-teaser-open {
+  align-self: flex-start;
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--qs-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--qs-ink);
+  border-bottom: 2px solid var(--qs-ink);
+  padding-bottom: 2px;
+  transition: opacity 0.15s;
+}
+.home__radar-teaser-open:hover { opacity: 0.7; }
+
+/* ============================================================
+   SECTION C — random wall of past picks' covers
+   ============================================================ */
+.home__section-c {
+  width: 100%;
+  max-width: 1460px;
+  margin: 40px auto 0;
+}
+.home__section-c-title {
+  font-family: var(--qs-display);
+  font-weight: 700;
+  font-size: clamp(22px, 2.2vw, 32px);
+  letter-spacing: -0.01em;
+  margin: 0 0 20px;
+  color: var(--qs-ink);
+}
+.home-picks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 10px;
+}
+.home-picks-grid__item {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  overflow: hidden;
+  transition: opacity 0.15s;
+}
+@media (hover: hover) {
+  .home-picks-grid__item:hover { opacity: 0.75; }
+}
+.home-picks-grid__item .track-cover { width: 100%; height: 100%; border-radius: 2px; }
+
+.home__picks-more {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+  font-family: var(--qs-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--qs-ink-55);
+  transition: color 0.15s;
+}
+.home__picks-more:hover { color: var(--qs-ink); }
 
 /* ============================================================
    LOGO MARK
@@ -1382,12 +1488,19 @@ a { color: inherit; text-decoration: none; }
   .top-nav__brand-logo { width: 21px !important; height: 21px !important; }
   .top-nav__brand-word { font-size: 14.5px; }
 
-  .nav-arrow { display: none; }
-
-  .home__hero { flex-direction: column; align-items: stretch; gap: 22px; }
-  .pick-cover { width: 132px; height: 132px; }
+  .home__hero { flex-direction: column; align-items: stretch; gap: 16px; }
+  .pick-cover { width: 132px; height: 132px; order: 2; }
   .track-title { font-size: clamp(28px, 8.5vw, 40px) !important; }
-  .home__footer-row { flex-wrap: wrap; gap: 10px; }
+  /* Stacked layout: back to normal flow (JS-measured absolute positioning
+     is a desktop/tablet-only concern, see .home__footer-nav), reordered to
+     lead the stack — above the cover — instead of trailing at the end of
+     the DOM (it comes after .home__text now, so it can sit beside
+     .pick-actions when absolutely positioned on wider screens). */
+  .home__footer-nav { position: static; order: 1; }
+  .home__text { order: 3; }
+
+  .home__radar-teaser { flex-direction: column; align-items: stretch; gap: 16px; }
+  .home__radar-teaser-cover.track-cover { width: 100px; height: 100px; }
 
   .radar__hero { gap: 14px; }
   .radar__number { font-size: clamp(48px, 18vw, 72px); }
@@ -1445,12 +1558,19 @@ a { color: inherit; text-decoration: none; }
   .top-nav__brand-logo { width: 26px !important; height: 26px !important; }
   .top-nav__brand-word { font-size: 17px; }
 
-  /* Just the side-by-side arrangement override here — .home__main now
-     handles centering eyebrow+hero as a group at every breakpoint, so this
-     tier no longer needs its own vertical-spacing fix on top of that. */
-  .home__hero { flex-direction: row; align-items: center; gap: 48px; }
+  .home__hero { flex-direction: row; gap: 48px; }
   .pick-cover { width: clamp(160px, 26vw, 260px); height: clamp(160px, 26vw, 260px); }
   .track-title { font-size: clamp(34px, 6vw, 58px) !important; }
+  /* Side-by-side again at this width — undo the <900px tier's stacked-flow
+     override so PREV/NEXT goes back to sitting under .pick-cover via the
+     JS-measured absolute position. */
+  .home__footer-nav { position: absolute; left: 0; margin-top: 0; }
+  .home__text > .home__divider {
+    margin-left: calc(-1 * (clamp(160px, 26vw, 260px) + 48px));
+    width: calc(100% + clamp(160px, 26vw, 260px) + 48px);
+  }
+
+  .home__radar-teaser-cover.track-cover { width: clamp(120px, 17vw, 170px); height: clamp(120px, 17vw, 170px); }
 }
 
 /* Last resort: the 900px tier's sizing above is tuned to hold the wordmark
@@ -1469,6 +1589,16 @@ a { color: inherit; text-decoration: none; }
 
 @media (min-width: 901px) {
   .nav-back { display: none; } /* back-nav only needed on mobile; desktop nav links cover it */
+
+  /* Extends the divider above PLAY PREVIEW/SPOTIFY/SHARE all the way back
+     to .pick-cover's left edge — at this width .home__text sits offset from
+     the page edge by the cover + gap, so left:0/width:100% on the divider
+     itself only spans the text column; this pulls it out to read as one
+     full-width rule closing off the pick's cover+title+artist info. */
+  .home__text > .home__divider {
+    margin-left: calc(-1 * (clamp(132px, 20vw, 380px) + 80px));
+    width: calc(100% + clamp(132px, 20vw, 380px) + 80px);
+  }
 }
 
 /* ============================================================

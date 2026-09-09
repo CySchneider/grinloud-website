@@ -24,6 +24,22 @@ function upscaleSpotifyThumbnail(url) {
   return url.replace(/ab67616d0000(1e02|4851)/, 'ab67616d0000b273');
 }
 
+// Unique genres across a radar's tracks, in first-appearance order. A
+// track's genre field can list more than one ("Tech House | Latin Tech"),
+// so split on "|" before deduping. Shared by MusicRadar's hero and Home's
+// radar teaser card.
+function radarGenreTags(radar) {
+  const seen = new Set();
+  const tags = [];
+  radar.tracks.forEach(t => {
+    t.genre.split('|').forEach(part => {
+      const g = part.trim().toUpperCase();
+      if (g && !seen.has(g)) { seen.add(g); tags.push(g); }
+    });
+  });
+  return tags;
+}
+
 function BackgroundVideo({ overlayOpacity = 0.35, accent, src }) {
   const videoRef = React.useRef(null);
   const loadedSrc = React.useRef(null);
@@ -716,4 +732,4 @@ function SpotifyCover({ spotifyUrl, alt = '' }) {
   );
 }
 
-export { BackgroundVideo, PickCarousel, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TrackInfoLayer, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover };
+export { BackgroundVideo, PickCarousel, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TrackInfoLayer, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover, radarGenreTags };

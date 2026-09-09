@@ -1,7 +1,7 @@
 // Music Radar subpage
 import React from 'react'
 import { Icon } from './icons.jsx'
-import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer } from './shared.jsx'
+import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer, radarGenreTags } from './shared.jsx'
 // Layout: numbered poster-style tracklist on the left, sticky YouTube embed on the right.
 
 function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlaying, onToggleTrack }) {
@@ -25,20 +25,7 @@ function MusicRadar({ radar, accent, onBack, onGotoArchive, previewUrl, isPlayin
     setOpenTrack(match || { title: t.title, artist: t.artist, bpm: t.bpm, key: t.key, genre: t.genre, links: {} });
   };
 
-  // Only show genres that actually occur among this radar's tracks, in the
-  // order they first appear. A track's genre field can list more than one
-  // ("Tech House | Latin Tech"), so split on "|" before deduping.
-  const genreTags = React.useMemo(() => {
-    const seen = new Set();
-    const tags = [];
-    radar.tracks.forEach(t => {
-      t.genre.split('|').forEach(part => {
-        const g = part.trim().toUpperCase();
-        if (g && !seen.has(g)) { seen.add(g); tags.push(g); }
-      });
-    });
-    return tags;
-  }, [radar]);
+  const genreTags = React.useMemo(() => radarGenreTags(radar), [radar]);
 
   return (
     <div className="radar" style={{ '--accent': accent }}>

@@ -52,6 +52,14 @@ function parseLocationState() {
   };
 }
 
+// The radar cycle a given pick date belongs to: the most recent radar (by
+// liveDate) at or before that date. RADAR + PREVIOUS_RADARS are both
+// already newest-first, so the first match is the right one.
+function findRadarForDate(dateStr) {
+  const all = [window.GRINLOUD_DATA.RADAR, ...window.GRINLOUD_DATA.PREVIOUS_RADARS];
+  return all.find(r => r.liveDate <= dateStr) || all[all.length - 1];
+}
+
 const _initialLoc = parseLocationState();
 const _allRadars  = _initialLoc.radarNumber
   ? [window.GRINLOUD_DATA.RADAR, ...window.GRINLOUD_DATA.PREVIOUS_RADARS]
@@ -95,6 +103,10 @@ function App() {
   // Clamp pickIdx to valid range in case picks array changes length (e.g. midnight filter update)
   const safePickIdx = picks.length > 0 ? Math.max(0, Math.min(picks.length - 1, pickIdx)) : 0;
   const pick = picks[safePickIdx];
+
+  // Which radar cycle the currently shown pick belongs to — not always
+  // liveRadar, since prev/next can page back past a radar boundary.
+  const pickRadar = React.useMemo(() => (pick ? findRadarForDate(pick.date) : liveRadar), [pick && pick.date]);
 
   const palette = COLOR_MAP[t.bgColor] || COLOR_MAP.pink;
 
@@ -150,10 +162,15 @@ function App() {
   const continueAcrossPickRef = React.useRef(false);
   const gotoPick = (idx) => {
     const target = picks[idx];
-    const canContinue = isPlaying && target?.links?.spotify && target.links.spotify !== '#';
+    // Only continue playback across the nav if it's the CURRENT pick's own
+    // track playing — not some other track started from Home's random picks
+    // grid, which prev/next has no business interrupting.
+    const heroIsPlaying = isPlaying && previewUrl === pick.links.spotify;
+    const canContinue = heroIsPlaying && target?.links?.spotify && target.links.spotify !== '#';
     if (canContinue) {
       continueAcrossPickRef.current = true;
       window.grinloudPlaySpotify(target.links.spotify);
+      setPreviewUrl(target.links.spotify);
     }
     setPickIdx(idx);
   };
@@ -161,10 +178,25 @@ function App() {
   const next = () => canNext && gotoPick(pickIdx - 1);
 
   // Stop preview when route or pick changes — except right after prev/next
-  // carried an active preview over to the new pick (see gotoPick above).
+  // carried an active preview over to the new pick (see gotoPick above), and
+  // except when what's actually playing is unrelated to the hero pick (e.g.
+  // a track started from Home's random picks grid) — heroUrlRef remembers
+  // which track counted as "the hero's own" as of the last time this effect
+  // ran, so a grid track never gets silently paused just because the user
+  // paged prev/next through the hero above it.
+  const heroUrlRef = React.useRef(pick.links.spotify);
   React.useEffect(() => {
-    if (continueAcrossPickRef.current) { continueAcrossPickRef.current = false; return; }
-    setIsPlaying(false);
+    if (continueAcrossPickRef.current) {
+      continueAcrossPickRef.current = false;
+      heroUrlRef.current = pick.links.spotify;
+      return;
+    }
+    if (isPlaying && previewUrl === heroUrlRef.current) {
+      window.grinloudPauseSpotify();
+      setIsPlaying(false);
+      setPreviewUrl(null);
+    }
+    heroUrlRef.current = pick.links.spotify;
   }, [route, pickIdx]);
   React.useEffect(() => { if (route !== 'radar' && route !== 'archive') setPreviewUrl(null); }, [route]);
 
@@ -255,17 +287,19 @@ function App() {
       {route === 'home' && (
         <Home
           pick={pick}
-          radar={liveRadar}
+          radar={pickRadar}
           accent={palette.bg}
           prev={prev}
           next={next}
           canPrev={canPrev}
           canNext={canNext}
-          onPlay={() => setIsPlaying((p) => !p)}
+          previewUrl={previewUrl}
           isPlaying={isPlaying}
+          onToggleTrack={toggleTrackPreview}
           typeScale={t.typeScale}
           infoDensity={t.density}
-          onGotoRadar={() => setRoute('radar')}
+          onGotoRadar={(r) => { setSelectedRadar(r); setRoute('radar'); }}
+          onGotoArchive={() => { setArchiveTab('picks'); setRoute('archive'); }}
           isAdmin={isAdmin}
         />
       )}
