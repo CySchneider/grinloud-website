@@ -153,19 +153,31 @@ function Home({ pick, radar, accent, prev, next, canPrev, canNext, previewUrl, i
   // tablet only — the >900px CSS below positions .home__footer-nav
   // absolutely off this; the <900px tier reverts it to normal flow (see
   // styles.css) where the measurement is simply unused.
+  //
+  // Clamped to never sit higher than the cover's own bottom edge (+16px
+  // breathing room): a pick with a short title/single-line GRINLOUD SAYS
+  // can render .pick-actions well above where the (fixed-size) cover ends,
+  // which would otherwise place PREV/NEXT behind/inside the cover image
+  // instead of below it.
   const heroRef = React.useRef(null);
+  const coverRef = React.useRef(null);
   const actionsRef = React.useRef(null);
   const [navTop, setNavTop] = React.useState(null);
   React.useLayoutEffect(() => {
     const heroEl = heroRef.current;
+    const coverEl = coverRef.current;
     const actionsEl = actionsRef.current;
-    if (!heroEl || !actionsEl) return;
+    if (!heroEl || !coverEl || !actionsEl) return;
     const measure = () => {
-      setNavTop(actionsEl.getBoundingClientRect().top - heroEl.getBoundingClientRect().top);
+      const heroTop = heroEl.getBoundingClientRect().top;
+      const actionsTop = actionsEl.getBoundingClientRect().top - heroTop;
+      const belowCover = coverEl.getBoundingClientRect().bottom - heroTop + 16;
+      setNavTop(Math.max(actionsTop, belowCover));
     };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(heroEl);
+    ro.observe(coverEl);
     ro.observe(actionsEl);
     return () => ro.disconnect();
   }, [pick.date]);
@@ -174,7 +186,7 @@ function Home({ pick, radar, accent, prev, next, canPrev, canNext, previewUrl, i
     <div className="home" style={{ '--accent': accent }}>
       <section className="home__section-a" onTouchStart={swipe.onTouchStart} onTouchEnd={swipe.onTouchEnd}>
         <div className="home__hero" ref={heroRef}>
-          <div className="pick-cover">
+          <div className="pick-cover" ref={coverRef}>
             <SpotifyCover spotifyUrl={pick.links?.spotify} alt={`${pick.title} — ${pick.artist} cover art`} />
             <button
               className={`cover-play-btn ${heroIsPlaying ? 'is-playing' : ''}`}
