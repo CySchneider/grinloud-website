@@ -154,25 +154,44 @@ function Home({ pick, radar, accent, prev, next, canPrev, canNext, previewUrl, i
   // absolutely off this; the <900px tier reverts it to normal flow (see
   // styles.css) where the measurement is simply unused.
   //
-  // Clamped to never sit higher than the cover's own bottom edge (+16px
-  // breathing room): a pick with a short title/single-line GRINLOUD SAYS
-  // can render .pick-actions well above where the (fixed-size) cover ends,
-  // which would otherwise place PREV/NEXT behind/inside the cover image
-  // instead of below it.
+  // A pick with a short title/single-line GRINLOUD SAYS can render
+  // .pick-actions (and the full-width .home__divider right above it) well
+  // above where the (fixed-size) cover ends — the divider would then cut
+  // across the cover image instead of sitting below it, and PREV/NEXT would
+  // land behind the cover instead of under it. Fixed by inserting a spacer
+  // (clearanceRef, height only — never margin) right before the divider
+  // whenever needed, pushing both the divider's line AND everything after
+  // it (.pick-actions, and PREV/NEXT aligned to it) down to consistently
+  // clear the cover's bottom edge. A margin-top on the divider itself was
+  // tried first and looked right in isolated checks, but real picks showed
+  // it silently eaten by CSS margin collapsing with the preceding sibling
+  // (.pick-carousel) — height on a dedicated element never collapses, so
+  // the spacer is the reliable fix.
   const heroRef = React.useRef(null);
   const coverRef = React.useRef(null);
+  const clearanceRef = React.useRef(null);
   const actionsRef = React.useRef(null);
   const [navTop, setNavTop] = React.useState(null);
+  const [clearanceHeight, setClearanceHeight] = React.useState(0);
   React.useLayoutEffect(() => {
     const heroEl = heroRef.current;
     const coverEl = coverRef.current;
+    const clearanceEl = clearanceRef.current;
     const actionsEl = actionsRef.current;
-    if (!heroEl || !coverEl || !actionsEl) return;
+    if (!heroEl || !coverEl || !clearanceEl || !actionsEl) return;
     const measure = () => {
       const heroTop = heroEl.getBoundingClientRect().top;
-      const actionsTop = actionsEl.getBoundingClientRect().top - heroTop;
-      const belowCover = coverEl.getBoundingClientRect().bottom - heroTop + 16;
-      setNavTop(Math.max(actionsTop, belowCover));
+      const targetY = coverEl.getBoundingClientRect().bottom - heroTop + 16;
+
+      const prevHeight = clearanceEl.style.height;
+      clearanceEl.style.height = '0px';
+      const naturalDividerTop = clearanceEl.getBoundingClientRect().bottom - heroTop;
+      const naturalActionsTop = actionsEl.getBoundingClientRect().top - heroTop;
+      clearanceEl.style.height = prevHeight;
+
+      const extraGap = Math.max(0, targetY - naturalDividerTop);
+      setClearanceHeight(extraGap);
+      setNavTop(naturalActionsTop + extraGap);
     };
     measure();
     const ro = new ResizeObserver(measure);
@@ -230,6 +249,7 @@ function Home({ pick, radar, accent, prev, next, canPrev, canNext, previewUrl, i
 
             <PickCarousel pick={pick} />
 
+            <div ref={clearanceRef} style={{ height: clearanceHeight }} />
             <div className="home__divider" />
 
             <div className="pick-actions" ref={actionsRef}>
