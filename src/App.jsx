@@ -9,6 +9,21 @@ import { RadarCover } from './RadarCover.jsx'
 import { MusicRadar } from './MusicRadar.jsx'
 import { Archive } from './Archive.jsx'
 
+// Fire-and-forget hit to our own free D1-backed counter (functions/api/hit.js).
+// No third-party analytics, no cost, never blocks or throws on the page —
+// if the D1 binding isn't set up yet, the endpoint just 204s. See that file
+// for the one-time Cloudflare dashboard setup.
+function sendHit(type, extra = {}) {
+  try {
+    const payload = JSON.stringify({ type, path: window.location.pathname, ...extra });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon('/api/hit', new Blob([payload], { type: 'application/json' }));
+    } else {
+      fetch('/api/hit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(() => {});
+    }
+  } catch (_) { /* tracking must never break the site */ }
+}
+
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "bgColor": "pink",
   "typeScale": 1.0,
@@ -150,6 +165,7 @@ function App() {
       setIsPlaying(false);
     } else {
       window.grinloudPlaySpotify(url);
+      sendHit('play', { track: url });
       setPreviewUrl(url);
       setIsPlaying(true);
     }
@@ -218,6 +234,7 @@ function App() {
       window.history[hasSyncedUrlRef.current ? 'pushState' : 'replaceState']({}, '', url);
     }
     hasSyncedUrlRef.current = true;
+    sendHit('view', { path: url });
   }, [route, selectedRadar.number, pick && pick.date, archiveTab]);
 
   // Restore state when the user navigates with the browser back/forward buttons.
