@@ -1,0 +1,8 @@
+name = "grinloud-website"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-09-14"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "grinloud-analytics"
+database_id = "b5256207-814a-4f84-9f69-f7f19e33f0e6"
