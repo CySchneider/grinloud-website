@@ -125,24 +125,30 @@ async function main() {
     if (artistMatch) current.artist = artistMatch[1];
     if (line.match(/^\s*artistName: /)) { current.nameLine = i; continue; }
     if (line.includes('artistImage:')) { current.imageLine = i; continue; }
-    if (line.match(/^\s*coArtists: \[\s*$/)) {
+    if (line.match(/^\s*coArtists: \[/)) {
+      // Hand-authored coArtists can be written multi-line (one entry per
+      // line, closing '],' on its own line) or single-line (whole array,
+      // e.g. `coArtists: [{ name: 'X', instagram: '@y' }],`) — both must be
+      // detected here, or a single-line block is left behind untouched AND
+      // a second `coArtists:` key gets inserted below, silently shadowing
+      // the hand-added instagram/tiktok via duplicate-key semantics.
       const start = i;
-      let j = i + 1;
-      while (j < picksEnd && !lines[j].match(/^\s*\],?\s*$/)) {
-        const nameM = lines[j].match(/name: '((?:\\.|[^'\\])*)'/);
-        const igM = lines[j].match(/instagram: '((?:\\.|[^'\\])*)'/);
-        const ttM = lines[j].match(/tiktok: '((?:\\.|[^'\\])*)'/);
-        if (nameM) {
-          current.existingCoArtists.push({
-            name: nameM[1].replace(/\\(.)/g, '$1'),
-            instagram: igM ? igM[1].replace(/\\(.)/g, '$1') : undefined,
-            tiktok: ttM ? ttM[1].replace(/\\(.)/g, '$1') : undefined,
-          });
-        }
-        j++;
+      let j = i;
+      while (j < picksEnd && !lines[j].match(/\],?\s*$/)) j++;
+      const block = lines.slice(start, j + 1).join('\n');
+      const entryRe = /\{\s*name: '((?:\\.|[^'\\])*)'[^}]*\}/g;
+      let m;
+      while ((m = entryRe.exec(block))) {
+        const igM = m[0].match(/instagram: '((?:\\.|[^'\\])*)'/);
+        const ttM = m[0].match(/tiktok: '((?:\\.|[^'\\])*)'/);
+        current.existingCoArtists.push({
+          name: m[1].replace(/\\(.)/g, '$1'),
+          instagram: igM ? igM[1].replace(/\\(.)/g, '$1') : undefined,
+          tiktok: ttM ? ttM[1].replace(/\\(.)/g, '$1') : undefined,
+        });
       }
       current.coArtistsStart = start;
-      current.coArtistsEnd = j; // line index of the closing '],'
+      current.coArtistsEnd = j; // line index of the closing '],' (== start for single-line)
       i = j;
       continue;
     }

@@ -121,6 +121,176 @@ const BG_VIDEOS = [
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
 
+  // ── MUSIC RADAR 016 — 19–28 Sep 2026 ───────────────────────────────────────
+  {
+    id: 'pick-2026-09-28',
+    date: '2026-09-28',
+    title: 'Control (Extended Mix)',
+    artist: 'G-POL, SIDEPIECE',
+    bpm: 130, key: 'F Major', label: 'LIP SERVICE', release: '28 Jul 2026',
+    genre: 'Bass House', accent: 'green',
+    info: "Cyprus' G-Pol teams up with SIDEPIECE on LIP SERVICE — Radar 016 closes on pure bass-house muscle.",
+    short: "Closes the radar on pure muscle.",
+    funFact: "SIDEPIECE — the duo of Party Favor and Nitti Gritti — landed a Grammy nomination for Best Dance Recording off their 2019 Diplo collab \"On My Mind\"; here they link up with Cyprus' G-Pol for \"Control\".",
+    artistInstagram: '@sidepiece',
+    artistName: 'SIDEPIECE',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb21705221c7f192d4a7963910',
+    coArtists: [
+      { name: 'G-POL', image: 'https://i.scdn.co/image/ab6761610000e5ebfee36f16cbd2c5a02cceedee' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/7o3m0OoVfFgBy8j1sxJwTF', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-27',
+    date: '2026-09-27',
+    title: 'Get Up and Dance (Extended Mix)',
+    artist: 'CLOONEE',
+    bpm: 130, key: 'Bb Major', label: 'Hellbent Records', release: '09 Sep 2026',
+    genre: 'Tech House', accent: 'blue',
+    info: "Sheffield's Cloonee drops \"Get Up and Dance\" on his own Hellbent Records — the second single off his debut album \"AYSY?\".",
+    short: "Second single off his debut album.",
+    funFact: "Cloonee (real name Dave Bissett) broke through via Solid Grooves and elrow before launching his own label Hellbent Records in 2021 as an outlet for darker, groove-heavy club tools.",
+    artistInstagram: '@cloonee',
+    artistTiktok: '@clooneeuk',
+    artistName: 'Cloonee',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb4dee8ab50a4b3fd1d5615bed',
+    links: { spotify: 'https://open.spotify.com/track/3XO43dyBY9DWKIAeFEidRC', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-26',
+    date: '2026-09-26',
+    title: 'Funky Feeling (Extended Mix)',
+    artist: 'SIMES',
+    bpm: 129, key: 'Bb Minor', label: 'LTF Records', release: '04 Sep 2026',
+    genre: 'House', accent: 'pink',
+    info: "Düsseldorf's Simes lands on Franky Rizardo's LTF Records with a groove built for after-hours.",
+    short: "Groove built for after-hours.",
+    funFact: "Simes has earned support from Loco Dice, The Martinez Brothers and Marco Carola, with his tracks played out at Amnesia, Space Miami and EDC Las Vegas.",
+    artistName: 'Simes',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb047de4811a22c07c20ba1102',
+    links: { spotify: 'https://open.spotify.com/track/3e9nqr6iW1wcYlOSkiDp1r', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-25',
+    date: '2026-09-25',
+    title: 'That Girl',
+    artist: 'CY SCHNEIDER',
+    bpm: 128, key: 'B Major', label: 'Isuntu', release: '12 Sep 2026',
+    genre: 'Tech House', accent: 'yellow',
+    info: "GRINLOUD's own founder steps out from behind the curation desk — \"That Girl\" is about the one he couldn't get out of his head, who's now his fiancée.",
+    short: "The muse who became his fiancée.",
+    funFact: "The girl on the cover of \"That Girl\" is Cy's real-life fiancée — the one he couldn't stop thinking about, and the muse behind the song.",
+    artistInstagram: '@journal.of.cy',
+    artistName: 'Cy Schneider',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb17b761f04204edefd69d9e5d',
+    links: { spotify: 'https://open.spotify.com/track/116OgFNXjnMrxCaW6jTOiE', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-24',
+    date: '2026-09-24',
+    title: 'Just A Little Bit More (Extended)',
+    artist: 'MAU P',
+    bpm: 128, key: 'Gb Major', label: 'Interscope Records', release: '04 Sep 2026',
+    genre: 'Dance/Pop', accent: 'orange',
+    info: "Dutch powerhouse Mau P goes major-label with \"Just A Little Bit More\" on Interscope — a deliberate outlier in a radar full of underground cuts.",
+    short: "A deliberate outlier, major-label energy.",
+    funFact: "Mau P broke through with \"Drugs From Amsterdam\", landed on Forbes' 30 Under 30 Europe list, and holds residencies at Pacha Ibiza and XS Las Vegas — this is his 15th original production.",
+    artistInstagram: '@maup',
+    artistName: 'Mau P',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb19e9a2b64d09e0dcbd3c5541',
+    links: { spotify: 'https://open.spotify.com/track/3wRO9Pt5iPbZTs8YT1x69Q', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-23',
+    date: '2026-09-23',
+    title: 'In Da Zone (Extended Mix)',
+    artist: 'TINI GESSLER',
+    bpm: 128, key: 'Ab Major', label: 'Catch & Release', release: '04 Sep 2026',
+    genre: 'Bass House', accent: 'green',
+    info: "German-born, Spain-raised Tini Gessler locks into the zone on Catch & Release — elrow-approved bass house.",
+    short: "Elrow-approved bass house.",
+    funFact: "Tini Gessler joined elrow's artist roster in 2017 after starting to DJ in 2013, and has since played Tomorrowland, Space Miami and E1.",
+    artistInstagram: '@tinigessler',
+    artistTiktok: '@tinigessler',
+    artistName: 'Tini Gessler',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb744d162589bf3b11cca568fa',
+    links: { spotify: 'https://open.spotify.com/track/74EYuSfkYh7EKzyqWXys3d', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-22',
+    date: '2026-09-22',
+    title: '1,2,3 (Extended)',
+    artist: 'JAMES HYPE, VOLKODER',
+    bpm: 127, key: 'Db Minor', label: 'Tomorrowland Music', release: '04 Sep 2026',
+    genre: 'Tech House', accent: 'blue',
+    info: "James Hype teams up with Brazil's Volkoder on Tomorrowland Music — big-room energy, underground groove.",
+    short: "Big-room energy, underground groove.",
+    funFact: "James Hype's \"Ferrari\" (with Miggy Dela Rosa) topped charts in three countries and passed a billion streams; he holds residencies at Hï Ibiza and Zouk Las Vegas.",
+    artistInstagram: '@jameshype',
+    artistName: 'James Hype',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb9831431abd5c375ef7fbb1ee',
+    coArtists: [
+      { name: 'Volkoder', image: 'https://i.scdn.co/image/ab6761610000e5eb28eb3ef8ecd29ca04527dd20', instagram: '@volkoder' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/026KKK884Zz74vrFF9EIiG', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-21',
+    date: '2026-09-21',
+    title: 'Gotta Be Cool (Luch Remix)',
+    artist: 'RAFAEL, LUCH',
+    bpm: 124, key: 'Db Major', label: 'Crosstown Rebels', release: '11 Sep 2026',
+    genre: 'Tech House', accent: 'pink',
+    info: "Tel Aviv's Rafael gets the Luch remix treatment on Crosstown Rebels — cool, confident, dancefloor-ready.",
+    short: "Cool, confident, dancefloor-ready.",
+    funFact: "Rafael's (real name Liav Shalom) edits have been played by Jamie Jones on Cercle, with support from Diplo and CamelPhat.",
+    artistInstagram: '@rafael___music',
+    artistName: 'Rafael',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebe81fa13ccd203b25572c34a7',
+    coArtists: [
+      { name: 'Luch', image: 'https://i.scdn.co/image/ab6761610000e5ebdf64bb4f8dffa3f27ec389f7', tiktok: '@luchmusic' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/6jtVPskUWZSDBtotyrfzzX', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-20',
+    date: '2026-09-20',
+    title: 'Color Divino (Extended Mix)',
+    artist: 'EZEQUIEL ARIAS, FJL',
+    bpm: 124, key: 'Bb Major', label: 'Anjunadeep', release: '28 Aug 2026',
+    genre: 'Progressive House', accent: 'yellow',
+    info: "Bariloche's Ezequiel Arias joins FJL on Anjunadeep — deep, melodic, built for sunrise sets.",
+    short: "Deep and melodic, built for sunrise.",
+    funFact: "Ezequiel Arias hit #1 on Beatport's Progressive House chart with \"Psychodelia\" and made his Lollapalooza Argentina debut in 2026.",
+    artistInstagram: '@ezeqarias',
+    artistTiktok: '@ezeqarias',
+    artistName: 'Ezequiel Arias',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb20d0a22315dbc717e4929787',
+    coArtists: [
+      { name: 'FJL', image: 'https://i.scdn.co/image/ab6761610000e5ebb8f249c48105e7a896fe60ba' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/6RFGLmZ3DMLVTmiTenSrGK', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-19',
+    date: '2026-09-19',
+    title: 'Homeboy (Dilby Remix)',
+    artist: 'KHEN, DILBY',
+    bpm: 124, key: 'C Minor', label: 'Closure', release: '04 Sep 2026',
+    genre: 'Progressive House', accent: 'orange',
+    info: "Tel Aviv's Khen opens Radar 016 with a Dilby remix of \"Homeboy\" on his own label Closure — warm, rolling, and wide awake.",
+    short: "Warm, rolling groove to open the radar.",
+    funFact: "Khen started DJing on cassette decks at age 6, got signed to Plattenbank at 22 by Guy Mantzur, and now runs his own label Closure — home to this remix.",
+    artistInstagram: '@khenmusic',
+    artistTiktok: '@khenmusic',
+    artistName: 'Khen',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eba307c36bf4e4601db193b9d2',
+    coArtists: [
+      { name: 'Dilby', image: 'https://i.scdn.co/image/ab6761610000e5ebb32915eefdb7bf6c231a5c61', instagram: '@dilbydj' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/0JfapdVmxqES36BynUPe7c', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+
   // ── MUSIC RADAR 015 — 9–18 Sep 2026 ───────────────────────────────────
   {
     id: 'pick-2026-09-18',
@@ -743,7 +913,7 @@ const PICKS = [
     artistName: 'ZSS',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb6901d937f6e0fd68f09e3abc',
     coArtists: [
-      { name: 'Buka', image: 'https://i.scdn.co/image/ab6761610000e5eb5b263dedccae55483dd13d9e' },
+      { name: 'Buka', image: 'https://i.scdn.co/image/ab6761610000e5eb03b96cbeadbab8293365f56f' },
       { name: 'Luxtides', image: 'https://i.scdn.co/image/ab6761610000e5eb25e5e6f2d42b9281eb9eea8b', instagram: '@luxtides' },
     ],
     links: { spotify: 'https://open.spotify.com/track/7cMbPgVbx3N743LYQWZuEI', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -1059,7 +1229,7 @@ const PICKS = [
     artistName: 'MARTA',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb133d5851203856970de73e8c',
     coArtists: [
-      { name: 'Eve Lauren', image: 'https://i.scdn.co/image/ab6761610000e5eb109cd404f252937d934db33d' },
+      { name: 'Eve Lauren', image: 'https://i.scdn.co/image/ab6761610000e5eb9b90015ff76089f6929d6edb' },
     ],
     links: { spotify: 'https://open.spotify.com/track/3PLXh3XJRYXmKRsbmONqDd', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -2135,7 +2305,7 @@ const PICKS = [
     artistName: 'Layton Giordani',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb1c4a89caa76ae4f1d3232f61',
     coArtists: [
-      { name: 'AR/CO', image: 'https://i.scdn.co/image/ab6761610000e5eb6898a67deb8d51e11949faaf' },
+      { name: 'AR/CO', image: 'https://i.scdn.co/image/ab6761610000e5eba93c4de124fe7605e057b121' },
     ],
     links: { spotify: 'https://open.spotify.com/track/0RGoQAGnUlFkKcaCta4vmH', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -2711,30 +2881,30 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 015 ────────────────────────────────────────────────────────────────────
+// ── CURRENT RADAR — 016 ────────────────────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-015',
-  number: '015',
-  title: 'Music Radar 015',
-  subtitle: 'One Groove. Zero Breaks.',
-  cover: 'Music Radar Cover 015.jpg',
-  date: '09 SEP 2026',
-  liveDate: '2026-09-09', // public visibility date — same as first pick of this radar
-  nextDate: '19 SEP 2026',
-  youtubeId: 'K05st4DKXFY',
-  spotifyUrl: 'https://open.spotify.com/playlist/4WFoMQBNVkzy228SUjVpuZ',
-  duration: '24:29',
+  id: 'radar-016',
+  number: '016',
+  title: 'Music Radar 016',
+  subtitle: 'Home Made. Floor Ready.',
+  cover: 'Music Radar Cover 016.jpg',
+  date: '19 SEP 2026',
+  liveDate: '2026-09-19', // public visibility date — same as first pick of this radar
+  nextDate: '29 SEP 2026',
+  youtubeId: 'QhWfv8JaBo4',
+  spotifyUrl: 'https://open.spotify.com/playlist/4WiqkNvmI7Jy7UDWc0fR6f',
+  duration: '27:12',
   tracks: [
-    { n: '01', title: "It's So Nice (Extended Mix)",     artist: 'ANOTR, 3DDY',            bpm: 127, key: 'E Minor',  genre: 'House',      cue: 'TBA' },
-    { n: '02', title: 'Appetite (Extended Mix)',          artist: 'Leisan',                 bpm: 127, key: 'F Minor',  genre: 'Tech House', cue: 'TBA' },
-    { n: '03', title: 'Double The Funk (Radio Edit)',     artist: 'Joe Thomas (UK)',        bpm: 128, key: 'E Major',  genre: 'Tech House', cue: 'TBA' },
-    { n: '04', title: 'Champagne On Me (Extended Mix)',   artist: 'Lucy Guo',               bpm: 128, key: 'E Major',  genre: 'Dance/Pop',  cue: 'TBA' },
-    { n: '05', title: '1800 (Extended Mix)',              artist: 'CID, Taylr Renee',       bpm: 129, key: 'F Major',  genre: 'Bass House', cue: 'TBA' },
-    { n: '06', title: 'Take It Higher (Extended Mix)',    artist: 'Tujamo, Stadiumx',       bpm: 129, key: 'Eb Minor', genre: 'Bass House', cue: 'TBA' },
-    { n: '07', title: 'Invisible (Extended Mix)',         artist: 'Jazzy, Chris Lorenzo',   bpm: 130, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
-    { n: '08', title: 'Bring That Beat Back (Extended Mix)', artist: 'AMMIL',               bpm: 130, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
-    { n: '09', title: '1997 (Original Mix)',              artist: 'Beave',                  bpm: 132, key: 'Eb Minor', genre: 'House',      cue: 'TBA' },
-    { n: '10', title: 'Friction (Extended Mix)',          artist: 'Riordan, Locky',         bpm: 132, key: 'D Minor',  genre: 'Tech House', cue: 'TBA' },
+    { n: '01', title: 'Homeboy (Dilby Remix)',        artist: 'Khen, Dilby',            bpm: 124, key: 'C Minor',  genre: 'Progressive House', cue: 'TBA' },
+    { n: '02', title: 'Color Divino (Extended Mix)',  artist: 'Ezequiel Arias, FJL',    bpm: 124, key: 'Bb Major', genre: 'Progressive House', cue: 'TBA' },
+    { n: '03', title: 'Gotta Be Cool (Luch Remix)',   artist: 'Rafael, Luch',           bpm: 124, key: 'Db Major', genre: 'Tech House',        cue: 'TBA' },
+    { n: '04', title: '1,2,3 (Extended)',             artist: 'James Hype, Volkoder',   bpm: 127, key: 'Db Minor', genre: 'Tech House',        cue: 'TBA' },
+    { n: '05', title: 'In Da Zone (Extended Mix)',    artist: 'Tini Gessler',           bpm: 128, key: 'Ab Major', genre: 'Bass House',        cue: 'TBA' },
+    { n: '06', title: 'Just A Little Bit More (Extended)', artist: 'Mau P',             bpm: 128, key: 'Gb Major', genre: 'Dance/Pop',         cue: 'TBA' },
+    { n: '07', title: 'That Girl',                    artist: 'Cy Schneider',           bpm: 128, key: 'B Major',  genre: 'Tech House',        cue: 'TBA' },
+    { n: '08', title: 'Funky Feeling (Extended Mix)', artist: 'Simes',                  bpm: 129, key: 'Bb Minor', genre: 'House',             cue: 'TBA' },
+    { n: '09', title: 'Get Up and Dance (Extended Mix)', artist: 'Cloonee',             bpm: 130, key: 'Bb Major', genre: 'Tech House',        cue: 'TBA' },
+    { n: '10', title: 'Control (Extended Mix)',       artist: 'G-Pol, SIDEPIECE',       bpm: 130, key: 'F Major',  genre: 'Bass House',        cue: 'TBA' },
   ]
 };
 
@@ -2742,6 +2912,31 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ───────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    id: 'radar-015',
+    number: '015',
+    title: 'Music Radar 015',
+    subtitle: 'One Groove. Zero Breaks.',
+    cover: 'Music Radar Cover 015.jpg',
+    date: '09 SEP 2026',
+    liveDate: '2026-09-09', // public visibility date — same as first pick of this radar
+    nextDate: '19 SEP 2026',
+    youtubeId: 'K05st4DKXFY',
+    spotifyUrl: 'https://open.spotify.com/playlist/4WFoMQBNVkzy228SUjVpuZ',
+    duration: '24:29',
+    tracks: [
+      { n: '01', title: "It's So Nice (Extended Mix)",     artist: 'ANOTR, 3DDY',            bpm: 127, key: 'E Minor',  genre: 'House',      cue: 'TBA' },
+      { n: '02', title: 'Appetite (Extended Mix)',          artist: 'Leisan',                 bpm: 127, key: 'F Minor',  genre: 'Tech House', cue: 'TBA' },
+      { n: '03', title: 'Double The Funk (Radio Edit)',     artist: 'Joe Thomas (UK)',        bpm: 128, key: 'E Major',  genre: 'Tech House', cue: 'TBA' },
+      { n: '04', title: 'Champagne On Me (Extended Mix)',   artist: 'Lucy Guo',               bpm: 128, key: 'E Major',  genre: 'Dance/Pop',  cue: 'TBA' },
+      { n: '05', title: '1800 (Extended Mix)',              artist: 'CID, Taylr Renee',       bpm: 129, key: 'F Major',  genre: 'Bass House', cue: 'TBA' },
+      { n: '06', title: 'Take It Higher (Extended Mix)',    artist: 'Tujamo, Stadiumx',       bpm: 129, key: 'Eb Minor', genre: 'Bass House', cue: 'TBA' },
+      { n: '07', title: 'Invisible (Extended Mix)',         artist: 'Jazzy, Chris Lorenzo',   bpm: 130, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
+      { n: '08', title: 'Bring That Beat Back (Extended Mix)', artist: 'AMMIL',               bpm: 130, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
+      { n: '09', title: '1997 (Original Mix)',              artist: 'Beave',                  bpm: 132, key: 'Eb Minor', genre: 'House',      cue: 'TBA' },
+      { n: '10', title: 'Friction (Extended Mix)',          artist: 'Riordan, Locky',         bpm: 132, key: 'D Minor',  genre: 'Tech House', cue: 'TBA' },
+    ]
+  },
   {
     id: 'radar-014',
     number: '014',
