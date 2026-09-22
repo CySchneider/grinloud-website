@@ -1,7 +1,7 @@
 // Archive page — past Picks of the Day + past Music Radars.
 import React from 'react'
 import { Icon } from './icons.jsx'
-import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer } from './shared.jsx'
+import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer, picksVisibleThroughDate } from './shared.jsx'
 
 // PICKS stores artist names in ALL CAPS (used elsewhere as-is, e.g. the Home
 // hero); Music Radar's tracks carry hand-typed mixed case instead. To match
@@ -15,12 +15,14 @@ function displayArtist(artist) {
   );
 }
 
-function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlaying, onToggleTrack, tab, onTabChange, isAdmin }) {
+function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlaying, onToggleTrack, tab, onTabChange, picksLayout, onPicksLayoutChange, isAdmin }) {
   const allPicks = window.GRINLOUD_DATA.PICKS;
   const radars = window.GRINLOUD_DATA.PREVIOUS_RADARS;
   const currentRadar = window.GRINLOUD_DATA.RADAR;
   const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
-  const picks = isAdmin ? allPicks : allPicks.filter(p => p.date <= todayStr);
+  // All picks through the last day of the currently live Music Radar cycle
+  // — that whole cycle is already public (see picksVisibleThroughDate).
+  const picks = isAdmin ? allPicks : allPicks.filter(p => p.date <= picksVisibleThroughDate(todayStr));
   const radarActuallyLive = !currentRadar.liveDate || todayStr >= currentRadar.liveDate;
   const showCurrentRadar = isAdmin || radarActuallyLive;
   const [openTrack, setOpenTrack] = React.useState(null);
@@ -50,6 +52,49 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlayi
       </header>
 
       {tab === 'picks' && (
+        <div className="archive__toolbar">
+          <button
+            className="archive__layout-switch"
+            onClick={() => onPicksLayoutChange(picksLayout === 'cover' ? 'list' : 'cover')}
+          >
+            {picksLayout === 'cover'
+              ? <><Icon.List size={13} /> LIST VIEW</>
+              : <><Icon.Grid size={13} /> COVER VIEW</>}
+          </button>
+        </div>
+      )}
+
+      {tab === 'picks' && picksLayout === 'cover' && (
+        <div className="home-picks-grid">
+          {picks.map((p) => {
+            const url = p.links?.spotify;
+            const isActive = isRowPlaying(url);
+            const canPlay = Boolean(url) && url !== '#';
+            return (
+              <div key={p.id} className="home-picks-grid__item archive-cover-item">
+                <button
+                  className="archive-cover-item__hit"
+                  onClick={() => setOpenTrack(p)}
+                  aria-label={`View ${p.title} — ${p.artist}`}
+                >
+                  <SpotifyCover spotifyUrl={url} alt={`${p.title} — ${p.artist} cover art`} />
+                </button>
+                {canPlay && (
+                  <button
+                    className={`cover-play-btn ${isActive ? 'is-playing' : ''}`}
+                    onClick={() => onToggleTrack(url)}
+                    aria-label={isActive ? 'Pause preview' : 'Play preview'}
+                  >
+                    {isActive ? <Icon.Pause size={20} /> : <Icon.Play size={20} />}
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {tab === 'picks' && picksLayout === 'list' && (
         <div className="archive__grid">
           {picks.map((p) => {
             const url = p.links?.spotify;

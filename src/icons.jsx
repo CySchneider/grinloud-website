@@ -60,6 +60,22 @@ const Icon = {
       <path d="M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5" stroke="currentColor" strokeWidth="2.5"/>
     </svg>
   ),
+  Grid: ({ size = 14 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="3" width="8" height="8" stroke="currentColor" strokeWidth="2"/>
+      <rect x="13" y="3" width="8" height="8" stroke="currentColor" strokeWidth="2"/>
+      <rect x="3" y="13" width="8" height="8" stroke="currentColor" strokeWidth="2"/>
+      <rect x="13" y="13" width="8" height="8" stroke="currentColor" strokeWidth="2"/>
+    </svg>
+  ),
+  List: ({ size = 14 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M9 6h12M9 12h12M9 18h12" stroke="currentColor" strokeWidth="2" strokeLinecap="square"/>
+      <circle cx="3.5" cy="6" r="1.6" fill="currentColor"/>
+      <circle cx="3.5" cy="12" r="1.6" fill="currentColor"/>
+      <circle cx="3.5" cy="18" r="1.6" fill="currentColor"/>
+    </svg>
+  ),
 };
 
 export { Icon };

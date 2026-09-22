@@ -1,7 +1,7 @@
 // Main App: routing, state, Tweaks wiring.
 import React from 'react'
 import { useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSlider } from '../tweaks-panel.jsx'
-import { TopBrand, TopNav, NewsletterModal, SpotifyPreviewBar } from './shared.jsx'
+import { TopBrand, TopNav, NewsletterModal, SpotifyPreviewBar, picksVisibleThroughDate } from './shared.jsx'
 import { Home } from './Home.jsx'
 import { Cinema } from './Cinema.jsx'
 import { Social } from './Social.jsx'
@@ -88,6 +88,10 @@ function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [route, setRoute] = React.useState(_initialLoc.isArchive ? 'archive' : (_deepLinkedRadar ? 'radar' : 'home'));
   const [archiveTab, setArchiveTab] = React.useState(_initialLoc.archiveTab);
+  // Cover-View (covers grid, play button on the art, like Home's picks grid)
+  // is the default; List-View is the previous row layout, still reachable
+  // via Archive's own layout-switch button.
+  const [archivePicksLayout, setArchivePicksLayout] = React.useState('cover');
 
   const allPicks = window.GRINLOUD_DATA.PICKS;
   const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
@@ -105,10 +109,12 @@ function App() {
   const [previewUrl, setPreviewUrl] = React.useState(null); // overrides pick spotify when set
   const [showNewsletter, setShowNewsletter] = React.useState(false);
 
-  // Regular users: only past + today picks. Admin (?admin): all picks incl. future.
+  // Regular users: everything through the last day of the currently live
+  // Music Radar cycle (that whole cycle is already public — see
+  // picksVisibleThroughDate). Admin (?admin): all picks incl. unpublished ones.
   const picks = isAdmin
     ? allPicks
-    : allPicks.filter(p => p.date <= todayStr);
+    : allPicks.filter(p => p.date <= picksVisibleThroughDate(todayStr));
 
   // Auto-detect today's pick; fall back to index 0 (most recent visible)
   const todayIdx = picks.findIndex((p) => p.date === todayStr);
@@ -344,6 +350,8 @@ function App() {
           onToggleTrack={toggleTrackPreview}
           tab={archiveTab}
           onTabChange={setArchiveTab}
+          picksLayout={archivePicksLayout}
+          onPicksLayoutChange={setArchivePicksLayout}
           isAdmin={isAdmin}
         />
       )}

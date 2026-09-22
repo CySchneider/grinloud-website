@@ -40,6 +40,34 @@ function radarGenreTags(radar) {
   return tags;
 }
 
+// The last calendar date covered by a radar cycle — one pick per day,
+// starting at its own liveDate.
+function radarLastPickDate(radar) {
+  const d = new Date(radar.liveDate + 'T00:00:00Z');
+  d.setUTCDate(d.getUTCDate() + radar.tracks.length - 1);
+  return d.toISOString().slice(0, 10);
+}
+
+// The radar cycle live for regular (non-admin) visitors right now — RADAR
+// itself once its liveDate has arrived, else the most recent previous
+// radar. Mirrors the "actually live" check App.jsx/Archive.jsx use for the
+// RADARS tab.
+function currentLiveRadar(todayStr) {
+  const { RADAR, PREVIOUS_RADARS } = window.GRINLOUD_DATA;
+  const isLive = !RADAR.liveDate || todayStr >= RADAR.liveDate;
+  return isLive ? RADAR : (PREVIOUS_RADARS[0] || RADAR);
+}
+
+// How far a regular visitor may browse PICKS — through the last day of the
+// currently live Music Radar cycle. Once a radar is live, every one of its
+// ten days is already public (the same tracks sit on the Radar page too),
+// so there's no reason to keep gating them by today's calendar date — only
+// the NEXT radar's not-yet-existing cycle stays hidden. Used by Home's
+// prev/next paging and Archive's Picks tab.
+function picksVisibleThroughDate(todayStr) {
+  return radarLastPickDate(currentLiveRadar(todayStr));
+}
+
 function BackgroundVideo({ overlayOpacity = 0.35, accent, src }) {
   const videoRef = React.useRef(null);
   const loadedSrc = React.useRef(null);
@@ -741,4 +769,4 @@ function SpotifyCover({ spotifyUrl, alt = '' }) {
   );
 }
 
-export { BackgroundVideo, PickCarousel, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TrackInfoLayer, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover, radarGenreTags };
+export { BackgroundVideo, PickCarousel, LogoMark, StreamingLinks, ShareButton, NewsletterModal, TrackInfoLayer, TopBrand, TopNav, ClaimChip, LegalLinks, MetaPills, SpotifyPreviewBar, SpotifyCover, radarGenreTags, picksVisibleThroughDate };

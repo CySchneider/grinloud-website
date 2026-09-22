@@ -2,7 +2,7 @@
 // Radar cycle this pick belongs to nested below its own info, and B) a
 // random wall of past picks' covers.
 import React from 'react'
-import { PickCarousel, StreamingLinks, ShareButton, LegalLinks, SpotifyCover, TrackInfoLayer } from './shared.jsx'
+import { PickCarousel, StreamingLinks, ShareButton, LegalLinks, SpotifyCover, TrackInfoLayer, picksVisibleThroughDate } from './shared.jsx'
 import { Icon } from './icons.jsx'
 
 // Horizontal swipe → prev/next pick, mirroring the PREV/NEXT buttons below
@@ -69,7 +69,8 @@ function PicksGrid({ pick, accent, previewUrl, isPlaying, onToggleTrack, onGotoA
   // the route). Always drawn from published-only picks, even for admins,
   // so a scheduled pick's art never leaks here before its date.
   const gridPicks = React.useMemo(() => {
-    const published = window.GRINLOUD_DATA.PICKS.filter(p => p.date <= todayStr && p.id !== pick.id);
+    const cutoff = picksVisibleThroughDate(todayStr);
+    const published = window.GRINLOUD_DATA.PICKS.filter(p => p.date <= cutoff && p.id !== pick.id);
     return shuffle(published).slice(0, GRID_POOL_SIZE);
   }, []);
 
