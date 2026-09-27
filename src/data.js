@@ -121,6 +121,182 @@ const BG_VIDEOS = [
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
 
+  // ── MUSIC RADAR 017 — 29 Sep – 08 Oct 2026 ─────────────────────────────────
+  {
+    id: 'pick-2026-10-08',
+    date: '2026-10-08',
+    title: 'Bassline (Extended Mix)',
+    artist: 'LAYTON GIORDANI, HILLS, MAJESTIC, JUNGLE 70',
+    bpm: 132, key: 'Db Major', label: 'MADMINDS', release: '23 Sep 2026',
+    genre: 'Bass House', accent: 'green',
+    info: "Layton Giordani brings Majestic, Jungle 70 and HILLS to his own MADMINDS label — Radar 017 closes at 132 BPM, bass first.",
+    short: "Closes the radar at 132, bass first.",
+    funFact: "New York's Layton Giordani came up under Adam Beyer at Drumcode, then launched his own label MADMINDS with Armada Music in August 2025 — named, in his words, \"a home for brilliantly unconventional minds\".",
+    artistInstagram: '@laytongiordani',
+    artistTiktok: '@laytongiordaninyc',
+    artistName: 'Layton Giordani',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb1c4a89caa76ae4f1d3232f61',
+    coArtists: [
+      { name: 'HILLS', image: 'https://i.scdn.co/image/ab6761610000e5eb3fb74b28829b8377d6edd51e' },
+      { name: 'Majestic', image: 'https://i.scdn.co/image/ab6761610000e5eb3d63dab3831fe51393595aaf' },
+      { name: 'Jungle 70', image: 'https://i.scdn.co/image/ab67616d0000b273a3e32936950416c0cc80ea8e' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/7KLsZrIzZc4S3sy3dYiX1g', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-07',
+    date: '2026-10-07',
+    title: 'Freak (Extended Mix)',
+    artist: 'MESTO, INK',
+    bpm: 128, key: 'Gb Major', label: 'Experts Only', release: '18 Sep 2026',
+    genre: 'Bass House', accent: 'blue',
+    info: "Dutch producer Mesto teams up with Ink on John Summit's Experts Only — the #1 on Beatport's Bass House chart when we picked it.",
+    short: "Bass house #1, straight off Experts Only.",
+    funFact: "Mesto (Melle Stomp, born 1999 in Amstelveen) broke through at 16 with \"Bouncybob\", a collab with Martin Garrix released as a free download on New Year's Eve 2015.",
+    artistInstagram: '@mestomusic',
+    artistTiktok: '@mestomusicofficial',
+    artistName: 'Mesto',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb961ecd9cafb04795f39d1da1',
+    coArtists: [
+      { name: 'Ink', image: 'https://i.scdn.co/image/ab6761610000e5ebb3df8a3980032366a3a040bc' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/1pJQFno9DA8ghYWMecImct', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-06',
+    date: '2026-10-06',
+    title: 'Pop This (Extended Mix)',
+    artist: 'ÖWNBOSS',
+    bpm: 130, key: 'E Major', label: 'Catch & Release', release: '18 Sep 2026',
+    genre: 'Tech House', accent: 'pink',
+    info: "Brazil's Öwnboss lands on FISHER's Catch & Release with \"Pop This\" — tech house with bass-house muscle.",
+    short: "Tech house with bass-house muscle.",
+    funFact: "Öwnboss (Eduardo Fornasa Zaniolo from Florianópolis) blew up with \"Move Your Body\" feat. Sevek — 1001Tracklists' 4th most played track worldwide in 2022, later featured on the EA Sports F1 22 soundtrack.",
+    artistInstagram: '@ownbossmusic',
+    artistTiktok: '@ownbossmusic',
+    artistName: 'Öwnboss',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb532d892c7f578c2c266ed4e8',
+    links: { spotify: 'https://open.spotify.com/track/0S9kUWMb4SoO1lnjvcRD7d', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-05',
+    date: '2026-10-05',
+    title: 'Work (Extended Mix)',
+    artist: 'KC LIGHTS, KTLN',
+    bpm: 129, key: 'E Minor', label: 'Toolroom', release: '11 Sep 2026',
+    genre: 'House', accent: 'yellow',
+    info: "KC Lights and KTLN put in the work on Toolroom — tribal grooves, a vocal hook that sticks.",
+    short: "Tribal groove, vocal hook that sticks.",
+    funFact: "KC Lights (Kerr Slaven) grew up on Scotland's Isle of Bute, got signed to Hervé's Cheap Thrills in 2012 and has released on Toolroom since 2019 — with over 100 million streams across tracks like \"SOL\" and \"Girl\".",
+    artistInstagram: '@kclights.now',
+    artistName: 'KC Lights',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb04c2c4695e45cbe5b5550894',
+    coArtists: [
+      { name: 'KTLN', image: 'https://i.scdn.co/image/ab6761610000e5eb5ddf33ffe504d7d34944d631' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/3JNGV9Yfrr0iyJtgFglOUW', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-04',
+    date: '2026-10-04',
+    title: 'Losing Focus (Extended Mix)',
+    artist: 'KYLE WATSON, WALKER & ROYCE',
+    bpm: 129, key: 'Eb Major', label: 'No Context Records', release: '18 Sep 2026',
+    genre: 'Tech House', accent: 'orange',
+    info: "South Africa's Kyle Watson links with Walker & Royce on his own No Context Records — focus lost, groove found.",
+    short: "Focus lost, groove found.",
+    funFact: "Johannesburg-born Kyle Watson co-founded the label Box Of Cats in 2016 and launched No Context Records together with his wife Tash in 2023 — home to this collab.",
+    artistInstagram: '@kylewatsonmusic',
+    artistTiktok: '@kylewatsonmusic',
+    artistName: 'Kyle Watson',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebd9755d491e233a0a1f61b424',
+    coArtists: [
+      { name: 'Walker & Royce', image: 'https://i.scdn.co/image/ab6761610000e5ebdbe1c0af02740fa787d7810c', instagram: '@walkerandroyce' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/1S6zM3qxtd1OFNXwvWLFdq', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-03',
+    date: '2026-10-03',
+    title: 'Landlords Nightmare (Original Mix)',
+    artist: 'CAMELPHAT',
+    bpm: 130, key: 'Bb Major', label: 'Diynamic', release: '09 Sep 2026',
+    genre: 'Tech House', accent: 'green',
+    info: "Liverpool's CamelPhat land on Solomun's Diynamic with a peak-time roller — the landlord won't sleep tonight.",
+    short: "Peak-time roller, landlord won't sleep.",
+    funFact: "CamelPhat's \"Cola\" with Elderbrook earned a Grammy nomination for Best Dance Recording in 2018 and reached #18 on the UK Singles Chart.",
+    artistInstagram: '@camelphatmusic',
+    artistTiktok: '@camelphat.music',
+    artistName: 'CAMELPHAT',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb85bc993b6a738f94ef4df7cf',
+    links: { spotify: 'https://open.spotify.com/track/3WkdjUhq7DCqvtanW7TjSg', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-02',
+    date: '2026-10-02',
+    title: 'Legacy (Assanssan) (Original Mix)',
+    artist: 'ROOLÉH',
+    bpm: 128, key: 'G Minor', label: 'tszr', release: '11 Sep 2026',
+    genre: 'House', accent: 'blue',
+    info: "Dutch DJ Rooléh drops \"Legacy (Assanssan)\" on Three Six Zero's tszr — hypnotic, rolling, built for the middle of the night.",
+    short: "Hypnotic, rolling, mid-night.",
+    funFact: "Before \"Legacy\", Rooléh's \"Want To Know\" landed on ANOTR's label No Art in August 2026 and became a clubland favourite.",
+    artistInstagram: '@roolehmusic',
+    artistName: 'Rooléh',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb276dd3dc1ed618a51c144da0',
+    links: { spotify: 'https://open.spotify.com/track/2i1aetB4r2OfsJ73ZC86dh', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-01',
+    date: '2026-10-01',
+    title: 'Ooo La La (Original Mix)',
+    artist: 'RSQUARED',
+    bpm: 128, key: 'C Minor', label: 'RWorks', release: '10 Sep 2026',
+    genre: 'Tech House', accent: 'pink',
+    info: "UK duo RSquared drop \"Ooo La La\" on RWorks — pure Ibiza-circuit tech house.",
+    short: "Pure Ibiza-circuit tech house.",
+    funFact: "RSquared broke through with \"Fantasy\" on Defected and played Paco Osuna's \"Now Here\" showcase in Ibiza in summer 2024.",
+    artistInstagram: '@rsquareddj',
+    artistName: 'RSquared',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb2b985aba58c784f6ea58c9c4',
+    links: { spotify: 'https://open.spotify.com/track/0EgNdnumineEdwSgYg7TBt', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-30',
+    date: '2026-09-30',
+    title: "There's A Party Goin' On (Extended Mix)",
+    artist: 'HARTY (UK)',
+    bpm: 128, key: 'Db Minor', label: 'Prophecy', release: '11 Sep 2026',
+    genre: 'Tech House', accent: 'yellow',
+    info: "HARTY's long-awaited debut single lands on Prophecy — and yes, there's a party goin' on.",
+    short: "A debut that already sounds like a peak.",
+    funFact: "\"There's A Party Goin' On\" is HARTY's official debut release — before it came out it was already being played by PROSPA, Marco Carola, Franky Rizardo and Cloonee.",
+    artistInstagram: '@hartydj',
+    artistTiktok: '@hartydj',
+    artistName: 'HARTY (UK)',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb8ba8618f3d98c70c84409221',
+    links: { spotify: 'https://open.spotify.com/track/4jo0xE7A4ZNZrYEvSaEVfQ', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-09-29',
+    date: '2026-09-29',
+    title: 'Push The Tempo (Extended Mix)',
+    artist: 'DENIS SULTA, CAPRI',
+    bpm: 128, key: 'A Major', label: 'Defected', release: '11 Sep 2026',
+    genre: 'House', accent: 'orange',
+    info: "Glasgow's Denis Sulta makes his Defected debut alongside Capri — brassy stabs, big drums, and Radar 017 is off.",
+    short: "Brassy stabs to open the radar.",
+    funFact: "Denis Sulta (real name Hector Barbour) broke through with a 2015 Boiler Room set in Glasgow and \"It's Only Real\" — this is his first-ever release on Defected.",
+    artistInstagram: '@denissulta',
+    artistTiktok: '@denissulta',
+    artistName: 'Denis Sulta',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb2cfbddb9dcb96ee6a9f472b5',
+    coArtists: [
+      { name: 'Capri', image: 'https://i.scdn.co/image/ab6761610000e5eb6007ccd94b5e8ca3095935a2' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/3brep0RqUDan8R7hRcZAYv', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+
   // ── MUSIC RADAR 016 — 19–28 Sep 2026 ───────────────────────────────────────
   {
     id: 'pick-2026-09-28',
@@ -246,7 +422,7 @@ const PICKS = [
     funFact: "Rafael's (real name Liav Shalom) edits have been played by Jamie Jones on Cercle, with support from Diplo and CamelPhat.",
     artistInstagram: '@rafael___music',
     artistName: 'Rafael',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebe81fa13ccd203b25572c34a7',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebcebd6c5f54188a4e2c2b6cce',
     coArtists: [
       { name: 'Luch', image: 'https://i.scdn.co/image/ab6761610000e5ebdf64bb4f8dffa3f27ec389f7', tiktok: '@luchmusic' },
     ],
@@ -307,7 +483,7 @@ const PICKS = [
     artistName: 'Riordan',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5ebe89f692d6217857b3e519c48',
     coArtists: [
-      { name: 'Locky', image: 'https://i.scdn.co/image/ab6761610000e5eb5060c59fe063f3d597bbbd7b' },
+      { name: 'Locky', image: 'https://i.scdn.co/image/ab6761610000e5eb9e2cc3b89012f06500ff671b' },
     ],
     links: { spotify: 'https://open.spotify.com/track/09kvrg8hjr8G71mhIVARfu', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -786,7 +962,7 @@ const PICKS = [
     artistName: 'Paco Colombàs',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5ebb952092c749bf18b505ccede',
     coArtists: [
-      { name: 'Hurlee', image: 'https://i.scdn.co/image/ab6761610000e5ebecd9360572f9e5d9d461f60f', instagram: '@hurleemusic' },
+      { name: 'Hurlee', image: 'https://i.scdn.co/image/ab6761610000e5eb02ea106ad4688229e0090a5b', instagram: '@hurleemusic' },
     ],
     links: { spotify: 'https://open.spotify.com/track/13gvo6oILECHqTwNpFCrdK', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -970,7 +1146,7 @@ const PICKS = [
     artistName: 'Adam Ten',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb124d9ef54fb1a032b951518e',
     coArtists: [
-      { name: 'Rafael', image: 'https://i.scdn.co/image/ab6761610000e5ebe81fa13ccd203b25572c34a7', instagram: '@rafael___music' },
+      { name: 'Rafael', image: 'https://i.scdn.co/image/ab6761610000e5ebcebd6c5f54188a4e2c2b6cce', instagram: '@rafael___music' },
     ],
     links: { spotify: 'https://open.spotify.com/track/4WHvIDcDOcAVrsI5BxPGBM', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -1179,7 +1355,7 @@ const PICKS = [
     artistInstagram: '@rafael___music',
     artistTiktok: '@rafael_music1',
     artistName: 'Rafael',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebe81fa13ccd203b25572c34a7',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebcebd6c5f54188a4e2c2b6cce',
     links: { spotify: 'https://open.spotify.com/track/0BYTKcBcRU9w9S8QqbTIUR', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -1477,7 +1653,7 @@ const PICKS = [
     artistName: 'Bonafique',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb6d46eba60972d0ce0f5e6544',
     coArtists: [
-      { name: 'Yuvèe', image: 'https://i.scdn.co/image/ab6761610000e5ebebdd74a5194a9d19b666376f' },
+      { name: 'Yuvèe', image: 'https://i.scdn.co/image/ab6761610000e5eba1983ec3281b62c036c054dd' },
       { name: 'Josh Baker', image: 'https://i.scdn.co/image/ab6761610000e5ebe5cc0458e5c13ef8ab6c2441' },
     ],
     links: { spotify: 'https://open.spotify.com/track/4xeCjpuxm2Mg1RifYYrRTD', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -1978,7 +2154,7 @@ const PICKS = [
     info: "GREG 99 builds something infectious — a groove that takes over the floor before you even realise it's happening.",
     short: "A groove that takes over before you realise it.",
     artistName: 'GREG 99',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb080c895a176068bde1b743ae',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebb89b8860faf59a215b119f18',
     links: { spotify: 'https://open.spotify.com/track/7HzUjBSzXpS3vsmz8VG7yW', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -2144,7 +2320,7 @@ const PICKS = [
     artistName: 'Alesso',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb42b3fb34e3451c79c55cbe73',
     coArtists: [
-      { name: 'JOA', image: 'https://i.scdn.co/image/ab6761610000e5ebef736e27cc673d283e32c507' },
+      { name: 'JOA', image: 'https://i.scdn.co/image/ab6761610000e5eb16f613d4377a762e08856eb3' },
       { name: 'Tyree Cooper', image: 'https://i.scdn.co/image/ab6772690000c46cd2764b3e579610aaac6ce64a' },
     ],
     links: { spotify: 'https://open.spotify.com/track/4YtKvo2pTZsy8kCq9A7d8c', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -2263,7 +2439,7 @@ const PICKS = [
     artistName: 'Kungs',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb2fc63c1a3d7304c0cac2b2dd',
     coArtists: [
-      { name: 'CHANEY', image: 'https://i.scdn.co/image/ab6761610000e5ebe06fa7612ccd93a7995a4bec' },
+      { name: 'CHANEY', image: 'https://i.scdn.co/image/ab6761610000e5eb7f7081821d5a475ae3159315' },
     ],
     links: { spotify: 'https://open.spotify.com/track/0GqORtXPbb3BuYJhkarOYp', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -2603,7 +2779,7 @@ const PICKS = [
     artistName: 'Chris Lorenzo',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb454f6b508e265fa671caad9d',
     coArtists: [
-      { name: 'aMo (um)', image: 'https://i.scdn.co/image/ab6761610000e5eb7d57c12a4a42f9ffa8c004a4' },
+      { name: 'aMo (um)', image: 'https://i.scdn.co/image/ab6761610000e5ebdb8b16477d6483eda127c971' },
     ],
     links: { spotify: 'https://open.spotify.com/track/5nMrR3Ed99WcQ4Vv0wy8Bf', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -2622,7 +2798,7 @@ const PICKS = [
     info: "Two years as a secret weapon in Beltran's sets — the ID that everyone was hunting. Finally released and it hits exactly as hard as the clips promised.",
     short: "The ID everyone was hunting. It hits as hard as the clips promised.",
     artistName: 'Beltran',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb0768085fa4e404e10cf30820',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb1b312f15d86abf0ee2df347b',
     coArtists: [
       { name: 'The Flirts', image: 'https://i.scdn.co/image/ab6761610000e5ebddacf65df9265cc65309a850' },
     ],
@@ -2881,30 +3057,30 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 016 ────────────────────────────────────────────────────────────────────
+// ── CURRENT RADAR — 017 ────────────────────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-016',
-  number: '016',
-  title: 'Music Radar 016',
-  subtitle: 'Home Made. Floor Ready.',
-  cover: 'Music Radar Cover 016.jpg',
-  date: '19 SEP 2026',
-  liveDate: '2026-09-19', // public visibility date — same as first pick of this radar
-  nextDate: '29 SEP 2026',
-  youtubeId: 'QhWfv8JaBo4',
-  spotifyUrl: 'https://open.spotify.com/playlist/4WiqkNvmI7Jy7UDWc0fR6f',
-  duration: '27:12',
+  id: 'radar-017',
+  number: '017',
+  title: 'Music Radar 017',
+  subtitle: "Summer's Gone. Bass Stays.",
+  cover: 'Music Radar Cover 017.jpg', // bereits ins Projekt-Root gelegt (aus "Neue Assets", auf 1501×1501 skaliert)
+  date: '29 SEP 2026',
+  liveDate: '2026-09-29', // public visibility date — same as first pick of this radar
+  nextDate: '09 OCT 2026',
+  youtubeId: 'XiktcewXMSA',
+  spotifyUrl: 'https://open.spotify.com/playlist/05p2hKtJgR5usLe9jklgUo',
+  duration: '27:29',
   tracks: [
-    { n: '01', title: 'Homeboy (Dilby Remix)',        artist: 'Khen, Dilby',            bpm: 124, key: 'C Minor',  genre: 'Progressive House', cue: 'TBA' },
-    { n: '02', title: 'Color Divino (Extended Mix)',  artist: 'Ezequiel Arias, FJL',    bpm: 124, key: 'Bb Major', genre: 'Progressive House', cue: 'TBA' },
-    { n: '03', title: 'Gotta Be Cool (Luch Remix)',   artist: 'Rafael, Luch',           bpm: 124, key: 'Db Major', genre: 'Tech House',        cue: 'TBA' },
-    { n: '04', title: '1,2,3 (Extended)',             artist: 'James Hype, Volkoder',   bpm: 127, key: 'Db Minor', genre: 'Tech House',        cue: 'TBA' },
-    { n: '05', title: 'In Da Zone (Extended Mix)',    artist: 'Tini Gessler',           bpm: 128, key: 'Ab Major', genre: 'Bass House',        cue: 'TBA' },
-    { n: '06', title: 'Just A Little Bit More (Extended)', artist: 'Mau P',             bpm: 128, key: 'Gb Major', genre: 'Dance/Pop',         cue: 'TBA' },
-    { n: '07', title: 'That Girl',                    artist: 'Cy Schneider',           bpm: 128, key: 'B Major',  genre: 'Tech House',        cue: 'TBA' },
-    { n: '08', title: 'Funky Feeling (Extended Mix)', artist: 'Simes',                  bpm: 129, key: 'Bb Minor', genre: 'House',             cue: 'TBA' },
-    { n: '09', title: 'Get Up and Dance (Extended Mix)', artist: 'Cloonee',             bpm: 130, key: 'Bb Major', genre: 'Tech House',        cue: 'TBA' },
-    { n: '10', title: 'Control (Extended Mix)',       artist: 'G-Pol, SIDEPIECE',       bpm: 130, key: 'F Major',  genre: 'Bass House',        cue: 'TBA' },
+    { n: '01', title: 'Push The Tempo (Extended Mix)',            artist: 'Capri, Denis Sulta',                              bpm: 128, key: 'A Major',  genre: 'House',      cue: 'TBA' },
+    { n: '02', title: "There's A Party Goin' On (Extended Mix)",  artist: 'HARTY (UK)',                                      bpm: 128, key: 'Db Minor', genre: 'Tech House', cue: 'TBA' },
+    { n: '03', title: 'Ooo La La (Original Mix)',                 artist: 'RSquared',                                        bpm: 128, key: 'C Minor',  genre: 'Tech House', cue: 'TBA' },
+    { n: '04', title: 'Legacy (Assanssan) (Original Mix)',        artist: 'Rooléh',                                          bpm: 128, key: 'G Minor',  genre: 'House',      cue: 'TBA' },
+    { n: '05', title: 'Landlords Nightmare (Original Mix)',       artist: 'CamelPhat',                                       bpm: 130, key: 'Bb Major', genre: 'Tech House', cue: 'TBA' },
+    { n: '06', title: 'Losing Focus (Extended Mix)',              artist: 'Kyle Watson, Walker & Royce',                     bpm: 129, key: 'Eb Major', genre: 'Tech House', cue: 'TBA' },
+    { n: '07', title: 'Work (Extended Mix)',                      artist: 'KC Lights, KTLN',                                 bpm: 129, key: 'E Minor',  genre: 'House',      cue: 'TBA' },
+    { n: '08', title: 'Pop This (Extended Mix)',                  artist: 'Öwnboss',                                         bpm: 130, key: 'E Major',  genre: 'Tech House', cue: 'TBA' },
+    { n: '09', title: 'Freak (Extended Mix)',                     artist: 'Ink, Mesto',                                      bpm: 128, key: 'Gb Major', genre: 'Bass House', cue: 'TBA' },
+    { n: '10', title: 'Bassline (Extended Mix)',                  artist: 'Majestic, Layton Giordani, Jungle 70, HILLS (US)', bpm: 132, key: 'Db Major', genre: 'Bass House', cue: 'TBA' },
   ]
 };
 
@@ -2912,6 +3088,31 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ───────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    id: 'radar-016',
+    number: '016',
+    title: 'Music Radar 016',
+    subtitle: 'Home Made. Floor Ready.',
+    cover: 'Music Radar Cover 016.jpg',
+    date: '19 SEP 2026',
+    liveDate: '2026-09-19', // public visibility date — same as first pick of this radar
+    nextDate: '29 SEP 2026',
+    youtubeId: 'QhWfv8JaBo4',
+    spotifyUrl: 'https://open.spotify.com/playlist/4WiqkNvmI7Jy7UDWc0fR6f',
+    duration: '27:12',
+    tracks: [
+      { n: '01', title: 'Homeboy (Dilby Remix)',        artist: 'Khen, Dilby',            bpm: 124, key: 'C Minor',  genre: 'Progressive House', cue: 'TBA' },
+      { n: '02', title: 'Color Divino (Extended Mix)',  artist: 'Ezequiel Arias, FJL',    bpm: 124, key: 'Bb Major', genre: 'Progressive House', cue: 'TBA' },
+      { n: '03', title: 'Gotta Be Cool (Luch Remix)',   artist: 'Rafael, Luch',           bpm: 124, key: 'Db Major', genre: 'Tech House',        cue: 'TBA' },
+      { n: '04', title: '1,2,3 (Extended)',             artist: 'James Hype, Volkoder',   bpm: 127, key: 'Db Minor', genre: 'Tech House',        cue: 'TBA' },
+      { n: '05', title: 'In Da Zone (Extended Mix)',    artist: 'Tini Gessler',           bpm: 128, key: 'Ab Major', genre: 'Bass House',        cue: 'TBA' },
+      { n: '06', title: 'Just A Little Bit More (Extended)', artist: 'Mau P',             bpm: 128, key: 'Gb Major', genre: 'Dance/Pop',         cue: 'TBA' },
+      { n: '07', title: 'That Girl',                    artist: 'Cy Schneider',           bpm: 128, key: 'B Major',  genre: 'Tech House',        cue: 'TBA' },
+      { n: '08', title: 'Funky Feeling (Extended Mix)', artist: 'Simes',                  bpm: 129, key: 'Bb Minor', genre: 'House',             cue: 'TBA' },
+      { n: '09', title: 'Get Up and Dance (Extended Mix)', artist: 'Cloonee',             bpm: 130, key: 'Bb Major', genre: 'Tech House',        cue: 'TBA' },
+      { n: '10', title: 'Control (Extended Mix)',       artist: 'G-Pol, SIDEPIECE',       bpm: 130, key: 'F Major',  genre: 'Bass House',        cue: 'TBA' },
+    ]
+  },
   {
     id: 'radar-015',
     number: '015',
