@@ -1,6 +1,7 @@
 // Shared UI: BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopNav, ClaimChip
 import React from 'react'
 import { Icon } from './icons.jsx'
+import { isRadarLive } from './radarLive.js'
 
 // SpotifyCover and PickCarousel's Track Info slide both want the same
 // track's Spotify cover art — one shared in-flight/cached promise per URL
@@ -49,13 +50,12 @@ function radarLastPickDate(radar) {
 }
 
 // The radar cycle live for regular (non-admin) visitors right now — RADAR
-// itself once its liveDate has arrived, else the most recent previous
-// radar. Mirrors the "actually live" check App.jsx/Archive.jsx use for the
-// RADARS tab.
-function currentLiveRadar(todayStr) {
+// itself once it has unlocked (see radarLive.js: 18:00 Zurich the evening
+// before its liveDate), else the most recent previous radar. Same check
+// App.jsx/Archive.jsx use for the RADARS tab.
+function currentLiveRadar() {
   const { RADAR, PREVIOUS_RADARS } = window.GRINLOUD_DATA;
-  const isLive = !RADAR.liveDate || todayStr >= RADAR.liveDate;
-  return isLive ? RADAR : (PREVIOUS_RADARS[0] || RADAR);
+  return isRadarLive(RADAR) ? RADAR : (PREVIOUS_RADARS[0] || RADAR);
 }
 
 // How far a regular visitor may browse PICKS — through the last day of the
@@ -64,8 +64,8 @@ function currentLiveRadar(todayStr) {
 // so there's no reason to keep gating them by today's calendar date — only
 // the NEXT radar's not-yet-existing cycle stays hidden. Used by Home's
 // prev/next paging and Archive's Picks tab.
-function picksVisibleThroughDate(todayStr) {
-  return radarLastPickDate(currentLiveRadar(todayStr));
+function picksVisibleThroughDate() {
+  return radarLastPickDate(currentLiveRadar());
 }
 
 function BackgroundVideo({ overlayOpacity = 0.35, accent, src }) {

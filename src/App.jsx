@@ -2,6 +2,7 @@
 import React from 'react'
 import { useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSlider } from '../tweaks-panel.jsx'
 import { TopBrand, TopNav, NewsletterModal, SpotifyPreviewBar, picksVisibleThroughDate } from './shared.jsx'
+import { isRadarLive } from './radarLive.js'
 import { Home } from './Home.jsx'
 import { Cinema } from './Cinema.jsx'
 import { Social } from './Social.jsx'
@@ -97,9 +98,10 @@ function App() {
   const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
 
   // Determine which radar is currently "live" for regular visitors.
-  // If RADAR.liveDate is in the future, fall back to the first previous radar.
+  // Until RADAR unlocks (18:00 Zurich the evening before its liveDate — see
+  // radarLive.js), fall back to the first previous radar.
   const currentRadar = window.GRINLOUD_DATA.RADAR;
-  const radarActuallyLive = !currentRadar.liveDate || todayStr >= currentRadar.liveDate;
+  const radarActuallyLive = isRadarLive(currentRadar);
   const liveRadar = (isAdmin || radarActuallyLive)
     ? currentRadar
     : (window.GRINLOUD_DATA.PREVIOUS_RADARS[0] || currentRadar);
@@ -114,7 +116,7 @@ function App() {
   // picksVisibleThroughDate). Admin (?admin): all picks incl. unpublished ones.
   const picks = isAdmin
     ? allPicks
-    : allPicks.filter(p => p.date <= picksVisibleThroughDate(todayStr));
+    : allPicks.filter(p => p.date <= picksVisibleThroughDate());
 
   // Auto-detect today's pick; fall back to index 0 (most recent visible)
   const todayIdx = picks.findIndex((p) => p.date === todayStr);

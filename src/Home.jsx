@@ -61,7 +61,6 @@ function PicksGrid({ pick, accent, previewUrl, isPlaying, onToggleTrack, onGotoA
   const [openPick, setOpenPick] = React.useState(null);
   const gridRef = React.useRef(null);
   const [cols, setCols] = React.useState(null);
-  const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
 
   // Chosen once per mount (empty deps) — a fresh shuffle every prev/next
   // click through section A would make the grid feel jumpy for no reason;
@@ -69,7 +68,7 @@ function PicksGrid({ pick, accent, previewUrl, isPlaying, onToggleTrack, onGotoA
   // the route). Always drawn from published-only picks, even for admins,
   // so a scheduled pick's art never leaks here before its date.
   const gridPicks = React.useMemo(() => {
-    const cutoff = picksVisibleThroughDate(todayStr);
+    const cutoff = picksVisibleThroughDate();
     const published = window.GRINLOUD_DATA.PICKS.filter(p => p.date <= cutoff && p.id !== pick.id);
     return shuffle(published).slice(0, GRID_POOL_SIZE);
   }, []);

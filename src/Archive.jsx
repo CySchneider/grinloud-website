@@ -2,6 +2,7 @@
 import React from 'react'
 import { Icon } from './icons.jsx'
 import { ClaimChip, LegalLinks, SpotifyCover, TrackInfoLayer, picksVisibleThroughDate } from './shared.jsx'
+import { isRadarLive } from './radarLive.js'
 
 // PICKS stores artist names in ALL CAPS (used elsewhere as-is, e.g. the Home
 // hero); Music Radar's tracks carry hand-typed mixed case instead. To match
@@ -19,11 +20,10 @@ function Archive({ accent, onBack, onGotoRadar, onOpenRadar, previewUrl, isPlayi
   const allPicks = window.GRINLOUD_DATA.PICKS;
   const radars = window.GRINLOUD_DATA.PREVIOUS_RADARS;
   const currentRadar = window.GRINLOUD_DATA.RADAR;
-  const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
   // All picks through the last day of the currently live Music Radar cycle
   // — that whole cycle is already public (see picksVisibleThroughDate).
-  const picks = isAdmin ? allPicks : allPicks.filter(p => p.date <= picksVisibleThroughDate(todayStr));
-  const radarActuallyLive = !currentRadar.liveDate || todayStr >= currentRadar.liveDate;
+  const picks = isAdmin ? allPicks : allPicks.filter(p => p.date <= picksVisibleThroughDate());
+  const radarActuallyLive = isRadarLive(currentRadar);
   const showCurrentRadar = isAdmin || radarActuallyLive;
   const [openTrack, setOpenTrack] = React.useState(null);
 

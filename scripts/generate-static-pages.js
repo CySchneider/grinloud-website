@@ -12,6 +12,7 @@
 // Runs after `vite build` (see package.json) so it writes straight into
 // dist/ and can read the just-built, hashed app bundle tags out of dist/index.html.
 import { PICKS, RADAR, PREVIOUS_RADARS } from '../src/data.js';
+import { isRadarLive } from '../src/radarLive.js';
 import { writeFileSync, mkdirSync, readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -131,7 +132,7 @@ ${APP_SCRIPT_TAG}
 // exact visibility rules App.jsx uses, so a static page can never leak an
 // unpublished Pick or an embargoed Radar ahead of its liveDate.
 const publicPicks = PICKS.filter((p) => p.date <= TODAY);
-const radarActuallyLive = !RADAR.liveDate || TODAY >= RADAR.liveDate;
+const radarActuallyLive = isRadarLive(RADAR);
 const publicRadars = [...(radarActuallyLive ? [RADAR] : []), ...PREVIOUS_RADARS];
 
 // Same Spotify oEmbed lookup + thumbnail upscale src/shared.jsx's SpotifyCover
