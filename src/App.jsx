@@ -14,9 +14,28 @@ import { Archive } from './Archive.jsx'
 // No third-party analytics, no cost, never blocks or throws on the page —
 // if the D1 binding isn't set up yet, the endpoint just 204s. See that file
 // for the one-time Cloudflare dashboard setup.
+//
+// Where this visit came from, captured once at load: the URL-sync effect
+// below rewrites the address bar (dropping utm_* params), and every later
+// view/play in the same page load gets attributed to the same source. Only
+// the referrer's hostname is sent, never the full URL.
+const _hitOrigin = (() => {
+  try {
+    const p = new URLSearchParams(window.location.search);
+    let ref = null;
+    try { ref = document.referrer ? new URL(document.referrer).hostname : null; } catch (_) {}
+    return { ref, utm_source: p.get('utm_source'), utm_medium: p.get('utm_medium') };
+  } catch (_) { return {}; }
+})();
 function sendHit(type, extra = {}) {
   try {
-    const payload = JSON.stringify({ type, path: window.location.pathname, ...extra });
+    // Hits from devices opted out via /?notrack=1 are still sent on purpose:
+    // functions/api/hit.js drops them but counts them, so the stats page
+    // shows the opt-out is actually working.
+    const payload = JSON.stringify({
+      type, path: window.location.pathname, ..._hitOrigin,
+      wd: navigator.webdriver === true, ...extra,
+    });
     if (navigator.sendBeacon) {
       navigator.sendBeacon('/api/hit', new Blob([payload], { type: 'application/json' }));
     } else {

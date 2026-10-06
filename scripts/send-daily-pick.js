@@ -221,7 +221,7 @@ ${FONTS}
     <!-- ── FOOTER ── -->
     <tr><td style="padding:0 32px 32px;">
       <p style="margin:0 0 8px;font-family:'JetBrains Mono','IBM Plex Mono','Courier New',monospace;font-size:10px;font-weight:600;letter-spacing:0.06em;color:${ink40};">
-        <a href="https://grinloud.com" style="color:${ink40};text-decoration:none;">grinloud.com</a>
+        <a href="https://grinloud.com/?utm_source=newsletter&utm_medium=email" style="color:${ink40};text-decoration:none;">grinloud.com</a>
         <span style="opacity:0.6;">&middot;</span>
         <a href="https://grinloud.com/about.html" style="color:${ink40};text-decoration:none;">About</a>
         <span style="opacity:0.6;">&middot;</span>
