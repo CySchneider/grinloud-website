@@ -24,4 +24,24 @@ function isRadarLive(radar, now = new Date()) {
   return date > eveStr || (date === eveStr && hour >= RADAR_UNLOCK_HOUR);
 }
 
-export { isRadarLive };
+// The last calendar date covered by a radar cycle — one pick per day,
+// starting at its own liveDate.
+function radarLastPickDate(radar) {
+  const d = new Date(radar.liveDate + 'T00:00:00Z');
+  d.setUTCDate(d.getUTCDate() + radar.tracks.length - 1);
+  return d.toISOString().slice(0, 10);
+}
+
+// How far a regular visitor may browse PICKS — through the last day of the
+// currently live Music Radar cycle (RADAR once it has unlocked, else the most
+// recent previous radar). Once a radar is live, every one of its ten days is
+// already public (the same tracks sit on the Radar page too); only the NEXT
+// radar's cycle stays hidden. Shared by the app (shared.jsx), the static page
+// build (scripts/generate-static-pages.js) and functions/_middleware.js, so
+// all three agree on what's public.
+function picksVisibleThroughDate(radar, previousRadars, now = new Date()) {
+  const live = isRadarLive(radar, now) ? radar : (previousRadars[0] || radar);
+  return radarLastPickDate(live);
+}
+
+export { isRadarLive, radarLastPickDate, picksVisibleThroughDate };

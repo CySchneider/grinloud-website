@@ -17,7 +17,8 @@
 // with that cookie are dropped by functions/api/hit.js. Set server-side on
 // purpose: Safari (iOS/iPadOS/macOS) caps cookies written via document.cookie
 // to 7 days, but leaves first-party Set-Cookie headers alone.
-import { PICKS } from '../src/data.js';
+import { PICKS, RADAR, PREVIOUS_RADARS } from '../src/data.js';
+import { picksVisibleThroughDate } from '../src/radarLive.js';
 
 function noTrackResponse(on) {
   const cookie = on
@@ -61,8 +62,9 @@ export async function onRequest(context) {
   // scripts/generate-static-pages.js bakes into a real /pick/ page.
   const m = pathname.match(/^\/pick\/(\d{4}-\d{2}-\d{2})\/?$/);
   if (!m) return shell;
-  const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
-  const pick = m[1] <= today ? PICKS.find((p) => p.date === m[1]) : null; // never leak future picks
+  // Same visibility rule as the app: every pick of the live radar cycle, never the next radar's.
+  const visible = m[1] <= picksVisibleThroughDate(RADAR, PREVIOUS_RADARS);
+  const pick = visible ? PICKS.find((p) => p.date === m[1]) : null;
   if (!pick) return shell;
   return withPickMeta(shell, pick, url.origin + '/pick/' + pick.date + '/');
 }

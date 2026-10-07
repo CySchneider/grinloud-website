@@ -1,7 +1,7 @@
 // Shared UI: BackgroundVideo, LogoMark, StreamingLinks, NewsletterModal, TopNav, ClaimChip
 import React from 'react'
 import { Icon } from './icons.jsx'
-import { isRadarLive } from './radarLive.js'
+import { picksVisibleThroughDate as picksVisibleThroughDateFor } from './radarLive.js'
 
 // SpotifyCover and PickCarousel's Track Info slide both want the same
 // track's Spotify cover art — one shared in-flight/cached promise per URL
@@ -41,31 +41,13 @@ function radarGenreTags(radar) {
   return tags;
 }
 
-// The last calendar date covered by a radar cycle — one pick per day,
-// starting at its own liveDate.
-function radarLastPickDate(radar) {
-  const d = new Date(radar.liveDate + 'T00:00:00Z');
-  d.setUTCDate(d.getUTCDate() + radar.tracks.length - 1);
-  return d.toISOString().slice(0, 10);
-}
-
-// The radar cycle live for regular (non-admin) visitors right now — RADAR
-// itself once it has unlocked (see radarLive.js: 18:00 Zurich the evening
-// before its liveDate), else the most recent previous radar. Same check
-// App.jsx/Archive.jsx use for the RADARS tab.
-function currentLiveRadar() {
-  const { RADAR, PREVIOUS_RADARS } = window.GRINLOUD_DATA;
-  return isRadarLive(RADAR) ? RADAR : (PREVIOUS_RADARS[0] || RADAR);
-}
-
 // How far a regular visitor may browse PICKS — through the last day of the
-// currently live Music Radar cycle. Once a radar is live, every one of its
-// ten days is already public (the same tracks sit on the Radar page too),
-// so there's no reason to keep gating them by today's calendar date — only
-// the NEXT radar's not-yet-existing cycle stays hidden. Used by Home's
+// currently live Music Radar cycle (rule lives in radarLive.js, shared with
+// the static page build and functions/_middleware.js). Used by Home's
 // prev/next paging and Archive's Picks tab.
 function picksVisibleThroughDate() {
-  return radarLastPickDate(currentLiveRadar());
+  const { RADAR, PREVIOUS_RADARS } = window.GRINLOUD_DATA;
+  return picksVisibleThroughDateFor(RADAR, PREVIOUS_RADARS);
 }
 
 function BackgroundVideo({ overlayOpacity = 0.35, accent, src }) {

@@ -12,7 +12,7 @@
 // Runs after `vite build` (see package.json) so it writes straight into
 // dist/ and can read the just-built, hashed app bundle tags out of dist/index.html.
 import { PICKS, RADAR, PREVIOUS_RADARS } from '../src/data.js';
-import { isRadarLive } from '../src/radarLive.js';
+import { isRadarLive, picksVisibleThroughDate } from '../src/radarLive.js';
 import { writeFileSync, mkdirSync, readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -128,10 +128,10 @@ ${APP_SCRIPT_TAG}
 <style>${FALLBACK_STYLE}</style>`;
 }
 
-// Only ever generate pages for what's actually public today — mirrors the
-// exact visibility rules App.jsx uses, so a static page can never leak an
-// unpublished Pick or an embargoed Radar ahead of its liveDate.
-const publicPicks = PICKS.filter((p) => p.date <= TODAY);
+// Only ever generate pages for what's actually public — the exact visibility
+// rule the app uses (radarLive.js: every pick of the currently live radar
+// cycle), so a static page can never leak the next, still-embargoed Radar.
+const publicPicks = PICKS.filter((p) => p.date <= picksVisibleThroughDate(RADAR, PREVIOUS_RADARS));
 const radarActuallyLive = isRadarLive(RADAR);
 const publicRadars = [...(radarActuallyLive ? [RADAR] : []), ...PREVIOUS_RADARS];
 
@@ -320,7 +320,7 @@ ${head({ title, desc, url, ogType: 'music.playlist', image, jsonLd })}
 // pick, so "/" itself always has real, current content and metadata as of
 // the last build (same freshness window as the rest of this script's output
 // — see functions/_middleware.js for how same-day gaps are covered live).
-const homePick = publicPicks[0];
+const homePick = publicPicks.find((p) => p.date <= TODAY); // today's pick, not the radar's last day
 if (homePick) {
   const title = `${homePick.title} — ${homePick.artist} · GRINLOUD`;
   const desc = homePick.info || homePick.short || `${homePick.title} by ${homePick.artist} — ${homePick.genre}, curated by GRINLOUD.`;
