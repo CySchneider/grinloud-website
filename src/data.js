@@ -121,6 +121,182 @@ const BG_VIDEOS = [
 // Videos distributed cyclically across the 26 available loops.
 const PICKS = [
 
+  // ── MUSIC RADAR 018 — 09 Oct – 18 Oct 2026 ─────────────────────────────────
+  {
+    id: 'pick-2026-10-18',
+    date: '2026-10-18',
+    title: 'PLEASE ME (Extended Mix)',
+    artist: 'ZOOM.LIKE',
+    bpm: 135, key: 'Eb Minor', label: 'Zoom.Like Records', release: '11 Sep 2026',
+    genre: 'Tech House', accent: 'green',
+    info: "Munich's Zoom.Like self-releases \"PLEASE ME\" on his own label — Radar 018 closes at 135 BPM, the fastest track of this radar.",
+    short: "Closes the radar at 135 BPM.",
+    funFact: "Zoom.Like is one of Munich's busiest club DJs — he's played Pacha Munich, Bootshaus Cologne and Nikki Beach Ibiza, and has opened for NERVO, R3HAB and Cedric Gervais.",
+    artistInstagram: '@zoomlike',
+    artistName: 'Zoom.Like',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb3d2ca0c0e1f4c3bd9330d02b',
+    links: { spotify: 'https://open.spotify.com/track/65yHR0kwY6EgK4zilOMrj9', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-17',
+    date: '2026-10-17',
+    title: 'Mi Casa (Original Mix)',
+    artist: 'PATRICK TOPPING',
+    bpm: 131, key: 'B Major', label: 'Diynamic', release: '02 Oct 2026',
+    genre: 'Tech House', accent: 'blue',
+    info: "Patrick Topping lands on Solomun's Diynamic with \"Mi Casa\" — rolling tech house that makes any floor feel like home.",
+    short: "Makes any floor feel like home.",
+    funFact: "Patrick Topping has been named Best British DJ at DJ Mag's Best of British Awards — and his own label Trick has passed 125 releases.",
+    artistInstagram: '@patricktopping',
+    artistTiktok: '@patricktoppingdj',
+    artistName: 'Patrick Topping',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb0b5893bfc2eb2b275ef7fafb',
+    links: { spotify: 'https://open.spotify.com/track/3GQURTVhI9LRYy8Q8CCggN', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-16',
+    date: '2026-10-16',
+    title: 'DANGER DANGER (Extended)',
+    artist: 'DOM DOLLA, SOLOMUN, SKEPTA',
+    bpm: 130, key: 'A Major', label: 'Three Six Zero Recordings', release: '02 Oct 2026',
+    genre: 'Tech House', accent: 'pink',
+    info: "Dom Dolla, Solomun and Skepta in one track — the title track of Radar 018. Danger danger. Dance anyway.",
+    short: "The title track. Danger danger. Dance anyway.",
+    funFact: "Dom Dolla found house music when his mum handed him Basement Jaxx's 2001 album \"Rooty\" — he kept working as a graphic designer until 2015, then quit to go all-in on music.",
+    artistInstagram: '@domdolla',
+    artistTiktok: '@domdolla',
+    artistName: 'Dom Dolla',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb9290e172cbcacc0521b02b11',
+    coArtists: [
+      { name: 'Solomun', image: 'https://i.scdn.co/image/ab6761610000e5ebbfbacb40dced09ead13a3fa4', instagram: '@solomun', tiktok: '@solomun' },
+      { name: 'Skepta', image: 'https://i.scdn.co/image/ab6761610000e5eb9b4eb6af9fdcc71799c5c5ba', instagram: '@skeptagram' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/49fqtR2gcZXvJRQNbwrGkU', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-15',
+    date: '2026-10-15',
+    title: 'Act Up (Original Mix)',
+    artist: 'SEBS',
+    bpm: 130, key: 'D Major', label: 'tszr', release: '25 Sep 2026',
+    genre: 'Tech House', accent: 'yellow',
+    info: "SEBS drops \"Act Up\" on tszr, the label arm of Three Six Zero — stripped-back tech house built to misbehave.",
+    short: "Stripped-back tech house built to misbehave.",
+    artistInstagram: '@sebsmusicc',
+    artistName: 'SEBS',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb8d8c76d18c566e1efad34792',
+    links: { spotify: 'https://open.spotify.com/track/6T6OV77EDClmN0SJHqAwR5', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-14',
+    date: '2026-10-14',
+    title: 'Come Get Up (Extended Mix)',
+    artist: 'BUTCH, SANTOS (IT)',
+    bpm: 126, key: 'E Minor', label: 'Saved Records', release: '25 Sep 2026',
+    genre: 'House', accent: 'orange',
+    info: "Two veterans, one groove — Butch and Santos team up on Saved Records for almost eight minutes of house that never lets you sit down.",
+    short: "Almost eight minutes. No sitting down.",
+    funFact: "Butch (Bülent Gürler from Mainz) scored his breakthrough with \"No Worries\" in 2010 — one of the most-played tracks in Ibiza that season.",
+    artistInstagram: '@cometobutch',
+    artistName: 'Butch',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb48f2db98393537d40eb3f179',
+    coArtists: [
+      { name: 'Santos', image: 'https://i.scdn.co/image/ab6761610000e5eb942ed49af29f5f5a678d6de7', instagram: '@santos_italy' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/7CBZRV1j64WxE5mmMTcBJq', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-13',
+    date: '2026-10-13',
+    title: 'Souvenir (Original Mix)',
+    artist: 'JOSH BAKER, RHYS FROM THE STICKS',
+    bpm: 132, key: 'A Minor', label: "Baker's Dozen", release: '02 Oct 2026',
+    genre: 'House', accent: 'green',
+    info: "Josh Baker brings Rhys from the Sticks to his own Baker's Dozen label — a souvenir you'll want to keep on repeat.",
+    short: "A souvenir worth keeping.",
+    funFact: "Manchester-born Josh Baker started his You&Me parties as villa after-parties when he was 19 — today they run at venues like 528 Ibiza.",
+    artistInstagram: '@joshbakermusic',
+    artistName: 'Josh Baker',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebe5cc0458e5c13ef8ab6c2441',
+    coArtists: [
+      { name: 'rhys from the sticks', image: 'https://i.scdn.co/image/ab6761610000e5eb45feccf129ddd45dc43fecc2', instagram: '@rhys_fromthesticks' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/7mFoGLIUn1M7ORFx53eEVa', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-12',
+    date: '2026-10-12',
+    title: 'Fancy Footwork (Extended Mix)',
+    artist: 'CHRIS LORENZO, CHROMEO',
+    bpm: 130, key: 'F Minor', label: 'Turbo Blanco', release: '30 Sep 2026',
+    genre: 'House', accent: 'blue',
+    info: "Chris Lorenzo and Chromeo team up on Turbo Blanco — #1 on Beatport's House chart when we picked it.",
+    short: "Electro-funk swagger, built for the club.",
+    funFact: "Birmingham's Chris Lorenzo (Christopher Lawrence) also forms the duo Anti Up together with Chris Lake.",
+    artistInstagram: '@chrislorenzo66',
+    artistTiktok: '@chrislorenzo66',
+    artistName: 'Chris Lorenzo',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb454f6b508e265fa671caad9d',
+    coArtists: [
+      { name: 'Chromeo', image: 'https://i.scdn.co/image/ab6761610000e5eb017399838e5064b16f01e4c1', instagram: '@chromeo' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/0BK6ACxpzK8nkWa3YKuunX', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-11',
+    date: '2026-10-11',
+    title: '3D (Extended Mix)',
+    artist: 'NIIKO X SWAE, LUKE ALEXANDER',
+    bpm: 128, key: 'Eb Major', label: 'Trace Amounts', release: '02 Oct 2026',
+    genre: 'Bass House', accent: 'pink',
+    info: "NIIKO X SWAE and Luke Alexander go three-dimensional on Trace Amounts — bass house with depth.",
+    short: "Bass house with depth.",
+    funFact: "NIIKO X SWAE are an LA-based duo — their collab with Tiësto and Tears For Fears, \"Rule The World (Everybody)\", went viral with over 130 million views on Instagram.",
+    artistInstagram: '@niikoxswae',
+    artistName: 'NIIKO X SWAE',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb439ef993d8f89c900a50c1c3',
+    coArtists: [
+      { name: 'LUKE ALEXANDER', image: 'https://i.scdn.co/image/ab6761610000e5ebfc439c59d65e1c5c9324cb60', instagram: '@lukealexvnder' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/6ep0hLz1DJS78kdWDWtgLT', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-10',
+    date: '2026-10-10',
+    title: 'Control (Extended Mix)',
+    artist: 'JOSEPH CAPRIATI, GENNARO',
+    bpm: 128, key: 'C Minor', label: 'Metamorfosi Records', release: '18 Sep 2026',
+    genre: 'House', accent: 'yellow',
+    info: "Joseph Capriati teams up with GENNARO from Ischia on his own Metamorfosi Records — two Neapolitans, total control.",
+    short: "Two Neapolitans, total control.",
+    funFact: "Joseph Capriati from Caserta once played for more than 27 hours straight at Sunwaves Festival in Romania (2019) — after a 25.5-hour set in Miami two years earlier.",
+    artistInstagram: '@josephcapriati',
+    artistName: 'Joseph Capriati',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb519b1fea1993b50756565cee',
+    coArtists: [
+      { name: 'GENNARO', image: 'https://i.scdn.co/image/ab6761610000e5ebc75523407c0b54945f1151fd' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/4LYES3lEMg5hwWNXFfqOad', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+  {
+    id: 'pick-2026-10-09',
+    date: '2026-10-09',
+    title: 'Miami Vice (Extended Mix)',
+    artist: 'DJ PP, MARK KNIGHT, JAMES HURR',
+    bpm: 126, key: 'F Minor', label: 'Toolroom', release: '25 Sep 2026',
+    genre: 'Tech House', accent: 'orange',
+    info: "DJ PP, Mark Knight and James Hurr open Radar 018 on Toolroom — a Miami heatwave in the middle of October.",
+    short: "A Miami heatwave in October.",
+    funFact: "DJ PP is Uruguayan producer Gabriel Rocha — back in 2010 Mark Knight called him one of the breakthrough DJ/producers of the year. Sixteen years later, they share a release on Toolroom.",
+    artistName: 'DJ PP',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb84847ea4b217cbb17db95b09',
+    coArtists: [
+      { name: 'Mark Knight', image: 'https://i.scdn.co/image/ab6761610000e5ebc64ae41684ffb7dec7eeb685', instagram: '@djmarkknight' },
+      { name: 'James Hurr', image: 'https://i.scdn.co/image/ab6761610000e5eb56ab5192dd0a73b6dd2f775d' },
+    ],
+    links: { spotify: 'https://open.spotify.com/track/6eu7sTyCq3Q6N0yAcZRCCw', youtube: '#', beatport: '#', soundcloud: '#' }
+  },
+
   // ── MUSIC RADAR 017 — 29 Sep – 08 Oct 2026 ─────────────────────────────────
   {
     id: 'pick-2026-10-08',
@@ -310,7 +486,7 @@ const PICKS = [
     funFact: "SIDEPIECE — the duo of Party Favor and Nitti Gritti — landed a Grammy nomination for Best Dance Recording off their 2019 Diplo collab \"On My Mind\"; here they link up with Cyprus' G-Pol for \"Control\".",
     artistInstagram: '@sidepiece',
     artistName: 'SIDEPIECE',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb21705221c7f192d4a7963910',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb9fdd0f34084ce53189b87ec4',
     coArtists: [
       { name: 'G-POL', image: 'https://i.scdn.co/image/ab6761610000e5ebfee36f16cbd2c5a02cceedee' },
     ],
@@ -481,9 +657,9 @@ const PICKS = [
     artistInstagram: '@riordan.uk',
     artistTiktok: '@riordan_',
     artistName: 'Riordan',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebe89f692d6217857b3e519c48',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb5a1ce5c8353c012502b6340e',
     coArtists: [
-      { name: 'Locky', image: 'https://i.scdn.co/image/ab6761610000e5eb9e2cc3b89012f06500ff671b' },
+      { name: 'Locky', image: 'https://i.scdn.co/image/ab6761610000e5eb57ed4ee8c3ecb65edca402b5' },
     ],
     links: { spotify: 'https://open.spotify.com/track/09kvrg8hjr8G71mhIVARfu', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -1089,7 +1265,7 @@ const PICKS = [
     artistName: 'ZSS',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb6901d937f6e0fd68f09e3abc',
     coArtists: [
-      { name: 'Buka', image: 'https://i.scdn.co/image/ab6761610000e5eb03b96cbeadbab8293365f56f' },
+      { name: 'Buka', image: 'https://i.scdn.co/image/ab6761610000e5eb3faa135aebbf93b6dcf296a4' },
       { name: 'Luxtides', image: 'https://i.scdn.co/image/ab6761610000e5eb25e5e6f2d42b9281eb9eea8b', instagram: '@luxtides' },
     ],
     links: { spotify: 'https://open.spotify.com/track/7cMbPgVbx3N743LYQWZuEI', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -1199,7 +1375,7 @@ const PICKS = [
     artistInstagram: '@sidepiece',
     artistTiktok: '@youasidepiece',
     artistName: 'SIDEPIECE',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb21705221c7f192d4a7963910',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb9fdd0f34084ce53189b87ec4',
     coArtists: [
       { name: '95 South', image: 'https://i.scdn.co/image/ab6761610000e5eb78d3effe524e82e10ea3210a' },
     ],
@@ -1231,7 +1407,7 @@ const PICKS = [
     funFact: "Haluem is a Brazilian producer who brings Trap and Hip-Hop influences into Tech House and Deep Tech — TooDance carries that same groove-first, genre-blending signature.",
     artistInstagram: '@haluemm',
     artistName: 'Haluem',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5ebf2a01e0f8e643a3482547cf8',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb3df3b36c51276e6d3be174e5',
     coArtists: [
       { name: 'Lowderz', image: 'https://i.scdn.co/image/ab6761610000e5eb9de9254b05f1801c848498d3' },
     ],
@@ -1388,7 +1564,7 @@ const PICKS = [
     coArtists: [
       { name: 'Fatboy Slim', image: 'https://i.scdn.co/image/ab6761610000e5ebc20ed3229eeced918966a009' },
       { name: 'Carola', image: 'https://i.scdn.co/image/ab6761610000e5eb35175dd71fc5a9cc5fe5faa5' },
-      { name: '7KY', image: 'https://i.scdn.co/image/ab6761610000e5eb1258f15d5131e6a2429e0b8c' },
+      { name: '7KY', image: 'https://i.scdn.co/image/ab6761610000e5ebb7b2a0efb899fdd8e96a02bf' },
     ],
     links: { spotify: 'https://open.spotify.com/track/19h72fx2iP7Y4Xvct4x7Fs', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -1653,7 +1829,7 @@ const PICKS = [
     artistName: 'Bonafique',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5eb6d46eba60972d0ce0f5e6544',
     coArtists: [
-      { name: 'Yuvèe', image: 'https://i.scdn.co/image/ab6761610000e5eba1983ec3281b62c036c054dd' },
+      { name: 'Yuvèe', image: 'https://i.scdn.co/image/ab6761610000e5eb76a24dec533baf2222f2b4c8' },
       { name: 'Josh Baker', image: 'https://i.scdn.co/image/ab6761610000e5ebe5cc0458e5c13ef8ab6c2441' },
     ],
     links: { spotify: 'https://open.spotify.com/track/4xeCjpuxm2Mg1RifYYrRTD', youtube: '#', beatport: '#', soundcloud: '#' }
@@ -2278,7 +2454,7 @@ const PICKS = [
     info: "SIDEPIECE at peak form. Function is what happens when two of tech house's sharpest are fully locked in.",
     short: "SIDEPIECE at peak form.",
     artistName: 'SIDEPIECE',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb21705221c7f192d4a7963910',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb9fdd0f34084ce53189b87ec4',
     links: { spotify: 'https://open.spotify.com/track/1bhRw5feZyeh5Ti0o40wC9', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -2538,7 +2714,7 @@ const PICKS = [
     artistName: 'Mojjo',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5ebd9ced9f58931ea59e637cb10',
     coArtists: [
-      { name: 'Caique Carvalho', image: 'https://i.scdn.co/image/ab6761610000e5ebe3c3be34dd0da772896700c8' },
+      { name: 'Caique Carvalho', image: 'https://i.scdn.co/image/ab6761610000e5eba168bc271132ae08d0d687be' },
     ],
     links: { spotify: 'https://open.spotify.com/track/69mO0n022H0cggGm85wYZw', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -2578,7 +2754,7 @@ const PICKS = [
     info: "Faraone doesn't waste a single bar. Tight, driving, purposeful — this is what tech house sounds like when someone truly understands the dancefloor.",
     short: "Tight, driving, purposeful. Not a bar wasted.",
     artistName: 'Marco Faraone',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb0956f104d851988f8b6e985f',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb9c68ea3bf82578dc61706529',
     links: { spotify: 'https://open.spotify.com/track/2G9EQucmyuipl9wXCO1oNx', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
@@ -3057,30 +3233,30 @@ const PICKS = [
 ];
 
 
-// ── CURRENT RADAR — 017 ────────────────────────────────────────────────────────────────────
+// ── CURRENT RADAR — 018 ────────────────────────────────────────────────────────────────────
 const RADAR = {
-  id: 'radar-017',
-  number: '017',
-  title: 'Music Radar 017',
-  subtitle: "Summer's Gone. Bass Stays.",
-  cover: 'Music Radar Cover 017.jpg', // bereits ins Projekt-Root gelegt (aus "Neue Assets", auf 1501×1501 skaliert)
-  date: '29 SEP 2026',
-  liveDate: '2026-09-29', // public visibility date — same as first pick of this radar
-  nextDate: '09 OCT 2026',
-  youtubeId: 'XiktcewXMSA',
-  spotifyUrl: 'https://open.spotify.com/playlist/05p2hKtJgR5usLe9jklgUo',
-  duration: '27:29',
+  id: 'radar-018',
+  number: '018',
+  title: 'Music Radar 018',
+  subtitle: 'Danger Danger. Dance Anyway.',
+  cover: 'Music Radar Cover 018.jpg', // bereits ins Projekt-Root gelegt (aus "Neue Assets", auf 1501×1501 skaliert)
+  date: '09 OCT 2026',
+  liveDate: '2026-10-09', // public visibility date — same as first pick of this radar
+  nextDate: '19 OCT 2026',
+  youtubeId: 'vxe95ET3cB8',
+  spotifyUrl: 'https://open.spotify.com/playlist/6ZMaUbFh8Fu8vh5wTkANVA',
+  duration: '26:25',
   tracks: [
-    { n: '01', title: 'Push The Tempo (Extended Mix)',            artist: 'Capri, Denis Sulta',                              bpm: 128, key: 'A Major',  genre: 'House',      cue: 'TBA' },
-    { n: '02', title: "There's A Party Goin' On (Extended Mix)",  artist: 'HARTY (UK)',                                      bpm: 128, key: 'Db Minor', genre: 'Tech House', cue: 'TBA' },
-    { n: '03', title: 'Ooo La La (Original Mix)',                 artist: 'RSquared',                                        bpm: 128, key: 'C Minor',  genre: 'Tech House', cue: 'TBA' },
-    { n: '04', title: 'Legacy (Assanssan) (Original Mix)',        artist: 'Rooléh',                                          bpm: 128, key: 'G Minor',  genre: 'House',      cue: 'TBA' },
-    { n: '05', title: 'Landlords Nightmare (Original Mix)',       artist: 'CamelPhat',                                       bpm: 130, key: 'Bb Major', genre: 'Tech House', cue: 'TBA' },
-    { n: '06', title: 'Losing Focus (Extended Mix)',              artist: 'Kyle Watson, Walker & Royce',                     bpm: 129, key: 'Eb Major', genre: 'Tech House', cue: 'TBA' },
-    { n: '07', title: 'Work (Extended Mix)',                      artist: 'KC Lights, KTLN',                                 bpm: 129, key: 'E Minor',  genre: 'House',      cue: 'TBA' },
-    { n: '08', title: 'Pop This (Extended Mix)',                  artist: 'Öwnboss',                                         bpm: 130, key: 'E Major',  genre: 'Tech House', cue: 'TBA' },
-    { n: '09', title: 'Freak (Extended Mix)',                     artist: 'Ink, Mesto',                                      bpm: 128, key: 'Gb Major', genre: 'Bass House', cue: 'TBA' },
-    { n: '10', title: 'Bassline (Extended Mix)',                  artist: 'Majestic, Layton Giordani, Jungle 70, HILLS (US)', bpm: 132, key: 'Db Major', genre: 'Bass House', cue: 'TBA' },
+    { n: '01', title: 'Miami Vice (Extended Mix)',     artist: 'Mark Knight, DJ PP, James Hurr',    bpm: 126, key: 'F Minor',  genre: 'Tech House', cue: 'TBA' },
+    { n: '02', title: 'Control (Extended Mix)',        artist: 'Joseph Capriati, GENNARO',          bpm: 128, key: 'C Minor',  genre: 'House',      cue: 'TBA' },
+    { n: '03', title: '3D (Extended Mix)',             artist: 'NIIKO X SWAE, Luke Alexander',      bpm: 128, key: 'Eb Major', genre: 'Bass House', cue: 'TBA' },
+    { n: '04', title: 'Fancy Footwork (Extended Mix)', artist: 'Chromeo, Chris Lorenzo',            bpm: 130, key: 'F Minor',  genre: 'House',      cue: 'TBA' },
+    { n: '05', title: 'Souvenir (Original Mix)',       artist: 'Josh Baker, Rhys from the Sticks',  bpm: 132, key: 'A Minor',  genre: 'House',      cue: 'TBA' },
+    { n: '06', title: 'Come Get Up (Extended Mix)',    artist: 'Butch, Santos (IT)',                bpm: 126, key: 'E Minor',  genre: 'House',      cue: 'TBA' },
+    { n: '07', title: 'Act Up (Original Mix)',         artist: 'SEBS',                              bpm: 130, key: 'D Major',  genre: 'Tech House', cue: 'TBA' },
+    { n: '08', title: 'DANGER DANGER (Extended)',      artist: 'Solomun, Skepta, Dom Dolla',        bpm: 130, key: 'A Major',  genre: 'Tech House', cue: 'TBA' },
+    { n: '09', title: 'Mi Casa (Original Mix)',        artist: 'Patrick Topping',                   bpm: 131, key: 'B Major',  genre: 'Tech House', cue: 'TBA' },
+    { n: '10', title: 'PLEASE ME (Extended Mix)',      artist: 'Zoom.Like',                         bpm: 135, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
   ]
 };
 
@@ -3088,6 +3264,31 @@ const RADAR = {
 // ── PREVIOUS RADARS — newest first ───────────────────────────────────────────
 // tracks arrays use same shape as RADAR.tracks: {n, title, artist, bpm, key, genre, cue}
 const PREVIOUS_RADARS = [
+  {
+    id: 'radar-017',
+    number: '017',
+    title: 'Music Radar 017',
+    subtitle: "Summer's Gone. Bass Stays.",
+    cover: 'Music Radar Cover 017.jpg',
+    date: '29 SEP 2026',
+    liveDate: '2026-09-29', // public visibility date — same as first pick of this radar
+    nextDate: '09 OCT 2026',
+    youtubeId: 'XiktcewXMSA',
+    spotifyUrl: 'https://open.spotify.com/playlist/05p2hKtJgR5usLe9jklgUo',
+    duration: '27:29',
+    tracks: [
+      { n: '01', title: 'Push The Tempo (Extended Mix)',            artist: 'Capri, Denis Sulta',                              bpm: 128, key: 'A Major',  genre: 'House',      cue: 'TBA' },
+      { n: '02', title: "There's A Party Goin' On (Extended Mix)",  artist: 'HARTY (UK)',                                      bpm: 128, key: 'Db Minor', genre: 'Tech House', cue: 'TBA' },
+      { n: '03', title: 'Ooo La La (Original Mix)',                 artist: 'RSquared',                                        bpm: 128, key: 'C Minor',  genre: 'Tech House', cue: 'TBA' },
+      { n: '04', title: 'Legacy (Assanssan) (Original Mix)',        artist: 'Rooléh',                                          bpm: 128, key: 'G Minor',  genre: 'House',      cue: 'TBA' },
+      { n: '05', title: 'Landlords Nightmare (Original Mix)',       artist: 'CamelPhat',                                       bpm: 130, key: 'Bb Major', genre: 'Tech House', cue: 'TBA' },
+      { n: '06', title: 'Losing Focus (Extended Mix)',              artist: 'Kyle Watson, Walker & Royce',                     bpm: 129, key: 'Eb Major', genre: 'Tech House', cue: 'TBA' },
+      { n: '07', title: 'Work (Extended Mix)',                      artist: 'KC Lights, KTLN',                                 bpm: 129, key: 'E Minor',  genre: 'House',      cue: 'TBA' },
+      { n: '08', title: 'Pop This (Extended Mix)',                  artist: 'Öwnboss',                                         bpm: 130, key: 'E Major',  genre: 'Tech House', cue: 'TBA' },
+      { n: '09', title: 'Freak (Extended Mix)',                     artist: 'Ink, Mesto',                                      bpm: 128, key: 'Gb Major', genre: 'Bass House', cue: 'TBA' },
+      { n: '10', title: 'Bassline (Extended Mix)',                  artist: 'Majestic, Layton Giordani, Jungle 70, HILLS (US)', bpm: 132, key: 'Db Major', genre: 'Bass House', cue: 'TBA' },
+    ]
+  },
   {
     id: 'radar-016',
     number: '016',
