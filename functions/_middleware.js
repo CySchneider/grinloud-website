@@ -17,6 +17,8 @@
 // with that cookie are dropped by functions/api/hit.js. Set server-side on
 // purpose: Safari (iOS/iPadOS/macOS) caps cookies written via document.cookie
 // to 7 days, but leaves first-party Set-Cookie headers alone.
+import { PICKS } from '../src/data.js';
+
 function noTrackResponse(on) {
   const cookie = on
     ? 'gl_notrack=1; Max-Age=31536000; Path=/; Secure; SameSite=Lax'
@@ -50,5 +52,60 @@ export async function onRequest(context) {
   const response = await context.next();
   if (response.status !== 404) return response;
 
-  return context.env.ASSETS.fetch(new URL('/', context.request.url));
+  const shell = await context.env.ASSETS.fetch(new URL('/', context.request.url));
+
+  // Pick went live after the last deploy → the shell above still carries the
+  // homepage's meta tags (= whatever pick was current at build time). Link
+  // previews (WhatsApp, iMessage, Slack …) never run JS, so stamp this pick's
+  // own title/description/cover into the shell server-side, mirroring what
+  // scripts/generate-static-pages.js bakes into a real /pick/ page.
+  const m = pathname.match(/^\/pick\/(\d{4}-\d{2}-\d{2})\/?$/);
+  if (!m) return shell;
+  const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Zurich' });
+  const pick = m[1] <= today ? PICKS.find((p) => p.date === m[1]) : null; // never leak future picks
+  if (!pick) return shell;
+  return withPickMeta(shell, pick, url.origin + '/pick/' + pick.date + '/');
+}
+
+async function spotifyCover(spotifyUrl) {
+  if (!spotifyUrl || spotifyUrl === '#') return null;
+  try {
+    const res = await fetch('https://open.spotify.com/oembed?url=' + encodeURIComponent(spotifyUrl), {
+      cf: { cacheTtl: 86400, cacheEverything: true },
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!data || !data.thumbnail_url) return null;
+    return data.thumbnail_url.replace(/ab67616d0000(1e02|4851)/, 'ab67616d0000b273'); // -> 640x640
+  } catch (e) {
+    return null; // a Spotify hiccup must never break the page
+  }
+}
+
+async function withPickMeta(shell, pick, pageUrl) {
+  const cover = await spotifyCover(pick.links && pick.links.spotify);
+  const title = pick.title + ' — ' + pick.artist + ' · GRINLOUD Pick of the Day';
+  const desc = pick.info || pick.short || (pick.title + ' by ' + pick.artist + ' — ' + pick.genre + ', curated by GRINLOUD.');
+  const set = (value) => ({ element(el) { el.setAttribute('content', value); } });
+  let rw = new HTMLRewriter()
+    .on('title', { element(el) { el.setInnerContent(title); } })
+    .on('meta[name="description"]', set(desc))
+    .on('meta[property="og:type"]', set('music.song'))
+    .on('meta[property="og:url"]', set(pageUrl))
+    .on('meta[property="og:title"]', set(title))
+    .on('meta[property="og:description"]', set(desc))
+    .on('meta[name="twitter:title"]', set(title))
+    .on('meta[name="twitter:description"]', set(desc))
+    .on('link[rel="canonical"]', { element(el) { el.setAttribute('href', pageUrl); } });
+  if (cover) {
+    rw = rw
+      .on('meta[property="og:image"]', set(cover))
+      .on('meta[property="og:image:width"]', set('640'))
+      .on('meta[property="og:image:height"]', set('640'))
+      .on('meta[name="twitter:image"]', set(cover));
+  }
+  const out = rw.transform(shell);
+  const headers = new Headers(out.headers);
+  headers.set('Cache-Control', 'public, max-age=300');
+  return new Response(out.body, { status: 200, headers });
 }

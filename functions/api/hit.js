@@ -70,6 +70,7 @@ function classifySource(host, utmSource, utmMedium) {
   if (/youtube|\byt\b/.test(u) || /(^|\.)(youtube\.com|youtu\.be)$/.test(h)) return 'YouTube';
   if (/instagram|\big\b/.test(u) || /(^|\.)instagram\.com$/.test(h)) return 'Instagram';
   if (/tiktok/.test(u) || /(^|\.)tiktok\.com$/.test(h)) return 'TikTok';
+  if (/whatsapp|\bwa\b/.test(u) || /(^|\.)(whatsapp\.com|wa\.me)$/.test(h)) return 'WhatsApp';
   if (h === 'grinloud.com' || h.endsWith('.grinloud.com') || h.endsWith('.pages.dev')) return 'Intern';
   if (!h && !utmSource) return 'Direkt';
   return 'Andere';
