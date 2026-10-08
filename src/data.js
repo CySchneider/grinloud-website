@@ -156,22 +156,17 @@ const PICKS = [
   {
     id: 'pick-2026-10-16',
     date: '2026-10-16',
-    title: 'DANGER DANGER (Extended)',
-    artist: 'DOM DOLLA, SOLOMUN, SKEPTA',
-    bpm: 130, key: 'A Major', label: 'Three Six Zero Recordings', release: '02 Oct 2026',
+    title: 'NO BABY (Original Mix)',
+    artist: 'ANGEL HEREDIA',
+    bpm: 130, key: 'A Major', label: 'KoBBoK', release: '18 Sep 2026',
     genre: 'Tech House', accent: 'pink',
-    info: "Dom Dolla, Solomun and Skepta in one track — the title track of Radar 018. Danger danger. Dance anyway.",
-    short: "The title track. Danger danger. Dance anyway.",
-    funFact: "Dom Dolla found house music when his mum handed him Basement Jaxx's 2001 album \"Rooty\" — he kept working as a graphic designer until 2015, then quit to go all-in on music.",
-    artistInstagram: '@domdolla',
-    artistTiktok: '@domdolla',
-    artistName: 'Dom Dolla',
-    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb9290e172cbcacc0521b02b11',
-    coArtists: [
-      { name: 'Solomun', image: 'https://i.scdn.co/image/ab6761610000e5ebbfbacb40dced09ead13a3fa4', instagram: '@solomun', tiktok: '@solomun' },
-      { name: 'Skepta', image: 'https://i.scdn.co/image/ab6761610000e5eb9b4eb6af9fdcc71799c5c5ba', instagram: '@skeptagram' },
-    ],
-    links: { spotify: 'https://open.spotify.com/track/49fqtR2gcZXvJRQNbwrGkU', youtube: '#', beatport: '#', soundcloud: '#' }
+    info: "Angel Heredia drops \"NO BABY\" on his own label KoBBoK — 130 BPM, A Major, no permission asked. Danger danger. Dance anyway.",
+    short: "His own label, his own rules. Dance anyway.",
+    funFact: "Before DJing, Spain's Angel Heredia trained as a sound technician — since then he has released on Toolroom and Glasgow Underground and built his own label, KoBBoK.",
+    artistInstagram: '@angelheredia',
+    artistName: 'Angel Heredia',
+    artistImage: 'https://i.scdn.co/image/ab6761610000e5eb7441e1d82d3aa7aa237953ca',
+    links: { spotify: 'https://open.spotify.com/track/6InNjATFeg3sYdk3cnTdSp', youtube: '#', beatport: '#', soundcloud: '#' }
   },
   {
     id: 'pick-2026-10-15',
@@ -1138,7 +1133,7 @@ const PICKS = [
     artistName: 'Paco Colombàs',
     artistImage: 'https://i.scdn.co/image/ab6761610000e5ebb952092c749bf18b505ccede',
     coArtists: [
-      { name: 'Hurlee', image: 'https://i.scdn.co/image/ab6761610000e5eb02ea106ad4688229e0090a5b', instagram: '@hurleemusic' },
+      { name: 'Hurlee', image: 'https://i.scdn.co/image/ab6761610000e5eb595926ede017caa691e3113e', instagram: '@hurleemusic' },
     ],
     links: { spotify: 'https://open.spotify.com/track/13gvo6oILECHqTwNpFCrdK', youtube: '#', beatport: '#', soundcloud: '#' }
   },
@@ -3243,9 +3238,9 @@ const RADAR = {
   date: '09 OCT 2026',
   liveDate: '2026-10-09', // public visibility date — same as first pick of this radar
   nextDate: '19 OCT 2026',
-  youtubeId: 'vxe95ET3cB8',
+  youtubeId: 'SSplVtGvZ9o',
   spotifyUrl: 'https://open.spotify.com/playlist/6ZMaUbFh8Fu8vh5wTkANVA',
-  duration: '26:25',
+  duration: '26:53',
   tracks: [
     { n: '01', title: 'Miami Vice (Extended Mix)',     artist: 'Mark Knight, DJ PP, James Hurr',    bpm: 126, key: 'F Minor',  genre: 'Tech House', cue: 'TBA' },
     { n: '02', title: 'Control (Extended Mix)',        artist: 'Joseph Capriati, GENNARO',          bpm: 128, key: 'C Minor',  genre: 'House',      cue: 'TBA' },
@@ -3254,7 +3249,7 @@ const RADAR = {
     { n: '05', title: 'Souvenir (Original Mix)',       artist: 'Josh Baker, Rhys from the Sticks',  bpm: 132, key: 'A Minor',  genre: 'House',      cue: 'TBA' },
     { n: '06', title: 'Come Get Up (Extended Mix)',    artist: 'Butch, Santos (IT)',                bpm: 126, key: 'E Minor',  genre: 'House',      cue: 'TBA' },
     { n: '07', title: 'Act Up (Original Mix)',         artist: 'SEBS',                              bpm: 130, key: 'D Major',  genre: 'Tech House', cue: 'TBA' },
-    { n: '08', title: 'DANGER DANGER (Extended)',      artist: 'Solomun, Skepta, Dom Dolla',        bpm: 130, key: 'A Major',  genre: 'Tech House', cue: 'TBA' },
+    { n: '08', title: 'NO BABY (Original Mix)',        artist: 'Angel Heredia',                     bpm: 130, key: 'A Major',  genre: 'Tech House', cue: 'TBA' },
     { n: '09', title: 'Mi Casa (Original Mix)',        artist: 'Patrick Topping',                   bpm: 131, key: 'B Major',  genre: 'Tech House', cue: 'TBA' },
     { n: '10', title: 'PLEASE ME (Extended Mix)',      artist: 'Zoom.Like',                         bpm: 135, key: 'Eb Minor', genre: 'Tech House', cue: 'TBA' },
   ]
